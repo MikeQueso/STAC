@@ -6,6 +6,7 @@
   <title>STAC – Componentes para PC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <style>
     :root {
       --bg-deep:      #040D1A;
@@ -24,9 +25,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg-deep);
       color: var(--text-body);
@@ -36,10 +35,17 @@
       overflow-x: hidden;
     }
 
-    /* ─── SCROLLBAR ─────────────────────────────── */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-deep); }
     ::-webkit-scrollbar-thumb { background: var(--blue-core); border-radius: 3px; }
+
+    /* ─── PAGE WRAPPER (se difumina al pedir registro) ──────── */
+    #page-wrapper { transition: filter .25s ease; }
+    #page-wrapper.blurred {
+      filter: blur(10px);
+      pointer-events: none;
+      user-select: none;
+    }
 
     /* ─── HEADER ────────────────────────────────── */
     header {
@@ -121,179 +127,22 @@
       box-shadow: 0 0 20px rgba(0,95,255,0.4);
     }
 
-    /* ─── HERO ──────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding-top: 68px;
-      position: relative; overflow: hidden;
+    /* ─── USER CHIP (logueado) ───────────────────── */
+    .user-chip {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg-surface); border: 1px solid var(--border);
+      padding: 6px 8px 6px 14px; border-radius: 9px;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 60% 50%, rgba(0,95,255,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(0,170,255,0.05) 0%, transparent 60%);
+    .user-chip span { font-size: 13px; color: var(--text-primary); font-weight: 500; white-space: nowrap; }
+    .btn-logout, .btn-admin-panel {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-body); font-size: 12px; padding: 6px 12px;
+      border-radius: 6px; cursor: pointer; transition: all .2s;
+      font-family: 'IBM Plex Sans', sans-serif; white-space: nowrap;
     }
-    .scanline {
-      position: absolute; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--blue-glow), transparent);
-      animation: scan 6s linear infinite;
-      opacity: 0.3;
-    }
-    @keyframes scan {
-      0%   { top: 68px; }
-      100% { top: 100vh; }
-    }
-    .hero-inner {
-      max-width: 1280px; margin: auto; padding: 80px 24px;
-      position: relative; z-index: 1;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; color: var(--blue-glow);
-      letter-spacing: 0.15em; text-transform: uppercase;
-      background: rgba(0,170,255,0.08);
-      border: 1px solid rgba(0,170,255,0.2);
-      padding: 5px 12px; border-radius: 4px;
-      margin-bottom: 24px;
-    }
-    .hero-eyebrow::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--blue-glow);
-      box-shadow: 0 0 8px var(--blue-glow);
-      animation: pulse-dot 1.5s ease-in-out infinite;
-    }
-    .hero-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(44px, 5vw, 72px);
-      font-weight: 700; line-height: 1.0;
-      color: var(--text-primary);
-      letter-spacing: 0.01em;
-      margin-bottom: 20px;
-    }
-    .hero-title .hl {
-      color: transparent;
-      -webkit-text-stroke: 1px var(--blue-glow);
-      display: block;
-    }
-    .hero-desc {
-      font-size: 16px; color: var(--text-body);
-      max-width: 460px; margin-bottom: 36px; line-height: 1.7;
-    }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-lg {
-      padding: 13px 30px; border-radius: 9px;
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 14px; font-weight: 600;
-      cursor: pointer; transition: all .2s; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-lg.solid {
-      background: var(--blue-core); color: #fff; border: none;
-      box-shadow: 0 0 0 0 rgba(0,95,255,0.5);
-    }
-    .btn-lg.solid:hover {
-      background: var(--blue-bright);
-      box-shadow: 0 0 28px rgba(0,95,255,0.45);
-      transform: translateY(-1px);
-    }
-    .btn-lg.outline {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-    }
-    .btn-lg.outline:hover {
-      border-color: var(--blue-glow); color: var(--blue-glow);
-      background: rgba(0,170,255,0.05);
-    }
-    .hero-stats {
-      display: flex; gap: 32px; margin-top: 52px; padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-    .stat-item { }
-    .stat-num {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 28px; font-weight: 700; color: var(--text-primary);
-      line-height: 1;
-    }
-    .stat-num span { color: var(--blue-glow); }
-    .stat-label { font-size: 12px; color: var(--text-dim); margin-top: 3px; letter-spacing: 0.05em; }
-
-    .hero-visual {
-      display: flex; align-items: center; justify-content: center;
-    }
-    .product-card-hero {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      max-width: 340px; width: 100%;
-      position: relative;
-      box-shadow: 0 0 60px rgba(0,95,255,0.08), 0 24px 60px rgba(0,0,0,0.5);
-    }
-    .product-card-hero::before {
-      content: ''; position: absolute; inset: -1px; border-radius: 17px;
-      background: linear-gradient(135deg, rgba(0,95,255,0.3), transparent 60%);
-      z-index: -1;
-    }
-    .card-badge {
-      display: inline-block;
-      background: rgba(0,229,176,0.12);
-      border: 1px solid rgba(0,229,176,0.3);
-      color: var(--accent-green);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; letter-spacing: 0.1em;
-      padding: 3px 10px; border-radius: 4px;
-      margin-bottom: 20px;
-    }
-    .card-img-hero {
-      width: 100%; height: 180px;
-      background: var(--bg-surface);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-      position: relative; overflow: hidden;
-    }
-    .card-img-hero::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(0,95,255,0.12), transparent 70%);
-    }
-    .hero-product-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 20px; font-weight: 700; color: var(--text-primary);
-      margin-bottom: 4px;
-    }
-    .hero-product-ref {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; color: var(--text-dim); margin-bottom: 16px;
-    }
-    .hero-product-price {
-      display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px;
-    }
-    .price-main {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 30px; font-weight: 700; color: var(--blue-glow);
-    }
-    .price-old {
-      font-size: 14px; color: var(--text-dim);
-      text-decoration: line-through;
-    }
-    .btn-add {
-      width: 100%;
-      background: var(--blue-core);
-      border: none; color: #fff;
-      padding: 11px; border-radius: 8px;
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-weight: 600; font-size: 14px;
-      cursor: pointer; transition: all .2s;
-    }
-    .btn-add:hover {
-      background: var(--blue-bright);
-      box-shadow: 0 0 20px rgba(0,95,255,0.35);
-    }
+    .btn-logout:hover { border-color: #FF3E3E; color: #FF7070; }
+    .btn-admin-panel { border-color: rgba(0,95,255,0.4); color: var(--blue-glow); }
+    .btn-admin-panel:hover { background: rgba(0,95,255,0.08); }
 
     /* ─── SECTION COMMONS ──────────────────────── */
     section { padding: 80px 24px; }
@@ -311,65 +160,6 @@
       font-weight: 700; color: var(--text-primary);
       line-height: 1.1;
     }
-    .section-sub {
-      font-size: 15px; color: var(--text-body);
-      margin-top: 10px; max-width: 520px;
-    }
-
-    /* ─── TICKER ─────────────────────────────── */
-    .ticker-wrap {
-      background: var(--blue-core);
-      overflow: hidden; white-space: nowrap;
-      padding: 10px 0;
-    }
-    .ticker-track {
-      display: inline-flex; gap: 48px;
-      animation: ticker 28s linear infinite;
-    }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .ticker-item {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px; color: rgba(255,255,255,0.85);
-      letter-spacing: 0.1em;
-      display: inline-flex; align-items: center; gap: 6px;
-    }
-    .ticker-item::before { content: '◆'; font-size: 8px; opacity: 0.6; }
-
-    /* ─── CATEGORIES ─────────────────────────── */
-    .categories-bg { background: var(--bg-card); }
-    .cat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 14px;
-    }
-    .cat-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 16px;
-      text-align: center;
-      cursor: pointer;
-      transition: all .22s;
-      text-decoration: none;
-    }
-    .cat-card:hover {
-      border-color: var(--blue-glow);
-      background: rgba(0,170,255,0.06);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0,95,255,0.15);
-    }
-    .cat-icon {
-      font-size: 32px; margin-bottom: 12px; display: block;
-    }
-    .cat-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 15px; font-weight: 600;
-      color: var(--text-primary); margin-bottom: 4px;
-    }
-    .cat-count {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; color: var(--text-dim);
-    }
 
     /* ─── PRODUCTS ───────────────────────────── */
     .products-grid {
@@ -377,12 +167,12 @@
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       gap: 18px;
     }
+    .products-loading { color: var(--text-dim); font-size: 14px; }
     .prod-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 14px; overflow: hidden;
       transition: all .22s;
-      cursor: pointer;
     }
     .prod-card:hover {
       border-color: rgba(0,95,255,0.4);
@@ -398,6 +188,7 @@
       content: '';
       position: absolute; inset: 0;
       background: radial-gradient(circle at 50% 50%, rgba(0,95,255,0.08), transparent 70%);
+      pointer-events: none;
     }
     .prod-tag {
       position: absolute; top: 10px; left: 10px;
@@ -410,7 +201,14 @@
     .tag-sale { background: rgba(255,62,62,0.15); color: #FF7070; border: 1px solid rgba(255,62,62,0.3); }
     .tag-hot  { background: rgba(255,165,0,0.15); color: #FFB347; border: 1px solid rgba(255,165,0,0.3); }
     .tag-stock { background: rgba(0,229,176,0.12); color: var(--accent-green); border: 1px solid rgba(0,229,176,0.25); }
-    .prod-body { padding: 16px; }
+    .edit-btn {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(0,95,255,0.18); border: 1px solid rgba(0,95,255,0.35);
+      color: var(--blue-glow); font-size: 10.5px; padding: 4px 9px;
+      border-radius: 5px; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .edit-btn:hover { background: rgba(0,95,255,0.3); }
+    .prod-body { padding: 16px; cursor: pointer; }
     .prod-cat {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px; color: var(--text-dim);
@@ -447,91 +245,23 @@
       background: var(--blue-bright);
       box-shadow: 0 0 16px rgba(0,95,255,0.4);
     }
-
-    /* ─── BRANDS ─────────────────────────────── */
-    .brands-bg { background: var(--bg-deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .brands-inner { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .brands-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; color: var(--text-dim);
-      letter-spacing: 0.15em; text-transform: uppercase;
-      white-space: nowrap; margin-right: 8px;
+    .prod-edit-form input {
+      width: 100%; background: var(--bg-surface); border: 1px solid var(--border);
+      color: var(--text-primary); padding: 7px 9px; border-radius: 6px;
+      font-size: 13px; margin-bottom: 7px; font-family: 'IBM Plex Sans', sans-serif;
     }
-    .brand-logos { display: flex; flex-wrap: wrap; gap: 12px; }
-    .brand-pill {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      padding: 8px 20px; border-radius: 8px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 15px; font-weight: 600;
-      color: var(--text-dim);
-      letter-spacing: 0.06em;
-      transition: all .2s; cursor: default;
+    .prod-edit-form label {
+      font-size: 10px; color: var(--text-dim); text-transform: uppercase;
+      letter-spacing: 0.05em; display: block; margin-bottom: 3px;
     }
-    .brand-pill:hover { color: var(--text-primary); border-color: rgba(0,95,255,0.4); }
-
-    /* ─── WHY STAC ───────────────────────────── */
-    .why-bg { background: var(--bg-card); }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px;
-    }
-    .why-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 14px; padding: 28px 24px;
-    }
-    .why-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      background: rgba(0,95,255,0.12);
-      border: 1px solid rgba(0,95,255,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 18px;
-    }
-    .why-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 18px; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 8px;
-    }
-    .why-desc { font-size: 14px; color: var(--text-body); line-height: 1.6; }
-
-    /* ─── CTA BANNER ─────────────────────────── */
-    .cta-section {
-      background: linear-gradient(135deg, #040f24 0%, #071a3e 50%, #040f24 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .cta-glow {
-      position: absolute;
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse, rgba(0,95,255,0.12), transparent 70%);
-      top: 50%; left: 50%; transform: translate(-50%,-50%);
-      pointer-events: none;
-    }
-    .cta-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(30px, 4vw, 52px);
-      font-weight: 700; color: var(--text-primary);
-      margin-bottom: 14px; line-height: 1.1;
-    }
-    .cta-sub { font-size: 15px; color: var(--text-body); margin-bottom: 32px; }
-    .email-row {
-      display: flex; gap: 10px; max-width: 440px; margin: auto;
-      flex-wrap: wrap; justify-content: center;
-    }
-    .email-input {
-      flex: 1; min-width: 220px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      padding: 12px 16px; border-radius: 9px;
+    .prod-edit-actions { display: flex; gap: 6px; margin-top: 4px; }
+    .prod-edit-actions button {
+      flex: 1; padding: 8px; border-radius: 6px; border: none;
+      font-size: 12px; cursor: pointer; font-weight: 600;
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 14px; outline: none;
-      transition: border-color .2s;
     }
-    .email-input::placeholder { color: var(--text-dim); }
-    .email-input:focus { border-color: var(--blue-glow); }
+    .btn-save-edit { background: var(--accent-green); color: #04231a; }
+    .btn-cancel-edit { background: var(--bg-surface) !important; color: var(--text-dim) !important; border: 1px solid var(--border) !important; }
 
     /* ─── FOOTER ─────────────────────────────── */
     footer {
@@ -579,24 +309,116 @@
     }
     .footer-links a:hover { color: var(--blue-glow); }
 
-    /* ─── CHIP SVG ────────────────────────────── */
-    .chip-svg { width: 80px; height: 80px; }
+    /* ─── MODALES (registro / login / admin) ──────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(2,8,18,0.78);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.hidden { display: none; }
+
+    .auth-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px;
+      max-width: 400px; width: 100%;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,95,255,0.12);
+    }
+    .auth-card h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 26px; font-weight: 700; color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .auth-msg { font-size: 13.5px; color: var(--text-body); margin-bottom: 22px; line-height: 1.6; }
+    .auth-field { margin-bottom: 14px; }
+    .auth-field label {
+      display: block; font-size: 11.5px; color: var(--text-dim);
+      margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .auth-field input {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 11px 14px; border-radius: 8px;
+      font-family: 'IBM Plex Sans', sans-serif; font-size: 14px;
+      outline: none; transition: border-color .2s;
+    }
+    .auth-field input:focus { border-color: var(--blue-glow); }
+    .auth-submit {
+      width: 100%; margin-top: 6px;
+      background: var(--blue-core); color: #fff; border: none;
+      padding: 12px; border-radius: 8px;
+      font-weight: 600; font-size: 14px; cursor: pointer;
+      transition: all .2s; font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .auth-submit:hover { background: var(--blue-bright); box-shadow: 0 0 20px rgba(0,95,255,0.35); }
+    .auth-submit:disabled { opacity: 0.6; cursor: default; }
+    .auth-switch { text-align: center; margin-top: 18px; font-size: 13px; color: var(--text-dim); }
+    .auth-switch button {
+      background: none; border: none; color: var(--blue-glow);
+      cursor: pointer; font-size: 13px; font-weight: 600;
+      text-decoration: underline; font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .auth-error {
+      background: rgba(255,62,62,0.1); border: 1px solid rgba(255,62,62,0.3);
+      color: #FF7070; font-size: 12.5px; padding: 9px 12px;
+      border-radius: 6px; margin-bottom: 14px; display: none; line-height: 1.5;
+    }
+    .auth-error.show { display: block; }
+
+    .admin-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; max-width: 760px; width: 100%; max-height: 82vh;
+      display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    .admin-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+    }
+    .admin-header h2 { font-family: 'Rajdhani', sans-serif; font-size: 20px; color: var(--text-primary); }
+    .modal-close {
+      background: none; border: none; color: var(--text-dim);
+      font-size: 22px; cursor: pointer; line-height: 1;
+    }
+    .modal-close:hover { color: var(--text-primary); }
+    .admin-tabs { display: flex; gap: 8px; padding: 14px 24px 0; }
+    .admin-tab {
+      background: none; border: none; color: var(--text-dim);
+      font-size: 13px; font-weight: 600; padding: 8px 4px;
+      cursor: pointer; border-bottom: 2px solid transparent;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .admin-tab.active { color: var(--blue-glow); border-color: var(--blue-glow); }
+    .admin-body { padding: 18px 24px 24px; overflow-y: auto; flex: 1; }
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .admin-table th {
+      text-align: left; color: var(--text-dim); font-size: 10.5px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 8px 10px; border-bottom: 1px solid var(--border);
+    }
+    .admin-table td { padding: 10px; border-bottom: 1px solid rgba(0,95,255,0.08); color: var(--text-body); }
+    .admin-table tr:hover td { background: rgba(0,95,255,0.03); }
 
     /* ─── RESPONSIVE ─────────────────────────── */
     @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       nav { display: none; }
     }
     @media (max-width: 560px) {
       .footer-grid { grid-template-columns: 1fr; }
-      .hero-stats { flex-wrap: wrap; gap: 20px; }
-      .logo { font-size: 26px; }
+      .logo { font-size: 40px; }
+      .header-inner { height: 76px; }
+      .admin-table { font-size: 11.5px; }
     }
   </style>
 </head>
 <body>
+
+<div id="page-wrapper">
 
 <!-- ── HEADER ─────────────────────────────────────────────────── -->
 <header>
@@ -610,14 +432,11 @@
       <button class="btn-icon" title="Buscar">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
-      <button class="btn-icon" title="Mi cuenta">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </button>
       <button class="btn-icon" title="Carrito" style="position:relative">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-badge">3</span>
+        <span class="cart-badge">0</span>
       </button>
-      <button class="btn-primary">Iniciar sesión</button>
+      <div id="header-actions-dynamic"></div>
     </div>
   </div>
 </header>
@@ -632,136 +451,8 @@
       </div>
       <a href="#" style="color:var(--blue-glow); font-size:14px; text-decoration:none; font-weight:500;">Ver todo el catálogo →</a>
     </div>
-    <div class="products-grid">
-
-      <!-- CPU -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">🔲
-          <span class="prod-tag tag-hot">HOT</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Procesador</div>
-          <div class="prod-name">Intel Core i9-14900K</div>
-          <div class="prod-ref">REF: BX8071514900K</div>
-          <div class="prod-footer">
-            <div class="prod-price">$11,450</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- GPU -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">🎮
-          <span class="prod-tag tag-new">NUEVO</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Tarjeta Gráfica</div>
-          <div class="prod-name">NVIDIA RTX 4070 Ti Super</div>
-          <div class="prod-ref">REF: RTX4070TIS-16G</div>
-          <div class="prod-footer">
-            <div class="prod-price">$15,200</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- RAM -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">💾
-          <span class="prod-tag tag-stock">EN STOCK</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Memoria RAM</div>
-          <div class="prod-name">Corsair Vengeance 32GB DDR5</div>
-          <div class="prod-ref">REF: CMK32GX5M2B6000Z30</div>
-          <div class="prod-footer">
-            <div class="prod-price">$2,650</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PSU -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">🔋
-          <span class="prod-tag tag-sale">-15%</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Fuente de Poder</div>
-          <div class="prod-name">Corsair RM850x 850W 80+ Gold</div>
-          <div class="prod-ref">REF: CP-9020200-NA</div>
-          <div class="prod-footer">
-            <div class="prod-price">$2,890 <small>$3,400</small></div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Motherboard -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">🧩
-          <span class="prod-tag tag-new">NUEVO</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Placa Madre</div>
-          <div class="prod-name">ASUS ROG Strix B650-A</div>
-          <div class="prod-ref">REF: ROG-STRIX-B650-A</div>
-          <div class="prod-footer">
-            <div class="prod-price">$5,490</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- SSD -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">💿
-          <span class="prod-tag tag-hot">HOT</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Almacenamiento</div>
-          <div class="prod-name">Samsung 990 Pro 2TB NVMe</div>
-          <div class="prod-ref">REF: MZ-V9P2T0BW</div>
-          <div class="prod-footer">
-            <div class="prod-price">$3,150</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Cooler -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">❄️
-          <span class="prod-tag tag-stock">EN STOCK</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Refrigeración</div>
-          <div class="prod-name">Cooler Master Hyper 212</div>
-          <div class="prod-ref">REF: RR-212S-20PK-R2</div>
-          <div class="prod-footer">
-            <div class="prod-price">$680</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Case -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">🗄️
-          <span class="prod-tag tag-sale">-10%</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Gabinete</div>
-          <div class="prod-name">NZXT H510 Flow</div>
-          <div class="prod-ref">REF: CC-H51FB-01</div>
-          <div class="prod-footer">
-            <div class="prod-price">$1,890 <small>$2,100</small></div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
+    <div class="products-grid" id="products-grid">
+      <p class="products-loading">Cargando productos…</p>
     </div>
   </div>
 </section>
@@ -814,33 +505,443 @@
   </div>
 </footer>
 
+</div><!-- /page-wrapper -->
+
+<!-- ── MODAL REGISTRO / LOGIN ────────────────────────────────── -->
+<div id="auth-overlay" class="modal-overlay hidden">
+  <div class="auth-card">
+    <h2 id="auth-title">Crear tu cuenta</h2>
+    <p class="auth-msg">Antes de seguir navegando en el sitio nos gustaría que te registraras.</p>
+    <div class="auth-error" id="auth-error"></div>
+
+    <form id="register-form">
+      <div class="auth-field">
+        <label>Usuario</label>
+        <input type="text" id="reg-username" required minlength="3" autocomplete="username" />
+      </div>
+      <div class="auth-field">
+        <label>Correo electrónico</label>
+        <input type="email" id="reg-email" required autocomplete="email" />
+      </div>
+      <div class="auth-field">
+        <label>Contraseña</label>
+        <input type="password" id="reg-password" required minlength="6" autocomplete="new-password" />
+      </div>
+      <button type="submit" class="auth-submit">Crear cuenta</button>
+    </form>
+
+    <form id="login-form" style="display:none;">
+      <div class="auth-field">
+        <label>Usuario</label>
+        <input type="text" id="login-username" required autocomplete="username" />
+      </div>
+      <div class="auth-field">
+        <label>Contraseña</label>
+        <input type="password" id="login-password" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="auth-submit">Iniciar sesión</button>
+    </form>
+
+    <div class="auth-switch">
+      <span id="switch-text">¿Ya tienes un usuario?</span>
+      <button type="button" id="switch-btn">Inicia sesión</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL PANEL ADMIN ─────────────────────────────────────── -->
+<div id="admin-overlay" class="modal-overlay hidden">
+  <div class="admin-card">
+    <div class="admin-header">
+      <h2>🛡️ Panel Admin</h2>
+      <button class="modal-close" id="admin-close">✕</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="users">Usuarios registrados</button>
+      <button class="admin-tab" data-tab="views">Actividad reciente</button>
+    </div>
+    <div class="admin-body" id="admin-body"></div>
+  </div>
+</div>
+
 <script>
-  document.querySelectorAll('.btn-cart, .btn-add').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const badge = document.querySelector('.cart-badge');
-      if (badge) {
-        const n = parseInt(badge.textContent) + 1;
-        badge.textContent = n;
-        badge.style.transform = 'scale(1.4)';
-        badge.style.background = '#00AAFF';
-        setTimeout(() => {
-          badge.style.transform = 'scale(1)';
-          badge.style.background = 'var(--blue-core)';
-        }, 300);
-      }
-      this.textContent = '✓';
-      this.style.background = 'var(--accent-green)';
-      setTimeout(() => {
-        this.textContent = this.classList.contains('btn-add') ? '+ Agregar al carrito' : '+';
-        this.style.background = '';
-      }, 1200);
+  /* ════════════════════════════════════════════════════════
+     STAC · Conexión con Supabase
+  ════════════════════════════════════════════════════════ */
+  const SUPABASE_URL = 'https://limxmsfsasyrcpnpjgqo.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_OVmFpr180IcEXmIppIWT2A_TY1Wq4Zd';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  let currentUser = null;
+  let productsCache = [];
+  let isLoginMode = false;
+
+  const pageWrapper   = document.getElementById('page-wrapper');
+  const authOverlay   = document.getElementById('auth-overlay');
+  const adminOverlay  = document.getElementById('admin-overlay');
+  const registerForm  = document.getElementById('register-form');
+  const loginForm     = document.getElementById('login-form');
+  const authError     = document.getElementById('auth-error');
+  const authTitle     = document.getElementById('auth-title');
+  const switchBtn      = document.getElementById('switch-btn');
+  const switchText    = document.getElementById('switch-text');
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : String(str);
+    return div.innerHTML;
+  }
+  function showError(msg) { authError.textContent = msg; authError.classList.add('show'); }
+  function clearError() { authError.textContent = ''; authError.classList.remove('show'); }
+
+  function openGate() {
+    authOverlay.classList.remove('hidden');
+    pageWrapper.classList.add('blurred');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeGate() {
+    authOverlay.classList.add('hidden');
+    pageWrapper.classList.remove('blurred');
+    document.body.style.overflow = '';
+  }
+
+  function setLoginMode(toLogin) {
+    isLoginMode = toLogin;
+    clearError();
+    if (toLogin) {
+      registerForm.style.display = 'none';
+      loginForm.style.display = 'block';
+      authTitle.textContent = 'Inicia sesión';
+      switchText.textContent = '¿No tienes cuenta?';
+      switchBtn.textContent = 'Regístrate';
+    } else {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+      authTitle.textContent = 'Crear tu cuenta';
+      switchText.textContent = '¿Ya tienes un usuario?';
+      switchBtn.textContent = 'Inicia sesión';
+    }
+  }
+  switchBtn.addEventListener('click', () => setLoginMode(!isLoginMode));
+
+  /* ───────── REGISTRO ───────── */
+  registerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+    const username = document.getElementById('reg-username').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const password = document.getElementById('reg-password').value;
+
+    if (username.length < 3) { showError('El usuario debe tener al menos 3 caracteres.'); return; }
+
+    const btn = registerForm.querySelector('button');
+    btn.disabled = true; btn.textContent = 'Creando cuenta...';
+
+    const { data, error } = await sb.auth.signUp({ email, password });
+    if (error) { showError(error.message); btn.disabled = false; btn.textContent = 'Crear cuenta'; return; }
+    if (!data.user) { showError('No se pudo crear la cuenta. Intenta de nuevo.'); btn.disabled = false; btn.textContent = 'Crear cuenta'; return; }
+
+    const { error: profileError } = await sb.from('profiles').insert({
+      id: data.user.id, username, email, role: 'user'
+    });
+
+    btn.disabled = false; btn.textContent = 'Crear cuenta';
+
+    if (profileError) {
+      showError(profileError.message.toLowerCase().includes('duplicate') ? 'Ese nombre de usuario ya existe.' : profileError.message);
+      return;
+    }
+
+    if (data.session) {
+      await loadCurrentUser();
+      closeGate();
+    } else {
+      showError('Cuenta creada. Revisa tu correo para confirmarla antes de iniciar sesión.');
+    }
+  });
+
+  /* ───────── LOGIN ───────── */
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    const btn = loginForm.querySelector('button');
+    btn.disabled = true; btn.textContent = 'Entrando...';
+
+    const { data: email, error: lookupError } = await sb.rpc('get_email_by_username', { uname: username });
+    if (lookupError || !email) {
+      showError('Usuario no encontrado.');
+      btn.disabled = false; btn.textContent = 'Iniciar sesión';
+      return;
+    }
+
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    btn.disabled = false; btn.textContent = 'Iniciar sesión';
+
+    if (error) { showError('Contraseña incorrecta.'); return; }
+
+    await loadCurrentUser();
+    closeGate();
+  });
+
+  /* ───────── SESIÓN / HEADER ───────── */
+  async function loadCurrentUser() {
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) { currentUser = null; updateHeaderUI(); return; }
+
+    const { data: profile } = await sb.from('profiles').select('*').eq('id', session.user.id).single();
+    currentUser = profile
+      ? { id: session.user.id, ...profile }
+      : { id: session.user.id, email: session.user.email, username: session.user.email, role: 'user' };
+
+    updateHeaderUI();
+    renderProducts();
+  }
+
+  function updateHeaderUI() {
+    const actions = document.getElementById('header-actions-dynamic');
+    if (!currentUser) {
+      actions.innerHTML = '<button class="btn-primary" id="open-login-btn">Iniciar sesión</button>';
+      document.getElementById('open-login-btn').addEventListener('click', () => { setLoginMode(true); openGate(); });
+      return;
+    }
+    let html = `<div class="user-chip"><span>👋 ${escapeHtml(currentUser.username)}</span>`;
+    if (currentUser.role === 'admin') html += `<button class="btn-admin-panel" id="open-admin-btn">Panel Admin</button>`;
+    html += `<button class="btn-logout" id="logout-btn">Salir</button></div>`;
+    actions.innerHTML = html;
+
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await sb.auth.signOut();
+      currentUser = null;
+      updateHeaderUI();
+      renderProducts();
+      setLoginMode(false);
+      openGate();
+    });
+
+    if (currentUser.role === 'admin') {
+      document.getElementById('open-admin-btn').addEventListener('click', openAdminPanel);
+    }
+  }
+
+  /* ───────── PRODUCTOS ───────── */
+  async function loadProducts() {
+    const { data, error } = await sb.from('products').select('*').order('created_at', { ascending: true });
+    if (error) {
+      document.getElementById('products-grid').innerHTML = `<p class="products-loading">Error cargando productos: ${escapeHtml(error.message)}</p>`;
+      return;
+    }
+    productsCache = data || [];
+    renderProducts();
+  }
+
+  function badgeClass(badge) {
+    if (!badge) return 'tag-stock';
+    if (badge === 'HOT') return 'tag-hot';
+    if (badge === 'NUEVO') return 'tag-new';
+    if (badge === 'EN STOCK') return 'tag-stock';
+    if (badge.includes('%')) return 'tag-sale';
+    return 'tag-stock';
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    const isAdmin = currentUser && currentUser.role === 'admin';
+
+    if (!productsCache.length) {
+      grid.innerHTML = '<p class="products-loading">No hay productos todavía.</p>';
+      return;
+    }
+
+    grid.innerHTML = productsCache.map(p => `
+      <div class="prod-card" data-id="${p.id}">
+        <div class="prod-img">
+          ${escapeHtml(p.emoji || '📦')}
+          ${p.badge ? `<span class="prod-tag ${badgeClass(p.badge)}">${escapeHtml(p.badge)}</span>` : ''}
+          ${isAdmin ? `<button class="edit-btn" data-edit="${p.id}">✏️ Editar</button>` : ''}
+        </div>
+        <div class="prod-body" data-view="${p.id}">
+          <div class="prod-cat">${escapeHtml(p.category)}</div>
+          <div class="prod-name">${escapeHtml(p.name)}</div>
+          <div class="prod-ref">REF: ${escapeHtml(p.ref || '')}</div>
+          <div class="prod-footer">
+            <div class="prod-price">$${Number(p.price).toLocaleString('es-MX')}${p.old_price ? ` <small>$${Number(p.old_price).toLocaleString('es-MX')}</small>` : ''}</div>
+            <button class="btn-cart" data-cart="${p.id}">+</button>
+          </div>
+        </div>
+        <div class="prod-edit-form" data-form="${p.id}" style="display:none; padding: 0 16px 16px;">
+          <label>Nombre</label>
+          <input type="text" data-field="name" value="${escapeHtml(p.name)}" />
+          <label>Categoría</label>
+          <input type="text" data-field="category" value="${escapeHtml(p.category)}" />
+          <label>Precio</label>
+          <input type="number" data-field="price" value="${p.price}" step="1" />
+          <div class="prod-edit-actions">
+            <button class="btn-save-edit" data-save="${p.id}">💾 Guardar</button>
+            <button class="btn-cancel-edit" data-cancel="${p.id}">✕ Cancelar</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    grid.querySelectorAll('[data-cart]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const badge = document.querySelector('.cart-badge');
+        if (badge) badge.textContent = parseInt(badge.textContent) + 1;
+        btn.textContent = '✓';
+        setTimeout(() => { btn.textContent = '+'; }, 1000);
+      });
+    });
+
+    grid.querySelectorAll('.prod-body').forEach(el => {
+      el.addEventListener('click', (e) => {
+        if (e.target.closest('[data-cart]')) return;
+        trackView(el.getAttribute('data-view'));
+      });
+    });
+
+    grid.querySelectorAll('[data-edit]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-edit');
+        const card = grid.querySelector(`.prod-card[data-id="${id}"]`);
+        card.querySelector(`.prod-body[data-view="${id}"]`).style.display = 'none';
+        card.querySelector(`.prod-edit-form[data-form="${id}"]`).style.display = 'block';
+      });
+    });
+
+    grid.querySelectorAll('[data-cancel]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-cancel');
+        const card = grid.querySelector(`.prod-card[data-id="${id}"]`);
+        card.querySelector(`.prod-body[data-view="${id}"]`).style.display = 'block';
+        card.querySelector(`.prod-edit-form[data-form="${id}"]`).style.display = 'none';
+      });
+    });
+
+    grid.querySelectorAll('[data-save]').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-save');
+        const form = grid.querySelector(`.prod-edit-form[data-form="${id}"]`);
+        const name = form.querySelector('[data-field="name"]').value.trim();
+        const category = form.querySelector('[data-field="category"]').value.trim();
+        const price = parseFloat(form.querySelector('[data-field="price"]').value);
+
+        btn.disabled = true; btn.textContent = 'Guardando...';
+        const { error } = await sb.from('products').update({ name, category, price }).eq('id', id);
+        if (error) { alert('Error al guardar: ' + error.message); btn.disabled = false; btn.textContent = '💾 Guardar'; return; }
+        await loadProducts();
+      });
+    });
+  }
+
+  async function trackView(productId) {
+    if (!currentUser) return;
+    await sb.from('product_views').insert({ user_id: currentUser.id, product_id: productId });
+  }
+
+  /* ───────── PANEL ADMIN ───────── */
+  async function openAdminPanel() {
+    adminOverlay.classList.remove('hidden');
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.admin-tab[data-tab="users"]').classList.add('active');
+    await renderAdminTab('users');
+  }
+  document.getElementById('admin-close').addEventListener('click', () => adminOverlay.classList.add('hidden'));
+  document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', async () => {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      await renderAdminTab(tab.getAttribute('data-tab'));
     });
   });
 
-  window.addEventListener('scroll', () => {
-    document.querySelector('header').style.boxShadow =
-      window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.5)' : 'none';
-  });
+  async function renderAdminTab(tab) {
+    const body = document.getElementById('admin-body');
+    body.innerHTML = '<p style="color:var(--text-dim); font-size:13px;">Cargando...</p>';
+
+    if (tab === 'users') {
+      const { data: profiles, error } = await sb.from('profiles').select('*').order('created_at', { ascending: false });
+      if (error) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(error.message)}</p>`; return; }
+      body.innerHTML = `
+        <table class="admin-table">
+          <thead><tr><th>Usuario</th><th>Correo</th><th>Rol</th><th>Registrado</th></tr></thead>
+          <tbody>
+            ${profiles.map(p => `
+              <tr>
+                <td>${escapeHtml(p.username)}</td>
+                <td>${escapeHtml(p.email)}</td>
+                <td>${p.role === 'admin' ? '🛡️ Admin' : 'Usuario'}</td>
+                <td>${new Date(p.created_at).toLocaleDateString('es-MX')}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    } else if (tab === 'views') {
+      const { data: views, error } = await sb
+        .from('product_views')
+        .select('viewed_at, user_id, products(name)')
+        .order('viewed_at', { ascending: false })
+        .limit(50);
+      if (error) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(error.message)}</p>`; return; }
+
+      const { data: profiles } = await sb.from('profiles').select('id, username, email');
+      const profileMap = {};
+      (profiles || []).forEach(p => profileMap[p.id] = p);
+
+      if (!views.length) { body.innerHTML = '<p style="color:var(--text-dim); font-size:13px;">Todavía no hay actividad registrada.</p>'; return; }
+
+      body.innerHTML = `
+        <table class="admin-table">
+          <thead><tr><th>Usuario</th><th>Correo</th><th>Producto visto</th><th>Cuándo</th></tr></thead>
+          <tbody>
+            ${views.map(v => {
+              const u = profileMap[v.user_id];
+              return `
+                <tr>
+                  <td>${u ? escapeHtml(u.username) : '—'}</td>
+                  <td>${u ? escapeHtml(u.email) : '—'}</td>
+                  <td>${v.products ? escapeHtml(v.products.name) : '—'}</td>
+                  <td>${new Date(v.viewed_at).toLocaleString('es-MX')}</td>
+                </tr>`;
+            }).join('')}
+          </tbody>
+        </table>`;
+    }
+  }
+
+  /* ───────── INIT ───────── */
+  (async function init() {
+    await loadProducts();
+
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      await loadCurrentUser();
+    } else {
+      updateHeaderUI();
+      setLoginMode(false);
+      openGate();
+    }
+
+    sb.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') {
+        currentUser = null;
+        updateHeaderUI();
+        renderProducts();
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').style.boxShadow =
+        window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.5)' : 'none';
+    });
+  })();
 </script>
 </body>
 </html>
