@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>STAC – Componentes Electrónicos</title>
+  <title>STAC – Componentes para PC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -50,26 +50,26 @@
     }
     .header-inner {
       max-width: 1280px; margin: auto;
-      padding: 0 24px;
-      height: 64px;
+      padding: 0 24px 0 0;
+      height: 68px;
       display: flex; align-items: center; gap: 32px;
     }
     .logo {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 28px; font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--text-primary);
+      font-size: 32px; font-weight: 700;
+      letter-spacing: 0.10em;
+      color: var(--blue-glow);
       text-decoration: none;
       position: relative;
-    }
-    .logo span {
-      color: var(--blue-glow);
+      display: inline-flex; align-items: center;
+      padding: 0 0 0 14px;
+      text-shadow: 0 0 18px rgba(0,170,255,0.35);
     }
     .logo-dot {
-      display: inline-block; width: 6px; height: 6px;
+      display: inline-block; width: 7px; height: 7px;
       background: var(--blue-glow);
       border-radius: 50%;
-      margin-left: 3px;
+      margin-left: 4px;
       box-shadow: 0 0 8px var(--blue-glow);
       animation: pulse-dot 2s ease-in-out infinite;
     }
@@ -124,22 +124,15 @@
     .hero {
       min-height: 100vh;
       display: flex; align-items: center;
-      padding-top: 64px;
+      padding-top: 68px;
       position: relative; overflow: hidden;
     }
-    /* Circuit board SVG background */
     .hero-bg {
       position: absolute; inset: 0;
       background:
         radial-gradient(ellipse 70% 60% at 60% 50%, rgba(0,95,255,0.08) 0%, transparent 70%),
         radial-gradient(ellipse 40% 40% at 15% 80%, rgba(0,170,255,0.05) 0%, transparent 60%);
     }
-    .circuit-svg {
-      position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
-      width: 52%; opacity: 0.18;
-      pointer-events: none;
-    }
-    /* Horizontal scan line */
     .scanline {
       position: absolute; left: 0; right: 0; height: 1px;
       background: linear-gradient(90deg, transparent, var(--blue-glow), transparent);
@@ -147,7 +140,7 @@
       opacity: 0.3;
     }
     @keyframes scan {
-      0%   { top: 64px; }
+      0%   { top: 68px; }
       100% { top: 100vh; }
     }
     .hero-inner {
@@ -186,7 +179,7 @@
     }
     .hero-desc {
       font-size: 16px; color: var(--text-body);
-      max-width: 440px; margin-bottom: 36px; line-height: 1.7;
+      max-width: 460px; margin-bottom: 36px; line-height: 1.7;
     }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn-lg {
@@ -214,7 +207,6 @@
       border-color: var(--blue-glow); color: var(--blue-glow);
       background: rgba(0,170,255,0.05);
     }
-    /* Stats strip */
     .hero-stats {
       display: flex; gap: 32px; margin-top: 52px; padding-top: 32px;
       border-top: 1px solid var(--border);
@@ -228,7 +220,6 @@
     .stat-num span { color: var(--blue-glow); }
     .stat-label { font-size: 12px; color: var(--text-dim); margin-top: 3px; letter-spacing: 0.05em; }
 
-    /* Hero right: featured product */
     .hero-visual {
       display: flex; align-items: center; justify-content: center;
     }
@@ -263,10 +254,6 @@
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 20px;
       position: relative; overflow: hidden;
-    }
-    .chip-icon {
-      width: 100px; height: 100px;
-      position: relative;
     }
     .card-img-hero::after {
       content: '';
@@ -556,7 +543,7 @@
       display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 48px;
       margin-bottom: 48px;
     }
-    .footer-brand .logo { font-size: 24px; display: inline-block; margin-bottom: 14px; }
+    .footer-brand .logo { font-size: 26px; display: inline-flex; margin-bottom: 14px; padding-left: 0; }
     .footer-brand p { font-size: 13.5px; color: var(--text-dim); line-height: 1.65; max-width: 260px; }
     .footer-col h4 {
       font-family: 'Rajdhani', sans-serif;
@@ -604,6 +591,7 @@
     @media (max-width: 560px) {
       .footer-grid { grid-template-columns: 1fr; }
       .hero-stats { flex-wrap: wrap; gap: 20px; }
+      .logo { font-size: 26px; }
     }
   </style>
 </head>
@@ -612,7 +600,7 @@
 <!-- ── HEADER ─────────────────────────────────────────────────── -->
 <header>
   <div class="header-inner">
-    <a href="#" class="logo">STA<span>C</span><span class="logo-dot"></span></a>
+    <a href="#" class="logo">STAC<span class="logo-dot"></span></a>
     <nav>
       <a href="#categorias">Categorías</a>
       <a href="#productos">Productos</a>
@@ -643,13 +631,14 @@
 
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-eyebrow">Distribución Oficial · Stock en México</div>
+      <div class="hero-eyebrow">Hardware Gamer & Profesional · Stock en México</div>
       <h1 class="hero-title">
-        El componente<br>que necesitas,
-        <span class="hl">en tus manos.</span>
+        Arma tu PC<br>
+        sin límites,
+        <span class="hl">a tu medida.</span>
       </h1>
       <p class="hero-desc">
-        STAC es tu proveedor de electrónica de confianza. Microcontroladores, sensores, módulos RF, fuentes de poder y más de <strong style="color:var(--text-primary)">50,000 referencias</strong> disponibles con envío a toda la república.
+        STAC es tu tienda especializada en componentes de PC. Procesadores, tarjetas gráficas, memorias RAM, fuentes de poder y más de <strong style="color:var(--text-primary)">15,000 piezas</strong> disponibles con envío a toda la república.
       </p>
       <div class="hero-actions">
         <a href="#productos" class="btn-lg solid">
@@ -660,15 +649,15 @@
       </div>
       <div class="hero-stats">
         <div class="stat-item">
-          <div class="stat-num">50<span>K+</span></div>
-          <div class="stat-label">Referencias</div>
+          <div class="stat-num">15<span>K+</span></div>
+          <div class="stat-label">Piezas en catálogo</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">24<span>h</span></div>
           <div class="stat-label">Envío express</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">98<span>%</span></div>
+          <div class="stat-num">97<span>%</span></div>
           <div class="stat-label">Disponibilidad</div>
         </div>
         <div class="stat-item">
@@ -683,38 +672,34 @@
       <div class="product-card-hero">
         <div class="card-badge">✦ DESTACADO</div>
         <div class="card-img-hero">
-          <!-- Chip SVG inline -->
           <svg class="chip-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <rect x="22" y="22" width="56" height="56" rx="6" fill="#0C1E3A" stroke="#005FFF" stroke-width="1.5"/>
             <rect x="30" y="30" width="40" height="40" rx="4" fill="#071528" stroke="#1E90FF" stroke-width="1"/>
-            <text x="50" y="55" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#00AAFF">ESP32</text>
-            <!-- Pins top -->
+            <text x="50" y="52" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#00AAFF">RYZEN 9</text>
+            <text x="50" y="62" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#4A6A90">7950X3D</text>
             <line x1="33" y1="22" x2="33" y2="12" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="43" y1="22" x2="43" y2="12" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="53" y1="22" x2="53" y2="12" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="63" y1="22" x2="63" y2="12" stroke="#00AAFF" stroke-width="1.5"/>
-            <!-- Pins bottom -->
             <line x1="33" y1="78" x2="33" y2="88" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="43" y1="78" x2="43" y2="88" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="53" y1="78" x2="53" y2="88" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="63" y1="78" x2="63" y2="88" stroke="#00AAFF" stroke-width="1.5"/>
-            <!-- Pins left -->
             <line x1="22" y1="33" x2="12" y2="33" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="22" y1="43" x2="12" y2="43" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="22" y1="53" x2="12" y2="53" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="22" y1="63" x2="12" y2="63" stroke="#00AAFF" stroke-width="1.5"/>
-            <!-- Pins right -->
             <line x1="78" y1="33" x2="88" y2="33" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="78" y1="43" x2="88" y2="43" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="78" y1="53" x2="88" y2="53" stroke="#00AAFF" stroke-width="1.5"/>
             <line x1="78" y1="63" x2="88" y2="63" stroke="#00AAFF" stroke-width="1.5"/>
           </svg>
         </div>
-        <div class="hero-product-name">ESP32-WROOM-32D</div>
-        <div class="hero-product-ref">REF: ESP32-D0WD-V3 · 4MB Flash</div>
+        <div class="hero-product-name">AMD Ryzen 9 7950X3D</div>
+        <div class="hero-product-ref">REF: 100-100000908WOF · AM5</div>
         <div class="hero-product-price">
-          <span class="price-main">$89.00</span>
-          <span class="price-old">$115.00</span>
+          <span class="price-main">$9,899</span>
+          <span class="price-old">$11,200</span>
         </div>
         <button class="btn-add">+ Agregar al carrito</button>
       </div>
@@ -725,19 +710,19 @@
 <!-- ── TICKER ─────────────────────────────────────────────────── -->
 <div class="ticker-wrap">
   <div class="ticker-track">
-    <span class="ticker-item">Envío gratis en pedidos +$500</span>
-    <span class="ticker-item">Arduino · Raspberry Pi · ESP32</span>
-    <span class="ticker-item">Capacitores SMD disponibles</span>
-    <span class="ticker-item">Microcontroladores STM32 en stock</span>
-    <span class="ticker-item">Módulos LoRa · Zigbee · BLE</span>
-    <span class="ticker-item">Sensores industriales y de consumo</span>
+    <span class="ticker-item">Envío gratis en pedidos +$1,500</span>
+    <span class="ticker-item">Intel · AMD · NVIDIA</span>
+    <span class="ticker-item">Memorias DDR5 disponibles</span>
+    <span class="ticker-item">Fuentes de poder 80+ Gold</span>
+    <span class="ticker-item">SSD NVMe Gen4 en stock</span>
+    <span class="ticker-item">Gabinetes ATX y Micro-ATX</span>
     <span class="ticker-item">Factura electrónica incluida</span>
-    <span class="ticker-item">Envío gratis en pedidos +$500</span>
-    <span class="ticker-item">Arduino · Raspberry Pi · ESP32</span>
-    <span class="ticker-item">Capacitores SMD disponibles</span>
-    <span class="ticker-item">Microcontroladores STM32 en stock</span>
-    <span class="ticker-item">Módulos LoRa · Zigbee · BLE</span>
-    <span class="ticker-item">Sensores industriales y de consumo</span>
+    <span class="ticker-item">Envío gratis en pedidos +$1,500</span>
+    <span class="ticker-item">Intel · AMD · NVIDIA</span>
+    <span class="ticker-item">Memorias DDR5 disponibles</span>
+    <span class="ticker-item">Fuentes de poder 80+ Gold</span>
+    <span class="ticker-item">SSD NVMe Gen4 en stock</span>
+    <span class="ticker-item">Gabinetes ATX y Micro-ATX</span>
     <span class="ticker-item">Factura electrónica incluida</span>
   </div>
 </div>
@@ -748,17 +733,17 @@
     <div class="section-header">
       <div class="section-eyebrow">// Explorar</div>
       <h2 class="section-title">Categorías</h2>
-      <p class="section-sub">Desde componentes pasivos hasta módulos inalámbricos de última generación.</p>
+      <p class="section-sub">Todo lo que necesitas para armar, actualizar o reparar tu PC.</p>
     </div>
     <div class="cat-grid">
-      <a href="#" class="cat-card"><span class="cat-icon">🔲</span><div class="cat-name">Microcontroladores</div><div class="cat-count">3,420 refs</div></a>
-      <a href="#" class="cat-card"><span class="cat-icon">⚡</span><div class="cat-name">Resistencias</div><div class="cat-count">8,100 refs</div></a>
-      <a href="#" class="cat-card"><span class="cat-icon">🔋</span><div class="cat-name">Capacitores</div><div class="cat-count">5,600 refs</div></a>
-      <a href="#" class="cat-card"><span class="cat-icon">📡</span><div class="cat-name">Módulos RF</div><div class="cat-count">1,240 refs</div></a>
-      <a href="#" class="cat-card"><span class="cat-icon">🌡️</span><div class="cat-name">Sensores</div><div class="cat-count">4,780 refs</div></a>
-      <a href="#" class="cat-card"><span class="cat-icon">🔌</span><div class="cat-name">Conectores</div><div class="cat-count">6,300 refs</div></a>
-      <a href="#" class="cat-card"><span class="cat-icon">💡</span><div class="cat-name">LEDs / Display</div><div class="cat-count">2,900 refs</div></a>
-      <a href="#" class="cat-card"><span class="cat-icon">🔧</span><div class="cat-name">Herramientas</div><div class="cat-count">890 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🔲</span><div class="cat-name">Procesadores</div><div class="cat-count">680 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🎮</span><div class="cat-name">Tarjetas Gráficas</div><div class="cat-count">410 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">💾</span><div class="cat-name">Memoria RAM</div><div class="cat-count">920 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🧩</span><div class="cat-name">Placas Madre</div><div class="cat-count">550 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🔋</span><div class="cat-name">Fuentes de Poder</div><div class="cat-count">380 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">💿</span><div class="cat-name">Almacenamiento</div><div class="cat-count">1,200 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">❄️</span><div class="cat-name">Refrigeración</div><div class="cat-count">340 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🗄️</span><div class="cat-name">Gabinetes</div><div class="cat-count">290 refs</div></a>
     </div>
   </div>
 </section>
@@ -775,129 +760,129 @@
     </div>
     <div class="products-grid">
 
-      <!-- Prod 1 -->
+      <!-- CPU -->
       <div class="prod-card">
         <div class="prod-img" style="font-size:52px;">🔲
           <span class="prod-tag tag-hot">HOT</span>
         </div>
         <div class="prod-body">
-          <div class="prod-cat">Microcontrolador</div>
-          <div class="prod-name">Arduino Uno R3</div>
-          <div class="prod-ref">REF: A000066</div>
+          <div class="prod-cat">Procesador</div>
+          <div class="prod-name">Intel Core i9-14900K</div>
+          <div class="prod-ref">REF: BX8071514900K</div>
           <div class="prod-footer">
-            <div class="prod-price">$185.00</div>
+            <div class="prod-price">$11,450</div>
             <button class="btn-cart">+</button>
           </div>
         </div>
       </div>
 
-      <!-- Prod 2 -->
+      <!-- GPU -->
       <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">📡
+        <div class="prod-img" style="font-size:52px;">🎮
           <span class="prod-tag tag-new">NUEVO</span>
         </div>
         <div class="prod-body">
-          <div class="prod-cat">Módulo RF</div>
-          <div class="prod-name">LoRa SX1276 915MHz</div>
-          <div class="prod-ref">REF: SX1276-MB1LAS</div>
+          <div class="prod-cat">Tarjeta Gráfica</div>
+          <div class="prod-name">NVIDIA RTX 4070 Ti Super</div>
+          <div class="prod-ref">REF: RTX4070TIS-16G</div>
           <div class="prod-footer">
-            <div class="prod-price">$120.00 <small>$145.00</small></div>
+            <div class="prod-price">$15,200</div>
             <button class="btn-cart">+</button>
           </div>
         </div>
       </div>
 
-      <!-- Prod 3 -->
+      <!-- RAM -->
       <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">🌡️
+        <div class="prod-img" style="font-size:52px;">💾
           <span class="prod-tag tag-stock">EN STOCK</span>
         </div>
         <div class="prod-body">
-          <div class="prod-cat">Sensor</div>
-          <div class="prod-name">DHT22 Temp/Humedad</div>
-          <div class="prod-ref">REF: AM2302</div>
+          <div class="prod-cat">Memoria RAM</div>
+          <div class="prod-name">Corsair Vengeance 32GB DDR5</div>
+          <div class="prod-ref">REF: CMK32GX5M2B6000Z30</div>
           <div class="prod-footer">
-            <div class="prod-price">$45.00</div>
+            <div class="prod-price">$2,650</div>
             <button class="btn-cart">+</button>
           </div>
         </div>
       </div>
 
-      <!-- Prod 4 -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">💡
-          <span class="prod-tag tag-sale">-20%</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">LED</div>
-          <div class="prod-name">Tira LED RGB 5m WS2812B</div>
-          <div class="prod-ref">REF: WS2812B-5M</div>
-          <div class="prod-footer">
-            <div class="prod-price">$320.00 <small>$400.00</small></div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Prod 5 -->
+      <!-- PSU -->
       <div class="prod-card">
         <div class="prod-img" style="font-size:52px;">🔋
-          <span class="prod-tag tag-new">NUEVO</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Capacitor</div>
-          <div class="prod-name">Supercap 10F / 2.7V</div>
-          <div class="prod-ref">REF: SCEC10B025PRB</div>
-          <div class="prod-footer">
-            <div class="prod-price">$38.00</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Prod 6 -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">🔌
-          <span class="prod-tag tag-stock">EN STOCK</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Conector</div>
-          <div class="prod-name">JST-XH 2.54mm 4-pin (x10)</div>
-          <div class="prod-ref">REF: JST-XH-4P</div>
-          <div class="prod-footer">
-            <div class="prod-price">$28.00</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Prod 7 -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">🔲
-          <span class="prod-tag tag-hot">HOT</span>
-        </div>
-        <div class="prod-body">
-          <div class="prod-cat">Microcontrolador</div>
-          <div class="prod-name">Raspberry Pi Pico W</div>
-          <div class="prod-ref">REF: SC0918</div>
-          <div class="prod-footer">
-            <div class="prod-price">$130.00</div>
-            <button class="btn-cart">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Prod 8 -->
-      <div class="prod-card">
-        <div class="prod-img" style="font-size:52px;">📺
           <span class="prod-tag tag-sale">-15%</span>
         </div>
         <div class="prod-body">
-          <div class="prod-cat">Display</div>
-          <div class="prod-name">OLED 0.96" I2C 128×64</div>
-          <div class="prod-ref">REF: SSD1306-BK</div>
+          <div class="prod-cat">Fuente de Poder</div>
+          <div class="prod-name">Corsair RM850x 850W 80+ Gold</div>
+          <div class="prod-ref">REF: CP-9020200-NA</div>
           <div class="prod-footer">
-            <div class="prod-price">$55.00 <small>$65.00</small></div>
+            <div class="prod-price">$2,890 <small>$3,400</small></div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motherboard -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">🧩
+          <span class="prod-tag tag-new">NUEVO</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Placa Madre</div>
+          <div class="prod-name">ASUS ROG Strix B650-A</div>
+          <div class="prod-ref">REF: ROG-STRIX-B650-A</div>
+          <div class="prod-footer">
+            <div class="prod-price">$5,490</div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SSD -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">💿
+          <span class="prod-tag tag-hot">HOT</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Almacenamiento</div>
+          <div class="prod-name">Samsung 990 Pro 2TB NVMe</div>
+          <div class="prod-ref">REF: MZ-V9P2T0BW</div>
+          <div class="prod-footer">
+            <div class="prod-price">$3,150</div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cooler -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">❄️
+          <span class="prod-tag tag-stock">EN STOCK</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Refrigeración</div>
+          <div class="prod-name">Cooler Master Hyper 212</div>
+          <div class="prod-ref">REF: RR-212S-20PK-R2</div>
+          <div class="prod-footer">
+            <div class="prod-price">$680</div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">🗄️
+          <span class="prod-tag tag-sale">-10%</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Gabinete</div>
+          <div class="prod-name">NZXT H510 Flow</div>
+          <div class="prod-ref">REF: CC-H51FB-01</div>
+          <div class="prod-footer">
+            <div class="prod-price">$1,890 <small>$2,100</small></div>
             <button class="btn-cart">+</button>
           </div>
         </div>
@@ -913,14 +898,14 @@
     <div class="brands-inner">
       <span class="brands-label">Distribuidores de:</span>
       <div class="brand-logos">
-        <div class="brand-pill">Arduino</div>
-        <div class="brand-pill">Espressif</div>
-        <div class="brand-pill">STMicro</div>
-        <div class="brand-pill">Microchip</div>
-        <div class="brand-pill">Texas Instruments</div>
-        <div class="brand-pill">Semtech</div>
-        <div class="brand-pill">Nordic Semi</div>
-        <div class="brand-pill">NXP</div>
+        <div class="brand-pill">Intel</div>
+        <div class="brand-pill">AMD</div>
+        <div class="brand-pill">NVIDIA</div>
+        <div class="brand-pill">ASUS</div>
+        <div class="brand-pill">MSI</div>
+        <div class="brand-pill">Corsair</div>
+        <div class="brand-pill">Kingston</div>
+        <div class="brand-pill">Cooler Master</div>
       </div>
     </div>
   </div>
@@ -931,8 +916,8 @@
   <div class="inner">
     <div class="section-header">
       <div class="section-eyebrow">// ¿Por qué STAC?</div>
-      <h2 class="section-title">Tu aliado en electrónica</h2>
-      <p class="section-sub">Llevamos más de 12 años suministrando componentes a ingenieros, makers y empresas de toda la república.</p>
+      <h2 class="section-title">Tu aliado para armar tu PC</h2>
+      <p class="section-sub">Más de 12 años surtiendo componentes a gamers, profesionales y armadores de PC en toda la república.</p>
     </div>
     <div class="why-grid">
       <div class="why-card">
@@ -943,17 +928,17 @@
       <div class="why-card">
         <div class="why-icon">✅</div>
         <div class="why-title">Stock Garantizado</div>
-        <div class="why-desc">98% de disponibilidad en nuestras referencias. Actualizamos el inventario cada hora.</div>
+        <div class="why-desc">97% de disponibilidad en nuestro catálogo. Inventario actualizado cada hora.</div>
       </div>
       <div class="why-card">
         <div class="why-icon">🔒</div>
-        <div class="why-title">Componentes Originales</div>
-        <div class="why-desc">100% de nuestros componentes provienen directamente de fabricantes autorizados o distribuidores oficiales.</div>
+        <div class="why-title">Garantía de Fábrica</div>
+        <div class="why-desc">Todos nuestros componentes son originales, sellados y con garantía directa del fabricante.</div>
       </div>
       <div class="why-card">
         <div class="why-icon">🛠️</div>
-        <div class="why-title">Soporte Técnico</div>
-        <div class="why-desc">Equipo de ingenieros disponible para resolver dudas de aplicación, hojas de datos y alternativas.</div>
+        <div class="why-title">Asesoría para Armar tu PC</div>
+        <div class="why-desc">Equipo de especialistas listo para ayudarte a elegir las piezas correctas para tu build.</div>
       </div>
       <div class="why-card">
         <div class="why-icon">📋</div>
@@ -961,9 +946,9 @@
         <div class="why-desc">Emitimos CFDI al momento del pago. Proceso 100% digital para tu empresa o proyecto.</div>
       </div>
       <div class="why-card">
-        <div class="why-icon">💼</div>
-        <div class="why-title">Precios por Volumen</div>
-        <div class="why-desc">Descuentos automáticos desde 10 piezas. Solicita cotización para proyectos de gran escala.</div>
+        <div class="why-icon">🔧</div>
+        <div class="why-title">Compatibilidad Garantizada</div>
+        <div class="why-desc">Verificamos socket, chipset y consumo para que tus piezas siempre funcionen juntas.</div>
       </div>
     </div>
   </div>
@@ -975,7 +960,7 @@
   <div class="inner" style="position:relative; z-index:1;">
     <div class="section-eyebrow" style="text-align:center;">// Newsletter</div>
     <h2 class="cta-title">Recibe ofertas y<br>nuevos componentes</h2>
-    <p class="cta-sub">Sé el primero en enterarte de promociones, nuevos productos y tutoriales técnicos.</p>
+    <p class="cta-sub">Sé el primero en enterarte de promociones, lanzamientos y builds destacados.</p>
     <div class="email-row">
       <input type="email" class="email-input" placeholder="tu@email.com" />
       <button class="btn-lg solid" style="white-space:nowrap;">Suscribirse</button>
@@ -987,17 +972,17 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="#" class="logo">STA<span>C</span><span class="logo-dot"></span></a>
-      <p>Distribuidor de componentes electrónicos para ingenieros, makers y empresas. Calidad, disponibilidad y soporte técnico especializado.</p>
+      <a href="#" class="logo">STAC<span class="logo-dot"></span></a>
+      <p>Tienda especializada en componentes de PC para gamers, profesionales y entusiastas. Calidad, disponibilidad y asesoría experta.</p>
     </div>
     <div class="footer-col">
       <h4>Tienda</h4>
       <ul>
-        <li><a href="#">Microcontroladores</a></li>
-        <li><a href="#">Sensores</a></li>
-        <li><a href="#">Módulos RF</a></li>
-        <li><a href="#">Conectores</a></li>
-        <li><a href="#">Herramientas</a></li>
+        <li><a href="#">Procesadores</a></li>
+        <li><a href="#">Tarjetas Gráficas</a></li>
+        <li><a href="#">Memoria RAM</a></li>
+        <li><a href="#">Placas Madre</a></li>
+        <li><a href="#">Fuentes de Poder</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1005,7 +990,7 @@
       <ul>
         <li><a href="#">Sobre STAC</a></li>
         <li><a href="#">Distribuidores</a></li>
-        <li><a href="#">Blog técnico</a></li>
+        <li><a href="#">Blog de hardware</a></li>
         <li><a href="#">Trabaja con nosotros</a></li>
         <li><a href="#">Contacto</a></li>
       </ul>
@@ -1017,12 +1002,12 @@
         <li><a href="#">Envíos y devoluciones</a></li>
         <li><a href="#">Garantía</a></li>
         <li><a href="#">Facturación</a></li>
-        <li><a href="#">Soporte técnico</a></li>
+        <li><a href="#">Armado de PC</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2024 STAC Componentes Electrónicos · Todos los derechos reservados</span>
+    <span class="footer-copy">© 2024 STAC Componentes de PC · Todos los derechos reservados</span>
     <div class="footer-links">
       <a href="#">Privacidad</a>
       <a href="#">Términos de uso</a>
@@ -1032,7 +1017,6 @@
 </footer>
 
 <script>
-  // Smooth add-to-cart feedback
   document.querySelectorAll('.btn-cart, .btn-add').forEach(btn => {
     btn.addEventListener('click', function() {
       const badge = document.querySelector('.cart-badge');
@@ -1055,7 +1039,6 @@
     });
   });
 
-  // Header scroll shadow
   window.addEventListener('scroll', () => {
     document.querySelector('header').style.boxShadow =
       window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.5)' : 'none';
