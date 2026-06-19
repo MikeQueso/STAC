@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>STAC – Componentes Electrónicos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:      #040D1A;
+      --bg-card:      #071528;
+      --bg-surface:   #0C1E3A;
+      --blue-core:    #005FFF;
+      --blue-bright:  #1E90FF;
+      --blue-glow:    #00AAFF;
+      --blue-muted:   #1A3A6B;
+      --text-primary: #E8F1FF;
+      --text-body:    #9DB8D8;
+      --text-dim:     #4A6A90;
+      --accent-green: #00E5B0;
+      --accent-red:   #FF3E3E;
+      --border:       rgba(0,95,255,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--text-body);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-core); border-radius: 3px; }
+
+    /* ─── HEADER ────────────────────────────────── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(4,13,26,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1280px; margin: auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex; align-items: center; gap: 32px;
+    }
+    .logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px; font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--text-primary);
+      text-decoration: none;
+      position: relative;
+    }
+    .logo span {
+      color: var(--blue-glow);
+    }
+    .logo-dot {
+      display: inline-block; width: 6px; height: 6px;
+      background: var(--blue-glow);
+      border-radius: 50%;
+      margin-left: 3px;
+      box-shadow: 0 0 8px var(--blue-glow);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity:1; transform: scale(1); }
+      50%      { opacity:.5; transform: scale(0.7); }
+    }
+    nav { display: flex; gap: 28px; margin-left: auto; }
+    nav a {
+      color: var(--text-body);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--blue-glow); }
+    .header-actions { display: flex; gap: 12px; align-items: center; margin-left: 16px; }
+    .btn-icon {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-body);
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color .2s, color .2s;
+      position: relative;
+    }
+    .btn-icon:hover { border-color: var(--blue-glow); color: var(--blue-glow); }
+    .cart-badge {
+      position: absolute; top: -5px; right: -5px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--blue-core); color: #fff;
+      font-size: 9px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .btn-primary {
+      background: var(--blue-core);
+      color: #fff;
+      border: none;
+      padding: 8px 20px; border-radius: 8px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, box-shadow .2s;
+    }
+    .btn-primary:hover {
+      background: var(--blue-bright);
+      box-shadow: 0 0 20px rgba(0,95,255,0.4);
+    }
+
+    /* ─── HERO ──────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 64px;
+      position: relative; overflow: hidden;
+    }
+    /* Circuit board SVG background */
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 50%, rgba(0,95,255,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(0,170,255,0.05) 0%, transparent 60%);
+    }
+    .circuit-svg {
+      position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+      width: 52%; opacity: 0.18;
+      pointer-events: none;
+    }
+    /* Horizontal scan line */
+    .scanline {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-glow), transparent);
+      animation: scan 6s linear infinite;
+      opacity: 0.3;
+    }
+    @keyframes scan {
+      0%   { top: 64px; }
+      100% { top: 100vh; }
+    }
+    .hero-inner {
+      max-width: 1280px; margin: auto; padding: 80px 24px;
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--blue-glow);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      background: rgba(0,170,255,0.08);
+      border: 1px solid rgba(0,170,255,0.2);
+      padding: 5px 12px; border-radius: 4px;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--blue-glow);
+      box-shadow: 0 0 8px var(--blue-glow);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+    .hero-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 700; line-height: 1.0;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+    }
+    .hero-title .hl {
+      color: transparent;
+      -webkit-text-stroke: 1px var(--blue-glow);
+      display: block;
+    }
+    .hero-desc {
+      font-size: 16px; color: var(--text-body);
+      max-width: 440px; margin-bottom: 36px; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-lg {
+      padding: 13px 30px; border-radius: 9px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all .2s; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-lg.solid {
+      background: var(--blue-core); color: #fff; border: none;
+      box-shadow: 0 0 0 0 rgba(0,95,255,0.5);
+    }
+    .btn-lg.solid:hover {
+      background: var(--blue-bright);
+      box-shadow: 0 0 28px rgba(0,95,255,0.45);
+      transform: translateY(-1px);
+    }
+    .btn-lg.outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .btn-lg.outline:hover {
+      border-color: var(--blue-glow); color: var(--blue-glow);
+      background: rgba(0,170,255,0.05);
+    }
+    /* Stats strip */
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 52px; padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px; font-weight: 700; color: var(--text-primary);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--blue-glow); }
+    .stat-label { font-size: 12px; color: var(--text-dim); margin-top: 3px; letter-spacing: 0.05em; }
+
+    /* Hero right: featured product */
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .product-card-hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 340px; width: 100%;
+      position: relative;
+      box-shadow: 0 0 60px rgba(0,95,255,0.08), 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .product-card-hero::before {
+      content: ''; position: absolute; inset: -1px; border-radius: 17px;
+      background: linear-gradient(135deg, rgba(0,95,255,0.3), transparent 60%);
+      z-index: -1;
+    }
+    .card-badge {
+      display: inline-block;
+      background: rgba(0,229,176,0.12);
+      border: 1px solid rgba(0,229,176,0.3);
+      color: var(--accent-green);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.1em;
+      padding: 3px 10px; border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .card-img-hero {
+      width: 100%; height: 180px;
+      background: var(--bg-surface);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      position: relative; overflow: hidden;
+    }
+    .chip-icon {
+      width: 100px; height: 100px;
+      position: relative;
+    }
+    .card-img-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(0,95,255,0.12), transparent 70%);
+    }
+    .hero-product-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .hero-product-ref {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--text-dim); margin-bottom: 16px;
+    }
+    .hero-product-price {
+      display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px;
+    }
+    .price-main {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 30px; font-weight: 700; color: var(--blue-glow);
+    }
+    .price-old {
+      font-size: 14px; color: var(--text-dim);
+      text-decoration: line-through;
+    }
+    .btn-add {
+      width: 100%;
+      background: var(--blue-core);
+      border: none; color: #fff;
+      padding: 11px; border-radius: 8px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 600; font-size: 14px;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-add:hover {
+      background: var(--blue-bright);
+      box-shadow: 0 0 20px rgba(0,95,255,0.35);
+    }
+
+    /* ─── SECTION COMMONS ──────────────────────── */
+    section { padding: 80px 24px; }
+    .inner { max-width: 1280px; margin: auto; }
+    .section-header { margin-bottom: 48px; }
+    .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px; color: var(--blue-glow);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700; color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .section-sub {
+      font-size: 15px; color: var(--text-body);
+      margin-top: 10px; max-width: 520px;
+    }
+
+    /* ─── TICKER ─────────────────────────────── */
+    .ticker-wrap {
+      background: var(--blue-core);
+      overflow: hidden; white-space: nowrap;
+      padding: 10px 0;
+    }
+    .ticker-track {
+      display: inline-flex; gap: 48px;
+      animation: ticker 28s linear infinite;
+    }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-item {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: rgba(255,255,255,0.85);
+      letter-spacing: 0.1em;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .ticker-item::before { content: '◆'; font-size: 8px; opacity: 0.6; }
+
+    /* ─── CATEGORIES ─────────────────────────── */
+    .categories-bg { background: var(--bg-card); }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+    }
+    .cat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .22s;
+      text-decoration: none;
+    }
+    .cat-card:hover {
+      border-color: var(--blue-glow);
+      background: rgba(0,170,255,0.06);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,95,255,0.15);
+    }
+    .cat-icon {
+      font-size: 32px; margin-bottom: 12px; display: block;
+    }
+    .cat-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 4px;
+    }
+    .cat-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--text-dim);
+    }
+
+    /* ─── PRODUCTS ───────────────────────────── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 18px;
+    }
+    .prod-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      transition: all .22s;
+      cursor: pointer;
+    }
+    .prod-card:hover {
+      border-color: rgba(0,95,255,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,95,255,0.12);
+    }
+    .prod-img {
+      height: 160px; background: var(--bg-surface);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px; position: relative; overflow: hidden;
+    }
+    .prod-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(0,95,255,0.08), transparent 70%);
+    }
+    .prod-tag {
+      position: absolute; top: 10px; left: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px; letter-spacing: 0.08em;
+      padding: 3px 8px; border-radius: 4px;
+      font-weight: 500;
+    }
+    .tag-new  { background: rgba(0,95,255,0.2);  color: var(--blue-glow);   border: 1px solid rgba(0,95,255,0.3); }
+    .tag-sale { background: rgba(255,62,62,0.15); color: #FF7070; border: 1px solid rgba(255,62,62,0.3); }
+    .tag-hot  { background: rgba(255,165,0,0.15); color: #FFB347; border: 1px solid rgba(255,165,0,0.3); }
+    .tag-stock { background: rgba(0,229,176,0.12); color: var(--accent-green); border: 1px solid rgba(0,229,176,0.25); }
+    .prod-body { padding: 16px; }
+    .prod-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--text-dim);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .prod-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 17px; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 4px; line-height: 1.2;
+    }
+    .prod-ref {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--text-dim); margin-bottom: 14px;
+    }
+    .prod-footer { display: flex; align-items: center; justify-content: space-between; }
+    .prod-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 22px; font-weight: 700; color: var(--text-primary);
+    }
+    .prod-price small {
+      font-size: 13px; color: var(--text-dim);
+      text-decoration: line-through; font-weight: 400;
+      margin-left: 6px;
+    }
+    .btn-cart {
+      background: var(--blue-core); border: none;
+      color: #fff; width: 36px; height: 36px;
+      border-radius: 8px; font-size: 16px;
+      cursor: pointer; transition: all .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .btn-cart:hover {
+      background: var(--blue-bright);
+      box-shadow: 0 0 16px rgba(0,95,255,0.4);
+    }
+
+    /* ─── BRANDS ─────────────────────────────── */
+    .brands-bg { background: var(--bg-deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .brands-inner { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .brands-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--text-dim);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      white-space: nowrap; margin-right: 8px;
+    }
+    .brand-logos { display: flex; flex-wrap: wrap; gap: 12px; }
+    .brand-pill {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 8px 20px; border-radius: 8px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px; font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+      transition: all .2s; cursor: default;
+    }
+    .brand-pill:hover { color: var(--text-primary); border-color: rgba(0,95,255,0.4); }
+
+    /* ─── WHY STAC ───────────────────────────── */
+    .why-bg { background: var(--bg-card); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px;
+    }
+    .why-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 24px;
+    }
+    .why-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(0,95,255,0.12);
+      border: 1px solid rgba(0,95,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 18px;
+    }
+    .why-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 8px;
+    }
+    .why-desc { font-size: 14px; color: var(--text-body); line-height: 1.6; }
+
+    /* ─── CTA BANNER ─────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, #040f24 0%, #071a3e 50%, #040f24 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute;
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(0,95,255,0.12), transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+    .cta-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 700; color: var(--text-primary);
+      margin-bottom: 14px; line-height: 1.1;
+    }
+    .cta-sub { font-size: 15px; color: var(--text-body); margin-bottom: 32px; }
+    .email-row {
+      display: flex; gap: 10px; max-width: 440px; margin: auto;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .email-input {
+      flex: 1; min-width: 220px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px; border-radius: 9px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px; outline: none;
+      transition: border-color .2s;
+    }
+    .email-input::placeholder { color: var(--text-dim); }
+    .email-input:focus { border-color: var(--blue-glow); }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--bg-deep);
+      border-top: 1px solid var(--border);
+      padding: 60px 24px 32px;
+    }
+    .footer-grid {
+      max-width: 1280px; margin: auto;
+      display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo { font-size: 24px; display: inline-block; margin-bottom: 14px; }
+    .footer-brand p { font-size: 13.5px; color: var(--text-dim); line-height: 1.65; max-width: 260px; }
+    .footer-col h4 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px; font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      color: var(--text-dim); text-decoration: none;
+      font-size: 13.5px; transition: color .2s;
+    }
+    .footer-col ul a:hover { color: var(--blue-glow); }
+    .footer-bottom {
+      max-width: 1280px; margin: auto;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a {
+      font-size: 12px; color: var(--text-dim);
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--blue-glow); }
+
+    /* ─── CHIP SVG ────────────────────────────── */
+    .chip-svg { width: 80px; height: 80px; }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      nav { display: none; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────────── -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">STA<span>C</span><span class="logo-dot"></span></a>
+    <nav>
+      <a href="#categorias">Categorías</a>
+      <a href="#productos">Productos</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#">Contacto</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-icon" title="Buscar">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="btn-icon" title="Mi cuenta">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="btn-icon" title="Carrito" style="position:relative">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-badge">3</span>
+      </button>
+      <button class="btn-primary">Iniciar sesión</button>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ───────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="scanline"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Distribución Oficial · Stock en México</div>
+      <h1 class="hero-title">
+        El componente<br>que necesitas,
+        <span class="hl">en tus manos.</span>
+      </h1>
+      <p class="hero-desc">
+        STAC es tu proveedor de electrónica de confianza. Microcontroladores, sensores, módulos RF, fuentes de poder y más de <strong style="color:var(--text-primary)">50,000 referencias</strong> disponibles con envío a toda la república.
+      </p>
+      <div class="hero-actions">
+        <a href="#productos" class="btn-lg solid">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+          Ver catálogo
+        </a>
+        <a href="#categorias" class="btn-lg outline">Explorar categorías</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">50<span>K+</span></div>
+          <div class="stat-label">Referencias</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24<span>h</span></div>
+          <div class="stat-label">Envío express</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">98<span>%</span></div>
+          <div class="stat-label">Disponibilidad</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">12<span>+</span></div>
+          <div class="stat-label">Años en mercado</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto destacado -->
+    <div class="hero-visual">
+      <div class="product-card-hero">
+        <div class="card-badge">✦ DESTACADO</div>
+        <div class="card-img-hero">
+          <!-- Chip SVG inline -->
+          <svg class="chip-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="22" y="22" width="56" height="56" rx="6" fill="#0C1E3A" stroke="#005FFF" stroke-width="1.5"/>
+            <rect x="30" y="30" width="40" height="40" rx="4" fill="#071528" stroke="#1E90FF" stroke-width="1"/>
+            <text x="50" y="55" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#00AAFF">ESP32</text>
+            <!-- Pins top -->
+            <line x1="33" y1="22" x2="33" y2="12" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="43" y1="22" x2="43" y2="12" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="53" y1="22" x2="53" y2="12" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="63" y1="22" x2="63" y2="12" stroke="#00AAFF" stroke-width="1.5"/>
+            <!-- Pins bottom -->
+            <line x1="33" y1="78" x2="33" y2="88" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="43" y1="78" x2="43" y2="88" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="53" y1="78" x2="53" y2="88" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="63" y1="78" x2="63" y2="88" stroke="#00AAFF" stroke-width="1.5"/>
+            <!-- Pins left -->
+            <line x1="22" y1="33" x2="12" y2="33" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="22" y1="43" x2="12" y2="43" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="22" y1="53" x2="12" y2="53" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="22" y1="63" x2="12" y2="63" stroke="#00AAFF" stroke-width="1.5"/>
+            <!-- Pins right -->
+            <line x1="78" y1="33" x2="88" y2="33" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="78" y1="43" x2="88" y2="43" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="78" y1="53" x2="88" y2="53" stroke="#00AAFF" stroke-width="1.5"/>
+            <line x1="78" y1="63" x2="88" y2="63" stroke="#00AAFF" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="hero-product-name">ESP32-WROOM-32D</div>
+        <div class="hero-product-ref">REF: ESP32-D0WD-V3 · 4MB Flash</div>
+        <div class="hero-product-price">
+          <span class="price-main">$89.00</span>
+          <span class="price-old">$115.00</span>
+        </div>
+        <button class="btn-add">+ Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ─────────────────────────────────────────────────── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Envío gratis en pedidos +$500</span>
+    <span class="ticker-item">Arduino · Raspberry Pi · ESP32</span>
+    <span class="ticker-item">Capacitores SMD disponibles</span>
+    <span class="ticker-item">Microcontroladores STM32 en stock</span>
+    <span class="ticker-item">Módulos LoRa · Zigbee · BLE</span>
+    <span class="ticker-item">Sensores industriales y de consumo</span>
+    <span class="ticker-item">Factura electrónica incluida</span>
+    <span class="ticker-item">Envío gratis en pedidos +$500</span>
+    <span class="ticker-item">Arduino · Raspberry Pi · ESP32</span>
+    <span class="ticker-item">Capacitores SMD disponibles</span>
+    <span class="ticker-item">Microcontroladores STM32 en stock</span>
+    <span class="ticker-item">Módulos LoRa · Zigbee · BLE</span>
+    <span class="ticker-item">Sensores industriales y de consumo</span>
+    <span class="ticker-item">Factura electrónica incluida</span>
+  </div>
+</div>
+
+<!-- ── CATEGORÍAS ─────────────────────────────────────────────── -->
+<section class="categories-bg" id="categorias">
+  <div class="inner">
+    <div class="section-header">
+      <div class="section-eyebrow">// Explorar</div>
+      <h2 class="section-title">Categorías</h2>
+      <p class="section-sub">Desde componentes pasivos hasta módulos inalámbricos de última generación.</p>
+    </div>
+    <div class="cat-grid">
+      <a href="#" class="cat-card"><span class="cat-icon">🔲</span><div class="cat-name">Microcontroladores</div><div class="cat-count">3,420 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">⚡</span><div class="cat-name">Resistencias</div><div class="cat-count">8,100 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🔋</span><div class="cat-name">Capacitores</div><div class="cat-count">5,600 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">📡</span><div class="cat-name">Módulos RF</div><div class="cat-count">1,240 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🌡️</span><div class="cat-name">Sensores</div><div class="cat-count">4,780 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🔌</span><div class="cat-name">Conectores</div><div class="cat-count">6,300 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">💡</span><div class="cat-name">LEDs / Display</div><div class="cat-count">2,900 refs</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🔧</span><div class="cat-name">Herramientas</div><div class="cat-count">890 refs</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTOS DESTACADOS ───────────────────────────────────── -->
+<section id="productos">
+  <div class="inner">
+    <div class="section-header" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div class="section-eyebrow">// Más vendidos</div>
+        <h2 class="section-title">Productos Destacados</h2>
+      </div>
+      <a href="#" style="color:var(--blue-glow); font-size:14px; text-decoration:none; font-weight:500;">Ver todo el catálogo →</a>
+    </div>
+    <div class="products-grid">
+
+      <!-- Prod 1 -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">🔲
+          <span class="prod-tag tag-hot">HOT</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Microcontrolador</div>
+          <div class="prod-name">Arduino Uno R3</div>
+          <div class="prod-ref">REF: A000066</div>
+          <div class="prod-footer">
+            <div class="prod-price">$185.00</div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prod 2 -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">📡
+          <span class="prod-tag tag-new">NUEVO</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Módulo RF</div>
+          <div class="prod-name">LoRa SX1276 915MHz</div>
+          <div class="prod-ref">REF: SX1276-MB1LAS</div>
+          <div class="prod-footer">
+            <div class="prod-price">$120.00 <small>$145.00</small></div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prod 3 -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">🌡️
+          <span class="prod-tag tag-stock">EN STOCK</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Sensor</div>
+          <div class="prod-name">DHT22 Temp/Humedad</div>
+          <div class="prod-ref">REF: AM2302</div>
+          <div class="prod-footer">
+            <div class="prod-price">$45.00</div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prod 4 -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">💡
+          <span class="prod-tag tag-sale">-20%</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">LED</div>
+          <div class="prod-name">Tira LED RGB 5m WS2812B</div>
+          <div class="prod-ref">REF: WS2812B-5M</div>
+          <div class="prod-footer">
+            <div class="prod-price">$320.00 <small>$400.00</small></div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prod 5 -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">🔋
+          <span class="prod-tag tag-new">NUEVO</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Capacitor</div>
+          <div class="prod-name">Supercap 10F / 2.7V</div>
+          <div class="prod-ref">REF: SCEC10B025PRB</div>
+          <div class="prod-footer">
+            <div class="prod-price">$38.00</div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prod 6 -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">🔌
+          <span class="prod-tag tag-stock">EN STOCK</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Conector</div>
+          <div class="prod-name">JST-XH 2.54mm 4-pin (x10)</div>
+          <div class="prod-ref">REF: JST-XH-4P</div>
+          <div class="prod-footer">
+            <div class="prod-price">$28.00</div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prod 7 -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">🔲
+          <span class="prod-tag tag-hot">HOT</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Microcontrolador</div>
+          <div class="prod-name">Raspberry Pi Pico W</div>
+          <div class="prod-ref">REF: SC0918</div>
+          <div class="prod-footer">
+            <div class="prod-price">$130.00</div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prod 8 -->
+      <div class="prod-card">
+        <div class="prod-img" style="font-size:52px;">📺
+          <span class="prod-tag tag-sale">-15%</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Display</div>
+          <div class="prod-name">OLED 0.96" I2C 128×64</div>
+          <div class="prod-ref">REF: SSD1306-BK</div>
+          <div class="prod-footer">
+            <div class="prod-price">$55.00 <small>$65.00</small></div>
+            <button class="btn-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MARCAS ──────────────────────────────────────────────────── -->
+<section class="brands-bg" id="marcas" style="padding: 36px 24px;">
+  <div class="inner">
+    <div class="brands-inner">
+      <span class="brands-label">Distribuidores de:</span>
+      <div class="brand-logos">
+        <div class="brand-pill">Arduino</div>
+        <div class="brand-pill">Espressif</div>
+        <div class="brand-pill">STMicro</div>
+        <div class="brand-pill">Microchip</div>
+        <div class="brand-pill">Texas Instruments</div>
+        <div class="brand-pill">Semtech</div>
+        <div class="brand-pill">Nordic Semi</div>
+        <div class="brand-pill">NXP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── POR QUÉ STAC ───────────────────────────────────────────── -->
+<section class="why-bg" id="nosotros">
+  <div class="inner">
+    <div class="section-header">
+      <div class="section-eyebrow">// ¿Por qué STAC?</div>
+      <h2 class="section-title">Tu aliado en electrónica</h2>
+      <p class="section-sub">Llevamos más de 12 años suministrando componentes a ingenieros, makers y empresas de toda la república.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🚀</div>
+        <div class="why-title">Envío Express 24h</div>
+        <div class="why-desc">Pedidos antes de las 2 PM salen el mismo día. Cobertura nacional con rastreo en tiempo real.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">✅</div>
+        <div class="why-title">Stock Garantizado</div>
+        <div class="why-desc">98% de disponibilidad en nuestras referencias. Actualizamos el inventario cada hora.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔒</div>
+        <div class="why-title">Componentes Originales</div>
+        <div class="why-desc">100% de nuestros componentes provienen directamente de fabricantes autorizados o distribuidores oficiales.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛠️</div>
+        <div class="why-title">Soporte Técnico</div>
+        <div class="why-desc">Equipo de ingenieros disponible para resolver dudas de aplicación, hojas de datos y alternativas.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📋</div>
+        <div class="why-title">Factura Electrónica</div>
+        <div class="why-desc">Emitimos CFDI al momento del pago. Proceso 100% digital para tu empresa o proyecto.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💼</div>
+        <div class="why-title">Precios por Volumen</div>
+        <div class="why-desc">Descuentos automáticos desde 10 piezas. Solicita cotización para proyectos de gran escala.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA / NEWSLETTER ───────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="inner" style="position:relative; z-index:1;">
+    <div class="section-eyebrow" style="text-align:center;">// Newsletter</div>
+    <h2 class="cta-title">Recibe ofertas y<br>nuevos componentes</h2>
+    <p class="cta-sub">Sé el primero en enterarte de promociones, nuevos productos y tutoriales técnicos.</p>
+    <div class="email-row">
+      <input type="email" class="email-input" placeholder="tu@email.com" />
+      <button class="btn-lg solid" style="white-space:nowrap;">Suscribirse</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">STA<span>C</span><span class="logo-dot"></span></a>
+      <p>Distribuidor de componentes electrónicos para ingenieros, makers y empresas. Calidad, disponibilidad y soporte técnico especializado.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="#">Microcontroladores</a></li>
+        <li><a href="#">Sensores</a></li>
+        <li><a href="#">Módulos RF</a></li>
+        <li><a href="#">Conectores</a></li>
+        <li><a href="#">Herramientas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#">Sobre STAC</a></li>
+        <li><a href="#">Distribuidores</a></li>
+        <li><a href="#">Blog técnico</a></li>
+        <li><a href="#">Trabaja con nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <ul>
+        <li><a href="#">Métodos de pago</a></li>
+        <li><a href="#">Envíos y devoluciones</a></li>
+        <li><a href="#">Garantía</a></li>
+        <li><a href="#">Facturación</a></li>
+        <li><a href="#">Soporte técnico</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 STAC Componentes Electrónicos · Todos los derechos reservados</span>
+    <div class="footer-links">
+      <a href="#">Privacidad</a>
+      <a href="#">Términos de uso</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth add-to-cart feedback
+  document.querySelectorAll('.btn-cart, .btn-add').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const badge = document.querySelector('.cart-badge');
+      if (badge) {
+        const n = parseInt(badge.textContent) + 1;
+        badge.textContent = n;
+        badge.style.transform = 'scale(1.4)';
+        badge.style.background = '#00AAFF';
+        setTimeout(() => {
+          badge.style.transform = 'scale(1)';
+          badge.style.background = 'var(--blue-core)';
+        }, 300);
+      }
+      this.textContent = '✓';
+      this.style.background = 'var(--accent-green)';
+      setTimeout(() => {
+        this.textContent = this.classList.contains('btn-add') ? '+ Agregar al carrito' : '+';
+        this.style.background = '';
+      }, 1200);
+    });
+  });
+
+  // Header scroll shadow
+  window.addEventListener('scroll', () => {
+    document.querySelector('header').style.boxShadow =
+      window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.5)' : 'none';
+  });
+</script>
+</body>
+</html>
