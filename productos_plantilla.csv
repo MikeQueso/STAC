@@ -1,0 +1,7 @@
+nombre,categoria,precio,marca,precio_anterior,referencia,etiqueta,stock,descripcion,especificaciones
+"AMD Ryzen 5 7600X","Procesador","6200","AMD","","100-100000593WOF","HOT","12","Procesador de 6 núcleos para gaming y productividad.","Socket: AM5
+Núcleos: 6
+Frecuencia base: 4.7 GHz"
+"Kingston Fury Beast 16GB DDR5","Memoria RAM","1450","Kingston","1650","KF560C36BBE-16","-12%","20","Memoria RAM de alto rendimiento para sistemas modernos.","Capacidad: 16GB
+Velocidad: 6000 MHz
+Tipo: DDR5"
