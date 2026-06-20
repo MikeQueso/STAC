@@ -434,6 +434,50 @@
     .admin-table td { padding: 10px; border-bottom: 1px solid rgba(0,95,255,0.08); color: var(--text-body); }
     .admin-table tr:hover td { background: rgba(0,95,255,0.03); }
 
+    /* ─── MODALES MINI (categorías / nuevo producto) ───────── */
+    .mini-modal-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px 30px; max-width: 440px; width: 100%; max-height: 84vh; overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    .mini-modal-card h2 {
+      font-family: 'Rajdhani', sans-serif; font-size: 22px; color: var(--text-primary);
+      margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .cat-list { list-style: none; margin-bottom: 18px; display: flex; flex-direction: column; gap: 8px; max-height: 280px; overflow-y: auto; }
+    .cat-list li {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 9px 12px; font-size: 13.5px; color: var(--text-primary);
+    }
+    .cat-list li button { background: none; border: none; color: var(--text-dim); cursor: pointer; font-size: 14px; }
+    .cat-list li button:hover { color: #FF7070; }
+    .cat-add-row { display: flex; gap: 8px; }
+    .cat-add-row input {
+      flex: 1; background: var(--bg-surface); border: 1px solid var(--border);
+      color: var(--text-primary); padding: 11px 14px; border-radius: 8px;
+      font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; outline: none;
+    }
+    .cat-add-row input:focus { border-color: var(--blue-glow); }
+    .cat-add-row button {
+      background: var(--blue-core); color: #fff; border: none; border-radius: 8px;
+      padding: 0 18px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .cat-add-row button:hover { background: var(--blue-bright); }
+    .auth-field select {
+      width: 100%; background: var(--bg-surface); border: 1px solid var(--border);
+      color: var(--text-primary); padding: 11px 14px; border-radius: 8px; font-size: 14px;
+      font-family: 'IBM Plex Sans', sans-serif; outline: none; transition: border-color .2s;
+    }
+    .auth-field select:focus { border-color: var(--blue-glow); }
+    .btn-delete-prod {
+      background: rgba(255,62,62,0.1); border: 1px solid rgba(255,62,62,0.3);
+      color: #FF7070; padding: 9px; border-radius: 6px; font-size: 12px; cursor: pointer;
+      font-family: 'IBM Plex Sans', sans-serif; margin-top: 10px; width: 100%; font-weight: 600;
+    }
+    .btn-delete-prod:hover { background: rgba(255,62,62,0.18); }
+
     /* ─── RESPONSIVE ─────────────────────────── */
     @media (max-width: 900px) {
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -595,6 +639,58 @@
   </div>
 </div>
 
+<!-- ── MODAL CATEGORÍAS ──────────────────────────────────────── -->
+<div id="categories-overlay" class="modal-overlay hidden">
+  <div class="mini-modal-card">
+    <h2>🏷️ Categorías <button class="modal-close" id="cat-close">✕</button></h2>
+    <ul class="cat-list" id="cat-list"></ul>
+    <div class="cat-add-row">
+      <input type="text" id="new-cat-input" placeholder="Nombre de la nueva categoría" />
+      <button type="button" id="add-cat-btn">Agregar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL NUEVO PRODUCTO ──────────────────────────────────── -->
+<div id="newprod-overlay" class="modal-overlay hidden">
+  <div class="mini-modal-card">
+    <h2>➕ Nuevo Producto <button class="modal-close" id="newprod-close">✕</button></h2>
+    <div class="auth-error" id="newprod-error"></div>
+    <form id="newprod-form">
+      <div class="auth-field">
+        <label>Fotos</label>
+        <div class="img-edit-grid" id="newprod-img-grid"></div>
+        <input type="file" accept="image/*" multiple style="display:none;" id="newprod-file-input" />
+      </div>
+      <div class="auth-field">
+        <label>Nombre</label>
+        <input type="text" id="newprod-name" required />
+      </div>
+      <div class="auth-field">
+        <label>Categoría</label>
+        <select id="newprod-category" required></select>
+      </div>
+      <div class="auth-field">
+        <label>Precio</label>
+        <input type="number" id="newprod-price" required step="1" />
+      </div>
+      <div class="auth-field">
+        <label>Precio anterior (opcional)</label>
+        <input type="number" id="newprod-old-price" step="1" />
+      </div>
+      <div class="auth-field">
+        <label>Referencia (opcional)</label>
+        <input type="text" id="newprod-ref" />
+      </div>
+      <div class="auth-field">
+        <label>Etiqueta (opcional: HOT, NUEVO, EN STOCK, -15%)</label>
+        <input type="text" id="newprod-badge" />
+      </div>
+      <button type="submit" class="auth-submit">Crear producto</button>
+    </form>
+  </div>
+</div>
+
 <script>
   /* ════════════════════════════════════════════════════════
      STAC · Conexión con Supabase
@@ -739,7 +835,11 @@
       return;
     }
     let html = `<div class="user-chip"><span>👋 ${escapeHtml(currentUser.username)}</span>`;
-    if (currentUser.role === 'admin') html += `<button class="btn-admin-panel" id="open-admin-btn">Panel Admin</button>`;
+    if (currentUser.role === 'admin') {
+      html += `<button class="btn-admin-panel" id="open-categories-btn">Categorías</button>`;
+      html += `<button class="btn-admin-panel" id="open-newprod-btn">+ Producto</button>`;
+      html += `<button class="btn-admin-panel" id="open-admin-btn">Panel Admin</button>`;
+    }
     html += `<button class="btn-logout" id="logout-btn">Salir</button></div>`;
     actions.innerHTML = html;
 
@@ -754,6 +854,20 @@
 
     if (currentUser.role === 'admin') {
       document.getElementById('open-admin-btn').addEventListener('click', openAdminPanel);
+      document.getElementById('open-categories-btn').addEventListener('click', async () => {
+        if (!categoriesCache.length) await loadCategories();
+        renderCategoryList();
+        document.getElementById('categories-overlay').classList.remove('hidden');
+      });
+      document.getElementById('open-newprod-btn').addEventListener('click', async () => {
+        if (!categoriesCache.length) await loadCategories();
+        populateCategorySelect();
+        newProductImages = [];
+        pendingNewProductId = crypto.randomUUID();
+        renderNewProdImgGrid();
+        document.getElementById('newprod-error').classList.remove('show');
+        document.getElementById('newprod-overlay').classList.remove('hidden');
+      });
     }
   }
 
@@ -778,6 +892,169 @@
   }
 
   let editingImages = {}; // productId -> array de URLs en edición
+  let categoriesCache = [];
+
+  function categoryOptionsHtml(selected) {
+    let names = categoriesCache.map(c => c.name);
+    if (selected && !names.includes(selected)) names = [selected, ...names];
+    return names.map(n => `<option value="${escapeHtml(n)}" ${n === selected ? 'selected' : ''}>${escapeHtml(n)}</option>`).join('');
+  }
+
+  async function loadCategories() {
+    const { data, error } = await sb.from('categories').select('*').order('name', { ascending: true });
+    if (!error) categoriesCache = data || [];
+  }
+
+  function renderCategoryList() {
+    const list = document.getElementById('cat-list');
+    if (!categoriesCache.length) {
+      list.innerHTML = '<li style="justify-content:center; color:var(--text-dim);">Sin categorías todavía</li>';
+      return;
+    }
+    list.innerHTML = categoriesCache.map(c => `
+      <li>
+        <span>${escapeHtml(c.name)}</span>
+        <button type="button" data-del-cat="${c.id}" title="Eliminar">🗑️</button>
+      </li>
+    `).join('');
+
+    list.querySelectorAll('[data-del-cat]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (!confirm('¿Eliminar esta categoría? Los productos que ya la tengan asignada no se ven afectados.')) return;
+        const id = btn.getAttribute('data-del-cat');
+        const { error } = await sb.from('categories').delete().eq('id', id);
+        if (error) { alert('Error: ' + error.message); return; }
+        await loadCategories();
+        renderCategoryList();
+        populateCategorySelect();
+      });
+    });
+  }
+
+  function populateCategorySelect() {
+    const select = document.getElementById('newprod-category');
+    if (!select) return;
+    select.innerHTML = categoriesCache.length
+      ? categoriesCache.map(c => `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join('')
+      : '<option value="">— Crea una categoría primero —</option>';
+  }
+
+  document.getElementById('cat-close').addEventListener('click', () => {
+    document.getElementById('categories-overlay').classList.add('hidden');
+  });
+
+  document.getElementById('add-cat-btn').addEventListener('click', async () => {
+    const input = document.getElementById('new-cat-input');
+    const name = input.value.trim();
+    if (!name) return;
+    const { error } = await sb.from('categories').insert({ name });
+    if (error) {
+      alert(error.message.toLowerCase().includes('duplicate') ? 'Esa categoría ya existe.' : error.message);
+      return;
+    }
+    input.value = '';
+    await loadCategories();
+    renderCategoryList();
+    populateCategorySelect();
+  });
+
+  /* ───────── NUEVO PRODUCTO ───────── */
+  let newProductImages = [];
+  let pendingNewProductId = null;
+
+  function renderNewProdImgGrid() {
+    const gridEl = document.getElementById('newprod-img-grid');
+    gridEl.innerHTML = newProductImages.map((url, i) => `
+      <div class="img-edit-thumb">
+        <img src="${escapeHtml(url)}" />
+        <button type="button" class="img-remove" data-newimg-remove="${i}">✕</button>
+      </div>
+    `).join('') + `<div class="img-add-tile" id="newprod-add-tile">+</div>`;
+
+    gridEl.querySelectorAll('[data-newimg-remove]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.getAttribute('data-newimg-remove'));
+        newProductImages.splice(idx, 1);
+        renderNewProdImgGrid();
+      });
+    });
+    document.getElementById('newprod-add-tile').addEventListener('click', () => {
+      document.getElementById('newprod-file-input').click();
+    });
+  }
+
+  document.getElementById('newprod-file-input').addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+    const gridEl = document.getElementById('newprod-img-grid');
+    const loadingMsg = document.createElement('div');
+    loadingMsg.className = 'img-uploading';
+    loadingMsg.textContent = `Subiendo ${files.length} foto(s)...`;
+    gridEl.parentElement.insertBefore(loadingMsg, gridEl);
+
+    for (const file of files) {
+      try {
+        const url = await uploadProductImage(pendingNewProductId, file);
+        newProductImages.push(url);
+      } catch (err) {
+        alert('Error al subir imagen: ' + err.message);
+      }
+    }
+    loadingMsg.remove();
+    renderNewProdImgGrid();
+    e.target.value = '';
+  });
+
+  document.getElementById('newprod-close').addEventListener('click', () => {
+    document.getElementById('newprod-overlay').classList.add('hidden');
+  });
+
+  document.getElementById('newprod-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorBox = document.getElementById('newprod-error');
+    errorBox.classList.remove('show'); errorBox.textContent = '';
+
+    const name = document.getElementById('newprod-name').value.trim();
+    const category = document.getElementById('newprod-category').value;
+    const price = parseFloat(document.getElementById('newprod-price').value);
+    const oldPriceRaw = document.getElementById('newprod-old-price').value;
+    const old_price = oldPriceRaw ? parseFloat(oldPriceRaw) : null;
+    const ref = document.getElementById('newprod-ref').value.trim();
+    const badge = document.getElementById('newprod-badge').value.trim();
+
+    if (!name || !category || isNaN(price)) {
+      errorBox.textContent = 'Completa al menos nombre, categoría y precio.';
+      errorBox.classList.add('show');
+      return;
+    }
+
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Creando...';
+
+    const { error } = await sb.from('products').insert({
+      id: pendingNewProductId,
+      name, category, price,
+      old_price: old_price,
+      ref: ref || null,
+      badge: badge || null,
+      images: newProductImages
+    });
+
+    btn.disabled = false; btn.textContent = 'Crear producto';
+
+    if (error) {
+      errorBox.textContent = error.message;
+      errorBox.classList.add('show');
+      return;
+    }
+
+    e.target.reset();
+    newProductImages = [];
+    pendingNewProductId = null;
+    renderNewProdImgGrid();
+    document.getElementById('newprod-overlay').classList.add('hidden');
+    await loadProducts();
+  });
 
   function productImageHtml(p) {
     if (p.images && p.images.length) {
@@ -826,13 +1103,14 @@
           <label>Nombre</label>
           <input type="text" data-field="name" value="${escapeHtml(p.name)}" />
           <label>Categoría</label>
-          <input type="text" data-field="category" value="${escapeHtml(p.category)}" />
+          <select data-field="category">${categoryOptionsHtml(p.category)}</select>
           <label>Precio</label>
           <input type="number" data-field="price" value="${p.price}" step="1" />
           <div class="prod-edit-actions">
             <button class="btn-save-edit" data-save="${p.id}">💾 Guardar</button>
             <button class="btn-cancel-edit" data-cancel="${p.id}">✕ Cancelar</button>
           </div>
+          <button class="btn-delete-prod" data-delete="${p.id}">🗑️ Eliminar producto</button>
         </div>
       </div>
     `; }).join('');
@@ -935,6 +1213,19 @@
         btn.disabled = true; btn.textContent = 'Guardando...';
         const { error } = await sb.from('products').update({ name, category, price, images }).eq('id', id);
         if (error) { alert('Error al guardar: ' + error.message); btn.disabled = false; btn.textContent = '💾 Guardar'; return; }
+        delete editingImages[id];
+        await loadProducts();
+      });
+    });
+
+    grid.querySelectorAll('[data-delete]').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-delete');
+        if (!confirm('¿Seguro que quieres eliminar este producto? Esta acción no se puede deshacer.')) return;
+        btn.disabled = true; btn.textContent = 'Eliminando...';
+        const { error } = await sb.from('products').delete().eq('id', id);
+        if (error) { alert('Error al eliminar: ' + error.message); btn.disabled = false; btn.textContent = '🗑️ Eliminar producto'; return; }
         delete editingImages[id];
         await loadProducts();
       });
@@ -1059,6 +1350,7 @@
   /* ───────── INIT ───────── */
   (async function init() {
     await loadProducts();
+    await loadCategories();
 
     const { data: { session } } = await sb.auth.getSession();
     if (session) {
