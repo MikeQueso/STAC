@@ -245,25 +245,8 @@
       background: var(--blue-bright);
       box-shadow: 0 0 16px rgba(0,95,255,0.4);
     }
-    .prod-edit-form input {
-      width: 100%; background: var(--bg-surface); border: 1px solid var(--border);
-      color: var(--text-primary); padding: 7px 9px; border-radius: 6px;
-      font-size: 13px; margin-bottom: 7px; font-family: 'IBM Plex Sans', sans-serif;
-    }
-    .prod-edit-form label {
-      font-size: 10px; color: var(--text-dim); text-transform: uppercase;
-      letter-spacing: 0.05em; display: block; margin-bottom: 3px;
-    }
-    .prod-edit-actions { display: flex; gap: 6px; margin-top: 4px; }
-    .prod-edit-actions button {
-      flex: 1; padding: 8px; border-radius: 6px; border: none;
-      font-size: 12px; cursor: pointer; font-weight: 600;
-      font-family: 'IBM Plex Sans', sans-serif;
-    }
-    .btn-save-edit { background: var(--accent-green); color: #04231a; }
-    .btn-cancel-edit { background: var(--bg-surface) !important; color: var(--text-dim) !important; border: 1px solid var(--border) !important; }
 
-    /* ─── IMÁGENES DE PRODUCTO ────────────────── */
+    /* ─── IMÁGENES DE PRODUCTO (subida) ───────── */
     .img-edit-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
     .img-edit-thumb { position: relative; width: 56px; height: 56px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; }
     .img-edit-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -280,19 +263,6 @@
     }
     .img-add-tile:hover { border-color: var(--blue-glow); color: var(--blue-glow); }
     .img-uploading { font-size: 11px; color: var(--blue-glow); margin-bottom: 8px; }
-    .img-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0,0,0,0.45); color: #fff; border: none; width: 26px; height: 26px;
-      border-radius: 50%; cursor: pointer; font-size: 16px;
-      display: flex; align-items: center; justify-content: center; z-index: 2;
-    }
-    .img-prev { left: 8px; }
-    .img-next { right: 8px; }
-    .img-nav:hover { background: rgba(0,0,0,0.7); }
-    .img-counter {
-      position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.55); color: #fff;
-      font-size: 10px; padding: 2px 7px; border-radius: 10px; font-family: 'JetBrains Mono', monospace;
-    }
 
     /* ─── FOOTER ─────────────────────────────── */
     footer {
@@ -434,7 +404,7 @@
     .admin-table td { padding: 10px; border-bottom: 1px solid rgba(0,95,255,0.08); color: var(--text-body); }
     .admin-table tr:hover td { background: rgba(0,95,255,0.03); }
 
-    /* ─── MODALES MINI (categorías / nuevo producto) ───────── */
+    /* ─── MODAL MINI (categorías) ───────────────────────────── */
     .mini-modal-card {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
       padding: 28px 30px; max-width: 440px; width: 100%; max-height: 84vh; overflow-y: auto;
@@ -465,23 +435,87 @@
       font-family: 'IBM Plex Sans', sans-serif;
     }
     .cat-add-row button:hover { background: var(--blue-bright); }
-    .auth-field select {
-      width: 100%; background: var(--bg-surface); border: 1px solid var(--border);
-      color: var(--text-primary); padding: 11px 14px; border-radius: 8px; font-size: 14px;
-      font-family: 'IBM Plex Sans', sans-serif; outline: none; transition: border-color .2s;
-    }
-    .auth-field select:focus { border-color: var(--blue-glow); }
     .btn-delete-prod {
       background: rgba(255,62,62,0.1); border: 1px solid rgba(255,62,62,0.3);
-      color: #FF7070; padding: 9px; border-radius: 6px; font-size: 12px; cursor: pointer;
+      color: #FF7070; padding: 10px; border-radius: 6px; font-size: 12.5px; cursor: pointer;
       font-family: 'IBM Plex Sans', sans-serif; margin-top: 10px; width: 100%; font-weight: 600;
     }
     .btn-delete-prod:hover { background: rgba(255,62,62,0.18); }
+
+    /* ─── FICHA DE PRODUCTO (vista + edición) ──────────────── */
+    .detail-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
+      max-width: 920px; width: 100%; max-height: 88vh; overflow-y: auto;
+      position: relative; box-shadow: 0 30px 90px rgba(0,0,0,0.65);
+    }
+    .detail-grid { display: grid; grid-template-columns: 380px 1fr; }
+    .detail-gallery { padding: 32px; border-right: 1px solid var(--border); }
+    .detail-main-img {
+      width: 100%; aspect-ratio: 1/1; background: var(--bg-surface); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 90px;
+      overflow: hidden; position: relative; margin-bottom: 14px;
+    }
+    .detail-main-img img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .detail-thumb {
+      width: 56px; height: 56px; border-radius: 8px; overflow: hidden;
+      border: 2px solid transparent; cursor: pointer; background: var(--bg-surface); flex-shrink: 0;
+    }
+    .detail-thumb.active { border-color: var(--blue-glow); }
+    .detail-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-info { padding: 32px; position: relative; }
+    .detail-brand { font-size: 12px; color: var(--blue-glow); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 8px; }
+    .detail-title { font-family: 'Rajdhani', sans-serif; font-size: 26px; font-weight: 700; color: var(--text-primary); line-height: 1.2; margin-bottom: 8px; padding-right: 90px; }
+    .detail-sku { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-dim); margin-bottom: 16px; }
+    .detail-stock { font-size: 13px; font-weight: 600; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 6px; }
+    .detail-stock.low { background: rgba(255,62,62,0.12); color: #FF7070; }
+    .detail-stock.ok { background: rgba(0,229,176,0.12); color: var(--accent-green); }
+    .detail-price-row { display: flex; align-items: baseline; gap: 12px; margin: 14px 0 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+    .detail-price { font-family: 'Rajdhani', sans-serif; font-size: 34px; font-weight: 700; color: var(--text-primary); }
+    .detail-price-old { font-size: 16px; color: var(--text-dim); text-decoration: line-through; }
+    .detail-cart-row { display: flex; gap: 12px; align-items: center; margin-bottom: 24px; }
+    .detail-qty { width: 60px; background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-primary); padding: 10px; border-radius: 8px; text-align: center; font-size: 14px; }
+    .detail-addcart-btn { flex: 1; background: var(--blue-core); color: #fff; border: none; padding: 12px; border-radius: 9px; font-weight: 600; font-size: 14px; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif; }
+    .detail-addcart-btn:hover { background: var(--blue-bright); box-shadow: 0 0 20px rgba(0,95,255,0.35); }
+    .detail-section { margin-bottom: 20px; }
+    .detail-section h4 { font-family: 'Rajdhani', sans-serif; font-size: 14px; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .detail-section p { font-size: 13.5px; color: var(--text-body); line-height: 1.7; white-space: pre-line; }
+    .detail-specs { list-style: none; }
+    .detail-specs li {
+      font-size: 13px; color: var(--text-body); padding: 8px 0; border-bottom: 1px dashed var(--border);
+      display: flex; justify-content: space-between; gap: 12px;
+    }
+    .detail-edit-toggle {
+      position: absolute; top: 32px; right: 32px;
+      background: rgba(0,95,255,0.15); border: 1px solid rgba(0,95,255,0.35); color: var(--blue-glow);
+      font-size: 12px; padding: 7px 14px; border-radius: 7px; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600;
+    }
+    .detail-edit-toggle:hover { background: rgba(0,95,255,0.25); }
+    .detail-field { margin-bottom: 14px; }
+    .detail-field label { display: block; font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
+    .detail-field input, .detail-field select, .detail-field textarea {
+      width: 100%; background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-primary);
+      padding: 10px 12px; border-radius: 8px; font-size: 13.5px; font-family: 'IBM Plex Sans', sans-serif; outline: none;
+    }
+    .detail-field textarea { resize: vertical; min-height: 70px; line-height: 1.6; }
+    .detail-field input:focus, .detail-field select:focus, .detail-field textarea:focus { border-color: var(--blue-glow); }
+    .detail-field-hint { font-size: 11px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+    .detail-edit-actions { display: flex; gap: 8px; margin-top: 18px; }
+    .detail-edit-actions button {
+      flex: 1; padding: 10px; border-radius: 8px; border: none;
+      font-size: 13px; cursor: pointer; font-weight: 600; font-family: 'IBM Plex Sans', sans-serif;
+    }
 
     /* ─── RESPONSIVE ─────────────────────────── */
     @media (max-width: 900px) {
       .footer-grid { grid-template-columns: 1fr 1fr; }
       nav { display: none; }
+    }
+    @media (max-width: 760px) {
+      .detail-grid { grid-template-columns: 1fr; }
+      .detail-gallery { border-right: none; border-bottom: 1px solid var(--border); }
+      .detail-title { padding-right: 0; }
+      .detail-edit-toggle { position: static; margin-bottom: 16px; display: inline-block; }
     }
     @media (max-width: 560px) {
       .footer-grid { grid-template-columns: 1fr; }
@@ -651,43 +685,14 @@
   </div>
 </div>
 
-<!-- ── MODAL NUEVO PRODUCTO ──────────────────────────────────── -->
-<div id="newprod-overlay" class="modal-overlay hidden">
-  <div class="mini-modal-card">
-    <h2>➕ Nuevo Producto <button class="modal-close" id="newprod-close">✕</button></h2>
-    <div class="auth-error" id="newprod-error"></div>
-    <form id="newprod-form">
-      <div class="auth-field">
-        <label>Fotos</label>
-        <div class="img-edit-grid" id="newprod-img-grid"></div>
-        <input type="file" accept="image/*" multiple style="display:none;" id="newprod-file-input" />
-      </div>
-      <div class="auth-field">
-        <label>Nombre</label>
-        <input type="text" id="newprod-name" required />
-      </div>
-      <div class="auth-field">
-        <label>Categoría</label>
-        <select id="newprod-category" required></select>
-      </div>
-      <div class="auth-field">
-        <label>Precio</label>
-        <input type="number" id="newprod-price" required step="1" />
-      </div>
-      <div class="auth-field">
-        <label>Precio anterior (opcional)</label>
-        <input type="number" id="newprod-old-price" step="1" />
-      </div>
-      <div class="auth-field">
-        <label>Referencia (opcional)</label>
-        <input type="text" id="newprod-ref" />
-      </div>
-      <div class="auth-field">
-        <label>Etiqueta (opcional: HOT, NUEVO, EN STOCK, -15%)</label>
-        <input type="text" id="newprod-badge" />
-      </div>
-      <button type="submit" class="auth-submit">Crear producto</button>
-    </form>
+<!-- ── MODAL FICHA DE PRODUCTO (vista / crear / editar) ───────── -->
+<div id="detail-overlay" class="modal-overlay hidden">
+  <div class="detail-card">
+    <button class="modal-close" id="detail-close" style="position:absolute; top:16px; right:16px; z-index:5;">✕</button>
+    <div class="detail-grid">
+      <div class="detail-gallery" id="detail-gallery-content"></div>
+      <div class="detail-info" id="detail-info"></div>
+    </div>
   </div>
 </div>
 
@@ -701,16 +706,18 @@
 
   let currentUser = null;
   let productsCache = [];
+  let categoriesCache = [];
   let isLoginMode = false;
 
   const pageWrapper   = document.getElementById('page-wrapper');
   const authOverlay   = document.getElementById('auth-overlay');
   const adminOverlay  = document.getElementById('admin-overlay');
+  const detailOverlay = document.getElementById('detail-overlay');
   const registerForm  = document.getElementById('register-form');
   const loginForm     = document.getElementById('login-form');
   const authError     = document.getElementById('auth-error');
   const authTitle     = document.getElementById('auth-title');
-  const switchBtn      = document.getElementById('switch-btn');
+  const switchBtn     = document.getElementById('switch-btn');
   const switchText    = document.getElementById('switch-text');
 
   function escapeHtml(str) {
@@ -861,43 +868,17 @@
       });
       document.getElementById('open-newprod-btn').addEventListener('click', async () => {
         if (!categoriesCache.length) await loadCategories();
-        populateCategorySelect();
-        newProductImages = [];
-        pendingNewProductId = crypto.randomUUID();
-        renderNewProdImgGrid();
-        document.getElementById('newprod-error').classList.remove('show');
-        document.getElementById('newprod-overlay').classList.remove('hidden');
+        openNewProductModal();
       });
     }
   }
 
-  /* ───────── PRODUCTOS ───────── */
-  async function loadProducts() {
-    const { data, error } = await sb.from('products').select('*').order('created_at', { ascending: true });
-    if (error) {
-      document.getElementById('products-grid').innerHTML = `<p class="products-loading">Error cargando productos: ${escapeHtml(error.message)}</p>`;
-      return;
-    }
-    productsCache = data || [];
-    renderProducts();
-  }
-
-  function badgeClass(badge) {
-    if (!badge) return 'tag-stock';
-    if (badge === 'HOT') return 'tag-hot';
-    if (badge === 'NUEVO') return 'tag-new';
-    if (badge === 'EN STOCK') return 'tag-stock';
-    if (badge.includes('%')) return 'tag-sale';
-    return 'tag-stock';
-  }
-
-  let editingImages = {}; // productId -> array de URLs en edición
-  let categoriesCache = [];
-
+  /* ───────── CATEGORÍAS ───────── */
   function categoryOptionsHtml(selected) {
     let names = categoriesCache.map(c => c.name);
     if (selected && !names.includes(selected)) names = [selected, ...names];
-    return names.map(n => `<option value="${escapeHtml(n)}" ${n === selected ? 'selected' : ''}>${escapeHtml(n)}</option>`).join('');
+    if (!names.length) names = [''];
+    return names.map(n => `<option value="${escapeHtml(n)}" ${n === selected ? 'selected' : ''}>${n ? escapeHtml(n) : '— Crea una categoría primero —'}</option>`).join('');
   }
 
   async function loadCategories() {
@@ -926,17 +907,8 @@
         if (error) { alert('Error: ' + error.message); return; }
         await loadCategories();
         renderCategoryList();
-        populateCategorySelect();
       });
     });
-  }
-
-  function populateCategorySelect() {
-    const select = document.getElementById('newprod-category');
-    if (!select) return;
-    select.innerHTML = categoriesCache.length
-      ? categoriesCache.map(c => `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join('')
-      : '<option value="">— Crea una categoría primero —</option>';
   }
 
   document.getElementById('cat-close').addEventListener('click', () => {
@@ -955,312 +927,33 @@
     input.value = '';
     await loadCategories();
     renderCategoryList();
-    populateCategorySelect();
   });
 
-  /* ───────── NUEVO PRODUCTO ───────── */
-  let newProductImages = [];
-  let pendingNewProductId = null;
-
-  function renderNewProdImgGrid() {
-    const gridEl = document.getElementById('newprod-img-grid');
-    gridEl.innerHTML = newProductImages.map((url, i) => `
-      <div class="img-edit-thumb">
-        <img src="${escapeHtml(url)}" />
-        <button type="button" class="img-remove" data-newimg-remove="${i}">✕</button>
-      </div>
-    `).join('') + `<div class="img-add-tile" id="newprod-add-tile">+</div>`;
-
-    gridEl.querySelectorAll('[data-newimg-remove]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.getAttribute('data-newimg-remove'));
-        newProductImages.splice(idx, 1);
-        renderNewProdImgGrid();
-      });
-    });
-    document.getElementById('newprod-add-tile').addEventListener('click', () => {
-      document.getElementById('newprod-file-input').click();
-    });
+  /* ───────── PRODUCTOS ───────── */
+  async function loadProducts() {
+    const { data, error } = await sb.from('products').select('*').order('created_at', { ascending: true });
+    if (error) {
+      document.getElementById('products-grid').innerHTML = `<p class="products-loading">Error cargando productos: ${escapeHtml(error.message)}</p>`;
+      return;
+    }
+    productsCache = data || [];
+    renderProducts();
   }
 
-  document.getElementById('newprod-file-input').addEventListener('change', async (e) => {
-    const files = Array.from(e.target.files || []);
-    if (!files.length) return;
-    const gridEl = document.getElementById('newprod-img-grid');
-    const loadingMsg = document.createElement('div');
-    loadingMsg.className = 'img-uploading';
-    loadingMsg.textContent = `Subiendo ${files.length} foto(s)...`;
-    gridEl.parentElement.insertBefore(loadingMsg, gridEl);
-
-    for (const file of files) {
-      try {
-        const url = await uploadProductImage(pendingNewProductId, file);
-        newProductImages.push(url);
-      } catch (err) {
-        alert('Error al subir imagen: ' + err.message);
-      }
-    }
-    loadingMsg.remove();
-    renderNewProdImgGrid();
-    e.target.value = '';
-  });
-
-  document.getElementById('newprod-close').addEventListener('click', () => {
-    document.getElementById('newprod-overlay').classList.add('hidden');
-  });
-
-  document.getElementById('newprod-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const errorBox = document.getElementById('newprod-error');
-    errorBox.classList.remove('show'); errorBox.textContent = '';
-
-    const name = document.getElementById('newprod-name').value.trim();
-    const category = document.getElementById('newprod-category').value;
-    const price = parseFloat(document.getElementById('newprod-price').value);
-    const oldPriceRaw = document.getElementById('newprod-old-price').value;
-    const old_price = oldPriceRaw ? parseFloat(oldPriceRaw) : null;
-    const ref = document.getElementById('newprod-ref').value.trim();
-    const badge = document.getElementById('newprod-badge').value.trim();
-
-    if (!name || !category || isNaN(price)) {
-      errorBox.textContent = 'Completa al menos nombre, categoría y precio.';
-      errorBox.classList.add('show');
-      return;
-    }
-
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.disabled = true; btn.textContent = 'Creando...';
-
-    const { error } = await sb.from('products').insert({
-      id: pendingNewProductId,
-      name, category, price,
-      old_price: old_price,
-      ref: ref || null,
-      badge: badge || null,
-      images: newProductImages
-    });
-
-    btn.disabled = false; btn.textContent = 'Crear producto';
-
-    if (error) {
-      errorBox.textContent = error.message;
-      errorBox.classList.add('show');
-      return;
-    }
-
-    e.target.reset();
-    newProductImages = [];
-    pendingNewProductId = null;
-    renderNewProdImgGrid();
-    document.getElementById('newprod-overlay').classList.add('hidden');
-    await loadProducts();
-  });
+  function badgeClass(badge) {
+    if (!badge) return 'tag-stock';
+    if (badge === 'HOT') return 'tag-hot';
+    if (badge === 'NUEVO') return 'tag-new';
+    if (badge === 'EN STOCK') return 'tag-stock';
+    if (badge.includes('%')) return 'tag-sale';
+    return 'tag-stock';
+  }
 
   function productImageHtml(p) {
     if (p.images && p.images.length) {
-      return `<img src="${escapeHtml(p.images[0])}" data-main-img="${p.id}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />`;
+      return `<img src="${escapeHtml(p.images[0])}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />`;
     }
     return escapeHtml(p.emoji || '📦');
-  }
-
-  function renderProducts() {
-    const grid = document.getElementById('products-grid');
-    if (!grid) return;
-    const isAdmin = currentUser && currentUser.role === 'admin';
-
-    if (!productsCache.length) {
-      grid.innerHTML = '<p class="products-loading">No hay productos todavía.</p>';
-      return;
-    }
-
-    grid.innerHTML = productsCache.map(p => {
-      const multi = p.images && p.images.length > 1;
-      return `
-      <div class="prod-card" data-id="${p.id}">
-        <div class="prod-img" data-index="0">
-          ${productImageHtml(p)}
-          ${p.badge ? `<span class="prod-tag ${badgeClass(p.badge)}">${escapeHtml(p.badge)}</span>` : ''}
-          ${isAdmin ? `<button class="edit-btn" data-edit="${p.id}">✏️ Editar</button>` : ''}
-          ${multi ? `
-            <button class="img-nav img-prev" data-nav="prev" data-pid="${p.id}">‹</button>
-            <button class="img-nav img-next" data-nav="next" data-pid="${p.id}">›</button>
-            <span class="img-counter" data-counter="${p.id}">1/${p.images.length}</span>
-          ` : ''}
-        </div>
-        <div class="prod-body" data-view="${p.id}">
-          <div class="prod-cat">${escapeHtml(p.category)}</div>
-          <div class="prod-name">${escapeHtml(p.name)}</div>
-          <div class="prod-ref">REF: ${escapeHtml(p.ref || '')}</div>
-          <div class="prod-footer">
-            <div class="prod-price">$${Number(p.price).toLocaleString('es-MX')}${p.old_price ? ` <small>$${Number(p.old_price).toLocaleString('es-MX')}</small>` : ''}</div>
-            <button class="btn-cart" data-cart="${p.id}">+</button>
-          </div>
-        </div>
-        <div class="prod-edit-form" data-form="${p.id}" style="display:none; padding: 0 16px 16px;">
-          <label>Fotos</label>
-          <div class="img-edit-grid" data-img-grid="${p.id}"></div>
-          <input type="file" accept="image/*" multiple style="display:none;" data-file-input="${p.id}" />
-          <label>Nombre</label>
-          <input type="text" data-field="name" value="${escapeHtml(p.name)}" />
-          <label>Categoría</label>
-          <select data-field="category">${categoryOptionsHtml(p.category)}</select>
-          <label>Precio</label>
-          <input type="number" data-field="price" value="${p.price}" step="1" />
-          <div class="prod-edit-actions">
-            <button class="btn-save-edit" data-save="${p.id}">💾 Guardar</button>
-            <button class="btn-cancel-edit" data-cancel="${p.id}">✕ Cancelar</button>
-          </div>
-          <button class="btn-delete-prod" data-delete="${p.id}">🗑️ Eliminar producto</button>
-        </div>
-      </div>
-    `; }).join('');
-
-    grid.querySelectorAll('[data-cart]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const badge = document.querySelector('.cart-badge');
-        if (badge) badge.textContent = parseInt(badge.textContent) + 1;
-        btn.textContent = '✓';
-        setTimeout(() => { btn.textContent = '+'; }, 1000);
-      });
-    });
-
-    grid.querySelectorAll('.prod-body').forEach(el => {
-      el.addEventListener('click', (e) => {
-        if (e.target.closest('[data-cart]')) return;
-        trackView(el.getAttribute('data-view'));
-      });
-    });
-
-    grid.querySelectorAll('[data-nav]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const pid = btn.getAttribute('data-pid');
-        const dir = btn.getAttribute('data-nav');
-        const product = productsCache.find(x => x.id === pid);
-        if (!product || !product.images || !product.images.length) return;
-        const imgBox = btn.closest('.prod-img');
-        let idx = parseInt(imgBox.getAttribute('data-index')) || 0;
-        idx = dir === 'next' ? (idx + 1) % product.images.length : (idx - 1 + product.images.length) % product.images.length;
-        imgBox.setAttribute('data-index', idx);
-        const imgEl = imgBox.querySelector('img[data-main-img]');
-        if (imgEl) imgEl.src = product.images[idx];
-        const counter = imgBox.querySelector(`[data-counter="${pid}"]`);
-        if (counter) counter.textContent = `${idx + 1}/${product.images.length}`;
-      });
-    });
-
-    grid.querySelectorAll('[data-edit]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const id = btn.getAttribute('data-edit');
-        const card = grid.querySelector(`.prod-card[data-id="${id}"]`);
-        const product = productsCache.find(x => x.id === id);
-        editingImages[id] = product.images ? [...product.images] : [];
-        card.querySelector(`.prod-body[data-view="${id}"]`).style.display = 'none';
-        card.querySelector(`.prod-edit-form[data-form="${id}"]`).style.display = 'block';
-        renderImgGrid(id);
-      });
-    });
-
-    grid.querySelectorAll('[data-cancel]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const id = btn.getAttribute('data-cancel');
-        delete editingImages[id];
-        const card = grid.querySelector(`.prod-card[data-id="${id}"]`);
-        card.querySelector(`.prod-body[data-view="${id}"]`).style.display = 'block';
-        card.querySelector(`.prod-edit-form[data-form="${id}"]`).style.display = 'none';
-      });
-    });
-
-    grid.querySelectorAll('[data-file-input]').forEach(input => {
-      input.addEventListener('change', async () => {
-        const id = input.getAttribute('data-file-input');
-        const files = Array.from(input.files || []);
-        if (!files.length) return;
-        const gridEl = grid.querySelector(`[data-img-grid="${id}"]`);
-        const loadingMsg = document.createElement('div');
-        loadingMsg.className = 'img-uploading';
-        loadingMsg.textContent = `Subiendo ${files.length} foto(s)...`;
-        gridEl.parentElement.insertBefore(loadingMsg, gridEl);
-
-        for (const file of files) {
-          try {
-            const url = await uploadProductImage(id, file);
-            editingImages[id] = editingImages[id] || [];
-            editingImages[id].push(url);
-          } catch (err) {
-            alert('Error al subir imagen: ' + err.message);
-          }
-        }
-        loadingMsg.remove();
-        renderImgGrid(id);
-        input.value = '';
-      });
-    });
-
-    grid.querySelectorAll('[data-save]').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        const id = btn.getAttribute('data-save');
-        const form = grid.querySelector(`.prod-edit-form[data-form="${id}"]`);
-        const name = form.querySelector('[data-field="name"]').value.trim();
-        const category = form.querySelector('[data-field="category"]').value.trim();
-        const price = parseFloat(form.querySelector('[data-field="price"]').value);
-        const images = editingImages[id] || [];
-
-        btn.disabled = true; btn.textContent = 'Guardando...';
-        const { error } = await sb.from('products').update({ name, category, price, images }).eq('id', id);
-        if (error) { alert('Error al guardar: ' + error.message); btn.disabled = false; btn.textContent = '💾 Guardar'; return; }
-        delete editingImages[id];
-        await loadProducts();
-      });
-    });
-
-    grid.querySelectorAll('[data-delete]').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        const id = btn.getAttribute('data-delete');
-        if (!confirm('¿Seguro que quieres eliminar este producto? Esta acción no se puede deshacer.')) return;
-        btn.disabled = true; btn.textContent = 'Eliminando...';
-        const { error } = await sb.from('products').delete().eq('id', id);
-        if (error) { alert('Error al eliminar: ' + error.message); btn.disabled = false; btn.textContent = '🗑️ Eliminar producto'; return; }
-        delete editingImages[id];
-        await loadProducts();
-      });
-    });
-  }
-
-  function renderImgGrid(productId) {
-    const gridEl = document.querySelector(`[data-img-grid="${productId}"]`);
-    if (!gridEl) return;
-    const imgs = editingImages[productId] || [];
-    gridEl.innerHTML = imgs.map((url, i) => `
-      <div class="img-edit-thumb">
-        <img src="${escapeHtml(url)}" />
-        <button class="img-remove" data-remove-img="${productId}" data-idx="${i}">✕</button>
-      </div>
-    `).join('') + `<div class="img-add-tile" data-add-img="${productId}">+</div>`;
-
-    gridEl.querySelectorAll('[data-remove-img]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const pid = btn.getAttribute('data-remove-img');
-        const idx = parseInt(btn.getAttribute('data-idx'));
-        editingImages[pid].splice(idx, 1);
-        renderImgGrid(pid);
-      });
-    });
-
-    gridEl.querySelectorAll('[data-add-img]').forEach(tile => {
-      tile.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const pid = tile.getAttribute('data-add-img');
-        const fileInput = document.querySelector(`[data-file-input="${pid}"]`);
-        if (fileInput) fileInput.click();
-      });
-    });
   }
 
   async function uploadProductImage(productId, file) {
@@ -1275,6 +968,357 @@
   async function trackView(productId) {
     if (!currentUser) return;
     await sb.from('product_views').insert({ user_id: currentUser.id, product_id: productId });
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    const isAdmin = currentUser && currentUser.role === 'admin';
+
+    if (!productsCache.length) {
+      grid.innerHTML = '<p class="products-loading">No hay productos todavía.</p>';
+      return;
+    }
+
+    grid.innerHTML = productsCache.map(p => `
+      <div class="prod-card" data-id="${p.id}">
+        <div class="prod-img">
+          ${productImageHtml(p)}
+          ${p.badge ? `<span class="prod-tag ${badgeClass(p.badge)}">${escapeHtml(p.badge)}</span>` : ''}
+          ${isAdmin ? `<button class="edit-btn" data-edit="${p.id}">✏️ Editar</button>` : ''}
+        </div>
+        <div class="prod-body" data-view="${p.id}">
+          <div class="prod-cat">${escapeHtml(p.category)}</div>
+          <div class="prod-name">${escapeHtml(p.name)}</div>
+          <div class="prod-ref">REF: ${escapeHtml(p.ref || '')}</div>
+          <div class="prod-footer">
+            <div class="prod-price">$${Number(p.price).toLocaleString('es-MX')}${p.old_price ? ` <small>$${Number(p.old_price).toLocaleString('es-MX')}</small>` : ''}</div>
+            <button class="btn-cart" data-cart="${p.id}">+</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    grid.querySelectorAll('[data-cart]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const badge = document.querySelector('.cart-badge');
+        if (badge) badge.textContent = parseInt(badge.textContent) + 1;
+        btn.textContent = '✓';
+        setTimeout(() => { btn.textContent = '+'; }, 1000);
+      });
+    });
+
+    grid.querySelectorAll('.prod-body').forEach(el => {
+      el.addEventListener('click', (e) => {
+        if (e.target.closest('[data-cart]')) return;
+        openDetailModal(el.getAttribute('data-view'));
+      });
+    });
+
+    grid.querySelectorAll('[data-edit]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-edit');
+        const product = productsCache.find(x => x.id === id);
+        if (!product) return;
+        currentDetailProduct = product;
+        isCreatingNewProduct = false;
+        detailEditImages = product.images ? [...product.images] : [];
+        detailOverlay.classList.remove('hidden');
+        renderDetailEditMode();
+      });
+    });
+  }
+
+  /* ───────── FICHA DE PRODUCTO (ver / crear / editar) ───────── */
+  let currentDetailProduct = null;
+  let isCreatingNewProduct = false;
+  let detailEditImages = [];
+
+  function blankProduct() {
+    return {
+      id: null, name: '', category: '', brand: '', price: '', old_price: '',
+      ref: '', badge: '', stock: 10, description: '', specs: '', images: [], emoji: '📦'
+    };
+  }
+
+  function stockBadgeHtml(stock) {
+    const n = Number(stock);
+    if (isNaN(n)) return '';
+    if (n <= 0) return `<span class="detail-stock low">Agotado</span>`;
+    if (n <= 5) return `<span class="detail-stock low">Quedan ${n} pzas.</span>`;
+    return `<span class="detail-stock ok">${n} disponibles</span>`;
+  }
+
+  function specsListHtml(specsText) {
+    if (!specsText) return '';
+    const lines = specsText.split('\n').map(l => l.trim()).filter(Boolean);
+    if (!lines.length) return '';
+    return `<ul class="detail-specs">${lines.map(line => {
+      const idx = line.indexOf(':');
+      if (idx > -1) {
+        const label = line.slice(0, idx).trim();
+        const value = line.slice(idx + 1).trim();
+        return `<li><span>${escapeHtml(label)}</span><strong style="color:var(--text-primary)">${escapeHtml(value)}</strong></li>`;
+      }
+      return `<li>${escapeHtml(line)}</li>`;
+    }).join('')}</ul>`;
+  }
+
+  function openDetailModal(productId) {
+    const product = productsCache.find(p => p.id === productId);
+    if (!product) return;
+    currentDetailProduct = product;
+    isCreatingNewProduct = false;
+    detailOverlay.classList.remove('hidden');
+    renderDetailViewMode();
+    trackView(productId);
+  }
+
+  function openNewProductModal() {
+    currentDetailProduct = blankProduct();
+    currentDetailProduct.id = crypto.randomUUID();
+    isCreatingNewProduct = true;
+    detailEditImages = [];
+    detailOverlay.classList.remove('hidden');
+    renderDetailEditMode();
+  }
+
+  document.getElementById('detail-close').addEventListener('click', () => {
+    detailOverlay.classList.add('hidden');
+    currentDetailProduct = null;
+    isCreatingNewProduct = false;
+  });
+
+  function renderDetailViewMode() {
+    const p = currentDetailProduct;
+    const images = p.images && p.images.length ? p.images : null;
+    const gallery = document.getElementById('detail-gallery-content');
+
+    gallery.innerHTML = `
+      <div class="detail-main-img">
+        ${images ? `<img src="${escapeHtml(images[0])}" id="detail-main-img-tag" />` : escapeHtml(p.emoji || '📦')}
+      </div>
+      ${images && images.length > 1 ? `
+        <div class="detail-thumbs">
+          ${images.map((url, i) => `<div class="detail-thumb ${i === 0 ? 'active' : ''}" data-thumb="${i}"><img src="${escapeHtml(url)}" /></div>`).join('')}
+        </div>` : ''}
+    `;
+    gallery.querySelectorAll('[data-thumb]').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const idx = parseInt(thumb.getAttribute('data-thumb'));
+        document.getElementById('detail-main-img-tag').src = images[idx];
+        gallery.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      });
+    });
+
+    const isAdmin = currentUser && currentUser.role === 'admin';
+    const info = document.getElementById('detail-info');
+    info.innerHTML = `
+      ${isAdmin ? `<button type="button" class="detail-edit-toggle" id="detail-edit-toggle">✏️ Editar</button>` : ''}
+      ${p.brand ? `<div class="detail-brand">${escapeHtml(p.brand)}</div>` : ''}
+      <div class="detail-title">${escapeHtml(p.name)}</div>
+      <div class="detail-sku">${p.ref ? 'REF: ' + escapeHtml(p.ref) : ''}${p.category ? ' · ' + escapeHtml(p.category) : ''}</div>
+      ${stockBadgeHtml(p.stock)}
+      <div class="detail-price-row">
+        <div class="detail-price">$${Number(p.price).toLocaleString('es-MX')}</div>
+        ${p.old_price ? `<div class="detail-price-old">$${Number(p.old_price).toLocaleString('es-MX')}</div>` : ''}
+      </div>
+      <div class="detail-cart-row">
+        <input type="number" class="detail-qty" value="1" min="1" id="detail-qty-input" />
+        <button class="detail-addcart-btn" id="detail-addcart-btn">🛒 Agregar al carrito</button>
+      </div>
+      ${p.description ? `<div class="detail-section"><h4>Descripción</h4><p>${escapeHtml(p.description)}</p></div>` : ''}
+      ${specsListHtml(p.specs) ? `<div class="detail-section"><h4>Especificaciones</h4>${specsListHtml(p.specs)}</div>` : ''}
+    `;
+
+    if (isAdmin) {
+      document.getElementById('detail-edit-toggle').addEventListener('click', () => {
+        detailEditImages = p.images ? [...p.images] : [];
+        renderDetailEditMode();
+      });
+    }
+    document.getElementById('detail-addcart-btn').addEventListener('click', () => {
+      const badge = document.querySelector('.cart-badge');
+      const qty = parseInt(document.getElementById('detail-qty-input').value) || 1;
+      if (badge) badge.textContent = parseInt(badge.textContent) + qty;
+      const btn = document.getElementById('detail-addcart-btn');
+      btn.textContent = '✓ Agregado';
+      setTimeout(() => { btn.textContent = '🛒 Agregar al carrito'; }, 1200);
+    });
+  }
+
+  function renderDetailImgGrid() {
+    const gridEl = document.getElementById('detail-img-edit-grid');
+    if (!gridEl) return;
+    gridEl.innerHTML = detailEditImages.map((url, i) => `
+      <div class="img-edit-thumb">
+        <img src="${escapeHtml(url)}" />
+        <button type="button" class="img-remove" data-detimg-remove="${i}">✕</button>
+      </div>
+    `).join('') + `<div class="img-add-tile" id="detail-add-tile">+</div>`;
+
+    gridEl.querySelectorAll('[data-detimg-remove]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.getAttribute('data-detimg-remove'));
+        detailEditImages.splice(idx, 1);
+        renderDetailImgGrid();
+      });
+    });
+    document.getElementById('detail-add-tile').addEventListener('click', () => {
+      document.getElementById('detail-file-input').click();
+    });
+  }
+
+  function renderDetailEditMode() {
+    const p = currentDetailProduct;
+    const gallery = document.getElementById('detail-gallery-content');
+
+    gallery.innerHTML = `
+      <label style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:8px;">Fotos</label>
+      <div class="img-edit-grid" id="detail-img-edit-grid"></div>
+      <input type="file" accept="image/*" multiple style="display:none;" id="detail-file-input" />
+      <div class="detail-field-hint">Sube varias fotos del producto desde diferentes ángulos. La primera foto es la que se muestra principal.</div>
+    `;
+    renderDetailImgGrid();
+
+    document.getElementById('detail-file-input').addEventListener('change', async (e) => {
+      const files = Array.from(e.target.files || []);
+      if (!files.length) return;
+      const gridEl = document.getElementById('detail-img-edit-grid');
+      const loadingMsg = document.createElement('div');
+      loadingMsg.className = 'img-uploading';
+      loadingMsg.textContent = `Subiendo ${files.length} foto(s)...`;
+      gridEl.parentElement.insertBefore(loadingMsg, gridEl);
+      for (const file of files) {
+        try {
+          const url = await uploadProductImage(p.id, file);
+          detailEditImages.push(url);
+        } catch (err) { alert('Error al subir imagen: ' + err.message); }
+      }
+      loadingMsg.remove();
+      renderDetailImgGrid();
+      e.target.value = '';
+    });
+
+    const info = document.getElementById('detail-info');
+    info.innerHTML = `
+      <div class="detail-field">
+        <label>Marca (opcional)</label>
+        <input type="text" id="df-brand" value="${escapeHtml(p.brand || '')}" placeholder="Ej. Intel, AMD, Corsair..." />
+      </div>
+      <div class="detail-field">
+        <label>Nombre del producto</label>
+        <input type="text" id="df-name" value="${escapeHtml(p.name || '')}" placeholder="Como se va a mostrar a los clientes" />
+      </div>
+      <div class="detail-field">
+        <label>Categoría</label>
+        <select id="df-category">${categoryOptionsHtml(p.category)}</select>
+      </div>
+      <div class="detail-field">
+        <label>Precio</label>
+        <input type="number" id="df-price" value="${p.price !== '' && p.price != null ? p.price : ''}" step="1" placeholder="0" />
+      </div>
+      <div class="detail-field">
+        <label>Precio anterior (opcional, para mostrar descuento)</label>
+        <input type="number" id="df-old-price" value="${p.old_price !== '' && p.old_price != null ? p.old_price : ''}" step="1" />
+      </div>
+      <div class="detail-field">
+        <label>Referencia / SKU (opcional)</label>
+        <input type="text" id="df-ref" value="${escapeHtml(p.ref || '')}" />
+      </div>
+      <div class="detail-field">
+        <label>Etiqueta (opcional: HOT, NUEVO, EN STOCK, -15%)</label>
+        <input type="text" id="df-badge" value="${escapeHtml(p.badge || '')}" />
+      </div>
+      <div class="detail-field">
+        <label>Piezas en stock</label>
+        <input type="number" id="df-stock" value="${p.stock ?? 10}" min="0" step="1" />
+      </div>
+      <div class="detail-field">
+        <label>Descripción</label>
+        <textarea id="df-description" placeholder="Describe el producto, para qué sirve, qué incluye...">${escapeHtml(p.description || '')}</textarea>
+      </div>
+      <div class="detail-field">
+        <label>Especificaciones</label>
+        <textarea id="df-specs" placeholder="Socket: AM5&#10;Núcleos: 16&#10;Frecuencia: 4.2 GHz">${escapeHtml(p.specs || '')}</textarea>
+        <div class="detail-field-hint">Una característica por línea. Usa "Etiqueta: valor" para que se vea en dos columnas.</div>
+      </div>
+      <div class="detail-edit-actions">
+        <button class="btn-save-edit" id="df-save" style="background:var(--accent-green); color:#04231a;">${isCreatingNewProduct ? '✅ Crear producto' : '💾 Guardar cambios'}</button>
+        <button class="btn-cancel-edit" id="df-cancel" style="background:var(--bg-surface); color:var(--text-dim); border:1px solid var(--border);">✕ Cancelar</button>
+      </div>
+      ${!isCreatingNewProduct ? `<button class="btn-delete-prod" id="df-delete">🗑️ Eliminar producto</button>` : ''}
+    `;
+
+    document.getElementById('df-cancel').addEventListener('click', () => {
+      if (isCreatingNewProduct) {
+        detailOverlay.classList.add('hidden');
+        currentDetailProduct = null; isCreatingNewProduct = false;
+      } else {
+        renderDetailViewMode();
+      }
+    });
+
+    document.getElementById('df-save').addEventListener('click', async () => {
+      const name = document.getElementById('df-name').value.trim();
+      const category = document.getElementById('df-category').value;
+      const price = parseFloat(document.getElementById('df-price').value);
+      const oldPriceRaw = document.getElementById('df-old-price').value;
+      const old_price = oldPriceRaw ? parseFloat(oldPriceRaw) : null;
+      const ref = document.getElementById('df-ref').value.trim();
+      const badge = document.getElementById('df-badge').value.trim();
+      const brand = document.getElementById('df-brand').value.trim();
+      const stock = parseInt(document.getElementById('df-stock').value);
+      const description = document.getElementById('df-description').value.trim();
+      const specs = document.getElementById('df-specs').value.trim();
+
+      if (!name || !category || isNaN(price)) {
+        alert('Completa al menos nombre, categoría y precio.');
+        return;
+      }
+
+      const saveBtn = document.getElementById('df-save');
+      saveBtn.disabled = true; saveBtn.textContent = 'Guardando...';
+
+      const payload = {
+        name, category, price, old_price,
+        ref: ref || null, badge: badge || null, brand: brand || null,
+        stock: isNaN(stock) ? 0 : stock,
+        description: description || null, specs: specs || null,
+        images: detailEditImages
+      };
+
+      let error;
+      if (isCreatingNewProduct) {
+        ({ error } = await sb.from('products').insert({ id: p.id, ...payload }));
+      } else {
+        ({ error } = await sb.from('products').update(payload).eq('id', p.id));
+      }
+
+      saveBtn.disabled = false; saveBtn.textContent = isCreatingNewProduct ? '✅ Crear producto' : '💾 Guardar cambios';
+
+      if (error) { alert('Error al guardar: ' + error.message); return; }
+
+      detailOverlay.classList.add('hidden');
+      currentDetailProduct = null; isCreatingNewProduct = false;
+      await loadProducts();
+    });
+
+    if (!isCreatingNewProduct) {
+      document.getElementById('df-delete').addEventListener('click', async () => {
+        if (!confirm('¿Seguro que quieres eliminar este producto? Esta acción no se puede deshacer.')) return;
+        const delBtn = document.getElementById('df-delete');
+        delBtn.disabled = true; delBtn.textContent = 'Eliminando...';
+        const { error } = await sb.from('products').delete().eq('id', p.id);
+        if (error) { alert('Error al eliminar: ' + error.message); delBtn.disabled = false; delBtn.textContent = '🗑️ Eliminar producto'; return; }
+        detailOverlay.classList.add('hidden');
+        currentDetailProduct = null;
+        await loadProducts();
+      });
+    }
   }
 
   /* ───────── PANEL ADMIN ───────── */
