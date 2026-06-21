@@ -27,6 +27,24 @@ serve(async (req) => {
     const vendor = url.searchParams.get("vendor");
     const ean = url.searchParams.get("ean_upc");
     const lang = url.searchParams.get("lang") || "ES";
+    const imageUrl = url.searchParams.get("image_url");
+
+    // Modo proxy de imagen: descarga la imagen del lado del servidor y la regresa
+    // (evita problemas de CORS al subirla después a Supabase Storage)
+    if (imageUrl) {
+      const imgRes = await fetch(imageUrl);
+      if (!imgRes.ok) {
+        return new Response(
+          JSON.stringify({ error: `No se pudo descargar la imagen (status ${imgRes.status})` }),
+          { status: imgRes.status, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      const contentType = imgRes.headers.get("content-type") || "image/jpeg";
+      const buffer = await imgRes.arrayBuffer();
+      return new Response(buffer, {
+        headers: { ...corsHeaders, "Content-Type": contentType },
+      });
+    }
 
     const token = Deno.env.get("ICECAT_API_TOKEN");
     if (!token) {

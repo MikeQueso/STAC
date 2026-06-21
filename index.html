@@ -759,6 +759,7 @@
     <div class="admin-tabs">
       <button class="admin-tab active" data-tab="users">Usuarios registrados</button>
       <button class="admin-tab" data-tab="views">Actividad reciente</button>
+      <button class="admin-tab" data-tab="images">Buscar fotos faltantes</button>
     </div>
     <div class="admin-body" id="admin-body"></div>
   </div>
@@ -1913,7 +1914,85 @@
             }).join('')}
           </tbody>
         </table>`;
+    } else if (tab === 'images') {
+      const { data: allProducts, error } = await sb.from('products').select('*');
+      if (error) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(error.message)}</p>`; return; }
+      const pending = (allProducts || []).filter(p => !p.images || p.images.length === 0);
+
+      body.innerHTML = `
+        <p style="font-size:13px; color:var(--text-body); margin-bottom:10px; line-height:1.6;">
+          Hay <strong style="color:var(--text-primary);">${pending.length}</strong> producto(s) sin foto.
+          Esto va a buscar cada uno en Icecat por nombre y marca y, si lo encuentra, le va a asignar la foto oficial automáticamente.
+          No todos los productos van a tener coincidencia — los que no se encuentren te los listo abajo para subirlos a mano.
+        </p>
+        <button type="button" id="bulkimg-start-btn" class="auth-submit" style="margin-bottom:14px;" ${pending.length ? '' : 'disabled'}>
+          ${pending.length ? `🖼️ Buscar fotos para ${pending.length} producto(s)` : '✓ Todos los productos ya tienen foto'}
+        </button>
+        <div id="bulkimg-summary" style="font-size:12.5px; line-height:1.6;"></div>
+      `;
+
+      if (pending.length) {
+        document.getElementById('bulkimg-start-btn').addEventListener('click', () => runBulkImageFetch(pending));
+      }
     }
+  }
+
+  async function fetchIcecatImageBlob(imageUrl) {
+    const fnUrl = `${SUPABASE_URL}/functions/v1/icecat-search?image_url=${encodeURIComponent(imageUrl)}`;
+    const res = await fetch(fnUrl, {
+      headers: { 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'apikey': SUPABASE_ANON_KEY }
+    });
+    if (!res.ok) throw new Error('No se pudo descargar la imagen.');
+    const blob = await res.blob();
+    const ext = (blob.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
+    return new File([blob], `icecat.${ext}`, { type: blob.type || 'image/jpeg' });
+  }
+
+  async function runBulkImageFetch(pending) {
+    const btn = document.getElementById('bulkimg-start-btn');
+    const summary = document.getElementById('bulkimg-summary');
+    btn.disabled = true;
+
+    let found = 0, notFound = 0;
+    const notFoundList = [];
+
+    for (let i = 0; i < pending.length; i++) {
+      const p = pending[i];
+      summary.innerHTML = `Procesando ${i + 1} de ${pending.length}: ${escapeHtml(p.name)}...`;
+
+      const vendor = (p.brand || '').trim();
+      let searchTerm = (p.name || '').trim();
+      if (vendor && searchTerm.toLowerCase().startsWith(vendor.toLowerCase())) {
+        searchTerm = searchTerm.slice(vendor.length).trim();
+      }
+
+      if (!vendor || !searchTerm) {
+        notFound++; notFoundList.push(p.name);
+        continue;
+      }
+
+      try {
+        const data = await fetchIcecatData(vendor, searchTerm);
+        if (data.imageUrl) {
+          const file = await fetchIcecatImageBlob(data.imageUrl);
+          const url = await uploadProductImage(p.id, file);
+          await sb.from('products').update({ images: [url] }).eq('id', p.id);
+          found++;
+        } else {
+          notFound++; notFoundList.push(p.name);
+        }
+      } catch (err) {
+        notFound++; notFoundList.push(p.name);
+      }
+    }
+
+    summary.innerHTML = `
+      <div class="ok">✓ ${found} foto(s) encontradas y asignadas automáticamente</div>
+      <div style="color:var(--text-dim); margin-top:4px;">○ ${notFound} sin coincidencia en Icecat</div>
+      ${notFoundList.length ? `<div style="font-size:11px; color:var(--text-dim); margin-top:8px; max-height:140px; overflow-y:auto; border-top:1px solid var(--border); padding-top:8px;">${notFoundList.map(n => escapeHtml(n)).join('<br>')}</div>` : ''}
+    `;
+    btn.textContent = '✓ Listo';
+    await loadProducts();
   }
 
   /* ───────── INIT ───────── */
