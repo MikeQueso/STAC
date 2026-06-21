@@ -781,7 +781,7 @@
   <div class="mini-modal-card">
     <h2>📥 Importar productos <button class="modal-close" id="import-close">✕</button></h2>
     <p style="font-size:12.5px; color:var(--text-dim); margin-bottom:16px; line-height:1.6;">
-      Sube un archivo CSV con columnas: <strong style="color:var(--text-body);">nombre, categoria, precio</strong> (obligatorias), y opcionalmente: marca, precio_anterior, referencia, etiqueta, stock, descripcion, especificaciones.
+      Columnas obligatorias: <strong style="color:var(--text-body);">categoria, precio</strong>, y nombre — <strong style="color:var(--text-body);">o</strong> marca + referencia (si dejas el nombre vacío pero pones marca y referencia, el sistema busca automáticamente en Icecat y completa nombre/descripción/especificaciones por ti). Columnas opcionales: precio_anterior, etiqueta, stock, descripcion, especificaciones.
       Las fotos se agregan después, una por una, en cada producto.
     </p>
     <div class="csv-drop" id="csv-drop-zone">
@@ -1457,15 +1457,7 @@
       searchBtn.disabled = true;
 
       try {
-        const fnUrl = `${SUPABASE_URL}/functions/v1/icecat-search?prod_id=${encodeURIComponent(model)}&vendor=${encodeURIComponent(vendor)}&lang=ES`;
-        const res = await fetch(fnUrl, {
-          headers: {
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-            'apikey': SUPABASE_ANON_KEY
-          }
-        });
-        const xmlText = await res.text();
-        const data = parseIcecatXML(xmlText);
+        const data = await fetchIcecatData(vendor, model);
 
         document.getElementById('df-name').value = data.title || document.getElementById('df-name').value;
         if (!document.getElementById('df-brand').value) document.getElementById('df-brand').value = vendor;
@@ -1731,19 +1723,41 @@
       skipEmptyLines: true,
       complete: async (results) => {
         const rows = results.data;
-        let okCount = 0, errCount = 0;
+        let okCount = 0, errCount = 0, enrichedCount = 0;
         const errMsgs = [];
 
-        for (const row of rows) {
-          const name = (row.nombre || '').trim();
+        for (let i = 0; i < rows.length; i++) {
+          const row = rows[i];
+          summary.innerHTML = `Procesando ${i + 1} de ${rows.length}...`;
+
+          let name = (row.nombre || '').trim();
           const category = (row.categoria || '').trim();
           const price = parseFloat(row.precio);
+          const brand = (row.marca || '').trim();
+          const ref = (row.referencia || '').trim();
+          let description = (row.descripcion || '').trim();
+          let specs = (row.especificaciones || '').trim();
 
-          if (!name || !category || isNaN(price)) {
+          if (!category || isNaN(price) || (!name && !(brand && ref))) {
             errCount++;
-            errMsgs.push(`Fila saltada (falta nombre/categoria/precio válidos): ${name || '(sin nombre)'}`);
+            errMsgs.push(`Fila saltada (falta categoria/precio, y nombre o marca+referencia): ${name || ref || '(sin datos)'}`);
             continue;
           }
+
+          // Si falta nombre o descripción y sí hay marca+referencia, autocompletar con Icecat
+          if (brand && ref && (!name || !description)) {
+            try {
+              const icecatData = await fetchIcecatData(brand, ref);
+              if (!name && icecatData.title) name = icecatData.title;
+              if (!description && icecatData.description) description = icecatData.description;
+              if (!specs && icecatData.specs) specs = icecatData.specs;
+              enrichedCount++;
+            } catch (err) {
+              // No se encontró en Icecat, seguimos con lo que haya en el CSV
+            }
+          }
+
+          if (!name) name = `${brand} ${ref}`.trim();
 
           const oldPriceParsed = row.precio_anterior ? parseFloat(row.precio_anterior) : null;
           const stockParsed = row.stock ? parseInt(row.stock) : 10;
@@ -1751,12 +1765,12 @@
           const { error } = await sb.from('products').insert({
             name, category, price,
             old_price: (oldPriceParsed === null || isNaN(oldPriceParsed)) ? null : oldPriceParsed,
-            ref: (row.referencia || '').trim() || null,
+            ref: ref || null,
             badge: (row.etiqueta || '').trim() || null,
-            brand: (row.marca || '').trim() || null,
+            brand: brand || null,
             stock: isNaN(stockParsed) ? 10 : stockParsed,
-            description: (row.descripcion || '').trim() || null,
-            specs: (row.especificaciones || '').trim() || null,
+            description: description || null,
+            specs: specs || null,
             images: []
           });
 
@@ -1766,6 +1780,7 @@
 
         summary.innerHTML = `
           <div class="ok">✓ ${okCount} producto(s) importado(s) correctamente</div>
+          ${enrichedCount ? `<div style="color:var(--blue-glow);">🔍 ${enrichedCount} autocompletado(s) con datos de Icecat</div>` : ''}
           ${errCount ? `<div class="err">✕ ${errCount} con error</div><div style="font-size:11.5px; color:var(--text-dim); margin-top:6px;">${errMsgs.slice(0, 5).map(m => escapeHtml(m)).join('<br>')}</div>` : ''}
         `;
         await loadProducts();
@@ -1778,6 +1793,18 @@
   });
 
   /* ───────── BÚSQUEDA EN ICECAT ───────── */
+  async function fetchIcecatData(vendor, model) {
+    const fnUrl = `${SUPABASE_URL}/functions/v1/icecat-search?prod_id=${encodeURIComponent(model)}&vendor=${encodeURIComponent(vendor)}&lang=ES`;
+    const res = await fetch(fnUrl, {
+      headers: {
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'apikey': SUPABASE_ANON_KEY
+      }
+    });
+    const xmlText = await res.text();
+    return parseIcecatXML(xmlText);
+  }
+
   function parseIcecatXML(xmlText) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(xmlText, 'text/xml');
