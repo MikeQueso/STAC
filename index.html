@@ -1383,6 +1383,15 @@
 
     const info = document.getElementById('detail-info');
     info.innerHTML = `
+      <div class="detail-field" style="background:var(--bg-surface); padding:14px; border-radius:8px; border:1px solid var(--border); margin-bottom:18px;">
+        <label style="margin-bottom:8px;">🔍 Buscar en Icecat (opcional)</label>
+        <div style="display:flex; gap:8px; margin-bottom:8px;">
+          <input type="text" id="icecat-vendor" placeholder="Marca (ej. AMD)" style="flex:1;" />
+          <input type="text" id="icecat-model" placeholder="Modelo (ej. 7600X)" style="flex:1;" />
+        </div>
+        <button type="button" id="icecat-search-btn" style="width:100%; background:var(--blue-core); color:#fff; border:none; padding:9px; border-radius:7px; font-size:12.5px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Buscar y autocompletar</button>
+        <div id="icecat-search-result" style="margin-top:10px; font-size:12px; line-height:1.6;"></div>
+      </div>
       <div class="detail-field">
         <label>Marca (opcional)</label>
         <input type="text" id="df-brand" value="${escapeHtml(p.brand || '')}" placeholder="Ej. Intel, AMD, Corsair..." />
@@ -1432,6 +1441,44 @@
     `;
 
     renderBadgeImagesEditSection();
+
+    document.getElementById('icecat-search-btn').addEventListener('click', async () => {
+      const vendor = document.getElementById('icecat-vendor').value.trim();
+      const model = document.getElementById('icecat-model').value.trim();
+      const resultBox = document.getElementById('icecat-search-result');
+      const searchBtn = document.getElementById('icecat-search-btn');
+
+      if (!vendor || !model) {
+        resultBox.innerHTML = '<span style="color:#FF7070;">Escribe marca y modelo.</span>';
+        return;
+      }
+
+      resultBox.innerHTML = 'Buscando...';
+      searchBtn.disabled = true;
+
+      try {
+        const fnUrl = `${SUPABASE_URL}/functions/v1/icecat-search?prod_id=${encodeURIComponent(model)}&vendor=${encodeURIComponent(vendor)}&lang=ES`;
+        const res = await fetch(fnUrl, {
+          headers: {
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'apikey': SUPABASE_ANON_KEY
+          }
+        });
+        const xmlText = await res.text();
+        const data = parseIcecatXML(xmlText);
+
+        document.getElementById('df-name').value = data.title || document.getElementById('df-name').value;
+        if (!document.getElementById('df-brand').value) document.getElementById('df-brand').value = vendor;
+        if (data.description) document.getElementById('df-description').value = data.description;
+        if (data.specs) document.getElementById('df-specs').value = data.specs;
+
+        resultBox.innerHTML = '<span style="color:var(--accent-green);">✓ Datos encontrados y autocompletados arriba.</span>' +
+          (data.imageUrl ? `<br><img src="${escapeHtml(data.imageUrl)}" style="max-width:90px; border-radius:6px; margin-top:8px; display:block;" /><a href="${escapeHtml(data.imageUrl)}" target="_blank" style="color:var(--blue-glow); font-size:11px;">Ver imagen oficial (descárgala y súbela con el botón "+" de arriba)</a>` : '');
+      } catch (err) {
+        resultBox.innerHTML = `<span style="color:#FF7070;">${escapeHtml(err.message)}</span>`;
+      }
+      searchBtn.disabled = false;
+    });
 
     document.getElementById('df-cancel').addEventListener('click', () => {
       if (isCreatingNewProduct) {
@@ -1729,6 +1776,48 @@
       }
     });
   });
+
+  /* ───────── BÚSQUEDA EN ICECAT ───────── */
+  function parseIcecatXML(xmlText) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xmlText, 'text/xml');
+
+    if (doc.querySelector('parsererror')) {
+      throw new Error('Respuesta inesperada de Icecat (no es XML válido).');
+    }
+
+    const productEl = doc.querySelector('Product');
+    if (!productEl) throw new Error('No se pudo leer la respuesta de Icecat.');
+
+    const errMsg = productEl.getAttribute('ErrorMessage');
+    if (errMsg) throw new Error(errMsg);
+
+    const title = productEl.getAttribute('Title') || productEl.getAttribute('Name') || '';
+
+    const descEl = doc.querySelector('ProductDescription');
+    const description = descEl ? (descEl.getAttribute('LongDesc') || descEl.getAttribute('ShortDesc') || '') : '';
+
+    const features = Array.from(doc.querySelectorAll('Feature'));
+    const specLines = [];
+    features.forEach(f => {
+      const nameEl = f.querySelector('Name');
+      const valueEl = f.querySelector('Value');
+      const name = nameEl ? nameEl.getAttribute('Value') : null;
+      const value = valueEl ? valueEl.getAttribute('Value') : null;
+      if (name && value) specLines.push(`${name}: ${value}`);
+    });
+
+    let imageUrl = null;
+    const picEl = doc.querySelector('ProductPicture');
+    if (picEl) {
+      imageUrl = picEl.getAttribute('Pic') || picEl.getAttribute('LowPic') || picEl.getAttribute('ThumbPic');
+    }
+    if (!imageUrl) {
+      imageUrl = productEl.getAttribute('HighPic') || productEl.getAttribute('Pic') || null;
+    }
+
+    return { title, description, specs: specLines.join('\n'), imageUrl };
+  }
 
   /* ───────── PANEL ADMIN ───────── */
   async function openAdminPanel() {
