@@ -534,7 +534,49 @@
     }
     .filter-chip:hover { background: rgba(0,95,255,0.18); }
 
-    /* ─── FOTOS DE GARANTÍA / INFO ADICIONAL ────────────────── */
+    /* ─── DESCRIPCIÓN ENRIQUECIDA ────────────────────────────── */
+    .pd-section-title {
+      font-size: 14px; font-weight: 700; color: var(--blue-glow);
+      margin-bottom: 6px; margin-top: 14px;
+    }
+    .pd-section-title:first-child { margin-top: 0; }
+    .detail-section p { font-size: 13.5px; color: var(--text-body); line-height: 1.7; white-space: pre-line; margin-bottom: 8px; }
+
+    /* ─── TABLA DE SPECS AGRUPADA ────────────────────────────── */
+    .specs-group { margin-bottom: 16px; }
+    .specs-group-title {
+      font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700;
+      color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 8px 10px; background: var(--bg-surface); border-radius: 6px;
+      margin-bottom: 2px;
+    }
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table tr:nth-child(even) td { background: rgba(0,95,255,0.04); }
+    .specs-table tr:hover td { background: rgba(0,95,255,0.08); }
+    .specs-table td {
+      padding: 7px 10px; font-size: 12.5px; border-bottom: 1px solid rgba(0,95,255,0.07);
+    }
+    .specs-table td:first-child { color: var(--text-dim); width: 52%; }
+    .specs-table td:last-child { color: var(--text-primary); font-weight: 500; }
+
+    /* ─── SECCIÓN DEL FABRICANTE ─────────────────────────────── */
+    .manufacturer-section {
+      padding: 24px 32px; border-top: 1px solid var(--border);
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .manufacturer-brand-badge {
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 18px; min-width: 90px; text-align: center; flex-shrink: 0;
+    }
+    .manufacturer-brand-badge span {
+      font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700;
+      color: var(--text-primary); letter-spacing: 0.04em;
+    }
+    .manufacturer-brand-name {
+      font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 8px;
+    }
+    .manufacturer-brand-desc { font-size: 13px; color: var(--text-body); line-height: 1.65; }
     .badges-section { padding: 28px 32px; border-top: 1px solid var(--border); }
     .badges-section h4 {
       font-family: 'Rajdhani', sans-serif; font-size: 14px; color: var(--text-primary);
@@ -759,7 +801,7 @@
     <div class="admin-tabs">
       <button class="admin-tab active" data-tab="users">Usuarios registrados</button>
       <button class="admin-tab" data-tab="views">Actividad reciente</button>
-      <button class="admin-tab" data-tab="images">Buscar fotos faltantes</button>
+      <button class="admin-tab" data-tab="images">Enriquecer productos con Icecat</button>
     </div>
     <div class="admin-body" id="admin-body"></div>
   </div>
@@ -1222,6 +1264,32 @@
     }).join('')}</ul>`;
   }
 
+  function specsGroupedHtml(specsJson) {
+    if (!specsJson) return '';
+    let groups;
+    try { groups = typeof specsJson === 'string' ? JSON.parse(specsJson) : specsJson; }
+    catch(e) { return ''; }
+    if (!groups || !groups.length) return '';
+    return groups.map(g => `
+      <div class="specs-group">
+        <div class="specs-group-title">${escapeHtml(g.name)}</div>
+        <table class="specs-table">
+          ${g.features.map(f => `<tr><td>${escapeHtml(f.name)}</td><td>${escapeHtml(f.value)}</td></tr>`).join('')}
+        </table>
+      </div>
+    `).join('');
+  }
+
+  function descriptionHtmlSafe(html) {
+    if (!html) return '';
+    // Solo permite etiquetas seguras, sin scripts
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    // Elimina scripts por seguridad
+    div.querySelectorAll('script, iframe, object, embed').forEach(el => el.remove());
+    return div.innerHTML;
+  }
+
   function openDetailModal(productId) {
     const product = productsCache.find(p => p.id === productId);
     if (!product) return;
@@ -1288,8 +1356,14 @@
         <input type="number" class="detail-qty" value="1" min="1" id="detail-qty-input" />
         <button class="detail-addcart-btn" id="detail-addcart-btn">🛒 Agregar al carrito</button>
       </div>
-      ${p.description ? `<div class="detail-section"><h4>Descripción</h4><p>${escapeHtml(p.description)}</p></div>` : ''}
-      ${specsListHtml(p.specs) ? `<div class="detail-section"><h4>Especificaciones</h4>${specsListHtml(p.specs)}</div>` : ''}
+      ${p.description_html
+        ? `<div class="detail-section"><h4>Descripción</h4><div class="detail-rich-desc" id="detail-rich-desc"></div></div>`
+        : p.description
+          ? `<div class="detail-section"><h4>Descripción</h4><p>${escapeHtml(p.description)}</p></div>`
+          : ''}
+      ${specsGroupedHtml(p.specs_json) || specsListHtml(p.specs)
+        ? `<div class="detail-section"><h4>Especificaciones</h4>${specsGroupedHtml(p.specs_json) || specsListHtml(p.specs)}</div>`
+        : ''}
     `;
 
     if (isAdmin) {
@@ -1307,6 +1381,29 @@
       btn.textContent = '✓ Agregado';
       setTimeout(() => { btn.textContent = '🛒 Agregar al carrito'; }, 1200);
     });
+
+    // Inyectar descripción HTML de forma segura (después de que el DOM se insertó)
+    if (p.description_html) {
+      const descDiv = document.getElementById('detail-rich-desc');
+      if (descDiv) descDiv.innerHTML = descriptionHtmlSafe(p.description_html);
+    }
+
+    // Sección del fabricante
+    if (p.brand || p.brand_info) {
+      let existing = document.getElementById('manufacturer-view-section');
+      if (existing) existing.remove();
+      const mSection = document.createElement('div');
+      mSection.className = 'manufacturer-section';
+      mSection.id = 'manufacturer-view-section';
+      mSection.innerHTML = `
+        <div class="manufacturer-brand-badge"><span>${escapeHtml(p.brand || '')}</span></div>
+        <div>
+          <div class="manufacturer-brand-name">Acerca de ${escapeHtml(p.brand || 'la marca')}</div>
+          <div class="manufacturer-brand-desc">${escapeHtml(p.brand_info || `${p.brand || 'Esta marca'} es reconocida por su compromiso con la calidad e innovación en componentes de PC.`)}</div>
+        </div>
+      `;
+      document.querySelector('.detail-card').appendChild(mSection);
+    }
 
     renderBadgesSection(p);
     renderReviewsSection(p.id);
@@ -1465,6 +1562,11 @@
         if (data.description) document.getElementById('df-description').value = data.description;
         if (data.specs) document.getElementById('df-specs').value = data.specs;
 
+        // Guardar campos enriquecidos en variables temporales para el guardado posterior
+        currentDetailProduct._descriptionHtml = data.descriptionHtml || '';
+        currentDetailProduct._specsGroups = data.specsGroups || [];
+        currentDetailProduct._brandInfo = data.brandInfo || '';
+
         resultBox.innerHTML = '<span style="color:var(--accent-green);">✓ Datos encontrados y autocompletados arriba.</span>' +
           (data.imageUrl ? `<br><img src="${escapeHtml(data.imageUrl)}" style="max-width:90px; border-radius:6px; margin-top:8px; display:block;" /><a href="${escapeHtml(data.imageUrl)}" target="_blank" style="color:var(--blue-glow); font-size:11px;">Ver imagen oficial (descárgala y súbela con el botón "+" de arriba)</a>` : '');
       } catch (err) {
@@ -1509,7 +1611,11 @@
         stock: isNaN(stock) ? 0 : stock,
         description: description || null, specs: specs || null,
         images: detailEditImages,
-        badge_images: detailEditBadgeImages
+        badge_images: detailEditBadgeImages,
+        description_html: currentDetailProduct._descriptionHtml || null,
+        specs_json: currentDetailProduct._specsGroups && currentDetailProduct._specsGroups.length
+          ? JSON.stringify(currentDetailProduct._specsGroups) : null,
+        brand_info: currentDetailProduct._brandInfo || null
       };
 
       let error;
@@ -1543,7 +1649,7 @@
   }
 
   function clearDetailExtraSections() {
-    ['badges-view-section', 'reviews-view-section', 'badges-edit-section'].forEach(id => {
+    ['badges-view-section', 'reviews-view-section', 'badges-edit-section', 'manufacturer-view-section'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.remove();
     });
@@ -1810,9 +1916,7 @@
     const parser = new DOMParser();
     const doc = parser.parseFromString(xmlText, 'text/xml');
 
-    if (doc.querySelector('parsererror')) {
-      throw new Error('Respuesta inesperada de Icecat (no es XML válido).');
-    }
+    if (doc.querySelector('parsererror')) throw new Error('Respuesta inesperada de Icecat.');
 
     const productEl = doc.querySelector('Product');
     if (!productEl) throw new Error('No se pudo leer la respuesta de Icecat.');
@@ -1820,31 +1924,98 @@
     const errMsg = productEl.getAttribute('ErrorMessage');
     if (errMsg) throw new Error(errMsg);
 
+    // Título
     const title = productEl.getAttribute('Title') || productEl.getAttribute('Name') || '';
 
+    // Descripción HTML enriquecida
     const descEl = doc.querySelector('ProductDescription');
-    const description = descEl ? (descEl.getAttribute('LongDesc') || descEl.getAttribute('ShortDesc') || '') : '';
+    let descriptionHtml = '';
+    let shortDesc = '';
+    if (descEl) {
+      const longDesc = descEl.getAttribute('LongDesc') || '';
+      shortDesc = descEl.getAttribute('ShortDesc') || '';
+      const titleInfo = descEl.getAttribute('TitleInfo') || '';
+      if (longDesc) {
+        // Armar HTML con título de sección + descripción larga
+        descriptionHtml = titleInfo
+          ? `<p class="pd-section-title">${escapeHtml(titleInfo)}</p><p>${escapeHtml(longDesc)}</p>`
+          : `<p>${escapeHtml(longDesc)}</p>`;
+      } else if (shortDesc) {
+        descriptionHtml = `<p>${escapeHtml(shortDesc)}</p>`;
+      }
+    }
 
-    const features = Array.from(doc.querySelectorAll('Feature'));
-    const specLines = [];
-    features.forEach(f => {
-      const nameEl = f.querySelector('Name');
-      const valueEl = f.querySelector('Value');
-      const name = nameEl ? nameEl.getAttribute('Value') : null;
-      const value = valueEl ? valueEl.getAttribute('Value') : null;
-      if (name && value) specLines.push(`${name}: ${value}`);
+    // Specs agrupadas por categoría
+    const groupMap = {};  // id → { name, order, features[] }
+    // Recolectar grupos de categorías del producto
+    Array.from(doc.querySelectorAll('CategoryFeatureGroup')).forEach(g => {
+      const id = g.getAttribute('ID');
+      const nameEl = g.querySelector('Name');
+      const name = nameEl ? nameEl.getAttribute('Value') : (g.getAttribute('Name') || 'General');
+      groupMap[id] = { name, features: [] };
     });
 
-    let imageUrl = null;
-    const picEl = doc.querySelector('ProductPicture');
-    if (picEl) {
-      imageUrl = picEl.getAttribute('Pic') || picEl.getAttribute('LowPic') || picEl.getAttribute('ThumbPic');
-    }
-    if (!imageUrl) {
-      imageUrl = productEl.getAttribute('HighPic') || productEl.getAttribute('Pic') || null;
+    // Recolectar features agrupadas
+    Array.from(doc.querySelectorAll('ProductFeature')).forEach(pf => {
+      const categoryGroupId = pf.getAttribute('CategoryFeatureGroup_id') || '0';
+      const featureEl = pf.querySelector('Feature');
+      const nameEl = featureEl ? featureEl.querySelector('Name') : null;
+      const measureEl = featureEl ? featureEl.querySelector('Measure > Signs > Sign') : null;
+      const localValueEl = pf.querySelector('LocalValue');
+      const valueEl = localValueEl ? localValueEl.querySelector('Value') : null;
+
+      const name = nameEl ? nameEl.getAttribute('Value') : null;
+      const value = valueEl ? valueEl.getAttribute('Value') : null;
+      const unit = measureEl ? measureEl.getAttribute('Value') : '';
+
+      if (name && value) {
+        if (!groupMap[categoryGroupId]) groupMap[categoryGroupId] = { name: 'General', features: [] };
+        groupMap[categoryGroupId].features.push({ name, value: unit ? `${value} ${unit}` : value });
+      }
+    });
+
+    // Fallback: si no había grupos declarados pero sí features (formato más simple)
+    if (Object.keys(groupMap).length === 0 || Object.values(groupMap).every(g => g.features.length === 0)) {
+      const fallbackGroup = { name: 'Especificaciones', features: [] };
+      Array.from(doc.querySelectorAll('Feature')).forEach(f => {
+        const nameEl = f.querySelector('Name');
+        const valueEl = f.querySelector('Value');
+        const name = nameEl ? nameEl.getAttribute('Value') : null;
+        const value = valueEl ? valueEl.getAttribute('Value') : null;
+        if (name && value) fallbackGroup.features.push({ name, value });
+      });
+      if (fallbackGroup.features.length) groupMap['fallback'] = fallbackGroup;
     }
 
-    return { title, description, specs: specLines.join('\n'), imageUrl };
+    const specsGroups = Object.values(groupMap).filter(g => g.features.length > 0);
+    // También armar el formato texto plano para retrocompatibilidad
+    const specLines = specsGroups.flatMap(g => g.features.map(f => `${f.name}: ${f.value}`));
+
+    // Imagen
+    let imageUrl = null;
+    const picEl = doc.querySelector('ProductPicture');
+    if (picEl) imageUrl = picEl.getAttribute('Pic') || picEl.getAttribute('LowPic') || picEl.getAttribute('ThumbPic');
+    if (!imageUrl) imageUrl = productEl.getAttribute('HighPic') || productEl.getAttribute('Pic') || null;
+
+    // Info del fabricante / marca
+    let brandInfo = '';
+    const brandEl = doc.querySelector('Supplier');
+    if (brandEl) {
+      const brandName = brandEl.getAttribute('Name') || '';
+      const brandDesc = brandEl.getAttribute('Description') || '';
+      if (brandDesc) brandInfo = brandDesc;
+      else if (brandName) brandInfo = brandName;
+    }
+
+    return {
+      title,
+      description: shortDesc || '',
+      descriptionHtml,
+      specs: specLines.join('\n'),
+      specsGroups,
+      imageUrl,
+      brandInfo
+    };
   }
 
   /* ───────── PANEL ADMIN ───────── */
@@ -1917,16 +2088,18 @@
     } else if (tab === 'images') {
       const { data: allProducts, error } = await sb.from('products').select('*');
       if (error) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(error.message)}</p>`; return; }
-      const pending = (allProducts || []).filter(p => !p.images || p.images.length === 0);
+      const pending = (allProducts || []).filter(p =>
+        !p.images || !p.images.length || !p.description_html || !p.specs_json
+      );
 
       body.innerHTML = `
         <p style="font-size:13px; color:var(--text-body); margin-bottom:10px; line-height:1.6;">
-          Hay <strong style="color:var(--text-primary);">${pending.length}</strong> producto(s) sin foto.
-          Esto va a buscar cada uno en Icecat por nombre y marca y, si lo encuentra, le va a asignar la foto oficial automáticamente.
-          No todos los productos van a tener coincidencia — los que no se encuentren te los listo abajo para subirlos a mano.
+          Hay <strong style="color:var(--text-primary);">${pending.length}</strong> producto(s) sin foto, descripción enriquecida o especificaciones completas.
+          Esto va a buscar cada uno en Icecat por nombre y marca, y va a asignar automáticamente: foto oficial, descripción con secciones, tabla de especificaciones agrupada y datos del fabricante.
+          Los que no se encuentren te los lista abajo para completarlos a mano.
         </p>
         <button type="button" id="bulkimg-start-btn" class="auth-submit" style="margin-bottom:14px;" ${pending.length ? '' : 'disabled'}>
-          ${pending.length ? `🖼️ Buscar fotos para ${pending.length} producto(s)` : '✓ Todos los productos ya tienen foto'}
+          ${pending.length ? `🔍 Enriquecer ${pending.length} producto(s) con Icecat` : '✓ Todos los productos ya están enriquecidos'}
         </button>
         <div id="bulkimg-summary" style="font-size:12.5px; line-height:1.6;"></div>
       `;
@@ -1958,7 +2131,7 @@
 
     for (let i = 0; i < pending.length; i++) {
       const p = pending[i];
-      summary.innerHTML = `Procesando ${i + 1} de ${pending.length}: ${escapeHtml(p.name)}...`;
+      summary.innerHTML = `Procesando ${i + 1} de ${pending.length}: <strong style="color:var(--text-primary)">${escapeHtml(p.name)}</strong>...`;
 
       const vendor = (p.brand || '').trim();
       let searchTerm = (p.name || '').trim();
@@ -1973,10 +2146,32 @@
 
       try {
         const data = await fetchIcecatData(vendor, searchTerm);
-        if (data.imageUrl) {
-          const file = await fetchIcecatImageBlob(data.imageUrl);
-          const url = await uploadProductImage(p.id, file);
-          await sb.from('products').update({ images: [url] }).eq('id', p.id);
+        const updatePayload = {};
+
+        // Foto principal
+        if (data.imageUrl && (!p.images || !p.images.length)) {
+          try {
+            const file = await fetchIcecatImageBlob(data.imageUrl);
+            const url = await uploadProductImage(p.id, file);
+            updatePayload.images = [url];
+          } catch(e) { /* sin imagen */ }
+        }
+
+        // Descripción enriquecida
+        if (data.descriptionHtml) updatePayload.description_html = data.descriptionHtml;
+        if (data.description && !p.description) updatePayload.description = data.description;
+
+        // Specs agrupadas
+        if (data.specsGroups && data.specsGroups.length) {
+          updatePayload.specs_json = JSON.stringify(data.specsGroups);
+          if (!p.specs && data.specs) updatePayload.specs = data.specs;
+        }
+
+        // Info del fabricante
+        if (data.brandInfo && !p.brand_info) updatePayload.brand_info = data.brandInfo;
+
+        if (Object.keys(updatePayload).length > 0) {
+          await sb.from('products').update(updatePayload).eq('id', p.id);
           found++;
         } else {
           notFound++; notFoundList.push(p.name);
@@ -1987,8 +2182,8 @@
     }
 
     summary.innerHTML = `
-      <div class="ok">✓ ${found} foto(s) encontradas y asignadas automáticamente</div>
-      <div style="color:var(--text-dim); margin-top:4px;">○ ${notFound} sin coincidencia en Icecat</div>
+      <div class="ok" style="margin-bottom:4px;">✓ ${found} producto(s) enriquecidos (foto + descripción + specs)</div>
+      <div style="color:var(--text-dim); margin-bottom:4px;">○ ${notFound} sin coincidencia en Icecat</div>
       ${notFoundList.length ? `<div style="font-size:11px; color:var(--text-dim); margin-top:8px; max-height:140px; overflow-y:auto; border-top:1px solid var(--border); padding-top:8px;">${notFoundList.map(n => escapeHtml(n)).join('<br>')}</div>` : ''}
     `;
     btn.textContent = '✓ Listo';
