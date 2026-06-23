@@ -1,8 +1,8 @@
 // supabase/functions/ai-generate/index.ts
 //
-// Puente seguro entre el sitio STAC y la API de Anthropic (Claude).
-// El navegador no puede llamar a la API de Claude directamente (CORS),
-// así que esta función vive en Supabase y oculta la API key.
+// Puente seguro entre el sitio STAC y la API de Google Gemini (capa gratuita).
+// El navegador no puede llamar directamente (CORS) y la API key debe ocultarse,
+// así que esta función vive en Supabase.
 //
 // Uso desde el sitio (POST):
 //   body: { name, brand, category, price }
@@ -21,10 +21,10 @@ serve(async (req) => {
   }
 
   try {
-    const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
+    const apiKey = Deno.env.get("GEMINI_API_KEY");
     if (!apiKey) {
       return new Response(
-        JSON.stringify({ error: "Falta configurar ANTHROPIC_API_KEY en Supabase." }),
+        JSON.stringify({ error: "Falta configurar GEMINI_API_KEY en Supabase." }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -38,7 +38,7 @@ Marca: ${brand || "N/A"}
 Categoría: ${category}
 Precio: $${price} MXN
 
-Responde ÚNICAMENTE con un objeto JSON válido con esta estructura exacta (sin markdown, sin bloques de código):
+Responde ÚNICAMENTE con un objeto JSON válido con esta estructura exacta (sin markdown, sin bloques de código, sin texto adicional antes o después):
 {
   "description": "Descripción corta de 1-2 líneas",
   "descriptionSections": [
@@ -60,30 +60,33 @@ Responde ÚNICAMENTE con un objeto JSON válido con esta estructura exacta (sin 
 
 Incluye mínimo 3 secciones de descripción y mínimo 2 grupos de specs con al menos 4 características cada uno. Usa datos técnicos reales y precisos del producto.`;
 
-    const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
+    // Modelo gratuito de Gemini
+    const model = "gemini-2.5-flash";
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+    const geminiRes = await fetch(geminiUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1500,
-        messages: [{ role: "user", content: prompt }],
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 2048,
+          responseMimeType: "application/json",
+        },
       }),
     });
 
-    const data = await anthropicRes.json();
+    const data = await geminiRes.json();
 
-    if (!anthropicRes.ok) {
+    if (!geminiRes.ok) {
       return new Response(
-        JSON.stringify({ error: data.error?.message || "Error de la API de Anthropic" }),
-        { status: anthropicRes.status, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        JSON.stringify({ error: data.error?.message || "Error de la API de Gemini" }),
+        { status: geminiRes.status, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    const text = (data.content?.[0]?.text || "").trim();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
     return new Response(
       JSON.stringify({ text }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
