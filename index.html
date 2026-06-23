@@ -2441,6 +2441,8 @@ Incluye mínimo 3 secciones de descripción y mínimo 2 grupos de specs con al m
       brandInfo: parsed.brandInfo || ''
     };
   }
+
+  async function fetchIcecatImageBlob(imageUrl) {
     const fnUrl = `${SUPABASE_URL}/functions/v1/icecat-search?image_url=${encodeURIComponent(imageUrl)}`;
     const res = await fetch(fnUrl, {
       headers: { 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'apikey': SUPABASE_ANON_KEY }
