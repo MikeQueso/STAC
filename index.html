@@ -53,10 +53,15 @@
     /* ─── HEADER ────────────────────────────────── */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(4,13,26,0.92);
-      backdrop-filter: blur(12px);
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
     }
+    header nav a { color: #1a2b40; }
+    header nav a:hover { color: var(--blue-core); }
+    header .btn-icon { background: #eef3fa; border-color: rgba(0,95,255,0.18); color: #1a2b40; }
+    header .user-chip { background: #eef3fa; }
+    header .user-chip span { color: #1a2b40; }
+    header .btn-logout { color: #1a2b40; }
     .header-inner {
       max-width: 1280px; margin: auto;
       padding: 0 24px 0 0;
