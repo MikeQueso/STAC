@@ -28,7 +28,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
     body {
       background: var(--bg-deep);
       color: var(--text-body);
@@ -724,6 +724,12 @@
       .logo { font-size: 40px; }
       .header-inner { height: 76px; }
       .admin-table { font-size: 11.5px; }
+      #hero-logo { height: auto !important; width: 70% !important; max-width: 240px !important; }
+      #about-section { padding-left: 8px; padding-right: 8px; }
+      #services-grid { padding-left: 8px; padding-right: 8px; }
+      .service-card { padding: 20px 16px !important; }
+      #service-detail { padding: 24px 18px !important; margin-left: 8px; margin-right: 8px; }
+      #whatsapp-bubble { max-width: 170px !important; font-size: 12px !important; }
     }
   </style>
 </head>
@@ -760,7 +766,7 @@
 <section id="home-section" style="padding-top:128px; min-height:calc(100vh - 128px); background:#E8EDF3;">
   <div class="inner">
     <div style="text-align:center; padding:48px 0 56px;">
-      <img src="stac-logo.png" alt="STAC" style="height:440px; display:block; margin:0 auto;" />
+      <img id="hero-logo" src="stac-logo.png" alt="STAC" style="height:440px; max-width:90%; display:block; margin:0 auto;" />
     </div>
 
     <!-- ── ACERCA DE NOSOTROS + SERVICIOS ───────────────────────── -->
