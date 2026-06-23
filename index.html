@@ -2246,15 +2246,10 @@
             brand_info: brandInfo
           };
 
-          let error;
-          if (ref) {
-            // UPSERT por 'ref': si el producto ya existe, ACTUALIZA su ficha
-            // (sin tocar 'images'); si no existe, lo crea. Sin duplicados.
-            ({ error } = await sb.from('products')
-              .upsert(payload, { onConflict: 'ref' }));
-          } else {
-            ({ error } = await sb.from('products').insert(payload));
-          }
+          // UPSERT por 'name + category': si el producto ya existe, ACTUALIZA su ficha
+          // (sin tocar 'images'); si no existe, lo crea. Sin duplicados.
+          const { error } = await sb.from('products')
+            .upsert(payload, { onConflict: 'name,category' });
 
           if (error) { errCount++; errMsgs.push(`${name}: ${error.message}`); }
           else okCount++;
