@@ -61,21 +61,31 @@ Responde ÚNICAMENTE con un objeto JSON válido con esta estructura exacta (sin 
 Incluye mínimo 3 secciones de descripción y mínimo 2 grupos de specs con al menos 4 características cada uno. Usa datos técnicos reales y precisos del producto.`;
 
     // Modelo gratuito de Gemini
-    const model = "gemini-2.5-flash";
+    const model = "gemini-2.0-flash";
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-    const geminiRes = await fetch(geminiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 2048,
-          responseMimeType: "application/json",
-        },
-      }),
-    });
+    // Reintento automático ante 429 (límite de tasa)
+    let geminiRes;
+    let attempt = 0;
+    const maxAttempts = 4;
+    while (attempt < maxAttempts) {
+      geminiRes = await fetch(geminiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 2048,
+            responseMimeType: "application/json",
+          },
+        }),
+      });
+
+      if (geminiRes.status !== 429) break;
+      attempt++;
+      await new Promise((r) => setTimeout(r, attempt * 5000));
+    }
 
     const data = await geminiRes.json();
 

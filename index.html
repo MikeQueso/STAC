@@ -1998,9 +1998,11 @@
         });
       });
 
-      document.getElementById('review-submit-btn').addEventListener('click', async () => {
+      const submitBtn = section.querySelector('#review-submit-btn');
+      if (submitBtn) submitBtn.addEventListener('click', async () => {
         if (!selectedRating) { alert('Selecciona una calificación de estrellas.'); return; }
-        const comment = document.getElementById('review-comment-input').value.trim();
+        const commentEl = section.querySelector('#review-comment-input');
+        const comment = commentEl ? commentEl.value.trim() : '';
         const btn = document.getElementById('review-submit-btn');
         btn.disabled = true; btn.textContent = 'Guardando...';
         const { error: upErr } = await sb.from('reviews').upsert(
@@ -2336,22 +2338,34 @@
 
     let done = 0, errors = 0;
     const errList = [];
+    const BATCH_SIZE = 15;        // máximo por minuto en capa gratuita de Gemini
+    const WAIT_SECONDS = 65;      // espera entre lotes (un poco más de 1 min por seguridad)
+    const total = pending.length;
 
-    for (let i = 0; i < pending.length; i++) {
+    for (let i = 0; i < total; i++) {
       const p = pending[i];
-      summary.innerHTML = `🤖 Generando contenido ${i + 1} de ${pending.length}: <strong style="color:var(--text-primary)">${escapeHtml(p.name)}</strong>...`;
+      const batchNum = Math.floor(i / BATCH_SIZE) + 1;
+      const totalBatches = Math.ceil(total / BATCH_SIZE);
+
+      summary.innerHTML = `
+        <div style="font-weight:600; color:var(--text-primary); margin-bottom:6px;">
+          Lote ${batchNum} de ${totalBatches} · Producto ${i + 1} de ${total}
+        </div>
+        <div>🤖 Generando: <strong style="color:var(--blue-glow)">${escapeHtml(p.name)}</strong></div>
+        <div style="margin-top:6px; color:var(--accent-green);">✅ ${done} completados</div>
+        ${errors ? `<div style="color:#FF7070;">✕ ${errors} con error</div>` : ''}
+      `;
 
       try {
         const aiData = await generateProductContentWithAI(p);
         const updatePayload = {};
-
         if (aiData.descriptionHtml) updatePayload.description_html = aiData.descriptionHtml;
         if (aiData.description) updatePayload.description = aiData.description;
         if (aiData.specsGroups && aiData.specsGroups.length) {
           updatePayload.specs_json = JSON.stringify(aiData.specsGroups);
           updatePayload.specs = aiData.specsGroups.flatMap(g => g.features.map(f => `${f.name}: ${f.value}`)).join('\n');
         }
-        if (aiData.brandInfo && !p.brand_info) updatePayload.brand_info = aiData.brandInfo;
+        if (aiData.brandInfo) updatePayload.brand_info = aiData.brandInfo;
 
         if (Object.keys(updatePayload).length > 0) {
           await sb.from('products').update(updatePayload).eq('id', p.id);
@@ -2362,17 +2376,39 @@
         errList.push(`${p.name}: ${err.message}`);
       }
 
-      // Pequeña pausa para no saturar la API
-      await new Promise(r => setTimeout(r, 400));
+      // Pausa corta entre productos del mismo lote (~3.5s = 17/min máx)
+      const isLastOfBatch = (i + 1) % BATCH_SIZE === 0;
+      const isLastProduct = i === total - 1;
+
+      if (isLastProduct) {
+        break;
+      } else if (isLastOfBatch) {
+        // Cuenta regresiva entre lotes
+        for (let s = WAIT_SECONDS; s > 0; s--) {
+          summary.innerHTML = `
+            <div style="font-weight:600; color:var(--text-primary); margin-bottom:6px;">
+              Lote ${batchNum} de ${totalBatches} completado
+            </div>
+            <div style="color:var(--accent-green);">✅ ${done} completados · ${errors ? `<span style="color:#FF7070;">✕ ${errors} error(es)</span>` : 'sin errores'}</div>
+            <div style="margin-top:10px; font-size:22px; font-weight:700; color:var(--blue-glow); font-family:'Rajdhani',sans-serif;">
+              ⏳ Esperando ${s}s para el siguiente lote...
+            </div>
+            <div style="font-size:11px; color:var(--text-dim); margin-top:4px;">Esto evita el límite gratuito de Gemini. No cierres esta ventana.</div>
+          `;
+          await new Promise(r => setTimeout(r, 1000));
+        }
+      } else {
+        await new Promise(r => setTimeout(r, 3500));
+      }
     }
 
     summary.innerHTML = `
-      <div class="ok" style="margin-bottom:4px;">✅ ${done} producto(s) enriquecidos con IA</div>
-      ${errors ? `<div class="err" style="margin-bottom:4px;">✕ ${errors} con error</div>
-        <div style="font-size:11px; color:var(--text-dim); max-height:100px; overflow-y:auto;">${errList.slice(0,5).map(m => escapeHtml(m)).join('<br>')}</div>` : ''}
+      <div class="ok" style="margin-bottom:4px; font-size:14px;">✅ ${done} producto(s) enriquecidos con IA</div>
+      ${errors ? `<div class="err" style="margin-bottom:4px;">✕ ${errors} con error (puedes volver a darle al botón para reintentar los que falten)</div>
+        <div style="font-size:11px; color:var(--text-dim); max-height:100px; overflow-y:auto;">${errList.slice(0,8).map(m => escapeHtml(m)).join('<br>')}</div>` : '<div style="color:var(--accent-green);">¡Todos completados! 🎉</div>'}
     `;
     btn.disabled = false;
-    btn.textContent = '✓ Listo';
+    btn.textContent = '🤖 Generar de nuevo (reintentar faltantes)';
     await loadProducts();
   }
 
