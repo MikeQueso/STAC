@@ -1314,15 +1314,23 @@
     }
   }
 
-  function showHome() {
+  let currentView = 'home';
+
+  function renderHomeUI() {
     document.getElementById('home-section').style.display = '';
     document.getElementById('productos').style.display = 'none';
     activeCategoryFilter = null;
     productsCache = [];
+    currentView = 'home';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  async function showCategoryProducts(category) {
+  function showHome() {
+    if (currentView === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    history.back();
+  }
+
+  async function renderCategoryUI(category) {
     activeCategoryFilter = category;
     currentPage = 0;
     productsCache = [];
@@ -1345,9 +1353,22 @@
     document.getElementById('products-section-title').textContent = category;
     document.getElementById('products-grid').innerHTML =
       Array(6).fill(`<div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w40"></div><div class="skeleton-line w80"></div><div class="skeleton-line w60"></div></div></div>`).join('');
+    currentView = 'category';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     await loadProducts(true);
   }
+
+  function showCategoryProducts(category) {
+    history.pushState({ view: 'category', category }, '', '#cat-' + encodeURIComponent(category));
+    renderCategoryUI(category);
+  }
+
+  window.addEventListener('popstate', (e) => {
+    const state = e.state;
+    if (state && state.view === 'category') renderCategoryUI(state.category);
+    else renderHomeUI();
+  });
+  history.replaceState({ view: 'home' }, '', '#');
 
   document.getElementById('back-to-home-btn').addEventListener('click', showHome);
 
