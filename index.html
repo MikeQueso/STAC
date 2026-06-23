@@ -2377,54 +2377,31 @@
   }
 
   async function generateProductContentWithAI(product) {
-    const prompt = `Eres un experto en componentes de PC. Genera contenido de producto profesional para una tienda online en México.
-
-Producto: ${product.name}
-Marca: ${product.brand || 'N/A'}
-Categoría: ${product.category}
-Precio: $${product.price} MXN
-
-Responde ÚNICAMENTE con un objeto JSON válido con esta estructura exacta (sin markdown, sin bloques de código):
-{
-  "description": "Descripción corta de 1-2 líneas",
-  "descriptionSections": [
-    {"title": "Título de sección", "body": "Párrafo del contenido"},
-    {"title": "Título de sección 2", "body": "Párrafo 2"},
-    {"title": "Casos de uso recomendados", "body": "Párrafo 3"}
-  ],
-  "specsGroups": [
-    {
-      "name": "Nombre del grupo (ej: Procesador, Memoria, Conectividad)",
-      "features": [
-        {"name": "Característica", "value": "Valor"},
-        {"name": "Característica 2", "value": "Valor 2"}
-      ]
-    }
-  ],
-  "brandInfo": "Párrafo de 2-3 oraciones sobre la marca ${product.brand || ''} y su posición en el mercado de componentes de PC"
-}
-
-Incluye mínimo 3 secciones de descripción y mínimo 2 grupos de specs con al menos 4 características cada uno. Usa datos técnicos reales y precisos del producto.`;
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const fnUrl = `${SUPABASE_URL}/functions/v1/ai-generate`;
+    const response = await fetch(fnUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'apikey': SUPABASE_ANON_KEY
+      },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
+        name: product.name,
+        brand: product.brand || '',
+        category: product.category,
+        price: product.price
       })
     });
 
-    if (!response.ok) throw new Error(`API error: ${response.status}`);
-    const data = await response.json();
-    const text = (data.content[0]?.text || '').trim().replace(/```json|```/g, '').trim();
+    const result = await response.json();
+    if (!response.ok || result.error) throw new Error(result.error || `Error ${response.status}`);
+
+    const text = (result.text || '').trim().replace(/```json|```/g, '').trim();
 
     let parsed;
     try { parsed = JSON.parse(text); }
     catch(e) { throw new Error('Respuesta de IA no válida'); }
 
-    // Construir HTML de descripción enriquecida
     let descriptionHtml = '';
     if (parsed.description) descriptionHtml += `<p>${escapeHtml(parsed.description)}</p>`;
     if (parsed.descriptionSections) {
