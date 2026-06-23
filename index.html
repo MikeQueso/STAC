@@ -748,7 +748,7 @@
 <!-- ── HEADER ─────────────────────────────────────────────────── -->
 <header>
   <div class="header-inner">
-    <a href="#" class="logo"><img src="stac-logo-horizontal.png" alt="STAC" style="height:68px; display:block;" /></a>
+    <a href="#" class="logo" id="header-logo-link"><img src="stac-logo-horizontal.png" alt="STAC" style="height:68px; display:block;" /></a>
     <nav>
       <div class="nav-dropdown">
         <a href="#productos">Productos ▾</a>
@@ -845,7 +845,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="#" class="logo"><img src="stac-logo.png" alt="STAC" style="height:64px; display:block;" /></a>
+      <a href="#" class="logo" id="footer-logo-link"><img src="stac-logo.png" alt="STAC" style="height:64px; display:block;" /></a>
       <p>Tienda especializada en componentes de PC para gamers, profesionales y entusiastas. Calidad, disponibilidad y asesoría experta.</p>
     </div>
     <div class="footer-col">
@@ -1350,6 +1350,11 @@
   }
 
   document.getElementById('back-to-home-btn').addEventListener('click', showHome);
+
+  [document.getElementById('header-logo-link'), document.getElementById('footer-logo-link')].forEach(el => {
+    if (!el) return;
+    el.addEventListener('click', (e) => { e.preventDefault(); showHome(); });
+  });
 
   /* ───────── SERVICIOS (acerca de nosotros) ───────── */
   const SERVICES = {
