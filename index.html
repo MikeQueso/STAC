@@ -227,6 +227,18 @@
       border-radius: 5px; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif;
     }
     .edit-btn:hover { background: rgba(0,95,255,0.3); }
+    /* ─── Selección múltiple ─── */
+    .prod-select-box {
+      position: absolute; top: 10px; left: 10px; z-index: 5;
+      width: 26px; height: 26px; border-radius: 6px;
+      background: rgba(4,13,26,0.7); border: 2px solid var(--blue-glow);
+      display: none; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 15px; color: var(--blue-glow);
+    }
+    .prod-card.selectable .prod-select-box { display: flex; }
+    .prod-card.selectable .prod-body { cursor: pointer; }
+    .prod-card.selected { outline: 2px solid var(--blue-glow); outline-offset: 2px; }
+    .prod-card.selected .prod-select-box { background: var(--blue-core); color: #fff; }
     .prod-body { padding: 16px; cursor: pointer; }
     .prod-cat {
       font-family: 'JetBrains Mono', monospace;
@@ -765,6 +777,14 @@
       </div>
       <div id="products-section-filter-note" style="margin-left:auto;"></div>
     </div>
+    <!-- Barra de selección múltiple (solo admin) -->
+    <div id="bulk-bar" class="hidden" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px; padding:12px 16px; background:var(--bg-surface); border:1px solid var(--border); border-radius:10px;">
+      <button id="bulk-toggle-btn" class="btn-admin-panel">☑️ Seleccionar productos</button>
+      <span id="bulk-count" style="display:none; color:var(--text-dim); font-size:13px;">0 seleccionados</span>
+      <button id="bulk-selall-btn" class="btn-admin-panel" style="display:none;">Seleccionar todos</button>
+      <button id="bulk-delete-btn" style="display:none; background:rgba(255,62,62,0.15); border:1px solid rgba(255,62,62,0.5); color:#ff6b6b; padding:8px 16px; border-radius:8px; font-size:13px; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">🗑️ Eliminar seleccionados</button>
+      <button id="bulk-cancel-btn" class="btn-admin-panel" style="display:none;">Cancelar</button>
+    </div>
     <div class="products-grid" id="products-grid"></div>
   </div>
 </section>
@@ -1057,6 +1077,7 @@
 
     updateHeaderUI();
     renderProducts();
+    renderHomeCatGrid();
   }
 
   function updateHeaderUI() {
@@ -1239,6 +1260,19 @@
     activeCategoryFilter = category;
     currentPage = 0;
     productsCache = [];
+    selectedIds.clear();
+    selectMode = false;
+    const bulkBar = document.getElementById('bulk-bar');
+    if (bulkBar) {
+      const isAdmin = currentUser && currentUser.role === 'admin';
+      bulkBar.classList.toggle('hidden', !isAdmin);
+      if (isAdmin) {
+        setupBulkBar();
+        document.getElementById('bulk-toggle-btn').style.display = '';
+        ['bulk-count','bulk-selall-btn','bulk-delete-btn','bulk-cancel-btn']
+          .forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+      }
+    }
     document.getElementById('home-section').style.display = 'none';
     document.getElementById('productos').style.display = '';
     document.getElementById('products-section-eyebrow').textContent = '// Categoría';
@@ -1320,6 +1354,7 @@
 
     grid.innerHTML = productsCache.map(p => `
       <div class="prod-card" data-id="${p.id}">
+        <div class="prod-select-box" data-select="${p.id}">${selectedIds.has(p.id) ? '✓' : ''}</div>
         <div class="prod-img">
           ${productImageHtml(p)}
           ${p.badge ? `<span class="prod-tag ${badgeClass(p.badge)}">${escapeHtml(p.badge)}</span>` : ''}
@@ -1389,6 +1424,83 @@
         detailOverlay.classList.remove('hidden');
         renderDetailEditMode();
       });
+    });
+
+    applySelectionMode();
+  }
+
+  /* ───────── SELECCIÓN MÚLTIPLE (admin) ───────── */
+  let selectMode = false;
+  const selectedIds = new Set();
+
+  function applySelectionMode() {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    grid.querySelectorAll('.prod-card').forEach(card => {
+      const id = card.getAttribute('data-id');
+      card.classList.toggle('selectable', selectMode);
+      card.classList.toggle('selected', selectMode && selectedIds.has(id));
+    });
+    if (selectMode) {
+      grid.querySelectorAll('[data-select]').forEach(box => {
+        box.onclick = (e) => {
+          e.stopPropagation();
+          const id = box.getAttribute('data-select');
+          if (selectedIds.has(id)) selectedIds.delete(id);
+          else selectedIds.add(id);
+          applySelectionMode();
+          updateBulkCount();
+        };
+      });
+    }
+  }
+
+  function updateBulkCount() {
+    const c = document.getElementById('bulk-count');
+    if (c) c.textContent = `${selectedIds.size} seleccionado${selectedIds.size !== 1 ? 's' : ''}`;
+  }
+
+  function setupBulkBar() {
+    const bar = document.getElementById('bulk-bar');
+    const toggleBtn = document.getElementById('bulk-toggle-btn');
+    const countEl = document.getElementById('bulk-count');
+    const selAllBtn = document.getElementById('bulk-selall-btn');
+    const delBtn = document.getElementById('bulk-delete-btn');
+    const cancelBtn = document.getElementById('bulk-cancel-btn');
+    if (!bar || toggleBtn.dataset.wired) return;
+    toggleBtn.dataset.wired = '1';
+
+    function showSelUI(on) {
+      selectMode = on;
+      [countEl, selAllBtn, delBtn, cancelBtn].forEach(el => el.style.display = on ? '' : 'none');
+      toggleBtn.style.display = on ? 'none' : '';
+      if (!on) selectedIds.clear();
+      updateBulkCount();
+      applySelectionMode();
+    }
+
+    toggleBtn.addEventListener('click', () => showSelUI(true));
+    cancelBtn.addEventListener('click', () => showSelUI(false));
+
+    selAllBtn.addEventListener('click', () => {
+      const allSelected = productsCache.every(p => selectedIds.has(p.id));
+      if (allSelected) selectedIds.clear();
+      else productsCache.forEach(p => selectedIds.add(p.id));
+      selAllBtn.textContent = allSelected ? 'Seleccionar todos' : 'Quitar selección';
+      applySelectionMode();
+      updateBulkCount();
+    });
+
+    delBtn.addEventListener('click', async () => {
+      if (!selectedIds.size) { alert('No has seleccionado ningún producto.'); return; }
+      if (!confirm(`¿Eliminar ${selectedIds.size} producto(s) de forma permanente? Esta acción no se puede deshacer.`)) return;
+      delBtn.disabled = true; delBtn.textContent = 'Eliminando...';
+      const ids = [...selectedIds];
+      const { error } = await sb.from('products').delete().in('id', ids);
+      delBtn.disabled = false; delBtn.textContent = '🗑️ Eliminar seleccionados';
+      if (error) { alert('Error al eliminar: ' + error.message); return; }
+      showSelUI(false);
+      await loadProducts(true);
     });
   }
 
@@ -2119,7 +2231,8 @@
 
           const brandInfo = (row.info_marca || '').trim() || null;
 
-          const { error } = await sb.from('products').insert({
+          // payload SIN 'images': el import nunca borra las fotos ya subidas.
+          const payload = {
             name, category, price,
             old_price: (oldPriceParsed === null || isNaN(oldPriceParsed)) ? null : oldPriceParsed,
             ref: ref || null,
@@ -2130,9 +2243,18 @@
             specs: specs || null,
             description_html: descriptionHtml,
             specs_json: specsJson,
-            brand_info: brandInfo,
-            images: []
-          });
+            brand_info: brandInfo
+          };
+
+          let error;
+          if (ref) {
+            // UPSERT por 'ref': si el producto ya existe, ACTUALIZA su ficha
+            // (sin tocar 'images'); si no existe, lo crea. Sin duplicados.
+            ({ error } = await sb.from('products')
+              .upsert(payload, { onConflict: 'ref' }));
+          } else {
+            ({ error } = await sb.from('products').insert(payload));
+          }
 
           if (error) { errCount++; errMsgs.push(`${name}: ${error.message}`); }
           else okCount++;
@@ -2598,6 +2720,9 @@
       setLoginMode(false);
       openGate();
     }
+
+    // Re-dibujar el grid de categorías DESPUÉS de resolver la sesión.
+    renderHomeCatGrid();
 
     sb.auth.onAuthStateChange((event) => {
       if (event === 'SIGNED_OUT') {
