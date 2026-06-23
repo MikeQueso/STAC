@@ -1,0 +1,758 @@
+nombre,categoria,precio,marca,precio_anterior,referencia,etiqueta,stock,descripcion,especificaciones
+AMD Ryzen 5 5600,Procesador,2200,AMD,,100-100000927BOX,,25,"Procesador confiable de 6 núcleos, ideal para gaming 1080p y uso general.","Socket: AM4
+Núcleos: 6 / Hilos: 12
+Frecuencia: 3.5-4.4 GHz
+TDP: 65W
+Caché L3: 32MB"
+AMD Ryzen 5 7600,Procesador,3800,AMD,,100-100001015BOX,,20,Procesador AM5 de 6 núcleos con gran eficiencia para gaming y productividad.,"Socket: AM5
+Núcleos: 6 / Hilos: 12
+Frecuencia: 3.8-5.1 GHz
+TDP: 65W
+Caché L3: 32MB"
+AMD Ryzen 5 7600X,Procesador,4500,AMD,,100-100000593WOF,HOT,18,"Versión desbloqueada del 7600, mayor frecuencia para overclocking.","Socket: AM5
+Núcleos: 6 / Hilos: 12
+Frecuencia: 4.7-5.3 GHz
+TDP: 105W
+Caché L3: 32MB"
+AMD Ryzen 7 5700X,Procesador,3300,AMD,,100-100000926WOF,,15,8 núcleos de alto rendimiento para gaming y creación de contenido en AM4.,"Socket: AM4
+Núcleos: 8 / Hilos: 16
+Frecuencia: 3.4-4.6 GHz
+TDP: 65W
+Caché L3: 32MB"
+AMD Ryzen 7 7700,Procesador,5400,AMD,,100-100001056BOX,,14,Excelente balance de eficiencia y rendimiento en 8 núcleos para AM5.,"Socket: AM5
+Núcleos: 8 / Hilos: 16
+Frecuencia: 3.8-5.3 GHz
+TDP: 65W
+Caché L3: 32MB"
+AMD Ryzen 7 7700X,Procesador,6200,AMD,,100-100000591WOF,,12,Mayor frecuencia que el 7700 para quienes buscan el máximo rendimiento gaming.,"Socket: AM5
+Núcleos: 8 / Hilos: 16
+Frecuencia: 4.5-5.4 GHz
+TDP: 105W
+Caché L3: 32MB"
+AMD Ryzen 7 9700X,Procesador,6800,AMD,,100-100001514WOF,NUEVO,10,Arquitectura Zen 5 de nueva generación con mejoras de IPC notables.,"Socket: AM5
+Núcleos: 8 / Hilos: 16
+Frecuencia: 3.8-5.5 GHz
+TDP: 65W
+Caché L3: 32MB"
+AMD Ryzen 9 7900X,Procesador,8900,AMD,,100-100000589WOF,,8,12 núcleos para creadores de contenido y gamers exigentes.,"Socket: AM5
+Núcleos: 12 / Hilos: 24
+Frecuencia: 4.7-5.6 GHz
+TDP: 170W
+Caché L3: 64MB"
+AMD Ryzen 9 7950X,Procesador,11200,AMD,,100-100000514WOF,,6,16 núcleos insignia para las cargas de trabajo más demandantes.,"Socket: AM5
+Núcleos: 16 / Hilos: 32
+Frecuencia: 4.5-5.7 GHz
+TDP: 170W
+Caché L3: 64MB"
+AMD Ryzen 9 7950X3D,Procesador,9899,AMD,11200,100-100000908WOF,,7,Caché 3D V-Cache que domina en gaming sin sacrificar productividad.,"Socket: AM5
+Núcleos: 16 / Hilos: 32
+Frecuencia: 4.2-5.7 GHz
+TDP: 120W
+Caché L3: 128MB"
+AMD Ryzen 9 9950X3D,Procesador,13500,AMD,,100-100001712WOF,NUEVO,5,Lo último de AMD: Zen 5 + 3D V-Cache para el mejor gaming del mercado.,"Socket: AM5
+Núcleos: 16 / Hilos: 32
+Frecuencia: 4.3-5.7 GHz
+TDP: 170W
+Caché L3: 128MB"
+Intel Core i5-12400F,Procesador,2650,Intel,,BX8071512400F,,22,Excelente relación precio-rendimiento para armar tu primera PC gamer.,"Socket: LGA1700
+Núcleos: 6 / Hilos: 12
+Frecuencia: 2.5-4.4 GHz
+TDP: 65W
+Sin gráficos integrados"
+Intel Core i5-13400F,Procesador,3400,Intel,,BX8071513400F,,20,10 núcleos híbridos (P+E) para gaming fluido y multitarea.,"Socket: LGA1700
+Núcleos: 10 (6P+4E) / Hilos: 16
+Frecuencia: 2.5-4.6 GHz
+TDP: 65W"
+Intel Core i5-14400F,Procesador,3700,Intel,,BX8071514400F,EN STOCK,18,Refresco de la generación 13 con ligeras mejoras de frecuencia.,"Socket: LGA1700
+Núcleos: 10 (6P+4E) / Hilos: 16
+Frecuencia: 2.5-4.7 GHz
+TDP: 65W"
+Intel Core i5-14600K,Procesador,5600,Intel,,BX8071514600K,,14,"Desbloqueado para overclocking, ideal para gaming en 1440p.","Socket: LGA1700
+Núcleos: 14 (6P+8E) / Hilos: 20
+Frecuencia: 3.5-5.3 GHz
+TDP: 125W"
+Intel Core i7-13700K,Procesador,8200,Intel,,BX8071513700K,,10,16 núcleos híbridos para gaming de alto nivel y producción de contenido.,"Socket: LGA1700
+Núcleos: 16 (8P+8E) / Hilos: 24
+Frecuencia: 3.4-5.4 GHz
+TDP: 125W"
+Intel Core i7-14700K,Procesador,8900,Intel,,BX8071514700K,HOT,9,"Más núcleos E que su predecesor, gran opción para streaming + gaming.","Socket: LGA1700
+Núcleos: 20 (8P+12E) / Hilos: 28
+Frecuencia: 3.4-5.6 GHz
+TDP: 125W"
+Intel Core i9-13900K,Procesador,11800,Intel,,BX8071513900K,,6,"El tope de gama de la generación 13, sin concesiones.","Socket: LGA1700
+Núcleos: 24 (8P+16E) / Hilos: 32
+Frecuencia: 3.0-5.8 GHz
+TDP: 125W"
+Intel Core i9-14900K,Procesador,11450,Intel,,BX8071514900K,HOT,5,El procesador más rápido de Intel para gaming y workstation.,"Socket: LGA1700
+Núcleos: 24 (8P+16E) / Hilos: 32
+Frecuencia: 3.2-6.0 GHz
+TDP: 125W"
+Intel Core Ultra 9 285K,Procesador,13900,Intel,,BX80771285K,NUEVO,4,Nueva arquitectura Arrow Lake con eficiencia energética mejorada.,"Socket: LGA1851
+Núcleos: 24 (8P+16E) / Hilos: 24
+Frecuencia: 3.7-5.7 GHz
+TDP: 125W"
+NVIDIA RTX 4060,Tarjeta Gráfica,6500,MSI,,RTX4060-8G-VENTUS2X,,20,Ideal para 1080p alto con DLSS 3 y Frame Generation.,"VRAM: 8GB GDDR6
+Bus: 128-bit
+CUDA Cores: 3072
+Consumo: 115W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 4060 Ti,Tarjeta Gráfica,8900,ASUS,,DUAL-RTX4060TI-O8G,,16,Rendimiento sólido en 1440p con buena eficiencia energética.,"VRAM: 8GB GDDR6
+Bus: 128-bit
+CUDA Cores: 4352
+Consumo: 160W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 4070,Tarjeta Gráfica,11800,Gigabyte,,GV-N4070EAGLE-12GD,,12,El punto dulce para 1440p ultra con ray tracing activado.,"VRAM: 12GB GDDR6X
+Bus: 192-bit
+CUDA Cores: 5888
+Consumo: 200W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 4070 Super,Tarjeta Gráfica,13200,MSI,,RTX4070S-12G-GAMINGX,NUEVO,10,Versión mejorada del 4070 con más núcleos CUDA.,"VRAM: 12GB GDDR6X
+Bus: 192-bit
+CUDA Cores: 7168
+Consumo: 220W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 4070 Ti,Tarjeta Gráfica,14600,ASUS,,TUF-RTX4070TI-O12G,,9,Gaming en 1440p/4K con todos los efectos activados.,"VRAM: 12GB GDDR6X
+Bus: 192-bit
+CUDA Cores: 7680
+Consumo: 285W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 4070 Ti Super,Tarjeta Gráfica,15200,MSI,,RTX4070TIS-16G,,8,16GB de VRAM para 4K con margen a futuro.,"VRAM: 16GB GDDR6X
+Bus: 256-bit
+CUDA Cores: 8448
+Consumo: 285W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 4080 Super,Tarjeta Gráfica,21500,Gigabyte,,GV-N408SAORUS-16GD,,6,Gaming 4K de alta gama sin comprometer ray tracing.,"VRAM: 16GB GDDR6X
+Bus: 256-bit
+CUDA Cores: 10240
+Consumo: 320W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 4090,Tarjeta Gráfica,34900,ASUS,,ROG-STRIX-RTX4090-O24G,,3,La GPU más potente para 4K/8K y workstation profesional.,"VRAM: 24GB GDDR6X
+Bus: 384-bit
+CUDA Cores: 16384
+Consumo: 450W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 5070,Tarjeta Gráfica,13900,MSI,,RTX5070-12G-GAMINGX,NUEVO,8,Nueva generación Blackwell con DLSS 4 y mayor eficiencia.,"VRAM: 12GB GDDR7
+Bus: 192-bit
+Consumo: 250W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 5070 Ti,Tarjeta Gráfica,18400,ASUS,,TUF-RTX5070TI-O16G,NUEVO,6,16GB GDDR7 para 1440p/4K de última generación.,"VRAM: 16GB GDDR7
+Bus: 256-bit
+Consumo: 300W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 5080,Tarjeta Gráfica,25900,Gigabyte,,GV-N5080AORUS-16GD,NUEVO,4,Rendimiento 4K de tope de gama con arquitectura Blackwell.,"VRAM: 16GB GDDR7
+Bus: 256-bit
+Consumo: 360W
+Salidas: 3x DP, 1x HDMI"
+NVIDIA RTX 5090,Tarjeta Gráfica,48500,ASUS,,ROG-ASTRAL-RTX5090-O32G,NUEVO,2,La GPU de consumo más rápida jamás creada por NVIDIA.,"VRAM: 32GB GDDR7
+Bus: 512-bit
+Consumo: 575W
+Salidas: 3x DP, 1x HDMI"
+AMD RX 7600,Tarjeta Gráfica,6200,Sapphire,,PULSE-RX7600-8G,,18,Gran opción 1080p con buen precio por fotograma.,"VRAM: 8GB GDDR6
+Bus: 128-bit
+Consumo: 165W
+Salidas: 2x DP, 2x HDMI"
+AMD RX 7700 XT,Tarjeta Gráfica,9800,PowerColor,,HELLHOUND-RX7700XT-12G,,12,12GB de VRAM para 1440p alto sin preocuparte por memoria.,"VRAM: 12GB GDDR6
+Bus: 192-bit
+Consumo: 245W
+Salidas: 2x DP, 2x HDMI"
+AMD RX 7800 XT,Tarjeta Gráfica,11500,Sapphire,,NITRO-RX7800XT-16G,,10,16GB GDDR6 con excelente rendimiento en 1440p.,"VRAM: 16GB GDDR6
+Bus: 256-bit
+Consumo: 263W
+Salidas: 2x DP, 2x HDMI"
+AMD RX 7900 GRE,Tarjeta Gráfica,12900,ASRock,,RX7900GRE-CL-16GO,,8,Potencia de gama alta a un precio más accesible.,"VRAM: 16GB GDDR6
+Bus: 256-bit
+Consumo: 260W
+Salidas: 2x DP, 2x HDMI"
+AMD RX 7900 XTX,Tarjeta Gráfica,19800,XFX,,MERC310-RX7900XTX-24G,,4,El buque insignia de AMD para 4K con 24GB de VRAM.,"VRAM: 24GB GDDR6
+Bus: 384-bit
+Consumo: 355W
+Salidas: 2x DP, 2x HDMI"
+AMD RX 9070,Tarjeta Gráfica,12400,Sapphire,,PULSE-RX9070-16G,NUEVO,9,Nueva arquitectura RDNA 4 con soporte de ray tracing mejorado.,"VRAM: 16GB GDDR6
+Bus: 256-bit
+Consumo: 220W
+Salidas: 2x DP, 2x HDMI"
+AMD RX 9070 XT,Tarjeta Gráfica,15800,ASRock,,RX9070XT-CL-16GO,NUEVO,7,"El tope de gama RDNA 4, rival directo del RTX 5070 Ti.","VRAM: 16GB GDDR6
+Bus: 256-bit
+Consumo: 304W
+Salidas: 2x DP, 2x HDMI"
+NVIDIA RTX 4060 Ti 16GB,Tarjeta Gráfica,10200,Gigabyte,,GV-N406TWF2OC-16GD,EN STOCK,11,"Más VRAM que el modelo estándar, útil para IA y edición.","VRAM: 16GB GDDR6
+Bus: 128-bit
+CUDA Cores: 4352
+Consumo: 165W
+Salidas: 3x DP, 1x HDMI"
+Kingston Fury Beast 8GB DDR4 3200MHz,Memoria RAM,750,Kingston,,KF432C16BB/8,,40,Memoria confiable de entrada para sistemas DDR4.,"Capacidad: 8GB
+Velocidad: 3200 MHz
+Tipo: DDR4
+Latencia: CL16"
+Kingston Fury Beast 16GB DDR4 3200MHz,Memoria RAM,1250,Kingston,,KF432C16BB1/16,,35,Buen balance precio-rendimiento para gaming en DDR4.,"Capacidad: 16GB
+Velocidad: 3200 MHz
+Tipo: DDR4
+Latencia: CL16"
+Corsair Vengeance LPX 16GB DDR4 3600MHz,Memoria RAM,1450,Corsair,,CMK16GX4M2D3600C18,,30,"Disipador bajo perfil, ideal para gabinetes compactos.","Capacidad: 16GB (2x8GB)
+Velocidad: 3600 MHz
+Tipo: DDR4
+Latencia: CL18"
+Corsair Vengeance LPX 32GB DDR4 3600MHz,Memoria RAM,2600,Corsair,,CMK32GX4M2D3600C18,,22,32GB para multitarea pesada y streaming simultáneo.,"Capacidad: 32GB (2x16GB)
+Velocidad: 3600 MHz
+Tipo: DDR4
+Latencia: CL18"
+G.Skill Ripjaws V 16GB DDR4 3200MHz,Memoria RAM,1200,G.Skill,,F4-3200C16D-16GVK,,28,Kit clásico de alto rendimiento y gran compatibilidad.,"Capacidad: 16GB (2x8GB)
+Velocidad: 3200 MHz
+Tipo: DDR4
+Latencia: CL16"
+ADATA XPG Gammix D10 16GB DDR4 3200MHz,Memoria RAM,1050,ADATA,,AX4U320016G16A-DT10,,25,Disipador rojo llamativo a precio competitivo.,"Capacidad: 16GB (2x8GB)
+Velocidad: 3200 MHz
+Tipo: DDR4
+Latencia: CL16"
+Kingston Fury Beast 16GB DDR5 5200MHz,Memoria RAM,1650,Kingston,,KF552C40BB-16,,26,Entrada a DDR5 con buen rendimiento para nuevas plataformas.,"Capacidad: 16GB
+Velocidad: 5200 MHz
+Tipo: DDR5
+Latencia: CL40"
+Corsair Vengeance 64GB DDR5 6000MHz,Memoria RAM,5200,Corsair,,CMK64GX5M2B6000Z30,,12,"64GB para workstations, edición de video y virtualización.","Capacidad: 64GB (2x32GB)
+Velocidad: 6000 MHz
+Tipo: DDR5
+Latencia: CL30"
+Corsair Dominator Platinum 32GB DDR5 6200MHz,Memoria RAM,4200,Corsair,,CMT32GX5M2X6200C36,HOT,10,Gama alta con iluminación RGB y disipación premium.,"Capacidad: 32GB (2x16GB)
+Velocidad: 6200 MHz
+Tipo: DDR5
+Latencia: CL36"
+G.Skill Trident Z5 RGB 32GB DDR5 6400MHz,Memoria RAM,3800,G.Skill,,F5-6400J3239G16GX2-TZ5RK,,14,Alto rendimiento con RGB para sistemas gamer de gama alta.,"Capacidad: 32GB (2x16GB)
+Velocidad: 6400 MHz
+Tipo: DDR5
+Latencia: CL32"
+G.Skill Trident Z5 Neo 32GB DDR5 6000MHz,Memoria RAM,3200,G.Skill,,F5-6000J3038F16GX2-TZ5N,,16,Optimizado específicamente para plataformas AMD AM5.,"Capacidad: 32GB (2x16GB)
+Velocidad: 6000 MHz
+Tipo: DDR5
+Latencia: CL30"
+Crucial 16GB DDR5 4800MHz,Memoria RAM,1100,Crucial,,CT16G48C40U5,,30,Memoria confiable a precio accesible para nuevas builds.,"Capacidad: 16GB
+Velocidad: 4800 MHz
+Tipo: DDR5
+Latencia: CL40"
+Crucial Pro 32GB DDR5 5600MHz,Memoria RAM,2100,Crucial,,CP2K16G56C46U5,,18,Kit dual channel optimizado para Intel y AMD.,"Capacidad: 32GB (2x16GB)
+Velocidad: 5600 MHz
+Tipo: DDR5
+Latencia: CL46"
+TeamGroup T-Force Delta RGB 32GB DDR5 6000MHz,Memoria RAM,2950,TeamGroup,,FF3D532G6000HC38ADC01,,15,Efecto de luz RGB envolvente con buen rendimiento.,"Capacidad: 32GB (2x16GB)
+Velocidad: 6000 MHz
+Tipo: DDR5
+Latencia: CL38"
+ADATA XPG Lancer 16GB DDR5 6000MHz,Memoria RAM,1350,ADATA,,AX5U6000C3016G-DTLABK,,22,Diseño angular agresivo a precio competitivo.,"Capacidad: 16GB
+Velocidad: 6000 MHz
+Tipo: DDR5
+Latencia: CL30"
+Kingston Fury Renegade 32GB DDR5 6400MHz,Memoria RAM,3500,Kingston,,KF564C32RBK2-32,NUEVO,9,La línea más rápida de Kingston para entusiastas.,"Capacidad: 32GB (2x16GB)
+Velocidad: 6400 MHz
+Tipo: DDR5
+Latencia: CL32"
+Corsair Vengeance 16GB DDR4 3200MHz,Memoria RAM,950,Corsair,,CMK16GX4M1E3200C16,,32,"Módulo único de 16GB, fácil de combinar a futuro.","Capacidad: 16GB
+Velocidad: 3200 MHz
+Tipo: DDR4
+Latencia: CL16"
+Patriot Viper Steel 16GB DDR4 3600MHz,Memoria RAM,1150,Patriot,,PVS416G360C8K,,20,Disipador de acero con buen overclocking en DDR4.,"Capacidad: 16GB (2x8GB)
+Velocidad: 3600 MHz
+Tipo: DDR4
+Latencia: CL18"
+HyperX Fury 8GB DDR4 2666MHz,Memoria RAM,650,HyperX,,HX426C16FB3/8,,38,Opción económica para actualizar sistemas DDR4 básicos.,"Capacidad: 8GB
+Velocidad: 2666 MHz
+Tipo: DDR4
+Latencia: CL16"
+ASUS Prime B650-PLUS,Placa Madre,3200,ASUS,,PRIME-B650-PLUS,,14,Opción confiable de entrada a la plataforma AM5.,"Socket: AM5
+Chipset: B650
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 4.0 x16"
+ASUS TUF Gaming B650-PLUS,Placa Madre,3950,ASUS,,TUF-GAMING-B650-PLUS,,12,Durabilidad militar TUF a precio accesible para AM5.,"Socket: AM5
+Chipset: B650
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 4.0 x16"
+ASUS ROG Strix X670E-E Gaming,Placa Madre,8900,ASUS,,ROG-STRIX-X670E-E,,5,Gama alta con PCIe 5.0 completo y VRM robusto.,"Socket: AM5
+Chipset: X670E
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+MSI MAG B650 Tomahawk,Placa Madre,4200,MSI,,MAG-B650-TOMAHAWK,HOT,13,La favorita de la comunidad por su excelente VRM a buen precio.,"Socket: AM5
+Chipset: B650
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 4.0 x16"
+MSI PRO B650M-A,Placa Madre,2800,MSI,,PRO-B650M-A,,16,Formato compacto Micro-ATX para builds económicas en AM5.,"Socket: AM5
+Chipset: B650
+Formato: Micro-ATX
+RAM: DDR5, hasta 96GB
+PCIe: 4.0 x16"
+MSI MEG X670E ACE,Placa Madre,9800,MSI,,MEG-X670E-ACE,,3,Tope de gama de MSI con disipación premium y WiFi 7.,"Socket: AM5
+Chipset: X670E
+Formato: E-ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+Gigabyte B650 Aorus Elite AX,Placa Madre,4600,Gigabyte,,B650-AORUS-ELITE-AX,,11,WiFi 6E integrado y buena disipación térmica.,"Socket: AM5
+Chipset: B650
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 4.0 x16"
+Gigabyte X670E Aorus Master,Placa Madre,9200,Gigabyte,,X670E-AORUS-MASTER,,4,VRM de 16 fases para los procesadores más exigentes.,"Socket: AM5
+Chipset: X670E
+Formato: E-ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+ASRock B650M Pro RS,Placa Madre,2900,ASRock,,B650M-PRO-RS,,15,Excelente opción económica para builds AM5 compactas.,"Socket: AM5
+Chipset: B650
+Formato: Micro-ATX
+RAM: DDR5, hasta 96GB
+PCIe: 4.0 x16"
+ASRock X670E Taichi,Placa Madre,8500,ASRock,,X670E-TAICHI,,4,Diseño icónico de engranajes con especificaciones premium.,"Socket: AM5
+Chipset: X670E
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+ASUS Prime B760-PLUS,Placa Madre,2700,ASUS,,PRIME-B760-PLUS,,18,Opción base confiable para procesadores Intel de 12va-14va gen.,"Socket: LGA1700
+Chipset: B760
+Formato: ATX
+RAM: DDR4/DDR5 (según versión)
+PCIe: 4.0 x16"
+ASUS ROG Strix B760-F Gaming,Placa Madre,4400,ASUS,,ROG-STRIX-B760-F,,12,Estética ROG con buen rendimiento para gaming en Intel.,"Socket: LGA1700
+Chipset: B760
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 4.0 x16"
+ASUS ROG Maximus Z790 Hero,Placa Madre,12500,ASUS,,ROG-MAXIMUS-Z790-HERO,,3,"El tope de gama de ASUS para Intel, con todo el lujo posible.","Socket: LGA1700
+Chipset: Z790
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+MSI PRO B760M-A,Placa Madre,2450,MSI,,PRO-B760M-A,EN STOCK,20,Excelente costo-beneficio para sistemas Intel compactos.,"Socket: LGA1700
+Chipset: B760
+Formato: Micro-ATX
+RAM: DDR5, hasta 96GB
+PCIe: 4.0 x16"
+MSI MPG Z790 Edge WiFi,Placa Madre,6800,MSI,,MPG-Z790-EDGE-WIFI,,8,Gama media-alta con WiFi 6E y buen overclocking.,"Socket: LGA1700
+Chipset: Z790
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+Gigabyte B760M Gaming X AX,Placa Madre,2950,Gigabyte,,B760M-GAMING-X-AX,,16,Formato compacto con WiFi integrado para Intel.,"Socket: LGA1700
+Chipset: B760
+Formato: Micro-ATX
+RAM: DDR5, hasta 96GB
+PCIe: 4.0 x16"
+Gigabyte Z790 Aorus Elite AX,Placa Madre,6200,Gigabyte,,Z790-AORUS-ELITE-AX,,9,Buen punto medio entre precio y características para Z790.,"Socket: LGA1700
+Chipset: Z790
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+ASRock B760M Pro RS,Placa Madre,2350,ASRock,,B760M-PRO-RS,,17,Una de las opciones más económicas para Intel B760.,"Socket: LGA1700
+Chipset: B760
+Formato: Micro-ATX
+RAM: DDR5, hasta 96GB
+PCIe: 4.0 x16"
+ASRock Z790 Taichi,Placa Madre,9800,ASRock,,Z790-TAICHI,,4,Diseño premium con gran capacidad de overclocking.,"Socket: LGA1700
+Chipset: Z790
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+ASUS Prime Z790-P,Placa Madre,4800,ASUS,,PRIME-Z790-P,,10,Buen punto de entrada a Z790 para overclocking moderado.,"Socket: LGA1700
+Chipset: Z790
+Formato: ATX
+RAM: DDR5, hasta 128GB
+PCIe: 5.0 x16"
+Corsair CV450 450W 80+ Bronze,Fuente de Poder,950,Corsair,,CP-9020210-NA,,30,Opción económica y confiable para builds básicas.,"Potencia: 450W
+Certificación: 80+ Bronze
+Modular: No
+Ventilador: 120mm"
+Corsair RM650x 650W 80+ Gold,Fuente de Poder,2100,Corsair,,CP-9020192-NA,,22,Totalmente modular y silenciosa para builds gaming medias.,"Potencia: 650W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 135mm"
+Corsair RM1000x 1000W 80+ Gold,Fuente de Poder,3600,Corsair,,CP-9020203-NA,,10,Potencia de sobra para sistemas con GPU de gama alta.,"Potencia: 1000W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 135mm"
+Corsair HX1200 1200W 80+ Platinum,Fuente de Poder,5800,Corsair,,CP-9020140-NA,,5,Para sistemas dual-GPU o workstations extremas.,"Potencia: 1200W
+Certificación: 80+ Platinum
+Modular: Sí (total)
+Ventilador: 140mm"
+EVGA 600 BR 600W 80+ Bronze,Fuente de Poder,1100,EVGA,,100-BR-0600-K1,,25,Fuente sencilla y confiable para sistemas de oficina/gaming básico.,"Potencia: 600W
+Certificación: 80+ Bronze
+Modular: No
+Ventilador: 120mm"
+EVGA SuperNOVA 750 GT 750W 80+ Gold,Fuente de Poder,2400,EVGA,,220-GT-0750-X1,,16,Buena eficiencia y garantía extendida de EVGA.,"Potencia: 750W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 120mm"
+Cooler Master MWE 650 Bronze V2,Fuente de Poder,1350,Cooler Master,,MPE-6501-ACAAB-US,,24,Relación calidad-precio sobresaliente en certificación Bronze.,"Potencia: 650W
+Certificación: 80+ Bronze
+Modular: No
+Ventilador: 120mm"
+Cooler Master MWE Gold 850 V2,Fuente de Poder,2750,Cooler Master,,MPE-8501-AFAAG-US,HOT,14,Potencia generosa para builds con GPU de gama alta.,"Potencia: 850W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 135mm"
+Thermaltake Smart 500W 80+,Fuente de Poder,850,Thermaltake,,PS-SPD-0500NPCWUS-W,,28,Opción de entrada para sistemas básicos sin GPU dedicada potente.,"Potencia: 500W
+Certificación: 80+
+Modular: No
+Ventilador: 120mm"
+Thermaltake Toughpower GF1 750W Gold,Fuente de Poder,2300,Thermaltake,,PS-TPD-0750FNFAGU-1,,15,Cables planos y buena regulación de voltaje.,"Potencia: 750W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 140mm"
+XPG Core Reactor 650W Gold,Fuente de Poder,1750,XPG,,COREREACTOR650G-BKCUS,,20,Buen rendimiento térmico con ventilador de baja vibración.,"Potencia: 650W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 120mm"
+XPG Pylon 450W 80+ Bronze,Fuente de Poder,900,XPG,,PYLON450B-BKCUS,,32,Económica y suficiente para sistemas sin GPU dedicada exigente.,"Potencia: 450W
+Certificación: 80+ Bronze
+Modular: No
+Ventilador: 120mm"
+Seasonic Focus GX-750 80+ Gold,Fuente de Poder,2600,Seasonic,,SSR-750FX,,12,Una de las marcas más confiables del mercado de fuentes.,"Potencia: 750W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 120mm"
+Seasonic Prime TX-1000 80+ Titanium,Fuente de Poder,6800,Seasonic,,SSR-1000TR,NUEVO,4,"La certificación más alta disponible, máxima eficiencia.","Potencia: 1000W
+Certificación: 80+ Titanium
+Modular: Sí (total)
+Ventilador: 135mm"
+MSI MAG A650BN 80+ Bronze,Fuente de Poder,1200,MSI,,MAG-A650BN,,22,Opción accesible de MSI para sistemas gamer de entrada.,"Potencia: 650W
+Certificación: 80+ Bronze
+Modular: No
+Ventilador: 120mm"
+MSI MPG A850G 80+ Gold,Fuente de Poder,2950,MSI,,MPG-A850G,,13,Buena opción para sistemas con GPU de gama alta-media.,"Potencia: 850W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 135mm"
+Antec NeoECO 650W Gold,Fuente de Poder,1650,Antec,,NE650G-M,,18,Marca veterana con buena relación precio-calidad.,"Potencia: 650W
+Certificación: 80+ Gold
+Modular: Sí (semi)
+Ventilador: 120mm"
+Gigabyte UD850GM 80+ Gold,Fuente de Poder,2500,Gigabyte,,GP-UD850GM,,11,Buena opción de Gigabyte para acompañar sus tarjetas gráficas.,"Potencia: 850W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 120mm"
+NZXT C650 80+ Gold,Fuente de Poder,2050,NZXT,,PA-650AB-US,EN STOCK,19,Diseño minimalista que combina con gabinetes NZXT.,"Potencia: 650W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 120mm"
+be quiet! Pure Power 12 M 750W Gold,Fuente de Poder,2700,be quiet!,,BN345,,9,"Silenciosa por diseño, ideal para builds que priorizan el ruido bajo.","Potencia: 750W
+Certificación: 80+ Gold
+Modular: Sí (total)
+Ventilador: 120mm"
+Kingston A400 240GB SATA SSD,Almacenamiento,450,Kingston,,SA400S37/240G,,40,La forma más económica de dejar atrás el disco duro mecánico.,"Capacidad: 240GB
+Interfaz: SATA III
+Lectura: 500 MB/s
+Formato: 2.5"""
+Kingston NV2 500GB NVMe Gen4,Almacenamiento,750,Kingston,,SNV2S/500G,,30,SSD NVMe accesible con velocidades varias veces mayores a SATA.,"Capacidad: 500GB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 3500 MB/s
+Formato: M.2 2280"
+Samsung 870 EVO 500GB SATA SSD,Almacenamiento,950,Samsung,,MZ-77E500B,,25,Confiabilidad Samsung en formato SATA tradicional.,"Capacidad: 500GB
+Interfaz: SATA III
+Lectura: 560 MB/s
+Formato: 2.5"""
+Samsung 990 Pro 1TB NVMe Gen4,Almacenamiento,2200,Samsung,,MZ-V9P1T0BW,HOT,18,Uno de los SSD NVMe más rápidos y confiables del mercado.,"Capacidad: 1TB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 7450 MB/s
+Formato: M.2 2280"
+Samsung 990 EVO Plus 1TB NVMe,Almacenamiento,2400,Samsung,,MZ-V9S1T0BW,NUEVO,14,Compatible con PCIe 5.0 manteniendo gran eficiencia energética.,"Capacidad: 1TB
+Interfaz: PCIe 4.0/5.0 NVMe
+Lectura: 7250 MB/s
+Formato: M.2 2280"
+WD Blue 1TB SATA SSD,Almacenamiento,1100,Western Digital,,WDS100T2B0A,,26,Opción equilibrada para actualizar laptops y PCs de escritorio.,"Capacidad: 1TB
+Interfaz: SATA III
+Lectura: 560 MB/s
+Formato: 2.5"""
+WD Black SN770 1TB NVMe Gen4,Almacenamiento,1850,Western Digital,,WDS100T3X0E,,20,Buen balance entre rendimiento gaming y precio.,"Capacidad: 1TB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 5150 MB/s
+Formato: M.2 2280"
+WD Black SN850X 2TB NVMe Gen4,Almacenamiento,3600,Western Digital,,WDS200T2X0E,,11,El SSD gaming insignia de Western Digital.,"Capacidad: 2TB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 7300 MB/s
+Formato: M.2 2280"
+Crucial MX500 500GB SATA SSD,Almacenamiento,880,Crucial,,CT500MX500SSD1,,28,Clásico confiable en el segmento SATA.,"Capacidad: 500GB
+Interfaz: SATA III
+Lectura: 560 MB/s
+Formato: 2.5"""
+Crucial P3 Plus 1TB NVMe Gen4,Almacenamiento,1700,Crucial,,CT1000P3PSSD8,,22,Buen punto de entrada al mundo NVMe Gen4.,"Capacidad: 1TB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 5000 MB/s
+Formato: M.2 2280"
+Crucial T700 2TB NVMe Gen5,Almacenamiento,5200,Crucial,,CT2000T700SSD3,NUEVO,6,"Velocidades de nueva generación PCIe 5.0, de los más rápidos del mercado.","Capacidad: 2TB
+Interfaz: PCIe 5.0 NVMe
+Lectura: 12400 MB/s
+Formato: M.2 2280"
+ADATA Legend 800 1TB NVMe Gen4,Almacenamiento,1600,ADATA,,ALEG-800-1TCS,,19,Disipador integrado para mantener temperaturas bajo control.,"Capacidad: 1TB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 3500 MB/s
+Formato: M.2 2280"
+ADATA SU650 480GB SATA SSD,Almacenamiento,600,ADATA,,ASU650SS-480GT-R,,35,Una de las opciones SATA más económicas del mercado.,"Capacidad: 480GB
+Interfaz: SATA III
+Lectura: 520 MB/s
+Formato: 2.5"""
+Seagate Barracuda 1TB HDD 7200RPM,Almacenamiento,850,Seagate,,ST1000DM010,,30,Disco duro tradicional para almacenamiento masivo económico.,"Capacidad: 1TB
+Interfaz: SATA III
+Velocidad: 7200 RPM
+Formato: 3.5"""
+Seagate IronWolf 4TB NAS HDD,Almacenamiento,2900,Seagate,,ST4000VN006,,8,Diseñado para funcionar 24/7 en sistemas NAS.,"Capacidad: 4TB
+Interfaz: SATA III
+Velocidad: 5900 RPM
+Formato: 3.5"""
+Seagate FireCuda 530 1TB NVMe Gen4,Almacenamiento,2350,Seagate,,ZP1000GM3A013,,12,"Orientado a gaming, compatible con PS5.","Capacidad: 1TB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 7300 MB/s
+Formato: M.2 2280"
+WD Purple 2TB Surveillance HDD,Almacenamiento,1750,Western Digital,,WD23PURZ,,14,Diseñado para grabación continua de cámaras de seguridad.,"Capacidad: 2TB
+Interfaz: SATA III
+Velocidad: 5400 RPM
+Formato: 3.5"""
+Toshiba P300 2TB HDD,Almacenamiento,1400,Toshiba,,HDWD220UZSVA,,18,Buena opción de almacenamiento masivo a precio accesible.,"Capacidad: 2TB
+Interfaz: SATA III
+Velocidad: 7200 RPM
+Formato: 3.5"""
+Kingston KC3000 2TB NVMe Gen4,Almacenamiento,3400,Kingston,,SKC3000D/2048G,,9,Gama alta de Kingston con muy buen rendimiento sostenido.,"Capacidad: 2TB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 7000 MB/s
+Formato: M.2 2280"
+Lexar NM790 2TB NVMe Gen4,Almacenamiento,2900,Lexar,,LNM790X002T-RNNNG,EN STOCK,13,Excelente relación precio-rendimiento en 2TB.,"Capacidad: 2TB
+Interfaz: PCIe 4.0 NVMe
+Lectura: 7400 MB/s
+Formato: M.2 2280"
+NZXT H5 Flow,Gabinete,2050,NZXT,,CM-H51FW-01,,14,Diseño limpio con buen flujo de aire en formato mid-tower.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 2
+Panel lateral: Vidrio templado
+Bahías 3.5""/2.5"": 2/2"
+NZXT H7 Flow,Gabinete,2950,NZXT,,CM-H71FB-01,HOT,9,Versión más grande con mejor espacio para radiadores.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Cooler Master MasterBox Q300L,Gabinete,1100,Cooler Master,,MCB-Q300L-KANN-S00,,20,"Compacto y económico, ideal para Micro-ATX.","Formato: Micro-ATX
+Ventiladores incluidos: 1
+Panel lateral: Acrílico
+Bahías 3.5""/2.5"": 2/2"
+Cooler Master MasterBox TD500 Mesh,Gabinete,2200,Cooler Master,,MB500-KGNN-S00,,15,Frente de malla para máximo flujo de aire.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Corsair 4000D Airflow,Gabinete,2400,Corsair,,CC-9011200-WW,,16,Uno de los gabinetes más recomendados por su flujo de aire.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 2
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Corsair iCUE 5000X RGB,Gabinete,4500,Corsair,,CC-9011212-WW,NUEVO,6,Gama alta con ventiladores RGB controlables vía software.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3 RGB
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Lian Li Lancool 215,Gabinete,2100,Lian Li,,G99.LANCOOL215X.00,,12,Excelente ventilación a precio competitivo.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Lian Li O11 Dynamic,Gabinete,3800,Lian Li,,O11D-W,,7,"Diseño icónico panorámico, favorito para watercooling personalizado.","Formato: ATX Mid Tower
+Ventiladores incluidos: 0 (no incluidos)
+Panel lateral: Vidrio templado (doble)
+Radiador máx: 360mm"
+Montech Air 100,Gabinete,1200,Montech,,AIR-100-WHITE,,22,Económico con buen flujo de aire para Micro-ATX.,"Formato: Micro-ATX
+Ventiladores incluidos: 1
+Panel lateral: Vidrio templado
+Bahías 3.5""/2.5"": 1/2"
+Montech X3 Mesh,Gabinete,1750,Montech,,X3-MESH-ARGB,,14,Gran relación precio-ventiladores ARGB incluidos.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 4 ARGB
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Thermaltake Versa H18,Gabinete,950,Thermaltake,,CA-1J4-00S1NN-00,,25,Compacto Micro-ATX para sistemas económicos.,"Formato: Micro-ATX
+Ventiladores incluidos: 1
+Panel lateral: Acrílico
+Bahías 3.5""/2.5"": 2/2"
+Thermaltake View 270 TG ARGB,Gabinete,2300,Thermaltake,,CA-1Y2-00M1WN-00,,10,Triple panel de vidrio para mostrar todo tu hardware.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3 ARGB
+Panel lateral: Vidrio templado (triple)
+Radiador máx: 360mm"
+Phanteks Eclipse P400A,Gabinete,2100,Phanteks,,PH-EC400ATG_DBK01,,11,Clásico moderno con gran flujo de aire frontal.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Phanteks XT Pro Ultra,Gabinete,2950,Phanteks,,PH-EC620PTG_DBK01,,6,Gama media-alta con excelente cable management.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+ASUS TUF Gaming GT301,Gabinete,2600,ASUS,,TUF-GAMING-GT301,,9,Construcción robusta con estética TUF Gaming.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3 ARGB
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+ASUS ROG Strix Helios,Gabinete,6800,ASUS,,ROG-STRIX-HELIOS,,3,Gabinete premium full tower para builds de exhibición.,"Formato: E-ATX Full Tower
+Ventiladores incluidos: 3 ARGB
+Panel lateral: Vidrio templado
+Radiador máx: 420mm"
+DeepCool CC560,Gabinete,1450,DeepCool,,R-CC560-BKNGM1-G-1,,16,Cuatro ventiladores incluidos a precio accesible.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 4
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+DeepCool CH560,Gabinete,2050,DeepCool,,R-CH560-BKNGE1-G-1,EN STOCK,13,Diseño dual-chamber para mejor organización de cables.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Antec NX410,Gabinete,1350,Antec,,0-761345-81045-9,,18,Buen flujo de aire con panel frontal de malla.,"Formato: ATX Mid Tower
+Ventiladores incluidos: 3
+Panel lateral: Vidrio templado
+Radiador máx: 360mm"
+Cooler Master HAF 700 EVO,Gabinete,7200,Cooler Master,,H700E-IGNN-S0X,,2,Full tower masivo para las builds más ambiciosas.,"Formato: E-ATX Full Tower
+Ventiladores incluidos: 4 ARGB
+Panel lateral: Vidrio templado
+Radiador máx: 420mm"
+Cooler Master Hyper 212 Halo,Refrigeración,950,Cooler Master,,RR-S4HH-20PA-R1,,18,"Evolución del clásico 212, ahora con ARGB.","Tipo: Aire (torre)
+Ventilador: 120mm ARGB
+TDP soportado: hasta 150W
+Altura: 158mm"
+Cooler Master MasterLiquid ML240L,Refrigeración,1850,Cooler Master,,MLW-D24M-A18PZ-R1,,10,AIO de entrada con buen rendimiento térmico.,"Tipo: Líquida AIO
+Radiador: 240mm
+Ventiladores: 2x120mm
+TDP soportado: hasta 250W"
+Cooler Master MasterLiquid 360 Atmos,Refrigeración,3500,Cooler Master,,MLY-D36M-A18PZ-R1,NUEVO,5,AIO de gama alta con pantalla LCD personalizable.,"Tipo: Líquida AIO
+Radiador: 360mm
+Ventiladores: 3x120mm ARGB
+TDP soportado: hasta 300W"
+Noctua NH-D15,Refrigeración,2300,Noctua,,NH-D15,HOT,8,El estándar de oro en refrigeración por aire de doble torre.,"Tipo: Aire (doble torre)
+Ventiladores: 2x140mm
+TDP soportado: hasta 220W
+Altura: 165mm"
+Noctua NH-U12S,Refrigeración,1450,Noctua,,NH-U12S,,12,"Torre única compacta, ideal para gabinetes medianos.","Tipo: Aire (torre)
+Ventilador: 120mm
+TDP soportado: hasta 165W
+Altura: 158mm"
+Corsair iCUE H100i Elite RGB 240mm,Refrigeración,2950,Corsair,,CW-9060065-WW,,9,Control total vía software iCUE con pantalla en el bloque.,"Tipo: Líquida AIO
+Radiador: 240mm
+Ventiladores: 2x120mm RGB
+TDP soportado: hasta 250W"
+Corsair iCUE H150i Elite RGB 360mm,Refrigeración,3600,Corsair,,CW-9060066-WW,,6,Máxima disipación para los procesadores más calientes.,"Tipo: Líquida AIO
+Radiador: 360mm
+Ventiladores: 3x120mm RGB
+TDP soportado: hasta 300W"
+DeepCool AK400,Refrigeración,850,DeepCool,,R-AK400-BKNNMT-G-1,,20,Excelente relación precio-rendimiento en aire.,"Tipo: Aire (torre)
+Ventilador: 120mm
+TDP soportado: hasta 220W
+Altura: 155mm"
+DeepCool LS720 360mm AIO,Refrigeración,2750,DeepCool,,R-LS720-BKAMNT-G-1,,7,AIO con buena estética e iluminación infinity mirror.,"Tipo: Líquida AIO
+Radiador: 360mm
+Ventiladores: 3x120mm ARGB
+TDP soportado: hasta 280W"
+ID-Cooling SE-224-XT,Refrigeración,580,ID-Cooling,,SE-224-XT-BLACK,,25,Una de las opciones de aire más económicas del mercado.,"Tipo: Aire (torre)
+Ventilador: 120mm
+TDP soportado: hasta 180W
+Altura: 154mm"
+ID-Cooling FrostFlow 240,Refrigeración,1350,ID-Cooling,,FROSTFLOW-240,,13,AIO económica con buen rendimiento para su precio.,"Tipo: Líquida AIO
+Radiador: 240mm
+Ventiladores: 2x120mm
+TDP soportado: hasta 220W"
+Thermalright Peerless Assassin 120 SE,Refrigeración,750,Thermalright,,PA120-SE,,22,Sorprendente rendimiento de doble torre a precio bajo.,"Tipo: Aire (doble torre)
+Ventiladores: 2x120mm
+TDP soportado: hasta 245W
+Altura: 155mm"
+ARCTIC Liquid Freezer II 240,Refrigeración,1650,ARCTIC,,ACFRE00046A,HOT,11,Muy recomendada por relación precio-rendimiento en AIO.,"Tipo: Líquida AIO
+Radiador: 240mm
+Ventiladores: 2x120mm
+TDP soportado: hasta 250W"
+ARCTIC Freezer 34 eSports,Refrigeración,650,ARCTIC,,ACFRE00027A,,24,Económico y silencioso para sistemas gaming de entrada.,"Tipo: Aire (torre)
+Ventilador: 120mm
+TDP soportado: hasta 210W
+Altura: 157mm"
+NZXT Kraken 280,Refrigeración,3100,NZXT,,RL-KR280-B1,,6,Pantalla LCD circular personalizable en el bloque.,"Tipo: Líquida AIO
+Radiador: 280mm
+Ventiladores: 2x140mm
+TDP soportado: hasta 260W"
+be quiet! Dark Rock 4,Refrigeración,1750,be quiet!,,BK022,,9,Refrigeración por aire silenciosa por excelencia.,"Tipo: Aire (torre)
+Ventilador: 135mm
+TDP soportado: hasta 200W
+Altura: 159mm"
+be quiet! Pure Loop 2 240mm,Refrigeración,2400,be quiet!,,BW012,,7,AIO orientada a silencio sin sacrificar rendimiento.,"Tipo: Líquida AIO
+Radiador: 240mm
+Ventiladores: 2x120mm
+TDP soportado: hasta 250W"
+EVGA CLC 280mm,Refrigeración,2200,EVGA,,400-HY-CL28-V1,,8,Buena opción intermedia de EVGA para refrigeración líquida.,"Tipo: Líquida AIO
+Radiador: 280mm
+Ventiladores: 2x140mm
+TDP soportado: hasta 250W"
+MSI MAG Coreliquid 240R V2,Refrigeración,2350,MSI,,MAG-CORELIQUID-240R-V2,EN STOCK,10,Buena integración con el ecosistema MSI Mystic Light.,"Tipo: Líquida AIO
+Radiador: 240mm
+Ventiladores: 2x120mm ARGB
+TDP soportado: hasta 250W"
+Lian Li Galahad II 360,Refrigeración,3400,Lian Li,,GALAHAD-II-360-W,NUEVO,4,Diseño elegante con excelente rendimiento térmico.,"Tipo: Líquida AIO
+Radiador: 360mm
+Ventiladores: 3x120mm ARGB
+TDP soportado: hasta 300W"
+Logitech G102 Lightsync,Mouse,350,Logitech,,910-005823,,35,El mouse gamer de entrada más popular del mercado.,"DPI: hasta 8000
+Botones: 6
+Conexión: Cable USB
+Peso: 85g"
+Logitech G203 Lightsync,Mouse,450,Logitech,,910-005793,,30,Versión mejorada del G102 con mejor sensor.,"DPI: hasta 8000
+Botones: 6
+Conexión: Cable USB
+Peso: 85g"
+Logitech G502 Hero,Mouse,950,Logitech,,910-005469,HOT,20,"El mouse gamer más vendido de la historia, con pesas ajustables.","DPI: hasta 25600
+Botones: 11
+Conexión: Cable USB
+Peso: 121g"
+Logitech G Pro X Superlight,Mouse,2400,Logitech,,910-005878,,10,Ultraligero inalámbrico usado por jugadores profesionales.,"DPI: hasta 25600
+Botones: 5
+Conexión: Inalámbrica (Lightspeed)
+Peso: 63g"
+Logitech MX Master 3S,Mouse,2200,Logitech,,910-006559,NUEVO,12,El mejor mouse de productividad para oficina y diseño.,"DPI: hasta 8000
+Botones: 7
+Conexión: Inalámbrica (Bluetooth/USB)
+Peso: 141g"
+Razer DeathAdder V3,Mouse,1100,Razer,,RZ01-04640100-R3M1,,18,Forma ergonómica icónica con sensor de alta precisión.,"DPI: hasta 30000
+Botones: 5
+Conexión: Cable USB
+Peso: 59g"
+Razer Viper Mini,Mouse,650,Razer,,RZ01-03250100-R3M1,,22,"Compacto y ligero, ideal para manos pequeñas.","DPI: hasta 8500
+Botones: 6
+Conexión: Cable USB
+Peso: 61g"
+Razer Basilisk V3,Mouse,1350,Razer,,RZ01-04790100-R3M1,,14,Rueda de desplazamiento con resistencia ajustable.,"DPI: hasta 26000
+Botones: 11
+Conexión: Cable USB
+Peso: 101g"
+Razer Cobra,Mouse,850,Razer,,RZ01-04650100-R3U1,,16,Simétrico y ligero con iluminación Chroma RGB.,"DPI: hasta 8500
+Botones: 6
+Conexión: Cable USB
+Peso: 72g"
+Corsair Harpoon RGB Pro,Mouse,550,Corsair,,CH-9301111-NA,,25,Mouse compacto con buena relación precio-características.,"DPI: hasta 12000
+Botones: 6
+Conexión: Cable USB
+Peso: 86g"
+Corsair Ironclaw RGB,Mouse,950,Corsair,,CH-9307011-NA,,14,"Diseño ergonómico para manos grandes, sensor de alta precisión.","DPI: hasta 18000
+Botones: 7
+Conexión: Cable USB
+Peso: 105g"
+Corsair Dark Core RGB Pro,Mouse,1850,Corsair,,CH-9315411-NA,,8,Inalámbrico con carga inalámbrica Qi compatible.,"DPI: hasta 18000
+Botones: 8
+Conexión: Inalámbrica/Cable
+Peso: 133g"
+HyperX Pulsefire Haste,Mouse,750,HyperX,,4P5D7AA,,19,Diseño con carcasa perforada para reducir peso.,"DPI: hasta 16000
+Botones: 6
+Conexión: Cable USB
+Peso: 59g"
+HyperX Pulsefire Core,Mouse,480,HyperX,,HX-MC002B,,24,Opción económica con buen sensor óptico.,"DPI: hasta 6200
+Botones: 7
+Conexión: Cable USB
+Peso: 87g"
+SteelSeries Rival 3,Mouse,600,SteelSeries,,62513,,21,"Resistente y confiable, buena opción de entrada.","DPI: hasta 8500
+Botones: 6
+Conexión: Cable USB
+Peso: 77g"
+SteelSeries Aerox 5 Wireless,Mouse,2100,SteelSeries,,62612,,7,"Ultraligero con 9 botones programables, ideal para MMO.","DPI: hasta 18000
+Botones: 9
+Conexión: Inalámbrica
+Peso: 66g"
+ASUS ROG Gladius III,Mouse,1450,ASUS,,ROG-GLADIUS-III,,11,Switches intercambiables en caliente para personalización total.,"DPI: hasta 19000
+Botones: 6
+Conexión: Cable USB
+Peso: 79g"
+ASUS ROG Keris Wireless,Mouse,1700,ASUS,,ROG-KERIS-WIRELESS,,9,Forma ambidiestra con tres modos de conexión.,"DPI: hasta 16000
+Botones: 6
+Conexión: Inalámbrica/Bluetooth/Cable
+Peso: 79g"
+Glorious Model O,Mouse,1200,Glorious,,GO-WHITE,EN STOCK,13,"Carcasa tipo panal ultraligera, favorito de la comunidad gamer.","DPI: hasta 12000
+Botones: 6
+Conexión: Cable USB
+Peso: 67g"
+Redragon Cobra M711,Mouse,380,Redragon,,M711-RGB,,30,Excelente opción económica con buena iluminación RGB.,"DPI: hasta 10000
+Botones: 7
+Conexión: Cable USB
+Peso: 92g"

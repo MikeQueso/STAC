@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <style>
     :root {
       --bg-deep:      #040D1A;
@@ -892,13 +893,14 @@
   <div class="mini-modal-card">
     <h2>📥 Importar productos <button class="modal-close" id="import-close">✕</button></h2>
     <p style="font-size:12.5px; color:var(--text-dim); margin-bottom:16px; line-height:1.6;">
-      Columnas obligatorias: <strong style="color:var(--text-body);">categoria, precio</strong>, y nombre — <strong style="color:var(--text-body);">o</strong> marca + referencia (si dejas el nombre vacío pero pones marca y referencia, el sistema busca automáticamente en Icecat y completa nombre/descripción/especificaciones por ti). Columnas opcionales: precio_anterior, etiqueta, stock, descripcion, especificaciones.
-      Las fotos se agregan después, una por una, en cada producto.
+      Sube el archivo Excel (.xlsx) o CSV con tus productos. Columnas obligatorias: <strong style="color:var(--text-body);">categoria, precio</strong> y nombre.
+      Para la ficha completa puedes incluir: marca, referencia, etiqueta, stock, descripcion, descripcion_secciones, especificaciones_agrupadas e info_marca.
+      Si usas la plantilla que ya viene llena, solo súbela tal cual.
     </p>
     <div class="csv-drop" id="csv-drop-zone">
       <div style="font-size:28px;">📄</div>
-      <p>Haz clic para elegir tu archivo .csv</p>
-      <input type="file" accept=".csv" id="csv-file-input" style="display:none;" />
+      <p>Haz clic para elegir tu archivo .xlsx o .csv</p>
+      <input type="file" accept=".csv,.xlsx,.xls" id="csv-file-input" style="display:none;" />
     </div>
     <div class="csv-summary" id="csv-summary"></div>
   </div>
@@ -943,6 +945,10 @@
     const div = document.createElement('div');
     div.textContent = str == null ? '' : String(str);
     return div.innerHTML;
+  }
+  function escapeHtmlForStore(str) {
+    return (str == null ? '' : String(str))
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
   function showError(msg) { authError.textContent = msg; authError.classList.add('show'); }
   function clearError() { authError.textContent = ''; authError.classList.remove('show'); }
@@ -2075,6 +2081,44 @@
           const oldPriceParsed = row.precio_anterior ? parseFloat(row.precio_anterior) : null;
           const stockParsed = row.stock ? parseInt(row.stock) : 10;
 
+          // ── Procesar contenido enriquecido del CSV ──
+          // descripcion_secciones: formato "Título 1 | Párrafo 1 || Título 2 | Párrafo 2"
+          let descriptionHtml = null;
+          const secRaw = (row.descripcion_secciones || '').trim();
+          if (secRaw) {
+            const parts = secRaw.split('||').map(s => s.trim()).filter(Boolean);
+            descriptionHtml = parts.map(part => {
+              const [titulo, cuerpo] = part.split('|').map(x => (x || '').trim());
+              let html = '';
+              if (titulo) html += `<p class="pd-section-title">${escapeHtmlForStore(titulo)}</p>`;
+              if (cuerpo) html += `<p>${escapeHtmlForStore(cuerpo)}</p>`;
+              return html;
+            }).join('');
+          } else if (description) {
+            descriptionHtml = `<p>${escapeHtmlForStore(description)}</p>`;
+          }
+
+          // especificaciones: formato "Grupo 1: Carac=Valor; Carac=Valor || Grupo 2: Carac=Valor"
+          let specsJson = null;
+          if (specs && (specs.includes('||') || (specs.includes(':') && specs.includes('=')))) {
+            try {
+              const grupos = specs.split('||').map(s => s.trim()).filter(Boolean);
+              const specsGroups = grupos.map(g => {
+                const idx = g.indexOf(':');
+                const groupName = idx > -1 ? g.slice(0, idx).trim() : 'Especificaciones';
+                const featsRaw = idx > -1 ? g.slice(idx + 1).trim() : g.trim();
+                const features = featsRaw.split(';').map(f => f.trim()).filter(Boolean).map(f => {
+                  const [n, v] = f.split('=').map(x => (x || '').trim());
+                  return { name: n, value: v || '' };
+                }).filter(f => f.name);
+                return { name: groupName, features };
+              }).filter(g => g.features.length);
+              if (specsGroups.length) specsJson = JSON.stringify(specsGroups);
+            } catch(e) { /* dejar specs como texto plano */ }
+          }
+
+          const brandInfo = (row.info_marca || '').trim() || null;
+
           const { error } = await sb.from('products').insert({
             name, category, price,
             old_price: (oldPriceParsed === null || isNaN(oldPriceParsed)) ? null : oldPriceParsed,
@@ -2084,6 +2128,9 @@
             stock: isNaN(stockParsed) ? 10 : stockParsed,
             description: description || null,
             specs: specs || null,
+            description_html: descriptionHtml,
+            specs_json: specsJson,
+            brand_info: brandInfo,
             images: []
           });
 
