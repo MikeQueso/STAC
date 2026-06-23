@@ -769,6 +769,45 @@
         Elige una categoría para explorar nuestro catálogo de componentes.
       </p>
     </div>
+
+    <!-- ── ACERCA DE NOSOTROS + SERVICIOS ───────────────────────── -->
+    <div id="about-section" style="max-width:760px; margin:0 auto 64px; text-align:center;">
+      <div class="section-eyebrow" style="display:inline-block; margin-bottom:14px; color:#005FFF;">// Quiénes somos</div>
+      <p style="font-size:15.5px; color:#324A66; line-height:1.75;">
+        STAC es una empresa especializada en tecnología que combina <strong style="color:#0C1E3A;">servicios profesionales de soporte técnico</strong> con una <strong style="color:#0C1E3A;">tienda en línea de componentes y accesorios de PC</strong>. Acompañamos a nuestros clientes en todo el ciclo de vida de su equipo: desde el ensamblado e instalación, hasta el mantenimiento, la actualización y la compra de las piezas que necesitan, siempre con asesoría experta y garantía de calidad.
+      </p>
+    </div>
+
+    <div id="services-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; max-width:980px; margin:0 auto 64px;">
+      <div class="service-card" data-service="1" style="background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:14px; padding:28px 24px; text-align:left; display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(12,30,58,0.06);">
+        <div style="font-size:30px; margin-bottom:14px;">🛠️</div>
+        <h3 style="font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:#0C1E3A; margin-bottom:10px;">Próximamente</h3>
+        <p style="font-size:13.5px; color:#5A7090; line-height:1.6; flex:1;">Estamos preparando la información de este servicio.</p>
+        <button type="button" class="service-readmore" data-service="1" style="margin-top:16px; background:none; border:none; color:#005FFF; font-size:13px; font-weight:600; cursor:pointer; text-align:left; padding:0; font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
+      </div>
+
+      <div class="service-card" data-service="2" style="background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:14px; padding:28px 24px; text-align:left; display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(12,30,58,0.06);">
+        <div style="font-size:30px; margin-bottom:14px;">🌐</div>
+        <h3 style="font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:#0C1E3A; margin-bottom:10px;">Creación de sitios publicitarios en un entorno web</h3>
+        <p style="font-size:13.5px; color:#5A7090; line-height:1.6; flex:1;">Diseñamos y desarrollamos páginas web a la medida para promocionar tu negocio.</p>
+        <button type="button" class="service-readmore" data-service="2" style="margin-top:16px; background:none; border:none; color:#005FFF; font-size:13px; font-weight:600; cursor:pointer; text-align:left; padding:0; font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
+      </div>
+
+      <div class="service-card" data-service="3" style="background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:14px; padding:28px 24px; text-align:left; display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(12,30,58,0.06);">
+        <div style="font-size:30px; margin-bottom:14px;">🛠️</div>
+        <h3 style="font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:#0C1E3A; margin-bottom:10px;">Próximamente</h3>
+        <p style="font-size:13.5px; color:#5A7090; line-height:1.6; flex:1;">Estamos preparando la información de este servicio.</p>
+        <button type="button" class="service-readmore" data-service="3" style="margin-top:16px; background:none; border:none; color:#005FFF; font-size:13px; font-weight:600; cursor:pointer; text-align:left; padding:0; font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
+      </div>
+    </div>
+
+    <div id="service-detail" class="hidden" style="max-width:760px; margin:0 auto 64px; background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:16px; padding:36px 32px; text-align:left; box-shadow:0 12px 36px rgba(12,30,58,0.08);">
+      <div id="service-detail-icon" style="font-size:38px; margin-bottom:16px;"></div>
+      <h3 id="service-detail-title" style="font-family:'Rajdhani',sans-serif; font-size:24px; font-weight:700; color:#0C1E3A; margin-bottom:14px;"></h3>
+      <p id="service-detail-body" style="font-size:14.5px; color:#324A66; line-height:1.8; white-space:pre-line;"></p>
+      <button type="button" id="service-detail-close" style="margin-top:24px; background:#0C1E3A; color:#fff; border:none; padding:10px 22px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Cerrar</button>
+    </div>
+
     <div id="home-cat-grid" class="home-cat-grid"></div>
   </div>
 </section>
@@ -1291,6 +1330,46 @@
   }
 
   document.getElementById('back-to-home-btn').addEventListener('click', showHome);
+
+  /* ───────── SERVICIOS (acerca de nosotros) ───────── */
+  const SERVICES = {
+    1: {
+      icon: '🛠️',
+      title: 'Próximamente',
+      body: 'Estamos preparando la información de este servicio. Vuelve más adelante para conocer todos los detalles.'
+    },
+    2: {
+      icon: '🌐',
+      title: 'Creación de sitios publicitarios en un entorno web',
+      body: 'Diseñamos y desarrollamos páginas web a la medida para promocionar tu negocio o tus productos, con un diseño profesional, rápido y adaptado a cualquier dispositivo.\n\nNos encargamos de todo el proceso: desde la planeación y el diseño visual, hasta la programación, la integración de catálogos, formularios de contacto y todo lo necesario para que tu presencia en línea sea efectiva.\n\nIdeal para negocios que buscan dar a conocer sus servicios o productos, atraer más clientes y tener una imagen sólida en internet. Contáctanos para cotizar tu proyecto.'
+    },
+    3: {
+      icon: '🛠️',
+      title: 'Próximamente',
+      body: 'Estamos preparando la información de este servicio. Vuelve más adelante para conocer todos los detalles.'
+    }
+  };
+
+  const servicesGrid = document.getElementById('services-grid');
+  const serviceDetail = document.getElementById('service-detail');
+
+  document.querySelectorAll('.service-readmore').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-service');
+      const data = SERVICES[id];
+      if (!data) return;
+      document.getElementById('service-detail-icon').textContent = data.icon;
+      document.getElementById('service-detail-title').textContent = data.title;
+      document.getElementById('service-detail-body').textContent = data.body;
+      servicesGrid.style.display = 'none';
+      serviceDetail.classList.remove('hidden');
+    });
+  });
+
+  document.getElementById('service-detail-close').addEventListener('click', () => {
+    serviceDetail.classList.add('hidden');
+    servicesGrid.style.display = 'grid';
+  });
 
   /* ───────── CARGAR PRODUCTOS ───────── */
   async function loadProducts(reset = true) {
