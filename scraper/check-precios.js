@@ -96,15 +96,32 @@ function pickBestMatch(productName, items) {
   return best;
 }
 
+// Acorta el nombre a lo distintivo (marca + modelo + capacidad) quitando
+// palabras genéricas que hacen que el buscador no encuentre nada. El
+// comparador (pickBestMatch) sigue validando contra el nombre completo.
+const GENERIC = new Set([
+  'ssd', 'sata', 'nvme', 'hdd', 'm.2', 'm2', 'modular', 'plus', 'gold', 'bronze',
+  'platinum', 'white', '80+', 'para', 'con', 'de', 'la', 'el', 'set', '(set)',
+  'toner', 'tóner', 'cartucho', 'tinta', 'original'
+]);
+function searchQuery(name) {
+  const kept = name.split(/\s+/).filter((w) => {
+    const c = w.toLowerCase().replace(/[.,()]/g, '');
+    return c && !GENERIC.has(c);
+  });
+  const q = kept.join(' ').trim();
+  return q.length >= 3 ? q : name;
+}
+
 // ─── DD TECH (ddtech.mx · resultados por JS → requiere navegador) ───────────
 async function searchDDTech(page, productName) {
-  const url = `https://ddtech.mx/buscar/${encodeURIComponent(productName).replace(/%20/g, '+')}`;
+  const url = `https://ddtech.mx/buscar/${encodeURIComponent(searchQuery(productName)).replace(/%20/g, '+')}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
   await page.waitForSelector('a[href*="/producto/"]', { timeout: 8000 }).catch(() => {});
   await page.waitForTimeout(2000);
 
   return await page.$$eval('[class*="product"], .producto, article', (nodes) =>
-    nodes.slice(0, 10).map((n) => ({
+    nodes.slice(0, 14).map((n) => ({
       title: (n.querySelector('[class*="name"], [class*="title"], h2, h3, a')?.textContent || '').trim(),
       price: (n.querySelector('[class*="price"], [class*="precio"]')?.textContent || '').trim(),
       url: n.querySelector('a')?.href || ''
@@ -115,13 +132,13 @@ async function searchDDTech(page, productName) {
 // ─── ABASTEO (abasteo.mx · misma plataforma OXID que Cyberpuerta, precios
 //     públicos · resultados por JS → requiere navegador) ────────────────────
 async function searchAbasteo(page, productName) {
-  const url = `https://www.abasteo.mx/index.php?cl=search&searchparam=${encodeURIComponent(productName)}`;
+  const url = `https://www.abasteo.mx/index.php?cl=search&searchparam=${encodeURIComponent(searchQuery(productName))}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
   await page.waitForSelector('.c-product-card', { timeout: 8000 }).catch(() => {});
   await page.waitForTimeout(800);
 
   return await page.$$eval('.c-product-card', (nodes) =>
-    nodes.slice(0, 10).map((n) => ({
+    nodes.slice(0, 14).map((n) => ({
       title: (n.querySelector('.c-product-pic__product-img')?.getAttribute('alt') || '').trim(),
       price: (n.querySelector('.c-product-price__price')?.textContent || '').trim(),
       url: n.querySelector('.c-product-pic__link')?.href || ''
