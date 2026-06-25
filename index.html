@@ -2653,7 +2653,7 @@
         </div>
         <table class="admin-table">
           <thead><tr>
-            <th>Producto</th><th>Tu precio</th><th>Abasteo</th><th>DD Tech</th><th>Más bajo</th><th>Margen estimado</th>
+            <th>Producto</th><th>Tu precio</th><th>Abasteo</th><th>DD Tech</th><th>Mejor precio · Dónde</th><th>Margen estimado</th>
           </tr></thead>
           <tbody>
             ${(allProducts || []).map(prod => {
@@ -2667,16 +2667,21 @@
                 return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
               });
 
-              const validPrices = found.map(f => Number(f.precio)).filter(n => n > 0);
-              const lowest = validPrices.length ? Math.min(...validPrices) : null;
+              let lowestF = null;
+              found.forEach(f => { const p = Number(f.precio); if (p > 0 && (!lowestF || p < Number(lowestF.precio))) lowestF = f; });
+              const lowest = lowestF ? Number(lowestF.precio) : null;
               const margen = lowest ? (((Number(prod.price) - lowest) / lowest) * 100) : null;
+
+              const mejorCelda = lowestF
+                ? `${lowestF.url ? `<a href="${escapeHtml(lowestF.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${lowest.toLocaleString('es-MX')}</a>` : `$${lowest.toLocaleString('es-MX')}`} <span style="color:var(--text-dim);">· ${escapeHtml(lowestF.proveedor)}</span>`
+                : '<span style="color:var(--text-dim);">— sin referencia</span>';
 
               return `
                 <tr>
                   <td>${escapeHtml(prod.name)}</td>
                   <td>$${Number(prod.price).toLocaleString('es-MX')}</td>
                   ${cells.join('')}
-                  <td>${lowest ? `$${lowest.toLocaleString('es-MX')}` : '—'}</td>
+                  <td>${mejorCelda}</td>
                   <td style="color:${margen === null ? 'var(--text-dim)' : margen >= 0 ? 'var(--accent-green)' : '#FF7070'};">
                     ${margen === null ? '—' : `${margen.toFixed(1)}%`}
                   </td>
@@ -2690,7 +2695,7 @@
           'Producto', 'Categoria', 'Tu precio',
           'Abasteo', 'Abasteo - encontrado como', 'Abasteo - url',
           'DD Tech', 'DD Tech - encontrado como', 'DD Tech - url',
-          'Mas bajo', 'Margen estimado %'
+          'Mas bajo', 'Donde (mas bajo)', 'Margen estimado %'
         ];
         const csvCell = (v) => {
           const s = (v === null || v === undefined) ? '' : String(v);
@@ -2702,8 +2707,9 @@
           const found = porProducto[prod.id] || [];
           const byProv = {};
           found.forEach(f => byProv[f.proveedor] = f);
-          const validPrices = found.map(f => Number(f.precio)).filter(n => n > 0);
-          const lowest = validPrices.length ? Math.min(...validPrices) : null;
+          let lowestF = null;
+          found.forEach(f => { const p = Number(f.precio); if (p > 0 && (!lowestF || p < Number(lowestF.precio))) lowestF = f; });
+          const lowest = lowestF ? Number(lowestF.precio) : null;
           const margen = lowest ? (((Number(prod.price) - lowest) / lowest) * 100).toFixed(1) : '';
 
           const prov = (name) => {
@@ -2715,7 +2721,7 @@
             prod.name, prod.category, Number(prod.price),
             ...prov('Abasteo'),
             ...prov('DD Tech'),
-            lowest !== null ? lowest : '', margen
+            lowest !== null ? lowest : '', lowestF ? lowestF.proveedor : '', margen
           ];
           lines.push(row.map(csvCell).join(','));
         });

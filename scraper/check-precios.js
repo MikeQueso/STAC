@@ -59,17 +59,37 @@ function pickBestMatch(productName, items) {
   const wantedSet = new Set(wanted);
   const VARIANT_QUALIFIERS = ['ti', 'super'];
 
+  // Marca: primera palabra del producto (normalizada sin signos). Si es muy
+  // corta (MSI, AMD, be...), se concatena la segunda para mayor precisión.
+  const words = productName.split(/\s+/);
+  let brand = (words[0] || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (brand.length <= 3 && words[1]) brand += words[1].toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  // Capacidades (16GB, 1TB…) que el resultado DEBE tener para no confundir
+  // 16GB con 8GB, 1TB con 500GB, etc.
+  const caps = wanted.filter((w) => /^\d+(gb|tb)$/.test(w));
+
+  // El producto no es un kit de mantenimiento ni RAM de laptop, salvo que su
+  // propio nombre lo diga.
+  const prodHasBadKind = /mantenim|so-?dimm/i.test(productName);
+
   let best = null;
   let bestScore = 1;
   for (const item of items) {
     const price = parsePrice(item.price);
     if (price === null || price <= 0) continue;
     const title = item.title || '';
-    if (!productIsBuild && /comput|laptop|combo|bundle/i.test(title)) continue;
-    const tokSet = new Set(tokenize(title));
-    if (keyModel && !tokSet.has(keyModel)) continue;
-    if (VARIANT_QUALIFIERS.some((q) => tokSet.has(q) && !wantedSet.has(q))) continue;
     const titleStr = title.toLowerCase();
+    const titleNorm = titleStr.replace(/[^a-z0-9]/g, '');
+    const tokSet = new Set(tokenize(title));
+
+    if (!productIsBuild && /comput|laptop|combo|bundle/i.test(title)) continue;
+    if (!prodHasBadKind && /mantenim|so-?dimm/i.test(title)) continue;
+    if (brand && !titleNorm.includes(brand)) continue;       // misma marca
+    if (caps.some((c) => !tokSet.has(c))) continue;           // misma capacidad
+    if (keyModel && !tokSet.has(keyModel)) continue;          // mismo modelo
+    if (VARIANT_QUALIFIERS.some((q) => tokSet.has(q) && !wantedSet.has(q))) continue;
+
     const score = wantedSig.filter((w) => titleStr.includes(w)).length;
     if (score > bestScore) { bestScore = score; best = { ...item, price }; }
   }
