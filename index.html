@@ -1713,10 +1713,14 @@
   // Carga una imagen (local o remota) y la regresa como dataURL para el PDF.
   // Si el servidor remoto no permite CORS, regresa null y se omite esa imagen.
   const _imgCache = {};
-  function loadImageData(url) {
+  // keepAlpha=true → PNG con transparencia (para el logo, que se mezcle con la
+  // banda). keepAlpha=false → rellena fondo blanco y exporta JPEG (fotos de
+  // producto, para que ninguna transparencia salga como caja negra).
+  function loadImageData(url, keepAlpha) {
+    const key = (keepAlpha ? 'a:' : 'j:') + url;
     return new Promise((resolve) => {
       if (!url) return resolve(null);
-      if (url in _imgCache) return resolve(_imgCache[url]);
+      if (key in _imgCache) return resolve(_imgCache[key]);
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = () => {
@@ -1724,16 +1728,20 @@
         try {
           const c = document.createElement('canvas');
           c.width = img.naturalWidth; c.height = img.naturalHeight;
-          c.getContext('2d').drawImage(img, 0, 0);
-          out = { dataURL: c.toDataURL('image/jpeg', 0.85), w: img.naturalWidth, h: img.naturalHeight };
+          const ctx = c.getContext('2d');
+          if (!keepAlpha) { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, c.width, c.height); }
+          ctx.drawImage(img, 0, 0);
+          out = keepAlpha
+            ? { dataURL: c.toDataURL('image/png'), fmt: 'PNG', w: img.naturalWidth, h: img.naturalHeight }
+            : { dataURL: c.toDataURL('image/jpeg', 0.85), fmt: 'JPEG', w: img.naturalWidth, h: img.naturalHeight };
         } catch (e) { out = null; }
-        _imgCache[url] = out; resolve(out);
+        _imgCache[key] = out; resolve(out);
       };
-      img.onerror = () => { _imgCache[url] = null; resolve(null); };
+      img.onerror = () => { _imgCache[key] = null; resolve(null); };
       img.src = url;
     });
   }
-  function getStacLogo() { return loadImageData('stac-logo-horizontal.png'); }
+  function getStacLogo() { return loadImageData('stac-logo-horizontal.png', true); }
 
   function specsToGroups(p) {
     if (p.specs_json) {
