@@ -121,10 +121,10 @@ async function searchCyberpuerta(productName) {
 async function searchDDTech(page, productName) {
   const url = `https://ddtech.mx/buscar/${encodeURIComponent(productName).replace(/%20/g, '+')}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  // Espera a que aparezcan los productos (rápido) + margen para que el JS
-  // termine de pintar los resultados reales de la búsqueda.
-  await page.waitForSelector('[class*="product"], .producto, article', { timeout: 6000 }).catch(() => {});
-  await page.waitForTimeout(1000);
+  // Espera a los enlaces de producto reales y da margen al JS para pintar
+  // todos los resultados de la búsqueda (más confiable que un selector genérico).
+  await page.waitForSelector('a[href*="/producto/"]', { timeout: 8000 }).catch(() => {});
+  await page.waitForTimeout(2000);
 
   return await page.$$eval('[class*="product"], .producto, article', (nodes) =>
     nodes.slice(0, 10).map((n) => ({
@@ -217,7 +217,7 @@ async function run() {
     const context = await browser.newContext({ userAgent: UA });
 
     if (hasDDTech) {
-      const CONC = 3;
+      const CONC = 4;
       const pages = await Promise.all(Array.from({ length: CONC }, () => context.newPage()));
       let i = 0;
       await Promise.all(pages.map(async (page) => {
