@@ -188,7 +188,7 @@ async function run() {
   let conCyber = 0, conAbasteo = 0, conDD = 0;
 
   // ── Cyberpuerta (HTTP directo, en paralelo) ──
-  await mapPool(products, 8, async (product) => {
+  await mapPool(products, 4, async (product) => {
     try {
       const { items } = await searchCyberpuerta(product.name);
       const match = pickBestMatch(product.name, items);
@@ -211,7 +211,7 @@ async function run() {
     const context = await browser.newContext({ userAgent: UA });
 
     if (hasDDTech) {
-      const CONC = 5;
+      const CONC = 3;
       const pages = await Promise.all(Array.from({ length: CONC }, () => context.newPage()));
       let i = 0;
       await Promise.all(pages.map(async (page) => {
