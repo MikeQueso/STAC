@@ -957,6 +957,7 @@
       <button class="admin-tab active" data-tab="users">Usuarios registrados</button>
       <button class="admin-tab" data-tab="views">Actividad reciente</button>
       <button class="admin-tab" data-tab="images">Enriquecer productos con Icecat</button>
+      <button class="admin-tab" data-tab="precios">Precios de proveedores</button>
     </div>
     <div class="admin-body" id="admin-body"></div>
   </div>
@@ -2624,6 +2625,62 @@
         document.getElementById('bulkimg-start-btn').addEventListener('click', () => runBulkImageFetch(pendingEnrich));
       }
       document.getElementById('bulkai-start-btn').addEventListener('click', () => runBulkAIEnrich(pendingEnrich));
+    } else if (tab === 'precios') {
+      const { data: allProducts, error: prodErr } = await sb.from('products')
+        .select('id,name,category,price').order('category').order('name');
+      if (prodErr) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(prodErr.message)}</p>`; return; }
+
+      const { data: precios, error: precioErr } = await sb.from('precios_abasto')
+        .select('product_id,proveedor,precio,url,actualizado_at');
+      if (precioErr) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(precioErr.message)}</p>`; return; }
+
+      const porProducto = {};
+      (precios || []).forEach(p => {
+        if (!porProducto[p.product_id]) porProducto[p.product_id] = [];
+        porProducto[p.product_id].push(p);
+      });
+
+      const ultimaActualizacion = (precios || []).reduce((max, p) =>
+        !max || new Date(p.actualizado_at) > new Date(max) ? p.actualizado_at : max, null);
+
+      body.innerHTML = `
+        <p style="font-size:12.5px; color:var(--text-dim); margin-bottom:12px;">
+          Precio más bajo encontrado en cada proveedor (no se actualiza solo tu precio de venta).
+          ${ultimaActualizacion ? `Última revisión: ${new Date(ultimaActualizacion).toLocaleString('es-MX')}.` : 'Todavía no hay datos — el robot corre una vez al día.'}
+        </p>
+        <table class="admin-table">
+          <thead><tr>
+            <th>Producto</th><th>Tu precio</th><th>Cyberpuerta</th><th>Abasteo</th><th>DD Tech</th><th>Más bajo</th><th>Margen estimado</th>
+          </tr></thead>
+          <tbody>
+            ${(allProducts || []).map(prod => {
+              const found = porProducto[prod.id] || [];
+              const byProv = {};
+              found.forEach(f => byProv[f.proveedor] = f);
+
+              const cells = ['Cyberpuerta', 'Abasteo', 'DD Tech'].map(prov => {
+                const f = byProv[prov];
+                if (!f) return '<td style="color:var(--text-dim);">—</td>';
+                return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
+              });
+
+              const validPrices = found.map(f => Number(f.precio)).filter(n => n > 0);
+              const lowest = validPrices.length ? Math.min(...validPrices) : null;
+              const margen = lowest ? (((Number(prod.price) - lowest) / lowest) * 100) : null;
+
+              return `
+                <tr>
+                  <td>${escapeHtml(prod.name)}</td>
+                  <td>$${Number(prod.price).toLocaleString('es-MX')}</td>
+                  ${cells.join('')}
+                  <td>${lowest ? `$${lowest.toLocaleString('es-MX')}` : '—'}</td>
+                  <td style="color:${margen === null ? 'var(--text-dim)' : margen >= 0 ? 'var(--accent-green)' : '#FF7070'};">
+                    ${margen === null ? '—' : `${margen.toFixed(1)}%`}
+                  </td>
+                </tr>`;
+            }).join('')}
+          </tbody>
+        </table>`;
     }
   }
 

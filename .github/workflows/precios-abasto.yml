@@ -1,0 +1,35 @@
+name: Revisión diaria de precios de proveedores
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 7:00 AM hora de México (UTC-6)
+  workflow_dispatch:        # permite correrlo manualmente desde GitHub
+
+jobs:
+  check-precios:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scraper
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Instalar navegador de Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Revisar precios
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          ABASTEO_USER: ${{ secrets.ABASTEO_USER }}
+          ABASTEO_PASS: ${{ secrets.ABASTEO_PASS }}
+          DDTECH_USER: ${{ secrets.DDTECH_USER }}
+          DDTECH_PASS: ${{ secrets.DDTECH_PASS }}
+        run: npm start

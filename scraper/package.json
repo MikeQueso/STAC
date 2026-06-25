@@ -1,0 +1,13 @@
+{
+  "name": "stac-precios-abasto",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node check-precios.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "playwright": "^1.47.0"
+  }
+}
