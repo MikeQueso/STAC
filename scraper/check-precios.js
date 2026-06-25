@@ -35,6 +35,18 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
 
 const sb = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
+// Ejecuta `fn` sobre `items` con como máximo `concurrency` tareas a la vez.
+async function mapPool(items, concurrency, fn) {
+  let i = 0;
+  async function worker() {
+    while (i < items.length) {
+      const idx = i++;
+      await fn(items[idx], idx);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
+}
+
 // Precio: toma el número MÁS BAJO de un texto (maneja "normal + oferta" pegados).
 function parsePrice(text) {
   if (!text) return null;
