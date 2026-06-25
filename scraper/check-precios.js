@@ -92,40 +92,19 @@ async function searchDDTech(page, productName) {
   ).catch(() => []);
 }
 
-// ─── ABASTEO (abasteo.mx · Knockout/jQuery · login en modal "Acceso a cuenta") ──
-// El login es un modal, no una página. Estos selectores se afinan con el DOM
-// real capturado por DEBUG_DUMP.
-async function loginAbasteo(page) {
-  await page.goto('https://www.abasteo.mx/', { waitUntil: 'domcontentloaded', timeout: 30000 });
-  await page.waitForTimeout(2500);
-  // Abrir el modal de login
-  for (const sel of ['text=Acceso a cuenta', 'text=Iniciar sesión', 'a[href*="login"]', 'button:has-text("cuenta")']) {
-    const el = await page.$(sel).catch(() => null);
-    if (el) { await el.click().catch(() => {}); break; }
-  }
-  await page.waitForTimeout(1500);
-  await page.fill('input[type="email"], input[name="email"], input[name="correo"]', ABASTEO_USER).catch(() => {});
-  await page.fill('input[type="password"], input[name="password"], input[name="contrasena"]', ABASTEO_PASS).catch(() => {});
-  for (const sel of ['button[type="submit"]', 'text=Iniciar sesión', 'text=Entrar', 'text=Acceder']) {
-    const el = await page.$(sel).catch(() => null);
-    if (el) { await el.click().catch(() => {}); break; }
-  }
-  await page.waitForTimeout(3000);
-}
-
+// ─── ABASTEO (abasteo.mx · misma plataforma OXID que Cyberpuerta, precios
+//     públicos · resultados por JS → requiere navegador) ────────────────────
 async function searchAbasteo(page, productName) {
-  // Búsqueda vía la caja "¿Qué necesita su empresa?" (selector se afina con DEBUG_DUMP)
-  const box = await page.$('input[type="search"], input[name="q"], input[placeholder*="necesita"], input[placeholder*="Buscar"]').catch(() => null);
-  if (box) {
-    await box.fill(productName).catch(() => {});
-    await box.press('Enter').catch(() => {});
-    await page.waitForTimeout(3000);
-  }
-  return await page.$$eval('[class*="product"], [class*="producto"], .item', (nodes) =>
+  const url = `https://www.abasteo.mx/index.php?cl=search&searchparam=${encodeURIComponent(productName)}`;
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForSelector('.c-product-card', { timeout: 8000 }).catch(() => {});
+  await page.waitForTimeout(800);
+
+  return await page.$$eval('.c-product-card', (nodes) =>
     nodes.slice(0, 10).map((n) => ({
-      title: (n.querySelector('[class*="name"], [class*="title"], [class*="nombre"], h2, h3, a')?.textContent || '').trim(),
-      price: (n.querySelector('[class*="price"], [class*="precio"]')?.textContent || '').trim(),
-      url: n.querySelector('a')?.href || ''
+      title: (n.querySelector('.c-product-pic__product-img')?.getAttribute('alt') || '').trim(),
+      price: (n.querySelector('.c-product-price__price')?.textContent || '').trim(),
+      url: n.querySelector('.c-product-pic__link')?.href || ''
     }))
   ).catch(() => []);
 }
@@ -138,7 +117,7 @@ async function run() {
   }
   console.log(`Catálogo: ${products.length} productos.`);
 
-  const hasAbasteo = ABASTEO_ENABLED && ABASTEO_USER && ABASTEO_PASS;
+  const hasAbasteo = ABASTEO_ENABLED; // precios públicos, no requiere login
   const hasDDTech = DDTECH_USER && DDTECH_PASS;
   const t0 = Date.now();
 
@@ -153,21 +132,8 @@ async function run() {
       catch (e) { console.error('dump ddtech:', e.message); }
     }
 
-    // Abasteo: captura home renderizado (para ver botón de login + caja de búsqueda)
-    if (ABASTEO_USER && ABASTEO_PASS) {
-      try {
-        await page.goto('https://www.abasteo.mx/', { waitUntil: 'domcontentloaded', timeout: 30000 });
-        await page.waitForTimeout(3000);
-        fs.writeFileSync('debug-abasteo-home.html', await page.content());
-        console.log('debug-abasteo-home.html guardado');
-        await loginAbasteo(page);
-        fs.writeFileSync('debug-abasteo-postlogin.html', await page.content());
-        console.log('debug-abasteo-postlogin.html guardado');
-        await searchAbasteo(page, sample);
-        fs.writeFileSync('debug-abasteo-search.html', await page.content());
-        console.log('debug-abasteo-search.html guardado');
-      } catch (e) { console.error('dump abasteo:', e.message); }
-    }
+    try { await searchAbasteo(page, sample); fs.writeFileSync('debug-abasteo-search.html', await page.content()); console.log('debug-abasteo-search.html guardado'); }
+    catch (e) { console.error('dump abasteo:', e.message); }
 
     await browser.close();
     console.log('Modo DEBUG_DUMP: solo se guardaron los HTML, no se escribió en Supabase.');
@@ -205,24 +171,28 @@ async function run() {
     console.log(`DD Tech: ${conDD}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
   }
 
-  // ── Abasteo (1 sesión con login) ──
+  // ── Abasteo (4 pestañas en paralelo, precios públicos) ──
   if (hasAbasteo) {
-    const page = await context.newPage();
-    try { await loginAbasteo(page); } catch (e) { console.error('Login Abasteo:', e.message); }
-    for (const product of products) {
-      try {
-        const items = await searchAbasteo(page, product.name);
-        const match = pickBestMatch(product.name, items);
-        if (match) {
-          conAbasteo++;
-          rows.push({
-            product_id: product.id, proveedor: 'Abasteo', precio: match.price,
-            url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
-          });
-        }
-      } catch (e) { console.error(`Abasteo "${product.name}":`, e.message); }
-    }
-    await page.close();
+    const CONC = 4;
+    const pages = await Promise.all(Array.from({ length: CONC }, () => context.newPage()));
+    let i = 0;
+    await Promise.all(pages.map(async (page) => {
+      while (i < products.length) {
+        const product = products[i++];
+        try {
+          const items = await searchAbasteo(page, product.name);
+          const match = pickBestMatch(product.name, items);
+          if (match) {
+            conAbasteo++;
+            rows.push({
+              product_id: product.id, proveedor: 'Abasteo', precio: match.price,
+              url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
+            });
+          }
+        } catch (e) { console.error(`Abasteo "${product.name}":`, e.message); }
+      }
+    }));
+    await Promise.all(pages.map((p) => p.close()));
     console.log(`Abasteo: ${conAbasteo}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
   }
 
