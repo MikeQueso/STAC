@@ -2631,7 +2631,7 @@
       if (prodErr) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(prodErr.message)}</p>`; return; }
 
       const { data: precios, error: precioErr } = await sb.from('precios_abasto')
-        .select('product_id,proveedor,precio,url,actualizado_at');
+        .select('product_id,proveedor,precio,url,encontrado_como,actualizado_at');
       if (precioErr) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(precioErr.message)}</p>`; return; }
 
       const porProducto = {};
@@ -2644,10 +2644,13 @@
         !max || new Date(p.actualizado_at) > new Date(max) ? p.actualizado_at : max, null);
 
       body.innerHTML = `
-        <p style="font-size:12.5px; color:var(--text-dim); margin-bottom:12px;">
-          Precio más bajo encontrado en cada proveedor (no se actualiza solo tu precio de venta).
-          ${ultimaActualizacion ? `Última revisión: ${new Date(ultimaActualizacion).toLocaleString('es-MX')}.` : 'Todavía no hay datos — el robot corre una vez al día.'}
-        </p>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap;">
+          <p style="font-size:12.5px; color:var(--text-dim); margin:0; flex:1; min-width:220px;">
+            Precio más bajo encontrado en cada proveedor (no se actualiza solo tu precio de venta).
+            ${ultimaActualizacion ? `Última revisión: ${new Date(ultimaActualizacion).toLocaleString('es-MX')}.` : 'Todavía no hay datos — el robot corre una vez al día.'}
+          </p>
+          <button type="button" id="precios-csv-btn" class="btn-admin-panel" style="white-space:nowrap;">⬇️ Descargar CSV</button>
+        </div>
         <table class="admin-table">
           <thead><tr>
             <th>Producto</th><th>Tu precio</th><th>Cyberpuerta</th><th>Abasteo</th><th>DD Tech</th><th>Más bajo</th><th>Margen estimado</th>
@@ -2681,6 +2684,55 @@
             }).join('')}
           </tbody>
         </table>`;
+
+      document.getElementById('precios-csv-btn').addEventListener('click', () => {
+        const headers = [
+          'Producto', 'Categoria', 'Tu precio',
+          'Cyberpuerta', 'Cyberpuerta - encontrado como', 'Cyberpuerta - url',
+          'Abasteo', 'Abasteo - encontrado como', 'Abasteo - url',
+          'DD Tech', 'DD Tech - encontrado como', 'DD Tech - url',
+          'Mas bajo', 'Margen estimado %'
+        ];
+        const csvCell = (v) => {
+          const s = (v === null || v === undefined) ? '' : String(v);
+          return '"' + s.replace(/"/g, '""') + '"';
+        };
+        const lines = [headers.map(csvCell).join(',')];
+
+        (allProducts || []).forEach(prod => {
+          const found = porProducto[prod.id] || [];
+          const byProv = {};
+          found.forEach(f => byProv[f.proveedor] = f);
+          const validPrices = found.map(f => Number(f.precio)).filter(n => n > 0);
+          const lowest = validPrices.length ? Math.min(...validPrices) : null;
+          const margen = lowest ? (((Number(prod.price) - lowest) / lowest) * 100).toFixed(1) : '';
+
+          const prov = (name) => {
+            const f = byProv[name];
+            return [f ? Number(f.precio) : '', f ? (f.encontrado_como || '') : '', f ? (f.url || '') : ''];
+          };
+
+          const row = [
+            prod.name, prod.category, Number(prod.price),
+            ...prov('Cyberpuerta'),
+            ...prov('Abasteo'),
+            ...prov('DD Tech'),
+            lowest !== null ? lowest : '', margen
+          ];
+          lines.push(row.map(csvCell).join(','));
+        });
+
+        // BOM para que Excel respete los acentos
+        const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `precios-proveedores-${new Date().toISOString().slice(0,10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
     }
   }
 
