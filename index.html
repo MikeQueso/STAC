@@ -2653,7 +2653,7 @@
         </div>
         <table class="admin-table">
           <thead><tr>
-            <th>Producto</th><th>Tu precio</th><th>Cyberpuerta</th><th>Abasteo</th><th>DD Tech</th><th>Más bajo</th><th>Margen estimado</th>
+            <th>Producto</th><th>Tu precio</th><th>Abasteo</th><th>DD Tech</th><th>Más bajo</th><th>Margen estimado</th>
           </tr></thead>
           <tbody>
             ${(allProducts || []).map(prod => {
@@ -2661,7 +2661,7 @@
               const byProv = {};
               found.forEach(f => byProv[f.proveedor] = f);
 
-              const cells = ['Cyberpuerta', 'Abasteo', 'DD Tech'].map(prov => {
+              const cells = ['Abasteo', 'DD Tech'].map(prov => {
                 const f = byProv[prov];
                 if (!f) return '<td style="color:var(--text-dim);">—</td>';
                 return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
@@ -2688,7 +2688,6 @@
       document.getElementById('precios-csv-btn').addEventListener('click', () => {
         const headers = [
           'Producto', 'Categoria', 'Tu precio',
-          'Cyberpuerta', 'Cyberpuerta - encontrado como', 'Cyberpuerta - url',
           'Abasteo', 'Abasteo - encontrado como', 'Abasteo - url',
           'DD Tech', 'DD Tech - encontrado como', 'DD Tech - url',
           'Mas bajo', 'Margen estimado %'
@@ -2714,7 +2713,6 @@
 
           const row = [
             prod.name, prod.category, Number(prod.price),
-            ...prov('Cyberpuerta'),
             ...prov('Abasteo'),
             ...prov('DD Tech'),
             lowest !== null ? lowest : '', margen

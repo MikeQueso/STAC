@@ -38,6 +38,7 @@ jobs:
           DDTECH_USER: ${{ secrets.DDTECH_USER }}
           DDTECH_PASS: ${{ secrets.DDTECH_PASS }}
           DEBUG_DUMP: ${{ inputs.debug && '1' || '0' }}
+          ABASTEO_ENABLED: '0'
         run: npm start
 
       - name: Subir HTML de debug (si existe)
