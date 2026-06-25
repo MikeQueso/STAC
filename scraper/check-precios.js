@@ -91,7 +91,10 @@ function pickBestMatch(productName, items) {
     if (VARIANT_QUALIFIERS.some((q) => tokSet.has(q) && !wantedSet.has(q))) continue;
 
     const score = wantedSig.filter((w) => titleStr.includes(w)).length;
-    if (score > bestScore) { bestScore = score; best = { ...item, price }; }
+    // Mejor puntaje gana; en empate, el precio más bajo.
+    if (score > bestScore || (score === bestScore && best && price < best.price)) {
+      bestScore = score; best = { ...item, price };
+    }
   }
   return best;
 }
@@ -146,6 +149,24 @@ async function searchAbasteo(page, productName) {
   ).catch(() => []);
 }
 
+// ─── OFFICE DEPOT MX (officedepot.com.mx · precios en JSON-LD del HTML →
+//     HTTP directo, sin navegador) · útil para tintas/cartuchos ────────────
+async function searchOfficeDepot(productName) {
+  const url = `https://www.officedepot.com.mx/search?text=${encodeURIComponent(searchQuery(productName))}`;
+  const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'es-MX,es;q=0.9' } }).catch(() => null);
+  if (!res || !res.ok) return [];
+  const html = await res.text();
+  const items = [];
+  for (const blk of html.split('"@type": "Product"').slice(1)) {
+    const b = blk.slice(0, 1400);
+    const n = b.match(/"name":\s*"([^"]+)"/);
+    const p = b.match(/"price":\s*"?([0-9.]+)"?/);
+    const u = b.match(/"url":\s*"([^"]+)"/);
+    if (n && p) items.push({ title: n[1], price: p[1], url: u ? u[1].replace(':443', '') : '' });
+  }
+  return items;
+}
+
 async function run() {
   const { data: products, error } = await sb.from('products').select('id, name');
   if (error) {
@@ -178,7 +199,23 @@ async function run() {
   }
 
   const rows = [];
-  let conAbasteo = 0, conDD = 0;
+  let conAbasteo = 0, conDD = 0, conOD = 0;
+
+  // ── Office Depot (HTTP directo, en paralelo) · sobre todo tintas ──
+  await mapPool(products, 4, async (product) => {
+    try {
+      const items = await searchOfficeDepot(product.name);
+      const match = pickBestMatch(product.name, items);
+      if (match) {
+        conOD++;
+        rows.push({
+          product_id: product.id, proveedor: 'Office Depot', precio: match.price,
+          url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
+        });
+      }
+    } catch (e) { console.error(`Office Depot "${product.name}":`, e.message); }
+  });
+  console.log(`Office Depot: ${conOD}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
 
   const browser = await chromium.launch();
   const context = await browser.newContext({ userAgent: UA });
@@ -236,7 +273,7 @@ async function run() {
   await browser.close();
 
   // Borra lo viejo de los proveedores que sí corrieron e inserta lo nuevo.
-  const provasCorridos = [];
+  const provasCorridos = ['Office Depot'];
   if (hasDDTech) provasCorridos.push('DD Tech');
   if (hasAbasteo) provasCorridos.push('Abasteo');
 
