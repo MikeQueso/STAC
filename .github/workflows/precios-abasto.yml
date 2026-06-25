@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 13 * * *'   # 7:00 AM hora de México (UTC-6)
   workflow_dispatch:        # permite correrlo manualmente desde GitHub
+    inputs:
+      debug:
+        description: 'Modo debug: solo guarda el HTML de cada sitio (no escribe precios)'
+        type: boolean
+        default: false
 
 jobs:
   check-precios:
@@ -32,4 +37,13 @@ jobs:
           ABASTEO_PASS: ${{ secrets.ABASTEO_PASS }}
           DDTECH_USER: ${{ secrets.DDTECH_USER }}
           DDTECH_PASS: ${{ secrets.DDTECH_PASS }}
+          DEBUG_DUMP: ${{ inputs.debug && '1' || '0' }}
         run: npm start
+
+      - name: Subir HTML de debug (si existe)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-html
+          path: scraper/debug-*.html
+          if-no-files-found: ignore
