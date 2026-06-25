@@ -485,10 +485,10 @@
     /* ─── FICHA DE PRODUCTO (vista + edición) ──────────────── */
     .detail-card {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
-      max-width: 980px; width: 100%; max-height: 88vh; overflow-y: auto;
+      max-width: 1200px; width: 100%; max-height: 90vh; overflow-y: auto;
       position: relative; box-shadow: 0 30px 90px rgba(0,0,0,0.65);
     }
-    .detail-grid { display: grid; grid-template-columns: 380px 1fr; }
+    .detail-grid { display: grid; grid-template-columns: 460px 1fr; align-items: start; }
     .detail-gallery { padding: 32px; border-right: 1px solid var(--border); }
     .detail-main-img {
       width: 100%; aspect-ratio: 1/1; background: var(--bg-surface); border-radius: 14px;
@@ -1710,25 +1710,30 @@
   }
 
   /* ───────── FICHA TÉCNICA EN PDF (membrete STAC) ───────── */
-  let _stacLogoData = null;
-  function getStacLogo() {
+  // Carga una imagen (local o remota) y la regresa como dataURL para el PDF.
+  // Si el servidor remoto no permite CORS, regresa null y se omite esa imagen.
+  const _imgCache = {};
+  function loadImageData(url) {
     return new Promise((resolve) => {
-      if (_stacLogoData !== null) return resolve(_stacLogoData || null);
+      if (!url) return resolve(null);
+      if (url in _imgCache) return resolve(_imgCache[url]);
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = () => {
+        let out = null;
         try {
           const c = document.createElement('canvas');
           c.width = img.naturalWidth; c.height = img.naturalHeight;
           c.getContext('2d').drawImage(img, 0, 0);
-          _stacLogoData = { dataURL: c.toDataURL('image/png'), w: img.naturalWidth, h: img.naturalHeight };
-        } catch (e) { _stacLogoData = false; }
-        resolve(_stacLogoData || null);
+          out = { dataURL: c.toDataURL('image/jpeg', 0.85), w: img.naturalWidth, h: img.naturalHeight };
+        } catch (e) { out = null; }
+        _imgCache[url] = out; resolve(out);
       };
-      img.onerror = () => { _stacLogoData = false; resolve(null); };
-      img.src = 'stac-logo-horizontal.png';
+      img.onerror = () => { _imgCache[url] = null; resolve(null); };
+      img.src = url;
     });
   }
+  function getStacLogo() { return loadImageData('stac-logo-horizontal.png'); }
 
   function specsToGroups(p) {
     if (p.specs_json) {
@@ -1749,44 +1754,83 @@
     const btn = document.getElementById('detail-pdf-btn');
     const orig = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = '⏳ Generando PDF…'; }
+    // Abrir la pestaña YA (dentro del gesto del click) para que el navegador
+    // no la bloquee; luego le cargamos el PDF cuando esté listo.
+    const win = window.open('', '_blank');
     try {
       if (!window.jspdf || !window.jspdf.jsPDF) throw new Error('Librería PDF no cargada, recarga la página.');
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF('p', 'mm', 'a4');
       const pageW = doc.internal.pageSize.getWidth();
       const pageH = doc.internal.pageSize.getHeight();
-      const M = 15;
-      let y = M;
+      const M = 15, contentW = pageW - 2 * M;
 
-      // Membrete: logo STAC
+      // ── Membrete: banda con logo ──
+      doc.setFillColor(232, 241, 251); doc.rect(0, 0, pageW, 30, 'F');
       const logo = await getStacLogo();
       if (logo) {
-        const lw = 48, lh = lw * (logo.h / logo.w);
-        doc.addImage(logo.dataURL, 'PNG', M, y, lw, lh);
-        y += lh + 3;
+        const lw = 46, lh = lw * (logo.h / logo.w);
+        doc.addImage(logo.dataURL, 'PNG', M, (30 - lh) / 2, lw, lh);
       } else {
         doc.setFont('helvetica', 'bold'); doc.setFontSize(22); doc.setTextColor(0, 95, 255);
-        doc.text('STAC', M, y + 7); y += 13;
+        doc.text('STAC', M, 19);
       }
-      doc.setDrawColor(0, 95, 255); doc.setLineWidth(0.6); doc.line(M, y, pageW - M, y); y += 8;
+      let y = 40;
 
-      // Título del producto
-      doc.setTextColor(20, 20, 20); doc.setFont('helvetica', 'bold'); doc.setFontSize(15);
-      const titleLines = doc.splitTextToSize(p.name || '', pageW - 2 * M);
-      doc.text(titleLines, M, y); y += titleLines.length * 6.5 + 1;
-
-      // Meta (marca · ref · categoría)
-      const meta = [p.brand, p.ref ? ('REF: ' + p.ref) : '', p.category].filter(Boolean).join('   ·   ');
-      if (meta) {
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(115, 115, 115);
-        doc.text(meta, M, y); y += 6;
+      // ── Imagen del producto (izquierda) ──
+      const imgs = (p.images || []).slice(0, 5);
+      const main = imgs.length ? await loadImageData(imgs[0]) : null;
+      const boxX = M, boxY = y, boxW = 75, boxH = 75;
+      let leftBottom = boxY;
+      if (main) {
+        const ar = main.w / main.h;
+        let w = boxW, h = boxW / ar; if (h > boxH) { h = boxH; w = boxH * ar; }
+        doc.addImage(main.dataURL, 'JPEG', boxX + (boxW - w) / 2, boxY + (boxH - h) / 2, w, h);
+        leftBottom = boxY + boxH;
+        // Miniaturas
+        const thumbs = imgs.slice(1);
+        if (thumbs.length) {
+          let tx = boxX, ty = boxY + boxH + 3; const ts = 14;
+          for (const turl of thumbs) {
+            const t = await loadImageData(turl);
+            if (t) {
+              const tar = t.w / t.h; let tw = ts, th = ts / tar; if (th > ts) { th = ts; tw = ts * tar; }
+              doc.setDrawColor(225, 228, 232); doc.rect(tx, ty, ts, ts);
+              doc.addImage(t.dataURL, 'JPEG', tx + (ts - tw) / 2, ty + (ts - th) / 2, tw, th);
+              tx += ts + 3;
+            }
+          }
+          leftBottom = ty + ts;
+        }
       }
 
-      // Precio
+      // ── Info (derecha) ──
+      const rx = main ? boxX + boxW + 8 : M;
+      const rw = pageW - M - rx;
+      let ry = y;
+      doc.setTextColor(20, 20, 20); doc.setFont('helvetica', 'bold'); doc.setFontSize(14);
+      const titleLines = doc.splitTextToSize(p.name || '', rw);
+      doc.text(titleLines, rx, ry + 1); ry += titleLines.length * 6 + 2;
+      if (p.brand) { doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(90, 90, 90); doc.text(String(p.brand), rx, ry); ry += 5; }
+      if (p.ref) { doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(130, 130, 130); doc.text('SKU: ' + p.ref, rx, ry); ry += 6; }
       doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(0, 95, 255);
-      doc.text('$' + Number(p.price).toLocaleString('es-MX') + ' MXN', M, y); y += 8;
+      doc.text('$' + Number(p.price).toLocaleString('es-MX') + ' MXN', rx, ry); ry += 7;
 
-      // Descripción
+      const groups = specsToGroups(p);
+      const principales = [].concat(...groups.map(g => g.features || [])).slice(0, 6);
+      if (principales.length) {
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(10.5); doc.setTextColor(20, 20, 20);
+        doc.text('Principales características:', rx, ry); ry += 5;
+        doc.setFontSize(9); doc.setTextColor(60, 60, 60);
+        for (const f of principales) {
+          const line = '• ' + f.name + (f.value ? ': ' + f.value : '');
+          for (const ln of doc.splitTextToSize(line, rw)) { doc.text(ln, rx, ry); ry += 4.3; }
+        }
+      }
+
+      y = Math.max(leftBottom, ry) + 8;
+
+      // ── Descripción ──
       let descText = '';
       if (p.description_html) {
         const d = document.createElement('div'); d.innerHTML = p.description_html;
@@ -1794,18 +1838,18 @@
         descText = (d.textContent || '').replace(/\s+/g, ' ').trim();
       } else if (p.description) descText = p.description;
       if (descText) {
+        if (y > pageH - 30) { doc.addPage(); y = M; }
         doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(20, 20, 20);
         doc.text('Descripción', M, y); y += 5;
         doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(60, 60, 60);
-        for (const ln of doc.splitTextToSize(descText, pageW - 2 * M)) {
-          if (y > pageH - 20) { doc.addPage(); y = M; }
+        for (const ln of doc.splitTextToSize(descText, contentW)) {
+          if (y > pageH - 18) { doc.addPage(); y = M; }
           doc.text(ln, M, y); y += 4.6;
         }
         y += 3;
       }
 
-      // Especificaciones agrupadas
-      const groups = specsToGroups(p);
+      // ── Especificaciones ──
       if (groups.length) {
         if (y > pageH - 30) { doc.addPage(); y = M; }
         doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(20, 20, 20);
@@ -1813,21 +1857,20 @@
         let startY = y + 3;
         for (const g of groups) {
           doc.autoTable({
-            startY: startY,
-            margin: { left: M, right: M },
+            startY: startY, margin: { left: M, right: M },
             head: [[(g.name || '').toUpperCase(), '']],
             body: (g.features || []).map(f => [f.name || '', f.value || '']),
             theme: 'grid',
             headStyles: { fillColor: [0, 95, 255], textColor: 255, fontSize: 9, halign: 'left' },
             bodyStyles: { fontSize: 8.5, textColor: [40, 40, 40] },
-            columnStyles: { 0: { cellWidth: (pageW - 2 * M) * 0.5, textColor: [90, 90, 90] }, 1: { cellWidth: (pageW - 2 * M) * 0.5, fontStyle: 'bold' } },
+            columnStyles: { 0: { cellWidth: contentW * 0.5, textColor: [90, 90, 90] }, 1: { cellWidth: contentW * 0.5, fontStyle: 'bold' } },
             alternateRowStyles: { fillColor: [245, 247, 250] }
           });
           startY = doc.lastAutoTable.finalY + 4;
         }
       }
 
-      // Pie de página en todas las hojas
+      // ── Pie de página ──
       const total = doc.internal.getNumberOfPages();
       for (let i = 1; i <= total; i++) {
         doc.setPage(i);
@@ -1836,9 +1879,12 @@
         doc.text('PÁGINA ' + i + ' DE ' + total, pageW - M, pageH - 8, { align: 'right' });
       }
 
-      const safe = (p.name || 'producto').replace(/[^\w\-]+/g, '-').slice(0, 50);
-      doc.save('Ficha-' + safe + '.pdf');
+      // Abrir en la pestaña (sin descargar). Si fue bloqueada, descarga.
+      const url = doc.output('bloburl');
+      if (win) win.location.href = url;
+      else doc.save('Ficha-' + (p.name || 'producto').replace(/[^\w\-]+/g, '-').slice(0, 50) + '.pdf');
     } catch (e) {
+      if (win) win.close();
       alert('No se pudo generar el PDF: ' + e.message);
     } finally {
       if (btn) { btn.disabled = false; btn.textContent = orig; }
