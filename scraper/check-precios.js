@@ -74,6 +74,11 @@ function pickBestMatch(productName, items) {
   const keyModel = digitToks.sort((a, b) => b.length - a.length)[0] || null;
   const productIsBuild = /comput|laptop|combo|bundle|\bpc\b|\bkit\b/i.test(productName);
 
+  const wantedSet = new Set(wanted);
+  // Calificadores de variante superior: si el título los trae y el producto
+  // no, es otro modelo (p.ej. RTX 3060 vs 3060 Ti, RTX 4070 vs 4070 Super).
+  const VARIANT_QUALIFIERS = ['ti', 'super'];
+
   let best = null;
   let bestScore = 1; // exige al menos 2 palabras significativas en común
   for (const item of items) {
@@ -83,6 +88,7 @@ function pickBestMatch(productName, items) {
     if (!productIsBuild && /comput|laptop|combo|bundle/i.test(title)) continue;
     const tokSet = new Set(tokenize(title));
     if (keyModel && !tokSet.has(keyModel)) continue;
+    if (VARIANT_QUALIFIERS.some((q) => tokSet.has(q) && !wantedSet.has(q))) continue;
     const titleStr = title.toLowerCase();
     const score = wantedSig.filter((w) => titleStr.includes(w)).length;
     if (score > bestScore) { bestScore = score; best = { ...item, price }; }
@@ -257,12 +263,20 @@ async function run() {
     await browser.close();
   }
 
+  // Borra los precios viejos de los proveedores que sí corrieron e inserta
+  // solo lo encontrado ahora, para que nunca queden matches obsoletos
+  // (p.ej. un producto que dejó de coincidir o un match equivocado anterior).
+  const provasCorridos = ['Cyberpuerta'];
+  if (hasDDTech) provasCorridos.push('DD Tech');
+  if (hasAbasteo) provasCorridos.push('Abasteo');
+
+  const { error: delError } = await sb.from('precios_abasto').delete().in('proveedor', provasCorridos);
+  if (delError) console.error('Error borrando precios viejos:', delError.message);
+
   if (rows.length) {
-    const { error: upsertError } = await sb
-      .from('precios_abasto')
-      .upsert(rows, { onConflict: 'product_id,proveedor' });
-    if (upsertError) {
-      console.error('Error guardando en Supabase:', upsertError.message);
+    const { error: insError } = await sb.from('precios_abasto').insert(rows);
+    if (insError) {
+      console.error('Error guardando en Supabase:', insError.message);
       process.exit(1);
     }
     console.log(`Guardados ${rows.length} precios en total.`);
