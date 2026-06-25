@@ -23,6 +23,21 @@ const ABASTEO_PASS = process.env.ABASTEO_PASS;
 const DDTECH_USER = process.env.DDTECH_USER;
 const DDTECH_PASS = process.env.DDTECH_PASS;
 const DEBUG_DUMP = process.env.DEBUG_DUMP === '1';
+// Abasteo aún no tiene login implementado; se apaga para no perder tiempo.
+// Cuando esté listo, poner ABASTEO_ENABLED=1 en el workflow.
+const ABASTEO_ENABLED = process.env.ABASTEO_ENABLED === '1';
+
+// Ejecuta `fn` sobre `items` con como máximo `concurrency` tareas a la vez.
+async function mapPool(items, concurrency, fn) {
+  let i = 0;
+  async function worker() {
+    while (i < items.length) {
+      const idx = i++;
+      await fn(items[idx], idx);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
+}
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36';
 
@@ -100,7 +115,10 @@ async function searchCyberpuerta(productName) {
 async function searchDDTech(page, productName) {
   const url = `https://ddtech.mx/buscar/${encodeURIComponent(productName).replace(/%20/g, '+')}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  await page.waitForTimeout(2500);
+  // Espera a que aparezcan los productos (rápido) + margen para que el JS
+  // termine de pintar los resultados reales de la búsqueda.
+  await page.waitForSelector('[class*="product"], .producto, article', { timeout: 6000 }).catch(() => {});
+  await page.waitForTimeout(1000);
 
   return await page.$$eval('[class*="product"], .producto, article', (nodes) =>
     nodes.slice(0, 10).map((n) => ({
@@ -138,8 +156,9 @@ async function run() {
   }
   console.log(`Catálogo: ${products.length} productos.`);
 
-  const hasAbasteo = ABASTEO_USER && ABASTEO_PASS;
+  const hasAbasteo = ABASTEO_ENABLED && ABASTEO_USER && ABASTEO_PASS;
   const hasDDTech = DDTECH_USER && DDTECH_PASS;
+  const t0 = Date.now();
 
   // Modo debug: guarda el HTML real de una búsqueda de cada sitio.
   if (DEBUG_DUMP) {
@@ -168,8 +187,8 @@ async function run() {
   const rows = [];
   let conCyber = 0, conAbasteo = 0, conDD = 0;
 
-  // ── Cyberpuerta (HTTP directo) ──
-  for (const product of products) {
+  // ── Cyberpuerta (HTTP directo, en paralelo) ──
+  await mapPool(products, 8, async (product) => {
     try {
       const { items } = await searchCyberpuerta(product.name);
       const match = pickBestMatch(product.name, items);
@@ -183,31 +202,36 @@ async function run() {
     } catch (e) {
       console.error(`Cyberpuerta "${product.name}":`, e.message);
     }
-  }
-  console.log(`Cyberpuerta: ${conCyber}/${products.length} con precio.`);
+  });
+  console.log(`Cyberpuerta: ${conCyber}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
 
-  // ── DD Tech y Abasteo (con navegador) ──
+  // ── DD Tech y Abasteo (con navegador, varias pestañas en paralelo) ──
   if (hasDDTech || hasAbasteo) {
     const browser = await chromium.launch();
     const context = await browser.newContext({ userAgent: UA });
 
     if (hasDDTech) {
-      const page = await context.newPage();
-      for (const product of products) {
-        try {
-          const items = await searchDDTech(page, product.name);
-          const match = pickBestMatch(product.name, items);
-          if (match) {
-            conDD++;
-            rows.push({
-              product_id: product.id, proveedor: 'DD Tech', precio: match.price,
-              url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
-            });
-          }
-        } catch (e) { console.error(`DD Tech "${product.name}":`, e.message); }
-      }
-      await page.close();
-      console.log(`DD Tech: ${conDD}/${products.length} con precio.`);
+      const CONC = 5;
+      const pages = await Promise.all(Array.from({ length: CONC }, () => context.newPage()));
+      let i = 0;
+      await Promise.all(pages.map(async (page) => {
+        while (i < products.length) {
+          const product = products[i++];
+          try {
+            const items = await searchDDTech(page, product.name);
+            const match = pickBestMatch(product.name, items);
+            if (match) {
+              conDD++;
+              rows.push({
+                product_id: product.id, proveedor: 'DD Tech', precio: match.price,
+                url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
+              });
+            }
+          } catch (e) { console.error(`DD Tech "${product.name}":`, e.message); }
+        }
+      }));
+      await Promise.all(pages.map((p) => p.close()));
+      console.log(`DD Tech: ${conDD}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
     }
 
     if (hasAbasteo) {
