@@ -2797,53 +2797,49 @@
         .select('id,name,brand,category,images,description_html,specs_json,badge_images');
       if (error) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(error.message)}</p>`; return; }
       const pendingAll = (allProducts || []);
-      const pendingEnrich = pendingAll.filter(p =>
-        !p.description_html || !p.specs_json
-      );
+      // Cuenta cuántas características tiene la ficha actual de cada producto.
+      const countFeatures = (p) => {
+        let n = 0;
+        if (p.specs_json) {
+          try { const g = typeof p.specs_json === 'string' ? JSON.parse(p.specs_json) : p.specs_json; (g || []).forEach(grp => n += (grp.features || []).length); } catch (e) {}
+        }
+        return n;
+      };
+      // "Pobres" = sin ficha o con muy pocas specs (las que conviene mejorar con IA).
+      const poorFichas = pendingAll.filter(p => countFeatures(p) < 12);
 
       body.innerHTML = `
         <div style="margin-bottom:18px; padding:14px; background:var(--bg-surface); border-radius:10px; border:1px solid var(--border);">
-          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">🔍 Paso 1 — Buscar en Icecat</div>
+          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">🔍 Paso 1 — Icecat (datos exactos del fabricante)</div>
           <p style="font-size:12.5px; color:var(--text-body); margin-bottom:10px; line-height:1.6;">
-            Busca fotos, descripción y specs oficiales en el catálogo de Icecat. Funciona bien para marcas grandes (Intel, AMD, NVIDIA, Corsair, etc.). Los que no encuentre se agregan a la lista del Paso 2.
+            Trae fotos y especificaciones oficiales y exhaustivas. Es la fuente más confiable (la misma que usan Cyberpuerta/Abasteo). <strong style="color:var(--text-primary);">Re-procesar TODOS</strong> vuelve a consultar Icecat para todo el catálogo y sobrescribe con datos reales lo que encuentre.
           </p>
-          <button type="button" id="bulkimg-start-btn" class="auth-submit" ${pendingEnrich.length ? '' : 'disabled'}>
-            ${pendingEnrich.length ? `Enriquecer ${pendingEnrich.length} producto(s) con Icecat` : '✓ Ya procesados con Icecat'}
+          <button type="button" id="bulkicecat-all-btn" class="auth-submit">
+            🔍 Re-procesar TODOS con Icecat (${pendingAll.length})
           </button>
         </div>
 
         <div style="margin-bottom:18px; padding:14px; background:var(--bg-surface); border-radius:10px; border:1px solid rgba(0,229,176,0.2);">
-          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:var(--accent-green); margin-bottom:6px;">🤖 Paso 2 — Generar con IA (100% de cobertura)</div>
+          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:var(--accent-green); margin-bottom:6px;">🤖 Paso 2 — Mejorar fichas pobres con IA</div>
           <p style="font-size:12.5px; color:var(--text-body); margin-bottom:10px; line-height:1.6;">
-            Para los productos que Icecat no encontró (o para todos si quieres empezar aquí), la IA genera una descripción profesional con secciones, especificaciones técnicas agrupadas y sección del fabricante — funciona para <strong style="color:var(--text-primary);">cualquier</strong> componente de PC.
+            Genera fichas detalladas con IA <strong style="color:var(--text-primary);">solo</strong> para los productos que quedaron con pocos datos (los que Icecat no encontró). No toca las fichas buenas de Icecat. Hay <strong style="color:var(--text-primary);">${poorFichas.length}</strong> ficha(s) pobre(s).
           </p>
-          <button type="button" id="bulkai-start-btn" class="auth-submit" style="background:var(--accent-green); color:#04231a;">
-            🤖 Generar contenido con IA para ${pendingEnrich.length} producto(s)
-          </button>
-        </div>
-
-        <div style="margin-bottom:18px; padding:14px; background:var(--bg-surface); border-radius:10px; border:1px solid rgba(255,170,0,0.3);">
-          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:#ffaa33; margin-bottom:6px;">♻️ Regenerar TODO con IA (fichas detalladas)</div>
-          <p style="font-size:12.5px; color:var(--text-body); margin-bottom:10px; line-height:1.6;">
-            Vuelve a generar la ficha de <strong style="color:var(--text-primary);">los ${pendingAll.length} productos</strong>, incluso los que ya tienen una. Úsalo para actualizar a la versión detallada (más especificaciones). Tarda varios minutos y consume cuota de IA.
-          </p>
-          <button type="button" id="bulkai-all-btn" class="auth-submit" style="background:#ffaa33; color:#3a2600;">
-            ♻️ Regenerar los ${pendingAll.length} con IA detallada
+          <button type="button" id="bulkai-poor-btn" class="auth-submit" style="background:var(--accent-green); color:#04231a;" ${poorFichas.length ? '' : 'disabled'}>
+            ${poorFichas.length ? `🤖 Mejorar ${poorFichas.length} ficha(s) con IA` : '✓ Todas tienen buena ficha'}
           </button>
         </div>
 
         <div id="bulkimg-summary" style="font-size:12.5px; line-height:1.6;"></div>
       `;
 
-      if (pendingEnrich.length) {
-        document.getElementById('bulkimg-start-btn').addEventListener('click', () => runBulkImageFetch(pendingEnrich));
-      }
-      document.getElementById('bulkai-start-btn').addEventListener('click', () => runBulkAIEnrich(pendingEnrich));
-      document.getElementById('bulkai-all-btn').addEventListener('click', () => {
-        if (confirm('¿Regenerar la ficha de TODOS los productos con IA? Sobrescribe las fichas actuales y puede tardar varios minutos.')) {
-          runBulkAIEnrich(pendingAll);
+      document.getElementById('bulkicecat-all-btn').addEventListener('click', () => {
+        if (confirm('¿Re-procesar TODOS los productos con Icecat? Sobrescribe con datos oficiales lo que encuentre. Tarda varios minutos.')) {
+          runBulkImageFetch(pendingAll);
         }
       });
+      if (poorFichas.length) {
+        document.getElementById('bulkai-poor-btn').addEventListener('click', () => runBulkAIEnrich(poorFichas));
+      }
     } else if (tab === 'precios') {
       const { data: allProducts, error: prodErr } = await sb.from('products')
         .select('id,name,category,price').order('category').order('name');
@@ -2962,9 +2958,9 @@
   }
 
   async function runBulkAIEnrich(pending) {
-    const btn = document.getElementById('bulkai-start-btn');
+    const btn = document.getElementById('bulkai-poor-btn');
     const summary = document.getElementById('bulkimg-summary');
-    btn.disabled = true;
+    if (btn) btn.disabled = true;
 
     let done = 0, errors = 0;
     const errList = [];
@@ -3037,8 +3033,7 @@
       ${errors ? `<div class="err" style="margin-bottom:4px;">✕ ${errors} con error (puedes volver a darle al botón para reintentar los que falten)</div>
         <div style="font-size:11px; color:var(--text-dim); max-height:100px; overflow-y:auto;">${errList.slice(0,8).map(m => escapeHtml(m)).join('<br>')}</div>` : '<div style="color:var(--accent-green);">¡Todos completados! 🎉</div>'}
     `;
-    btn.disabled = false;
-    btn.textContent = '🤖 Generar de nuevo (reintentar faltantes)';
+    if (btn) { btn.disabled = false; btn.textContent = '🤖 Generar de nuevo (reintentar faltantes)'; }
     await loadProducts();
   }
 
@@ -3097,9 +3092,9 @@
   }
 
   async function runBulkImageFetch(pending) {
-    const btn = document.getElementById('bulkimg-start-btn');
+    const btn = document.getElementById('bulkicecat-all-btn');
     const summary = document.getElementById('bulkimg-summary');
-    btn.disabled = true;
+    if (btn) btn.disabled = true;
 
     let found = 0, notFound = 0;
     const notFoundList = [];
@@ -3161,7 +3156,7 @@
       <div style="color:var(--text-dim); margin-bottom:4px;">○ ${notFound} sin coincidencia en Icecat</div>
       ${notFoundList.length ? `<div style="font-size:11px; color:var(--text-dim); margin-top:8px; max-height:140px; overflow-y:auto; border-top:1px solid var(--border); padding-top:8px;">${notFoundList.map(n => escapeHtml(n)).join('<br>')}</div>` : ''}
     `;
-    btn.textContent = '✓ Listo';
+    if (btn) btn.textContent = '✓ Listo';
     await loadProducts();
   }
 
