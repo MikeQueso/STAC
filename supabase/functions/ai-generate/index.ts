@@ -31,34 +31,45 @@ serve(async (req) => {
 
     const { name, brand, category, price } = await req.json();
 
-    const prompt = `Eres un experto en componentes de PC. Genera contenido de producto profesional para una tienda online en México.
+    const prompt = `Eres un ingeniero de producto que redacta FICHAS TÉCNICAS EXHAUSTIVAS para una tienda de tecnología en México, al nivel de detalle de los catálogos mayoristas (Icecat / Cyberpuerta / Abasteo).
 
 Producto: ${name}
 Marca: ${brand || "N/A"}
 Categoría: ${category}
 Precio: $${price} MXN
 
-Responde ÚNICAMENTE con un objeto JSON válido con esta estructura exacta (sin markdown, sin bloques de código, sin texto adicional antes o después):
+Responde ÚNICAMENTE con un objeto JSON válido (sin markdown, sin bloques de código, sin texto antes o después) con esta estructura exacta:
 {
   "description": "Descripción corta de 1-2 líneas",
   "descriptionSections": [
-    {"title": "Título de sección", "body": "Párrafo del contenido"},
-    {"title": "Título de sección 2", "body": "Párrafo 2"},
-    {"title": "Casos de uso recomendados", "body": "Párrafo 3"}
+    {"title": "Título de sección", "body": "Párrafo"}
   ],
   "specsGroups": [
     {
-      "name": "Nombre del grupo (ej: Procesador, Memoria, Conectividad)",
+      "name": "Nombre del grupo",
       "features": [
-        {"name": "Característica", "value": "Valor"},
-        {"name": "Característica 2", "value": "Valor 2"}
+        {"name": "Característica", "value": "Valor"}
       ]
     }
   ],
-  "brandInfo": "Párrafo de 2-3 oraciones sobre la marca ${brand || ""} y su posición en el mercado de componentes de PC"
+  "brandInfo": "Párrafo de 2-3 oraciones sobre la marca ${brand || ""}"
 }
 
-Incluye mínimo 3 secciones de descripción y mínimo 2 grupos de specs con al menos 4 características cada uno. Usa datos técnicos reales y precisos del producto.`;
+REGLAS PARA specsGroups (LO MÁS IMPORTANTE — debe ser MUY detallado):
+- Genera una ficha extensa: entre 6 y 12 grupos y, en total, entre 30 y 70 características (pares nombre/valor), como las fichas de Icecat.
+- Agrupa en secciones técnicas reales y relevantes al tipo de producto. Guía según categoría:
+  • Procesador: Procesador, Rendimiento, Memoria compatible, Gráficos integrados, Control de energía, Características.
+  • Tarjeta de video: Procesador gráfico, Memoria, Puertos e interfaces, Rendimiento, Diseño y enfriamiento, Control de energía, Peso y dimensiones.
+  • Memoria RAM: Memoria, Rendimiento, Compatibilidad, Diseño.
+  • Almacenamiento (SSD/HDD): Capacidad, Rendimiento, Interfaz, Confiabilidad, Diseño físico.
+  • Placa madre: Socket y chipset, Memoria, Ranuras de expansión, Almacenamiento, Puertos traseros, Conectividad y red, Audio, Dimensiones.
+  • Gabinete / Fuente de poder / Refrigeración / Mouse / Audífonos / Impresora / Tinta: usa las secciones equivalentes propias de ese producto.
+- Usa SOLO datos técnicos reales y verificables del modelo EXACTO indicado. Si un dato no lo conoces con certeza, OMÍTELO (no inventes valores).
+- Valores concretos y específicos (ej.: "Frecuencia base":"3.5 GHz", "Socket":"AM5", "Versión HDMI":"2.1b", "TDP":"170 W").
+
+descriptionSections: mínimo 4 secciones (ej.: Rendimiento, Características, Conectividad, Casos de uso recomendados), cada una con un párrafo informativo.
+description: 1-2 líneas.
+brandInfo: 2-3 oraciones sobre ${brand || "la marca"}.`;
 
     // Modelo gratuito de Gemini
     const model = "gemini-2.0-flash";
@@ -75,8 +86,8 @@ Incluye mínimo 3 secciones de descripción y mínimo 2 grupos de specs con al m
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 2048,
+            temperature: 0.4,
+            maxOutputTokens: 8192,
             responseMimeType: "application/json",
           },
         }),
