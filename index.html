@@ -2822,6 +2822,16 @@
           </button>
         </div>
 
+        <div style="margin-bottom:18px; padding:14px; background:var(--bg-surface); border-radius:10px; border:1px solid rgba(255,170,0,0.3);">
+          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:#ffaa33; margin-bottom:6px;">♻️ Regenerar TODO con IA (fichas detalladas)</div>
+          <p style="font-size:12.5px; color:var(--text-body); margin-bottom:10px; line-height:1.6;">
+            Vuelve a generar la ficha de <strong style="color:var(--text-primary);">los ${pendingAll.length} productos</strong>, incluso los que ya tienen una. Úsalo para actualizar a la versión detallada (más especificaciones). Tarda varios minutos y consume cuota de IA.
+          </p>
+          <button type="button" id="bulkai-all-btn" class="auth-submit" style="background:#ffaa33; color:#3a2600;">
+            ♻️ Regenerar los ${pendingAll.length} con IA detallada
+          </button>
+        </div>
+
         <div id="bulkimg-summary" style="font-size:12.5px; line-height:1.6;"></div>
       `;
 
@@ -2829,6 +2839,11 @@
         document.getElementById('bulkimg-start-btn').addEventListener('click', () => runBulkImageFetch(pendingEnrich));
       }
       document.getElementById('bulkai-start-btn').addEventListener('click', () => runBulkAIEnrich(pendingEnrich));
+      document.getElementById('bulkai-all-btn').addEventListener('click', () => {
+        if (confirm('¿Regenerar la ficha de TODOS los productos con IA? Sobrescribe las fichas actuales y puede tardar varios minutos.')) {
+          runBulkAIEnrich(pendingAll);
+        }
+      });
     } else if (tab === 'precios') {
       const { data: allProducts, error: prodErr } = await sb.from('products')
         .select('id,name,category,price').order('category').order('name');
