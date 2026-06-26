@@ -2794,7 +2794,7 @@
         </table>`;
     } else if (tab === 'images') {
       const { data: allProducts, error } = await sb.from('products')
-        .select('id,name,brand,category,images,description_html,specs_json,badge_images');
+        .select('id,name,brand,category,ref,images,description_html,specs_json,badge_images');
       if (error) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(error.message)}</p>`; return; }
       const pendingAll = (allProducts || []);
       // Cuenta cuántas características tiene la ficha actual de cada producto.
@@ -3104,9 +3104,14 @@
       summary.innerHTML = `Procesando ${i + 1} de ${pending.length}: <strong style="color:var(--text-primary)">${escapeHtml(p.name)}</strong>...`;
 
       const vendor = (p.brand || '').trim();
-      let searchTerm = (p.name || '').trim();
-      if (vendor && searchTerm.toLowerCase().startsWith(vendor.toLowerCase())) {
-        searchTerm = searchTerm.slice(vendor.length).trim();
+      // Icecat funciona mucho mejor con el número de parte (MPN) que con el
+      // nombre descriptivo. Usamos el REF si existe; si no, el nombre sin la marca.
+      let searchTerm = (p.ref || '').trim();
+      if (!searchTerm) {
+        searchTerm = (p.name || '').trim();
+        if (vendor && searchTerm.toLowerCase().startsWith(vendor.toLowerCase())) {
+          searchTerm = searchTerm.slice(vendor.length).trim();
+        }
       }
 
       if (!vendor || !searchTerm) {

@@ -75,10 +75,11 @@ brandInfo: 2-3 oraciones sobre ${brand || "la marca"}.`;
     const model = "gemini-2.0-flash";
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-    // Reintento automático ante 429 (límite de tasa)
+    // Un reintento corto ante 429 (límite de tasa). Si la cuota está agotada
+    // (limit: 0), no tiene caso reintentar mucho: falla rápido.
     let geminiRes;
     let attempt = 0;
-    const maxAttempts = 4;
+    const maxAttempts = 2;
     while (attempt < maxAttempts) {
       geminiRes = await fetch(geminiUrl, {
         method: "POST",
@@ -95,7 +96,7 @@ brandInfo: 2-3 oraciones sobre ${brand || "la marca"}.`;
 
       if (geminiRes.status !== 429) break;
       attempt++;
-      await new Promise((r) => setTimeout(r, attempt * 5000));
+      if (attempt < maxAttempts) await new Promise((r) => setTimeout(r, 3000));
     }
 
     const data = await geminiRes.json();
