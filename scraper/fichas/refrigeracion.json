@@ -1,0 +1,456 @@
+{
+  "ARCTIC Freezer 36": {
+    "brandInfo": "ARCTIC es un fabricante suizo-alemán reconocido por su refrigeración silenciosa y excelente relación precio-rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de torre con dos ventiladores de 120 mm que ofrecen gran disipación a un precio accesible."},
+      {"title": "Silencioso", "body": "Ventiladores P-series optimizados para alto flujo de aire con bajo ruido."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel LGA 1700 y AMD AM4/AM5."},
+      {"title": "Casos de uso recomendados", "body": "Refrigeración de procesadores de gama media y media-alta por aire."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm"},
+        {"name": "Configuración", "value": "Torre simple, doble ventilador"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "ARCTIC Liquid Freezer II 240": {
+    "brandInfo": "ARCTIC es un fabricante suizo-alemán reconocido por su refrigeración silenciosa y excelente relación precio-rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO de radiador de 240 mm con altísima capacidad de disipación, líder en su categoría."},
+      {"title": "Ventilador VRM", "body": "Incluye un ventilador adicional que enfría el VRM de la placa madre, mejorando la estabilidad."},
+      {"title": "Compatibilidad", "body": "Compatible con la mayoría de sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Refrigeración de procesadores de gama alta y overclocking."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "240 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm"},
+        {"name": "Ventilador VRM", "value": "Sí"},
+        {"name": "Control", "value": "PWM"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "Cooler Master Hyper 212 Black Edition": {
+    "brandInfo": "Cooler Master es un fabricante taiwanés líder en refrigeración y gabinetes; el Hyper 212 es uno de los disipadores más vendidos de la historia.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de torre con ventilador de 120 mm y cuatro heatpipes de contacto directo, con acabado negro."},
+      {"title": "Silencioso", "body": "Ventilador optimizado para buen equilibrio entre flujo de aire y ruido."},
+      {"title": "Compatibilidad", "body": "Amplia compatibilidad con sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Refrigeración de procesadores de gama media por aire."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventilador", "value": "120 mm"},
+        {"name": "Heatpipes", "value": "4 (contacto directo)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Acabado", "value": "Negro"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Cooler Master Hyper 212 EVO V2": {
+    "brandInfo": "Cooler Master es un fabricante taiwanés líder en refrigeración y gabinetes; el Hyper 212 es un referente de los disipadores por aire.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de torre con ventilador de 120 mm y heatpipes de contacto directo, mejorado en su versión V2."},
+      {"title": "Silencioso", "body": "Ventilador con control PWM para un funcionamiento equilibrado."},
+      {"title": "Compatibilidad", "body": "Amplia compatibilidad con sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Refrigeración de procesadores de gama media por aire."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventilador", "value": "120 mm PWM"},
+        {"name": "Heatpipes", "value": "4 (contacto directo)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Cooler Master MasterLiquid 360 Atmos": {
+    "brandInfo": "Cooler Master es un fabricante taiwanés líder en refrigeración; MasterLiquid Atmos es su línea AIO premium.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 360 mm y tres ventiladores para máxima disipación."},
+      {"title": "Iluminación", "body": "Ventiladores y bomba con iluminación ARGB direccionable de gran efecto."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD de alto rendimiento."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama alta, overclocking y builds premium."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "360 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "3 x 120 mm"},
+        {"name": "Control", "value": "PWM"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (ARGB)"}
+      ]}
+    ]
+  },
+  "Cooler Master MasterLiquid ML240L V2": {
+    "brandInfo": "Cooler Master es un fabricante taiwanés líder en refrigeración; MasterLiquid es su línea AIO.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 240 mm y dos ventiladores para buena disipación."},
+      {"title": "Iluminación", "body": "Ventiladores y bomba con iluminación ARGB direccionable."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama media-alta y builds con estética RGB."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "240 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm"},
+        {"name": "Control", "value": "PWM"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (ARGB)"}
+      ]}
+    ]
+  },
+  "Corsair iCUE H100i Elite": {
+    "brandInfo": "Corsair es una marca líder en componentes gamer; la serie iCUE Elite es su línea AIO premium con iluminación avanzada.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 240 mm y ventiladores de alto rendimiento."},
+      {"title": "Iluminación", "body": "Bomba con iluminación RGB Capellix y control mediante el software iCUE."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD de alto rendimiento."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama alta, overclocking y builds premium."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "240 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm"},
+        {"name": "Control", "value": "PWM (iCUE)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (Capellix)"}
+      ]}
+    ]
+  },
+  "Corsair iCUE H150i Elite": {
+    "brandInfo": "Corsair es una marca líder en componentes gamer; la serie iCUE Elite es su línea AIO premium con iluminación avanzada.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 360 mm y tres ventiladores para máxima disipación."},
+      {"title": "Iluminación", "body": "Bomba con iluminación RGB Capellix y control mediante el software iCUE."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD de alto rendimiento."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama alta, overclocking y builds premium."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "360 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "3 x 120 mm"},
+        {"name": "Control", "value": "PWM (iCUE)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (Capellix)"}
+      ]}
+    ]
+  },
+  "Deepcool AK400": {
+    "brandInfo": "Deepcool es un fabricante de refrigeración y gabinetes con gran relación precio-rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de torre con ventilador de 120 mm y cuatro heatpipes, excelente rendimiento por precio."},
+      {"title": "Silencioso", "body": "Ventilador con control PWM optimizado para bajo ruido."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Refrigeración de procesadores de gama media por aire."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventilador", "value": "120 mm PWM"},
+        {"name": "Heatpipes", "value": "4"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "Deepcool AK620": {
+    "brandInfo": "Deepcool es un fabricante de refrigeración y gabinetes con gran relación precio-rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de doble torre con dos ventiladores de 120 mm y seis heatpipes, con gran capacidad de disipación que rivaliza con AIO de 240 mm."},
+      {"title": "Silencioso", "body": "Ventiladores con control PWM optimizados para bajo ruido."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama alta refrigerados por aire."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (doble torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm PWM"},
+        {"name": "Heatpipes", "value": "6"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "Deepcool LS520": {
+    "brandInfo": "Deepcool es un fabricante de refrigeración y gabinetes con gran relación precio-rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 240 mm y dos ventiladores de alto rendimiento."},
+      {"title": "Iluminación", "body": "Bomba y ventiladores con iluminación ARGB direccionable de gran efecto."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama media-alta y builds con estética RGB."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "240 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm"},
+        {"name": "Control", "value": "PWM"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (ARGB)"}
+      ]}
+    ]
+  },
+  "Deepcool LT720": {
+    "brandInfo": "Deepcool es un fabricante de refrigeración y gabinetes con gran relación precio-rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 360 mm y bomba de alto rendimiento de 4ª generación, para máxima disipación."},
+      {"title": "Iluminación", "body": "Bomba y ventiladores con iluminación ARGB direccionable."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD de alto rendimiento."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama alta, overclocking y builds premium."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "360 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "3 x 120 mm"},
+        {"name": "Control", "value": "PWM"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (ARGB)"}
+      ]}
+    ]
+  },
+  "ID-Cooling Auraflow X 240": {
+    "brandInfo": "ID-Cooling es un fabricante especializado en soluciones de refrigeración accesibles con iluminación RGB.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 240 mm y dos ventiladores para buena disipación a precio accesible."},
+      {"title": "Iluminación", "body": "Ventiladores y bomba con iluminación RGB de gran efecto."},
+      {"title": "Compatibilidad", "body": "Compatible con la mayoría de sockets Intel y AMD."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama media y builds con estética RGB económicos."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "240 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí"}
+      ]}
+    ]
+  },
+  "ID-Cooling SE-224-XT": {
+    "brandInfo": "ID-Cooling es un fabricante especializado en soluciones de refrigeración accesibles.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de torre con ventilador de 120 mm y cuatro heatpipes, excelente opción económica."},
+      {"title": "Silencioso", "body": "Ventilador con control PWM optimizado para bajo ruido."},
+      {"title": "Compatibilidad", "body": "Compatible con la mayoría de sockets Intel y AMD."},
+      {"title": "Casos de uso recomendados", "body": "Refrigeración de procesadores de gama media por aire."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventilador", "value": "120 mm PWM"},
+        {"name": "Heatpipes", "value": "4"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "Noctua NH-D15": {
+    "brandInfo": "Noctua es un fabricante austriaco legendario, considerado el referente mundial en disipadores por aire de máxima calidad y silencio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de doble torre con dos ventiladores de 140 mm, de los mejores del mundo, capaz de rivalizar con enfriamientos líquidos."},
+      {"title": "Silencioso", "body": "Ventiladores NF-A15 premium reconocidos por su excepcional equilibrio entre flujo de aire y silencio."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos, con sistema de montaje SecuFirm2."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama alta, estaciones de trabajo y entusiastas del silencio."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (doble torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 140 mm (NF-A15)"},
+        {"name": "Heatpipes", "value": "6"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No"},
+        {"name": "Garantía", "value": "6 años"}
+      ]}
+    ]
+  },
+  "Noctua NH-U12S": {
+    "brandInfo": "Noctua es un fabricante austriaco legendario, referente mundial en disipadores por aire de máxima calidad y silencio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de torre con ventilador de 120 mm NF-F12, compacto y de excelente rendimiento."},
+      {"title": "Silencioso", "body": "Diseño que prioriza el silencio y la compatibilidad con memorias RAM altas."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos, con montaje SecuFirm2."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama media-alta donde se valora silencio y compatibilidad."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventilador", "value": "120 mm (NF-F12)"},
+        {"name": "Heatpipes", "value": "5"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No"},
+        {"name": "Garantía", "value": "6 años"}
+      ]}
+    ]
+  },
+  "NZXT Kraken 240": {
+    "brandInfo": "NZXT es un fabricante estadounidense de gabinetes y refrigeración con diseño premium muy popular entre gamers.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 240 mm y dos ventiladores para buena disipación."},
+      {"title": "Diseño", "body": "Bomba con anillo de iluminación RGB y diseño elegante característico de NZXT."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos; control con software CAM."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama media-alta y builds con estética cuidada."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "240 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm"},
+        {"name": "Control", "value": "PWM (CAM)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí"}
+      ]}
+    ]
+  },
+  "NZXT Kraken X63": {
+    "brandInfo": "NZXT es un fabricante estadounidense de gabinetes y refrigeración con diseño premium muy popular entre gamers.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 280 mm y dos ventiladores de 140 mm para gran disipación."},
+      {"title": "Diseño", "body": "Bomba con anillo de iluminación RGB infinito giratorio, de gran efecto visual."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos; control con software CAM."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama alta y builds premium con estética cuidada."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "280 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 140 mm"},
+        {"name": "Control", "value": "PWM (CAM)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (anillo infinito)"}
+      ]}
+    ]
+  },
+  "Thermalright Frozen Notte 360": {
+    "brandInfo": "Thermalright es un fabricante reconocido por su refrigeración de alto rendimiento a precios muy competitivos.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Enfriamiento líquido AIO con radiador de 360 mm y tres ventiladores, con una capacidad de disipación excelente por su precio."},
+      {"title": "Iluminación", "body": "Ventiladores y bomba con iluminación ARGB direccionable de gran efecto."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama alta a precio accesible y builds con estética RGB."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Enfriamiento líquido (AIO)"},
+        {"name": "Tamaño del radiador", "value": "360 mm"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "3 x 120 mm"},
+        {"name": "Control", "value": "PWM"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (ARGB)"}
+      ]}
+    ]
+  },
+  "Thermalright Peerless Assassin 120 SE": {
+    "brandInfo": "Thermalright es un fabricante reconocido por su refrigeración de alto rendimiento a precios muy competitivos.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Disipador de aire de doble torre con dos ventiladores de 120 mm y seis heatpipes, famoso por ofrecer un rendimiento de gama alta a precio muy bajo."},
+      {"title": "Silencioso", "body": "Ventiladores con control PWM optimizados para bajo ruido."},
+      {"title": "Compatibilidad", "body": "Compatible con sockets Intel y AMD modernos."},
+      {"title": "Casos de uso recomendados", "body": "Procesadores de gama media-alta refrigerados por aire con gran valor."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Disipador por aire (doble torre)"},
+        {"name": "Sockets", "value": "Intel LGA 1700 / AMD AM4 / AM5"}
+      ]},
+      {"name": "Refrigeración", "features": [
+        {"name": "Ventiladores", "value": "2 x 120 mm PWM"},
+        {"name": "Heatpipes", "value": "6"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  }
+}
