@@ -1,0 +1,582 @@
+{
+  "ADATA XPG Gammix S70 1TB NVMe M.2": {
+    "brandInfo": "ADATA, a través de su línea gamer XPG, es un fabricante taiwanés reconocido por sus unidades de almacenamiento y memorias de alto rendimiento orientadas a entusiastas y jugadores.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 4.0 con controlador InnoGrit y NAND 3D TLC que alcanza hasta 7,400 MB/s de lectura y 5,500 MB/s de escritura, ideal para juegos, edición y cargas de trabajo intensivas."},
+      {"title": "Disipación térmica", "body": "Incluye un disipador de aluminio que mantiene temperaturas bajas durante transferencias sostenidas, evitando el throttling térmico en sesiones prolongadas."},
+      {"title": "Durabilidad", "body": "Soporta hasta 740 TBW de escritura total y cuenta con caché SLC dinámico y corrección de errores LDPC para mayor confiabilidad."},
+      {"title": "Casos de uso recomendados", "body": "Unidad principal para gaming de última generación, estaciones de trabajo, edición de video 4K y arranque rápido del sistema operativo."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 7,400 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 5,500 MB/s"},
+        {"name": "Caché", "value": "SLC dinámico + DRAM"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "3D NAND TLC"},
+        {"name": "Controlador", "value": "InnoGrit IG5236"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0 x4 (NVMe 1.4)"},
+        {"name": "Factor de forma", "value": "M.2 2280"},
+        {"name": "Disipador incluido", "value": "Sí, aluminio"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW (Terabytes escritos)", "value": "740 TBW"},
+        {"name": "MTBF", "value": "2,000,000 horas"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Crucial MX500 1TB SSD SATA": {
+    "brandInfo": "Crucial es la marca de consumo de Micron Technology, uno de los mayores fabricantes de memoria NAND y DRAM del mundo, lo que le permite ofrecer SSDs confiables con memoria propia.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD SATA de 2.5\" con NAND 3D TLC que alcanza 560 MB/s de lectura y 510 MB/s de escritura, una mejora enorme frente a un disco duro mecánico."},
+      {"title": "Confiabilidad", "body": "Incluye protección de datos contra cortes de energía, tecnología de actualización integrada y cifrado por hardware AES de 256 bits."},
+      {"title": "Compatibilidad", "body": "Formato estándar de 2.5\" y 7 mm compatible con prácticamente cualquier laptop o PC de escritorio con conector SATA."},
+      {"title": "Casos de uso recomendados", "body": "Actualizar laptops o PCs antiguos, unidad de arranque económica y almacenamiento secundario rápido."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 560 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 510 MB/s"},
+        {"name": "IOPS lectura aleatoria", "value": "Hasta 95,000"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "3D NAND TLC (Micron)"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "2.5\" (7 mm)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Cifrado por hardware", "value": "AES 256-bit"},
+        {"name": "Protección ante cortes de energía", "value": "Sí"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "360 TBW"},
+        {"name": "MTBF", "value": "1,800,000 horas"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Crucial P3 1TB NVMe M.2": {
+    "brandInfo": "Crucial es la marca de consumo de Micron Technology, fabricante directo de memoria NAND, lo que respalda la calidad y compatibilidad de sus unidades.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 3.0 que alcanza hasta 3,500 MB/s de lectura, una opción de gran capacidad a precio accesible."},
+      {"title": "Eficiencia", "body": "Diseño sin DRAM con caché dinámica que optimiza costo y consumo energético, ideal para uso general."},
+      {"title": "Compatibilidad", "body": "Formato M.2 2280 compatible con la mayoría de laptops y placas madre modernas con ranura PCIe 3.0 o superior."},
+      {"title": "Casos de uso recomendados", "body": "Almacenamiento masivo rápido, unidad de arranque para uso diario, ofimática y multimedia."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 3,500 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 3,000 MB/s"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "3D NAND QLC"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 3.0 x4 (NVMe)"},
+        {"name": "Factor de forma", "value": "M.2 2280"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "220 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Crucial P5 Plus 1TB NVMe M.2": {
+    "brandInfo": "Crucial (Micron) fabrica su propia memoria NAND, ofreciendo SSDs de alto rendimiento con excelente relación calidad-precio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 4.0 con NAND 3D TLC y DRAM dedicada que alcanza 6,600 MB/s de lectura y 5,000 MB/s de escritura."},
+      {"title": "Gaming", "body": "Compatible con tecnologías de carga directa para consolas y PC, reduciendo tiempos de carga en juegos modernos."},
+      {"title": "Seguridad", "body": "Cifrado por hardware AES de 256 bits y conjunto completo de funciones de integridad de datos."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento, edición de contenido y unidad principal de sistemas modernos."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 6,600 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 5,000 MB/s"},
+        {"name": "Caché", "value": "DRAM dedicada"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "3D NAND TLC (Micron 176 capas)"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0 x4 (NVMe)"},
+        {"name": "Factor de forma", "value": "M.2 2280"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Cifrado por hardware", "value": "AES 256-bit"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "600 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Kingston A400 480GB SSD SATA": {
+    "brandInfo": "Kingston Technology es el mayor fabricante independiente de productos de memoria del mundo, reconocido por su fiabilidad y amplia compatibilidad.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD SATA de 2.5\" que alcanza 500 MB/s de lectura y 450 MB/s de escritura, hasta 10 veces más rápido que un disco duro."},
+      {"title": "Confiabilidad", "body": "Sin partes móviles, es más resistente a golpes y vibraciones, además de ser más silencioso y eficiente."},
+      {"title": "Compatibilidad", "body": "Formato de 2.5\" ideal para revivir laptops y equipos de escritorio antiguos."},
+      {"title": "Casos de uso recomendados", "body": "Actualización económica de equipos, unidad de arranque básica y uso de oficina."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 500 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 450 MB/s"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "480 GB"},
+        {"name": "Tipo de memoria", "value": "3D NAND TLC"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "2.5\" (7 mm)"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "160 TBW"},
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  },
+  "Kingston KC3000 1TB NVMe M.2": {
+    "brandInfo": "Kingston Technology es líder mundial en memoria; su línea KC está orientada a alto rendimiento y uso profesional.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 4.0 con controlador Phison E18 y NAND 3D TLC que alcanza hasta 7,000 MB/s de lectura y 6,000 MB/s de escritura."},
+      {"title": "Disipación", "body": "Incluye un disipador gráfico de bajo perfil que ayuda a mantener el rendimiento térmico sin estorbar en la mayoría de instalaciones."},
+      {"title": "Profesional", "body": "Pensado para creadores de contenido y usuarios avanzados que mueven archivos grandes y exigen máxima velocidad."},
+      {"title": "Casos de uso recomendados", "body": "Edición de video 4K/8K, renderizado, gaming de élite y estaciones de trabajo."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 7,000 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 6,000 MB/s"},
+        {"name": "Controlador", "value": "Phison E18"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "3D NAND TLC"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0 x4 (NVMe)"},
+        {"name": "Factor de forma", "value": "M.2 2280"},
+        {"name": "Disipador incluido", "value": "Sí, bajo perfil"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "800 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Kingston NV2 1TB NVMe M.2": {
+    "brandInfo": "Kingston Technology es el mayor fabricante independiente de memoria del mundo; la línea NV ofrece NVMe accesible para el usuario general.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 4.0 que alcanza hasta 3,500 MB/s de lectura y 2,100 MB/s de escritura, un gran salto frente a SATA a precio accesible."},
+      {"title": "Eficiencia", "body": "Diseño compacto y de bajo consumo, ideal tanto para laptops como para equipos de escritorio."},
+      {"title": "Compatibilidad", "body": "Formato M.2 2280 compatible con la mayoría de placas madre y laptops modernas."},
+      {"title": "Casos de uso recomendados", "body": "Unidad de arranque rápida, uso diario, gaming de entrada y almacenamiento general."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 3,500 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 2,100 MB/s"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "3D NAND"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0 x4 (NVMe)"},
+        {"name": "Factor de forma", "value": "M.2 2280"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "320 TBW"},
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  },
+  "Samsung 870 EVO 1TB SSD SATA": {
+    "brandInfo": "Samsung es líder mundial en memoria NAND y fabrica todos los componentes clave de sus SSD, lo que se traduce en rendimiento y fiabilidad de referencia.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "El SSD SATA más vendido de Samsung, con memoria V-NAND y controlador propio que alcanza 560 MB/s de lectura y 530 MB/s de escritura, saturando la interfaz SATA."},
+      {"title": "Confiabilidad", "body": "Caché inteligente TurboWrite y memoria V-NAND de alta resistencia para un funcionamiento estable durante años."},
+      {"title": "Compatibilidad", "body": "Formato de 2.5\" universal, perfecto para actualizar laptops y equipos de escritorio."},
+      {"title": "Casos de uso recomendados", "body": "Unidad de arranque confiable, almacenamiento de trabajo y actualización de equipos."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 560 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 530 MB/s"},
+        {"name": "Caché", "value": "TurboWrite (SLC) + DRAM"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "Samsung V-NAND 3-bit MLC (TLC)"},
+        {"name": "Controlador", "value": "Samsung MKX"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "2.5\" (6.8 mm)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Cifrado por hardware", "value": "AES 256-bit"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "600 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Samsung 970 EVO Plus 500GB NVMe M.2": {
+    "brandInfo": "Samsung es líder mundial en memoria NAND y fabrica internamente controlador, memoria y firmware de sus SSD, lo que le da un rendimiento y fiabilidad de referencia.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 3.0 con memoria V-NAND y controlador Phoenix que alcanza 3,500 MB/s de lectura y 3,200 MB/s de escritura."},
+      {"title": "Eficiencia térmica", "body": "Cuenta con recubrimiento de disipación de calor y control térmico dinámico para mantener un rendimiento estable."},
+      {"title": "Confiabilidad", "body": "Memoria V-NAND de alta resistencia y caché TurboWrite inteligente para acelerar las escrituras."},
+      {"title": "Casos de uso recomendados", "body": "Unidad principal para gaming, edición, arranque rápido del sistema y multitarea exigente."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 3,500 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 3,200 MB/s"},
+        {"name": "Caché", "value": "TurboWrite inteligente"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "500 GB"},
+        {"name": "Tipo de memoria", "value": "Samsung V-NAND 3-bit MLC (TLC)"},
+        {"name": "Controlador", "value": "Samsung Phoenix"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 3.0 x4 (NVMe 1.3)"},
+        {"name": "Factor de forma", "value": "M.2 2280"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Cifrado por hardware", "value": "AES 256-bit"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "300 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Samsung 980 1TB NVMe M.2": {
+    "brandInfo": "Samsung es líder mundial en memoria NAND; fabrica internamente todos los componentes de sus SSD para garantizar máxima compatibilidad y fiabilidad.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 3.0 sin DRAM con tecnología HMB que alcanza 3,500 MB/s de lectura y 3,000 MB/s de escritura."},
+      {"title": "Eficiencia", "body": "El uso de Host Memory Buffer y caché TurboWrite ofrece un excelente rendimiento por precio sin sacrificar fiabilidad."},
+      {"title": "Compatibilidad", "body": "Formato M.2 2280 compatible con laptops y placas madre modernas."},
+      {"title": "Casos de uso recomendados", "body": "Unidad de arranque rápida, gaming, uso diario y multitarea."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 3,500 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 3,000 MB/s"},
+        {"name": "Caché", "value": "HMB + TurboWrite (sin DRAM)"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "Samsung V-NAND 3-bit MLC (TLC)"},
+        {"name": "Controlador", "value": "Samsung Pablo"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 3.0 x4 (NVMe 1.4)"},
+        {"name": "Factor de forma", "value": "M.2 2280"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "600 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Samsung 990 Pro 1TB NVMe M.2": {
+    "brandInfo": "Samsung es líder mundial en memoria NAND; su línea Pro representa el máximo rendimiento de su gama de SSD para entusiastas.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 4.0 tope de gama con memoria V-NAND y controlador Pascal que alcanza 7,450 MB/s de lectura y 6,900 MB/s de escritura."},
+      {"title": "Eficiencia energética", "body": "Optimizado para ofrecer máximo rendimiento por vatio, con control térmico inteligente y opción con disipador."},
+      {"title": "Gaming y creación", "body": "Excelente rendimiento aleatorio (hasta 1,400K IOPS) ideal para juegos con carga directa y flujos de trabajo profesionales."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de élite, edición 8K, renderizado y estaciones de trabajo de alto rendimiento."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 7,450 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 6,900 MB/s"},
+        {"name": "IOPS lectura aleatoria", "value": "Hasta 1,400,000"},
+        {"name": "Controlador", "value": "Samsung Pascal"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "Samsung V-NAND TLC"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0 x4 (NVMe 2.0)"},
+        {"name": "Factor de forma", "value": "M.2 2280"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Cifrado por hardware", "value": "AES 256-bit"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "600 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Seagate Barracuda 1TB HDD 7200RPM": {
+    "brandInfo": "Seagate es uno de los mayores fabricantes de discos duros del mundo; la línea Barracuda es su serie de propósito general más popular.",
+    "descriptionSections": [
+      {"title": "Capacidad y valor", "body": "Disco duro de 3.5\" con 1 TB de capacidad a 7200 RPM, ideal como almacenamiento masivo económico para archivos, juegos y respaldos."},
+      {"title": "Rendimiento", "body": "Velocidad de giro de 7200 RPM y caché que ofrecen tasas de transferencia sólidas para un disco mecánico."},
+      {"title": "Compatibilidad", "body": "Interfaz SATA de 6 Gb/s compatible con cualquier PC de escritorio moderno."},
+      {"title": "Casos de uso recomendados", "body": "Almacenamiento secundario, biblioteca de juegos, respaldos y archivos multimedia."}
+    ],
+    "specsGroups": [
+      {"name": "Capacidad", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo", "value": "Disco duro mecánico (HDD)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de rotación", "value": "7200 RPM"},
+        {"name": "Caché", "value": "64 MB"},
+        {"name": "Tasa de transferencia", "value": "Hasta 210 MB/s"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "3.5\""}
+      ]},
+      {"name": "Garantía", "features": [
+        {"name": "Garantía", "value": "2 años"}
+      ]}
+    ]
+  },
+  "Seagate Barracuda 2TB HDD 7200RPM": {
+    "brandInfo": "Seagate es uno de los mayores fabricantes de discos duros del mundo; la línea Barracuda es su serie de propósito general más popular.",
+    "descriptionSections": [
+      {"title": "Capacidad y valor", "body": "Disco duro de 3.5\" con 2 TB a 7200 RPM, gran capacidad de almacenamiento al mejor precio por gigabyte."},
+      {"title": "Rendimiento", "body": "7200 RPM y 256 MB de caché para transferencias rápidas y fluidas en un disco mecánico."},
+      {"title": "Compatibilidad", "body": "Interfaz SATA de 6 Gb/s para cualquier PC de escritorio."},
+      {"title": "Casos de uso recomendados", "body": "Almacenamiento masivo, biblioteca de juegos y multimedia, respaldos."}
+    ],
+    "specsGroups": [
+      {"name": "Capacidad", "features": [
+        {"name": "Capacidad", "value": "2 TB"},
+        {"name": "Tipo", "value": "Disco duro mecánico (HDD)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de rotación", "value": "7200 RPM"},
+        {"name": "Caché", "value": "256 MB"},
+        {"name": "Tasa de transferencia", "value": "Hasta 220 MB/s"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "3.5\""}
+      ]},
+      {"name": "Garantía", "features": [
+        {"name": "Garantía", "value": "2 años"}
+      ]}
+    ]
+  },
+  "Seagate IronWolf 4TB HDD NAS": {
+    "brandInfo": "Seagate es líder en almacenamiento; la línea IronWolf está diseñada específicamente para sistemas NAS con funcionamiento 24/7.",
+    "descriptionSections": [
+      {"title": "Diseñado para NAS", "body": "Disco duro de 3.5\" optimizado para operación continua 24/7 en sistemas NAS de hasta 8 bahías, con tecnología AgileArray para vibración y gestión de energía."},
+      {"title": "Confiabilidad", "body": "Tasa de carga de trabajo de 180 TB/año y monitoreo de salud IronWolf Health Management para máxima fiabilidad."},
+      {"title": "Capacidad", "body": "4 TB ideales para respaldos centralizados, servidores de archivos y entornos multiusuario."},
+      {"title": "Casos de uso recomendados", "body": "Servidores NAS domésticos y de oficina, respaldo continuo y almacenamiento compartido."}
+    ],
+    "specsGroups": [
+      {"name": "Capacidad", "features": [
+        {"name": "Capacidad", "value": "4 TB"},
+        {"name": "Tipo", "value": "Disco duro mecánico (HDD) para NAS"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de rotación", "value": "5400 RPM (clase)"},
+        {"name": "Caché", "value": "256 MB"},
+        {"name": "Tecnología de grabación", "value": "CMR"}
+      ]},
+      {"name": "Confiabilidad", "features": [
+        {"name": "Carga de trabajo anual", "value": "180 TB/año"},
+        {"name": "Operación", "value": "24/7"},
+        {"name": "MTBF", "value": "1,000,000 horas"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "3.5\""}
+      ]},
+      {"name": "Garantía", "features": [
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  },
+  "Toshiba P300 2TB HDD 7200RPM": {
+    "brandInfo": "Toshiba es un fabricante japonés con larga trayectoria en almacenamiento; la línea P300 es su serie de discos duros de escritorio de propósito general.",
+    "descriptionSections": [
+      {"title": "Capacidad y valor", "body": "Disco duro de 3.5\" con 2 TB a 7200 RPM, una opción confiable y económica para almacenamiento de escritorio."},
+      {"title": "Rendimiento", "body": "7200 RPM y 64 MB de caché que ofrecen buen desempeño para tareas cotidianas y almacenamiento masivo."},
+      {"title": "Compatibilidad", "body": "Interfaz SATA de 6 Gb/s compatible con cualquier PC de escritorio."},
+      {"title": "Casos de uso recomendados", "body": "Almacenamiento secundario, respaldos, biblioteca multimedia y de juegos."}
+    ],
+    "specsGroups": [
+      {"name": "Capacidad", "features": [
+        {"name": "Capacidad", "value": "2 TB"},
+        {"name": "Tipo", "value": "Disco duro mecánico (HDD)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de rotación", "value": "7200 RPM"},
+        {"name": "Caché", "value": "64 MB"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "3.5\""}
+      ]},
+      {"name": "Garantía", "features": [
+        {"name": "Garantía", "value": "2 años"}
+      ]}
+    ]
+  },
+  "WD Black SN770 1TB NVMe M.2": {
+    "brandInfo": "Western Digital es uno de los mayores fabricantes de almacenamiento del mundo; la línea WD_BLACK está orientada a gamers y alto rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 4.0 sin DRAM que alcanza 5,150 MB/s de lectura y 4,900 MB/s de escritura, con gran rendimiento para gaming."},
+      {"title": "Gaming", "body": "Optimizado con WD_BLACK Dashboard y modo Game Mode 2.0 para reducir latencias y mejorar la experiencia de juego."},
+      {"title": "Eficiencia", "body": "Arquitectura sin DRAM con HMB que ofrece excelente rendimiento por vatio en un formato compacto."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, unidad principal de alto rendimiento y creación de contenido."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 5,150 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 4,900 MB/s"},
+        {"name": "Caché", "value": "HMB (sin DRAM)"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo de memoria", "value": "3D NAND TLC"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0 x4 (NVMe)"},
+        {"name": "Factor de forma", "value": "M.2 2280"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "600 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "WD Blue 1TB HDD 7200RPM": {
+    "brandInfo": "Western Digital es uno de los mayores fabricantes de almacenamiento del mundo; la línea WD Blue es su serie confiable de propósito general.",
+    "descriptionSections": [
+      {"title": "Capacidad y valor", "body": "Disco duro de 3.5\" con 1 TB a 7200 RPM, una opción confiable para almacenamiento de escritorio cotidiano."},
+      {"title": "Rendimiento", "body": "7200 RPM con caché que ofrece buen desempeño para uso general y almacenamiento masivo."},
+      {"title": "Confiabilidad", "body": "WD Blue es reconocido por su fiabilidad probada para uso diario en hogar y oficina."},
+      {"title": "Casos de uso recomendados", "body": "Almacenamiento secundario, respaldos, archivos y multimedia."}
+    ],
+    "specsGroups": [
+      {"name": "Capacidad", "features": [
+        {"name": "Capacidad", "value": "1 TB"},
+        {"name": "Tipo", "value": "Disco duro mecánico (HDD)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de rotación", "value": "7200 RPM"},
+        {"name": "Caché", "value": "64 MB"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "3.5\""}
+      ]},
+      {"name": "Garantía", "features": [
+        {"name": "Garantía", "value": "2 años"}
+      ]}
+    ]
+  },
+  "WD Blue SN580 500GB NVMe M.2": {
+    "brandInfo": "Western Digital es uno de los mayores fabricantes de almacenamiento del mundo; la línea WD Blue ofrece soluciones confiables para uso general y creativo.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD NVMe PCIe 4.0 que alcanza hasta 4,000 MB/s de lectura, un gran rendimiento para uso diario y productividad."},
+      {"title": "Eficiencia", "body": "Tecnología nCache 4.0 y diseño de bajo consumo que optimiza rendimiento y duración de batería en laptops."},
+      {"title": "Compatibilidad", "body": "Formato M.2 2280 compatible con laptops y placas madre modernas con PCIe 4.0 (retrocompatible con 3.0)."},
+      {"title": "Casos de uso recomendados", "body": "Unidad de arranque, productividad, multitarea y creación de contenido ligera."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 4,000 MB/s"},
+        {"name": "Velocidad de escritura secuencial", "value": "Hasta 3,600 MB/s"},
+        {"name": "Caché", "value": "nCache 4.0 (HMB)"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "500 GB"},
+        {"name": "Tipo de memoria", "value": "3D NAND TLC"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0 x4 (NVMe)"},
+        {"name": "Factor de forma", "value": "M.2 2280"}
+      ]},
+      {"name": "Durabilidad y garantía", "features": [
+        {"name": "TBW", "value": "300 TBW"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "WD Green 480GB SSD SATA": {
+    "brandInfo": "Western Digital es uno de los mayores fabricantes de almacenamiento del mundo; la línea WD Green ofrece SSDs económicos y eficientes para uso básico.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "SSD SATA de 2.5\" que alcanza hasta 545 MB/s de lectura, un salto enorme frente a un disco duro mecánico."},
+      {"title": "Eficiencia", "body": "Diseño de bajo consumo energético, ideal para mejorar el rendimiento de equipos básicos."},
+      {"title": "Compatibilidad", "body": "Formato de 2.5\" compatible con laptops y PCs de escritorio con SATA."},
+      {"title": "Casos de uso recomendados", "body": "Actualización económica, unidad de arranque básica y uso de oficina."}
+    ],
+    "specsGroups": [
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de lectura secuencial", "value": "Hasta 545 MB/s"}
+      ]},
+      {"name": "Capacidad y memoria", "features": [
+        {"name": "Capacidad", "value": "480 GB"},
+        {"name": "Tipo de memoria", "value": "3D NAND TLC"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "2.5\" (7 mm)"}
+      ]},
+      {"name": "Garantía", "features": [
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  },
+  "WD Purple 2TB HDD Vigilancia": {
+    "brandInfo": "Western Digital es uno de los mayores fabricantes de almacenamiento del mundo; la línea WD Purple está diseñada específicamente para sistemas de videovigilancia.",
+    "descriptionSections": [
+      {"title": "Diseñado para vigilancia", "body": "Disco duro de 3.5\" optimizado para grabación continua 24/7 de cámaras de seguridad, con tecnología AllFrame que reduce la pérdida de cuadros."},
+      {"title": "Confiabilidad", "body": "Pensado para operar de forma ininterrumpida en grabadores DVR/NVR con múltiples cámaras simultáneas."},
+      {"title": "Capacidad", "body": "2 TB para almacenar semanas de grabación según la cantidad de cámaras y resolución."},
+      {"title": "Casos de uso recomendados", "body": "Sistemas de CCTV, grabadores DVR/NVR y videovigilancia doméstica o comercial."}
+    ],
+    "specsGroups": [
+      {"name": "Capacidad", "features": [
+        {"name": "Capacidad", "value": "2 TB"},
+        {"name": "Tipo", "value": "Disco duro mecánico (HDD) para videovigilancia"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Velocidad de rotación", "value": "5400 RPM (clase IntelliPower)"},
+        {"name": "Caché", "value": "64 MB"},
+        {"name": "Tecnología", "value": "AllFrame para vigilancia"}
+      ]},
+      {"name": "Confiabilidad", "features": [
+        {"name": "Operación", "value": "24/7"},
+        {"name": "Cámaras soportadas", "value": "Hasta 64"}
+      ]},
+      {"name": "Interfaz y formato", "features": [
+        {"name": "Interfaz", "value": "SATA III 6 Gb/s"},
+        {"name": "Factor de forma", "value": "3.5\""}
+      ]},
+      {"name": "Garantía", "features": [
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  }
+}
