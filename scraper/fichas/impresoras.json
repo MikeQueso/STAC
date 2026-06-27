@@ -1,0 +1,426 @@
+{
+  "Brother DCP-T420W": {
+    "brandInfo": "Brother es un fabricante japonés líder en impresión, reconocido por la fiabilidad y bajo costo por página de sus equipos.",
+    "descriptionSections": [
+      {"title": "Sistema de tinta continua", "body": "Multifuncional de tanque de tinta recargable con muy bajo costo por página, ideal para alto volumen."},
+      {"title": "Funciones", "body": "Imprime, copia y escanea a color desde un solo equipo."},
+      {"title": "Conectividad", "body": "Conexión Wi-Fi y USB para imprimir desde PC y dispositivos móviles."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina pequeña con alto volumen de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (tanque continuo)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Brother HL-L2350DW": {
+    "brandInfo": "Brother es un fabricante japonés líder en impresión, reconocido por la fiabilidad de sus equipos láser.",
+    "descriptionSections": [
+      {"title": "Impresión láser", "body": "Impresora láser monocromática rápida y de bajo costo por página, ideal para documentos."},
+      {"title": "Velocidad y dúplex", "body": "Imprime hasta 32 páginas por minuto con impresión a doble cara automática."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB para imprimir desde PC y dispositivos móviles."},
+      {"title": "Casos de uso recomendados", "body": "Oficina y hogar con alto volumen de impresión de texto en blanco y negro."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Láser monocromático"},
+        {"name": "Funciones", "value": "Solo impresión"},
+        {"name": "Color", "value": "No (blanco y negro)"}
+      ]},
+      {"name": "Impresión", "features": [
+        {"name": "Velocidad", "value": "Hasta 32 ppm"},
+        {"name": "Impresión a doble cara", "value": "Automática (dúplex)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Brother MFC-J1010DW": {
+    "brandInfo": "Brother es un fabricante japonés líder en impresión, reconocido por su fiabilidad.",
+    "descriptionSections": [
+      {"title": "Multifuncional compacto", "body": "Equipo de inyección de tinta compacto que imprime, copia y escanea a color."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB con impresión y escaneo desde dispositivos móviles."},
+      {"title": "Práctico", "body": "Diseño compacto ideal para espacios reducidos en casa u oficina."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina pequeña con volumen moderado de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (cartucho)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Canon imageCLASS LBP226dw": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen; la línea imageCLASS abarca sus equipos láser.",
+    "descriptionSections": [
+      {"title": "Impresión láser", "body": "Impresora láser monocromática de oficina rápida y eficiente para alto volumen."},
+      {"title": "Velocidad y dúplex", "body": "Imprime hasta 38 páginas por minuto con impresión a doble cara automática."},
+      {"title": "Conectividad", "body": "Wi-Fi, Ethernet y USB para integrarse fácilmente en redes de oficina."},
+      {"title": "Casos de uso recomendados", "body": "Oficinas con alto volumen de impresión de documentos en blanco y negro."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Láser monocromático"},
+        {"name": "Funciones", "value": "Solo impresión"},
+        {"name": "Color", "value": "No (blanco y negro)"}
+      ]},
+      {"name": "Impresión", "features": [
+        {"name": "Velocidad", "value": "Hasta 38 ppm"},
+        {"name": "Impresión a doble cara", "value": "Automática (dúplex)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, Ethernet, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Canon Maxify GX1020": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen; la línea Maxify MegaTank está orientada a oficinas con alto volumen.",
+    "descriptionSections": [
+      {"title": "Sistema de tinta continua", "body": "Impresora de tanque de tinta MegaTank con costo por página muy bajo y alto rendimiento para oficina."},
+      {"title": "Color profesional", "body": "Impresión a color de calidad para documentos de negocio."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB con soporte de impresión móvil y en la nube."},
+      {"title": "Casos de uso recomendados", "body": "Oficinas con muy alto volumen de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (MegaTank)"},
+        {"name": "Funciones", "value": "Solo impresión"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Canon Pixma G2160": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen; la línea Pixma G (MegaTank) ofrece tanque de tinta para el hogar.",
+    "descriptionSections": [
+      {"title": "Sistema de tinta continua", "body": "Multifuncional de tanque de tinta MegaTank con muy bajo costo por página."},
+      {"title": "Funciones", "body": "Imprime, copia y escanea a color desde un solo equipo."},
+      {"title": "Conectividad", "body": "Conexión USB confiable para impresión local."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina pequeña con alto volumen de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (MegaTank)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "USB"}
+      ]}
+    ]
+  },
+  "Canon Pixma MG3650S": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen; la línea Pixma MG es popular para el hogar.",
+    "descriptionSections": [
+      {"title": "Multifuncional", "body": "Equipo de inyección de tinta de cartucho que imprime, copia y escanea a color."},
+      {"title": "Conectividad", "body": "Wi-Fi para imprimir desde PC y dispositivos móviles."},
+      {"title": "Doble cara", "body": "Impresión a doble cara automática para ahorrar papel."},
+      {"title": "Casos de uso recomendados", "body": "Hogar con volumen moderado de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (cartucho)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Impresión", "features": [
+        {"name": "Impresión a doble cara", "value": "Automática (dúplex)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Canon Pixma TS3340": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen; la línea Pixma TS es compacta para el hogar.",
+    "descriptionSections": [
+      {"title": "Multifuncional compacto", "body": "Equipo de inyección de tinta de cartucho que imprime, copia y escanea a color."},
+      {"title": "Conectividad", "body": "Wi-Fi para imprimir desde PC y dispositivos móviles con la app Canon."},
+      {"title": "Compacto", "body": "Diseño pequeño ideal para espacios reducidos."},
+      {"title": "Casos de uso recomendados", "body": "Hogar con volumen ligero de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (cartucho)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Epson EcoTank ET-2850": {
+    "brandInfo": "Epson es un líder mundial en impresión; la línea EcoTank popularizó el tanque de tinta recargable.",
+    "descriptionSections": [
+      {"title": "Sistema de tinta continua", "body": "Multifuncional EcoTank de tanque recargable con costo por página muy bajo y botellas de gran rendimiento."},
+      {"title": "Funciones", "body": "Imprime, copia y escanea a color desde un solo equipo."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB con impresión desde dispositivos móviles."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina pequeña con alto volumen de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (EcoTank)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Epson EcoTank L3250": {
+    "brandInfo": "Epson es un líder mundial en impresión; la línea EcoTank popularizó el tanque de tinta recargable.",
+    "descriptionSections": [
+      {"title": "Sistema de tinta continua", "body": "Multifuncional EcoTank de tanque recargable con muy bajo costo por página, uno de los más vendidos."},
+      {"title": "Funciones", "body": "Imprime, copia y escanea a color desde un solo equipo."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB con impresión desde dispositivos móviles vía Epson Smart Panel."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina pequeña con alto volumen de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (EcoTank)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Epson EcoTank L4260": {
+    "brandInfo": "Epson es un líder mundial en impresión; la línea EcoTank popularizó el tanque de tinta recargable.",
+    "descriptionSections": [
+      {"title": "Sistema de tinta continua", "body": "Multifuncional EcoTank de tanque recargable con bajo costo por página y mayor productividad."},
+      {"title": "Funciones y dúplex", "body": "Imprime, copia y escanea a color, con impresión a doble cara automática."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB con pantalla y impresión desde dispositivos móviles."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina con alto volumen de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (EcoTank)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Impresión", "features": [
+        {"name": "Impresión a doble cara", "value": "Automática (dúplex)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Epson L3210": {
+    "brandInfo": "Epson es un líder mundial en impresión; la línea EcoTank popularizó el tanque de tinta recargable.",
+    "descriptionSections": [
+      {"title": "Sistema de tinta continua", "body": "Multifuncional EcoTank de tanque recargable con muy bajo costo por página, muy popular por su valor."},
+      {"title": "Funciones", "body": "Imprime, copia y escanea a color desde un solo equipo."},
+      {"title": "Conectividad", "body": "Conexión USB confiable para impresión local."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina pequeña con alto volumen de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (EcoTank)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "USB"}
+      ]}
+    ]
+  },
+  "Epson WorkForce WF-2830": {
+    "brandInfo": "Epson es un líder mundial en impresión; la línea WorkForce está orientada a productividad de oficina.",
+    "descriptionSections": [
+      {"title": "Multifuncional de oficina", "body": "Equipo de inyección de tinta de cartucho 4 en 1 que imprime, copia, escanea y envía fax."},
+      {"title": "Alimentador automático", "body": "Incluye alimentador automático de documentos (ADF) para copiar y escanear varias páginas."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB con impresión desde dispositivos móviles."},
+      {"title": "Casos de uso recomendados", "body": "Oficina pequeña con necesidades de fax y documentos a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (cartucho)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea / Fax"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Alimentador automático (ADF)", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "HP DeskJet 2375": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; la línea DeskJet es popular para el hogar.",
+    "descriptionSections": [
+      {"title": "Multifuncional compacto", "body": "Equipo de inyección de tinta de cartucho que imprime, copia y escanea a color."},
+      {"title": "Compacto", "body": "Diseño pequeño y sencillo, ideal para el hogar."},
+      {"title": "Conectividad", "body": "Conexión USB para impresión local."},
+      {"title": "Casos de uso recomendados", "body": "Hogar con volumen ligero de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (cartucho)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "USB"}
+      ]}
+    ]
+  },
+  "HP DeskJet Ink Advantage 3775": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; Ink Advantage ofrece cartuchos de buen rendimiento.",
+    "descriptionSections": [
+      {"title": "Multifuncional compacto", "body": "Uno de los multifuncionales más compactos del mercado: imprime, copia y escanea a color."},
+      {"title": "Conectividad", "body": "Wi-Fi para imprimir desde PC y dispositivos móviles con la app HP Smart."},
+      {"title": "Práctico", "body": "Diseño muy pequeño que cabe en cualquier escritorio."},
+      {"title": "Casos de uso recomendados", "body": "Hogar con volumen ligero-moderado de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (cartucho)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí (HP Smart)"}
+      ]}
+    ]
+  },
+  "HP LaserJet M111w": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; LaserJet es su línea láser de referencia.",
+    "descriptionSections": [
+      {"title": "Impresión láser", "body": "Impresora láser monocromática compacta, rápida y con bajo costo por página."},
+      {"title": "Velocidad", "body": "Imprime hasta 21 páginas por minuto, ideal para documentos."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB para imprimir desde PC y dispositivos móviles."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina pequeña con impresión de texto en blanco y negro."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Láser monocromático"},
+        {"name": "Funciones", "value": "Solo impresión"},
+        {"name": "Color", "value": "No (blanco y negro)"}
+      ]},
+      {"name": "Impresión", "features": [
+        {"name": "Velocidad", "value": "Hasta 21 ppm"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "HP LaserJet Pro M404dn": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; LaserJet Pro está orientada a oficina.",
+    "descriptionSections": [
+      {"title": "Impresión láser de oficina", "body": "Impresora láser monocromática profesional, rápida y robusta para alto volumen."},
+      {"title": "Velocidad y dúplex", "body": "Imprime hasta 38 páginas por minuto con impresión a doble cara automática."},
+      {"title": "Conectividad", "body": "Ethernet y USB para integrarse en redes de oficina."},
+      {"title": "Casos de uso recomendados", "body": "Oficinas con alto volumen de impresión de documentos en blanco y negro."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Láser monocromático"},
+        {"name": "Funciones", "value": "Solo impresión"},
+        {"name": "Color", "value": "No (blanco y negro)"}
+      ]},
+      {"name": "Impresión", "features": [
+        {"name": "Velocidad", "value": "Hasta 38 ppm"},
+        {"name": "Impresión a doble cara", "value": "Automática (dúplex)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Ethernet, USB"}
+      ]}
+    ]
+  },
+  "HP Neverstop Laser 1001nw": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; Neverstop Laser es su láser con tóner recargable.",
+    "descriptionSections": [
+      {"title": "Tóner recargable", "body": "Impresora láser monocromática con tanque de tóner recargable, que reduce drásticamente el costo por página."},
+      {"title": "Alto rendimiento", "body": "Recarga de tóner rápida y de gran rendimiento, ideal para alto volumen económico."},
+      {"title": "Conectividad", "body": "Wi-Fi, Ethernet y USB para imprimir desde PC, red y móviles."},
+      {"title": "Casos de uso recomendados", "body": "Oficina y hogar con alto volumen de impresión en blanco y negro a bajo costo."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Láser monocromático (tóner recargable)"},
+        {"name": "Funciones", "value": "Solo impresión"},
+        {"name": "Color", "value": "No (blanco y negro)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, Ethernet, USB"},
+        {"name": "Impresión móvil", "value": "Sí"}
+      ]}
+    ]
+  },
+  "HP OfficeJet Pro 9015e": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; OfficeJet Pro está orientada a productividad de oficina.",
+    "descriptionSections": [
+      {"title": "Multifuncional de oficina", "body": "Equipo de inyección de tinta 4 en 1 que imprime, copia, escanea y envía fax a color con calidad profesional."},
+      {"title": "Productividad", "body": "Impresión a doble cara automática y alimentador automático de documentos (ADF) para mayor eficiencia."},
+      {"title": "Conectividad", "body": "Wi-Fi, Ethernet y USB, con HP Smart e impresión móvil; incluye meses de tinta con HP+."},
+      {"title": "Casos de uso recomendados", "body": "Oficinas con alto volumen y necesidades completas de documentos a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (cartucho)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea / Fax"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Impresión a doble cara", "value": "Automática (dúplex)"},
+        {"name": "Alimentador automático (ADF)", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, Ethernet, USB"},
+        {"name": "Impresión móvil", "value": "Sí (HP Smart)"}
+      ]}
+    ]
+  },
+  "HP Smart Tank 515": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; Smart Tank es su línea de tanque de tinta recargable.",
+    "descriptionSections": [
+      {"title": "Sistema de tinta continua", "body": "Multifuncional de tanque de tinta recargable con muy bajo costo por página y botellas de alto rendimiento."},
+      {"title": "Funciones", "body": "Imprime, copia y escanea a color desde un solo equipo."},
+      {"title": "Conectividad", "body": "Wi-Fi y USB con impresión desde dispositivos móviles vía HP Smart."},
+      {"title": "Casos de uso recomendados", "body": "Hogar y oficina pequeña con alto volumen de impresión a color."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y funciones", "features": [
+        {"name": "Tecnología", "value": "Inyección de tinta (tanque continuo)"},
+        {"name": "Funciones", "value": "Imprime / Copia / Escanea"},
+        {"name": "Color", "value": "Sí"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexiones", "value": "Wi-Fi, USB"},
+        {"name": "Impresión móvil", "value": "Sí (HP Smart)"}
+      ]}
+    ]
+  }
+}

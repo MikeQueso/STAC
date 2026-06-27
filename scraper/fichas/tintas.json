@@ -1,0 +1,432 @@
+{
+  "Brother BT5000 Negro": {
+    "brandInfo": "Brother es un fabricante japonés líder en impresión, reconocido por sus sistemas de tanque de tinta de bajo costo.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Botella de tinta negra original Brother para impresoras de sistema de tanque recargable, con muy bajo costo por página."},
+      {"title": "Alto rendimiento", "body": "Gran cantidad de páginas por botella, ideal para alto volumen de impresión."},
+      {"title": "Compatibilidad", "body": "Compatible con impresoras Brother de tanque de tinta de la serie DCP-T."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botella de tinta (tanque)"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "Hasta 6,500 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Impresoras Brother de tanque (serie DCP-T)"}
+      ]}
+    ]
+  },
+  "Brother LC3019 Tricolor (set)": {
+    "brandInfo": "Brother es un fabricante japonés líder en impresión, reconocido por la fiabilidad de sus consumibles.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Set de cartuchos de tinta originales Brother LC3019 de súper alto rendimiento (XXL) en colores cian, magenta y amarillo."},
+      {"title": "Alto rendimiento", "body": "Cartuchos XXL con gran cantidad de páginas, ideales para impresión frecuente a color."},
+      {"title": "Compatibilidad", "body": "Compatible con impresoras Brother de la serie MFC-J (J5330DW, J6530DW, J6730DW, J6930DW)."},
+      {"title": "Calidad", "body": "Tinta original que garantiza colores vivos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Cartuchos de tinta (XXL)"},
+        {"name": "Color", "value": "Tricolor (Cian, Magenta, Amarillo)"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Brother MFC-J5330DW / J6530DW / J6730DW / J6930DW"}
+      ]}
+    ]
+  },
+  "Brother TN-660 Toner Negro": {
+    "brandInfo": "Brother es un fabricante japonés líder en impresión láser, reconocido por la fiabilidad de sus tóneres.",
+    "descriptionSections": [
+      {"title": "Tóner original", "body": "Tóner negro original Brother TN-660 de alto rendimiento para impresoras láser."},
+      {"title": "Alto rendimiento", "body": "Rinde aproximadamente 2,600 páginas, reduciendo el costo por página."},
+      {"title": "Compatibilidad", "body": "Compatible con impresoras Brother HL-L2300D, MFC-L2700DW, DCP-L2540DW y similares."},
+      {"title": "Calidad", "body": "Tóner original que garantiza textos nítidos y un funcionamiento confiable."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Tóner láser"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "2,600 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Brother HL-L2300/L2340/L2360, MFC-L2700/L2740, DCP-L2540"}
+      ]}
+    ]
+  },
+  "Canon 067 Toner Negro": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen, reconocido por la calidad de sus consumibles.",
+    "descriptionSections": [
+      {"title": "Tóner original", "body": "Tóner negro original Canon 067 para impresoras láser a color de la serie imageCLASS."},
+      {"title": "Rendimiento", "body": "Rinde aproximadamente 1,350 páginas con calidad y consistencia."},
+      {"title": "Compatibilidad", "body": "Compatible con Canon Color imageCLASS LBP632Cdw, LBP633Cdw, MF652Cdw, MF653Cdw, MF654Cdw, MF656Cdw."},
+      {"title": "Calidad", "body": "Tóner original que garantiza colores precisos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Tóner láser"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "1,350 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Canon LBP632/633Cdw, MF652/653/654/656Cdw"}
+      ]}
+    ]
+  },
+  "Canon CL-244 Tricolor": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen, reconocido por la calidad de sus consumibles.",
+    "descriptionSections": [
+      {"title": "Cartucho original", "body": "Cartucho de tinta tricolor original Canon CL-244 con tecnología FINE para impresiones a color de calidad."},
+      {"title": "Color", "body": "Combina cian, magenta y amarillo en un solo cartucho."},
+      {"title": "Compatibilidad", "body": "Compatible con Canon Pixma iP2820, MX492, MG2420/2520/2920, TS3120/3320, TR4520 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza colores vivos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Cartucho de tinta (FINE)"},
+        {"name": "Color", "value": "Tricolor (Cian, Magenta, Amarillo)"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Canon Pixma TS3120/3320, MG2520/2920, MX492, TR4520"}
+      ]}
+    ]
+  },
+  "Canon GI-190 Negro": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen; las botellas GI son para sus impresoras MegaTank.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Botella de tinta negra original Canon GI-190 para impresoras de sistema de tanque MegaTank, con muy bajo costo por página."},
+      {"title": "Alto rendimiento", "body": "Rinde aproximadamente 6,000 páginas por botella, ideal para alto volumen."},
+      {"title": "Compatibilidad", "body": "Compatible con Canon Pixma G1100, G2100, G3100, G3102, G4100, G4110 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botella de tinta (MegaTank)"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "6,000 páginas"},
+        {"name": "Contenido", "value": "135 ml"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Canon Pixma G1100/G2100/G3100/G4100/G4110"}
+      ]}
+    ]
+  },
+  "Canon GI-190 Tricolor (set)": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen; las botellas GI son para sus impresoras MegaTank.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Set de botellas de tinta originales Canon GI-190 en colores cian, magenta y amarillo para impresoras MegaTank."},
+      {"title": "Alto rendimiento", "body": "Cada botella rinde aproximadamente 7,000 páginas a color, con muy bajo costo por página."},
+      {"title": "Compatibilidad", "body": "Compatible con Canon Pixma G1100, G2100, G3100, G3110, G4100, G4110 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza colores vivos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botellas de tinta (MegaTank)"},
+        {"name": "Color", "value": "Tricolor (Cian, Magenta, Amarillo)"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "7,000 páginas por color"},
+        {"name": "Contenido", "value": "70 ml por botella"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Canon Pixma G1100/G2100/G3100/G3110/G4100/G4110"}
+      ]}
+    ]
+  },
+  "Canon PG-243 Negro": {
+    "brandInfo": "Canon es un líder mundial en impresión e imagen, reconocido por la calidad de sus consumibles.",
+    "descriptionSections": [
+      {"title": "Cartucho original", "body": "Cartucho de tinta negra original Canon PG-243 con tecnología FINE para textos nítidos."},
+      {"title": "Compatibilidad", "body": "Compatible con Canon Pixma iP2820, MX492, MG2420/2520/2920, TS3120/3320, TR4520 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."},
+      {"title": "Práctico", "body": "Cartucho de fácil instalación para tener la impresora lista en segundos."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Cartucho de tinta (FINE)"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Canon Pixma TS3120/3320, MG2520/2920, MX492, TR4520"}
+      ]}
+    ]
+  },
+  "Epson 103 Negro": {
+    "brandInfo": "Epson es un líder mundial en impresión; las botellas EcoTank ofrecen impresión a muy bajo costo.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Botella de tinta negra original Epson 103 para impresoras EcoTank, con muy bajo costo por página."},
+      {"title": "Alto rendimiento", "body": "Rinde aproximadamente 4,500 páginas por botella."},
+      {"title": "Compatibilidad", "body": "Compatible con Epson EcoTank L3110, L3150, L3210, L3250, L5190 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botella de tinta (EcoTank)"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "4,500 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Epson EcoTank L3110/L3150/L3210/L3250/L5190"}
+      ]}
+    ]
+  },
+  "Epson 544 Negro": {
+    "brandInfo": "Epson es un líder mundial en impresión; las botellas EcoTank ofrecen impresión a muy bajo costo.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Botella de tinta negra original Epson 544 (T544) para impresoras EcoTank, con muy bajo costo por página."},
+      {"title": "Alto rendimiento", "body": "Rinde aproximadamente 4,500 páginas por botella."},
+      {"title": "Compatibilidad", "body": "Compatible con Epson EcoTank L3110, L3150, L3210, L3250, L5290 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botella de tinta (EcoTank)"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "4,500 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Epson EcoTank L3110/L3210/L3250/L5290"}
+      ]}
+    ]
+  },
+  "Epson 664 Negro": {
+    "brandInfo": "Epson es un líder mundial en impresión; las botellas EcoTank ofrecen impresión a muy bajo costo.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Botella de tinta negra original Epson 664 (T664) para impresoras EcoTank, con muy bajo costo por página."},
+      {"title": "Alto rendimiento", "body": "Rinde aproximadamente 4,000 páginas por botella."},
+      {"title": "Compatibilidad", "body": "Compatible con Epson EcoTank L200, L210, L355, L555, L1300 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botella de tinta (EcoTank)"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "4,000 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Epson EcoTank L200/L355/L555/L1300"}
+      ]}
+    ]
+  },
+  "Epson T504 Negro": {
+    "brandInfo": "Epson es un líder mundial en impresión; las botellas EcoTank ofrecen impresión a muy bajo costo.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Botella de tinta negra original Epson T504 para impresoras EcoTank, con muy bajo costo por página."},
+      {"title": "Alto rendimiento", "body": "Gran rendimiento de páginas por botella, ideal para alto volumen."},
+      {"title": "Compatibilidad", "body": "Compatible con Epson EcoTank L4150, L4160, L6161, L6171, L6191 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botella de tinta (EcoTank)"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "Hasta 7,500 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Epson EcoTank L4150/L4160/L6161/L6171/L6191"}
+      ]}
+    ]
+  },
+  "Epson T504 Tricolor (set)": {
+    "brandInfo": "Epson es un líder mundial en impresión; las botellas EcoTank ofrecen impresión a muy bajo costo.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Set de botellas de tinta originales Epson T504 en colores cian, magenta y amarillo para impresoras EcoTank."},
+      {"title": "Alto rendimiento", "body": "Cada botella rinde aproximadamente 6,000 páginas a color, con muy bajo costo por página."},
+      {"title": "Compatibilidad", "body": "Compatible con Epson EcoTank L4150, L4160, L6161, L6171, L6191 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza colores vivos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botellas de tinta (EcoTank)"},
+        {"name": "Color", "value": "Tricolor (Cian, Magenta, Amarillo)"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "6,000 páginas por color"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Epson EcoTank L4150/L4160/L6161/L6171/L6191"}
+      ]}
+    ]
+  },
+  "HP 31 Negro": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; sus botellas de tinta son para impresoras de tanque recargable.",
+    "descriptionSections": [
+      {"title": "Tinta original", "body": "Botella de tinta negra original HP para impresoras de sistema de tanque recargable (Smart Tank / Ink Tank), con muy bajo costo por página."},
+      {"title": "Alto rendimiento", "body": "Gran rendimiento de páginas por botella, ideal para alto volumen."},
+      {"title": "Compatibilidad", "body": "Compatible con impresoras HP Smart Tank e Ink Tank compatibles."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Botella de tinta (tanque)"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "Impresoras HP Smart Tank / Ink Tank"}
+      ]}
+    ]
+  },
+  "HP 415A Toner Negro": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; LaserJet es su línea láser de referencia.",
+    "descriptionSections": [
+      {"title": "Tóner original", "body": "Tóner negro original HP 415A (W2030A) para impresoras láser a color."},
+      {"title": "Rendimiento", "body": "Rinde aproximadamente 2,400 páginas con calidad y consistencia."},
+      {"title": "Compatibilidad", "body": "Compatible con HP Color LaserJet Pro M454 y MFP M479."},
+      {"title": "Calidad", "body": "Tóner original con tecnología JetIntelligence que garantiza resultados nítidos."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Tóner láser"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "2,400 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "HP Color LaserJet Pro M454, MFP M479"}
+      ]}
+    ]
+  },
+  "HP 664 Negro": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; Ink Advantage ofrece cartuchos de buen rendimiento.",
+    "descriptionSections": [
+      {"title": "Cartucho original", "body": "Cartucho de tinta negra original HP 664 Ink Advantage para impresión de calidad."},
+      {"title": "Rendimiento", "body": "Rinde aproximadamente 120 páginas, ideal para volumen ligero."},
+      {"title": "Compatibilidad", "body": "Compatible con HP DeskJet Ink Advantage 1115, 2135, 3635, 3775 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Cartucho de tinta"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "120 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "HP DeskJet Ink Advantage 1115/2135/3635/3775"}
+      ]}
+    ]
+  },
+  "HP 664 Tricolor": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; Ink Advantage ofrece cartuchos de buen rendimiento.",
+    "descriptionSections": [
+      {"title": "Cartucho original", "body": "Cartucho de tinta tricolor original HP 664 Ink Advantage para impresión a color de calidad."},
+      {"title": "Rendimiento", "body": "Rinde aproximadamente 100 páginas a color, ideal para volumen ligero."},
+      {"title": "Compatibilidad", "body": "Compatible con HP DeskJet Ink Advantage 1115, 2135, 3635, 3775 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza colores vivos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Cartucho de tinta"},
+        {"name": "Color", "value": "Tricolor (Cian, Magenta, Amarillo)"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "100 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "HP DeskJet Ink Advantage 1115/2135/3635/3775"}
+      ]}
+    ]
+  },
+  "HP 667 Negro": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; Ink Advantage ofrece cartuchos de buen rendimiento.",
+    "descriptionSections": [
+      {"title": "Cartucho original", "body": "Cartucho de tinta negra original HP 667 Ink Advantage para impresión de calidad."},
+      {"title": "Rendimiento", "body": "Rinde aproximadamente 120 páginas, ideal para volumen ligero."},
+      {"title": "Compatibilidad", "body": "Compatible con HP DeskJet Ink Advantage 1275, 2375, 2775, 6075, 6475 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza resultados nítidos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Cartucho de tinta"},
+        {"name": "Color", "value": "Negro"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "120 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "HP DeskJet Ink Advantage 1275/2375/2775/6075/6475"}
+      ]}
+    ]
+  },
+  "HP 667 Tricolor": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; Ink Advantage ofrece cartuchos de buen rendimiento.",
+    "descriptionSections": [
+      {"title": "Cartucho original", "body": "Cartucho de tinta tricolor original HP 667 Ink Advantage para impresión a color de calidad."},
+      {"title": "Rendimiento", "body": "Rinde aproximadamente 100 páginas a color, ideal para volumen ligero."},
+      {"title": "Compatibilidad", "body": "Compatible con HP DeskJet Ink Advantage 1275, 2375, 2775, 6075, 6475 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza colores vivos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Cartucho de tinta"},
+        {"name": "Color", "value": "Tricolor (Cian, Magenta, Amarillo)"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "100 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "HP DeskJet Ink Advantage 1275/2375/2775/6075/6475"}
+      ]}
+    ]
+  },
+  "HP 678 Tricolor": {
+    "brandInfo": "HP es uno de los mayores fabricantes de impresoras del mundo; Ink Advantage ofrece cartuchos de buen rendimiento.",
+    "descriptionSections": [
+      {"title": "Cartucho original", "body": "Cartucho de tinta tricolor original HP 678 Ink Advantage para impresión a color de calidad."},
+      {"title": "Rendimiento", "body": "Rinde aproximadamente 100 páginas a color, ideal para volumen ligero."},
+      {"title": "Compatibilidad", "body": "Compatible con HP DeskJet Ink Advantage 1515, 2515, 2545, 3515, 3545, 4515 y similares."},
+      {"title": "Calidad", "body": "Tinta original que garantiza colores vivos y protege la impresora."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y color", "features": [
+        {"name": "Tipo", "value": "Cartucho de tinta"},
+        {"name": "Color", "value": "Tricolor (Cian, Magenta, Amarillo)"},
+        {"name": "Original", "value": "Sí"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Rendimiento aproximado", "value": "100 páginas"}
+      ]},
+      {"name": "Compatibilidad", "features": [
+        {"name": "Compatible con", "value": "HP DeskJet Ink Advantage 1515/2515/2545/3515/3545/4515"}
+      ]}
+    ]
+  }
+}
