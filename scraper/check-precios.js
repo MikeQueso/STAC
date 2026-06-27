@@ -13,18 +13,21 @@
 //   DEBUG_DUMP=1       -> guarda el HTML renderizado de cada sitio para inspección
 //   ABASTEO_ENABLED=1  -> activa Abasteo (mientras se afina su login/búsqueda)
 
+// Carga variables desde un archivo .env si existe (uso local en PC).
+// En GitHub Actions no hay .env y las variables vienen de los Secrets.
+try { require('dotenv').config(); } catch (e) {}
+
 const fs = require('fs');
 const { chromium } = require('playwright');
 const { createClient } = require('@supabase/supabase-js');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-const ABASTEO_USER = process.env.ABASTEO_USER;
-const ABASTEO_PASS = process.env.ABASTEO_PASS;
-const DDTECH_USER = process.env.DDTECH_USER;
-const DDTECH_PASS = process.env.DDTECH_PASS;
 const DEBUG_DUMP = process.env.DEBUG_DUMP === '1';
 const ABASTEO_ENABLED = process.env.ABASTEO_ENABLED === '1';
+// Cyberpuerta solo funciona desde una IP residencial (PC en casa), no desde
+// servidores. Se activa con CYBERPUERTA_ENABLED=1 en el .env local.
+const CYBERPUERTA_ENABLED = process.env.CYBERPUERTA_ENABLED === '1';
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36';
 
@@ -161,6 +164,22 @@ async function searchAbasteo(page, productName) {
   ).catch(() => []);
 }
 
+// ─── CYBERPUERTA (HTTP directo · solo funciona desde IP residencial / PC) ──
+async function searchCyberpuerta(productName) {
+  const url = `https://www.cyberpuerta.mx/index.php?cl=search&searchparam=${encodeURIComponent(searchQuery(productName))}`;
+  const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'es-MX,es;q=0.9' } }).catch(() => null);
+  if (!res || !res.ok) return [];
+  const html = await res.text();
+  const names = [];
+  const cardRe = /<a href="(\/[^"]+)"\s+class="cp-product-info-dne[^"]*"\s+title="([^"]*)"/g;
+  let m;
+  while ((m = cardRe.exec(html)) !== null) names.push({ url: 'https://www.cyberpuerta.mx' + m[1], title: m[2] });
+  const prices = [];
+  const priceRe = /cp-text--price-total[^>]*>(?:<!--\[-->)?\s*\$?\s*([\d,]+(?:\.\d{2})?)/g;
+  while ((m = priceRe.exec(html)) !== null) prices.push(m[1]);
+  return names.map((n, i) => ({ title: n.title, url: n.url, price: prices[i] || '' }));
+}
+
 // ─── OFFICE DEPOT MX (officedepot.com.mx · precios en JSON-LD del HTML →
 //     HTTP directo, sin navegador) · útil para tintas/cartuchos ────────────
 async function searchOfficeDepot(productName) {
@@ -187,8 +206,8 @@ async function run() {
   }
   console.log(`Catálogo: ${products.length} productos.`);
 
-  const hasAbasteo = ABASTEO_ENABLED; // precios públicos, no requiere login
-  const hasDDTech = DDTECH_USER && DDTECH_PASS;
+  const hasAbasteo = ABASTEO_ENABLED;   // precios públicos, no requiere login
+  const hasDDTech = true;               // ddtech.mx es público, no requiere login
   const t0 = Date.now();
 
   // Modo debug: captura el HTML renderizado para afinar selectores.
@@ -211,7 +230,25 @@ async function run() {
   }
 
   const rows = [];
-  let conAbasteo = 0, conDD = 0, conOD = 0;
+  let conAbasteo = 0, conDD = 0, conOD = 0, conCyber = 0;
+
+  // ── Cyberpuerta (HTTP directo, en paralelo) · solo si está activado (PC en casa) ──
+  if (CYBERPUERTA_ENABLED) {
+    await mapPool(products, 4, async (product) => {
+      try {
+        const items = await searchCyberpuerta(product.name);
+        const match = pickBestMatch(product.name, items);
+        if (match) {
+          conCyber++;
+          rows.push({
+            product_id: product.id, proveedor: 'Cyberpuerta', precio: match.price,
+            url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
+          });
+        }
+      } catch (e) { console.error(`Cyberpuerta "${product.name}":`, e.message); }
+    });
+    console.log(`Cyberpuerta: ${conCyber}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
+  }
 
   // ── Office Depot (HTTP directo, en paralelo) · sobre todo tintas ──
   await mapPool(products, 4, async (product) => {
@@ -286,6 +323,7 @@ async function run() {
 
   // Borra lo viejo de los proveedores que sí corrieron e inserta lo nuevo.
   const provasCorridos = ['Office Depot'];
+  if (CYBERPUERTA_ENABLED) provasCorridos.push('Cyberpuerta');
   if (hasDDTech) provasCorridos.push('DD Tech');
   if (hasAbasteo) provasCorridos.push('Abasteo');
 

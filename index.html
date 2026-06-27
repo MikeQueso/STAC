@@ -2868,7 +2868,7 @@
         </div>
         <table class="admin-table">
           <thead><tr>
-            <th>Producto</th><th>Tu precio</th><th>Abasteo</th><th>DD Tech</th><th>Office Depot</th><th>Mejor precio · Dónde</th><th>Margen estimado</th>
+            <th>Producto</th><th>Tu precio</th><th>Abasteo</th><th>DD Tech</th><th>Office Depot</th><th>Cyberpuerta</th><th>Mejor precio · Dónde</th><th>Margen estimado</th>
           </tr></thead>
           <tbody>
             ${(allProducts || []).map(prod => {
@@ -2876,7 +2876,7 @@
               const byProv = {};
               found.forEach(f => byProv[f.proveedor] = f);
 
-              const cells = ['Abasteo', 'DD Tech', 'Office Depot'].map(prov => {
+              const cells = ['Abasteo', 'DD Tech', 'Office Depot', 'Cyberpuerta'].map(prov => {
                 const f = byProv[prov];
                 if (!f) return '<td style="color:var(--text-dim);">—</td>';
                 return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
@@ -2911,6 +2911,7 @@
           'Abasteo', 'Abasteo - encontrado como', 'Abasteo - url',
           'DD Tech', 'DD Tech - encontrado como', 'DD Tech - url',
           'Office Depot', 'Office Depot - encontrado como', 'Office Depot - url',
+          'Cyberpuerta', 'Cyberpuerta - encontrado como', 'Cyberpuerta - url',
           'Mas bajo', 'Donde (mas bajo)', 'Margen estimado %'
         ];
         const csvCell = (v) => {
@@ -2938,6 +2939,7 @@
             ...prov('Abasteo'),
             ...prov('DD Tech'),
             ...prov('Office Depot'),
+            ...prov('Cyberpuerta'),
             lowest !== null ? lowest : '', lowestF ? lowestF.proveedor : '', margen
           ];
           lines.push(row.map(csvCell).join(','));
