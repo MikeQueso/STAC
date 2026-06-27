@@ -1,0 +1,602 @@
+{
+  "ASRock B450M Pro4": {
+    "brandInfo": "ASRock es un fabricante taiwanés de placas madre reconocido por su buena relación precio-características.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket AMD AM4 y chipset B450, compatible con procesadores Ryzen (puede requerir actualización de BIOS para algunos modelos)."},
+      {"title": "Conectividad", "body": "Incluye salidas de video HDMI, DVI y VGA para usar procesadores con gráficos integrados, además de varios puertos USB."},
+      {"title": "Almacenamiento", "body": "Soporta unidades M.2 NVMe y múltiples puertos SATA para expandir el almacenamiento."},
+      {"title": "Casos de uso recomendados", "body": "Equipos económicos y de oficina con plataforma AM4."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM4"},
+        {"name": "Chipset", "value": "AMD B450"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "64 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 3.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DVI-D / D-Sub (VGA)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No"}
+      ]}
+    ]
+  },
+  "ASRock B760M Pro RS": {
+    "brandInfo": "ASRock es un fabricante taiwanés de placas madre reconocido por su buena relación precio-características.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket Intel LGA 1700 y chipset B760, compatible con procesadores Intel de 12ª, 13ª y 14ª generación."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit y salidas de video modernas para gráficos integrados, con múltiples puertos USB."},
+      {"title": "Almacenamiento", "body": "Varias ranuras M.2 NVMe y puertos SATA para gran capacidad de almacenamiento."},
+      {"title": "Casos de uso recomendados", "body": "Equipos modernos Intel de gama media para gaming y productividad."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel B760"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "ASUS PRIME B460M-A": {
+    "brandInfo": "ASUS es uno de los mayores fabricantes de placas madre del mundo; la línea PRIME ofrece bases confiables para uso general.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket Intel LGA 1200 y chipset B460, para procesadores Intel de 10ª generación."},
+      {"title": "Conectividad", "body": "Salidas HDMI, DVI y VGA para gráficos integrados, con múltiples puertos USB."},
+      {"title": "Almacenamiento", "body": "Soporta unidades M.2 y puertos SATA para expansión."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de oficina y uso general en plataforma Intel LGA 1200."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1200"},
+        {"name": "Chipset", "value": "Intel B460"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 3.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DVI-D / D-Sub (VGA)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No"}
+      ]}
+    ]
+  },
+  "ASUS PRIME B550M-A": {
+    "brandInfo": "ASUS es uno de los mayores fabricantes de placas madre del mundo; la línea PRIME ofrece bases confiables para uso general.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket AMD AM4 y chipset B550, compatible con Ryzen 3000/5000 y soporte PCIe 4.0."},
+      {"title": "Conectividad", "body": "Salidas HDMI, DVI y VGA para gráficos integrados, con múltiples puertos USB."},
+      {"title": "Almacenamiento", "body": "Ranuras M.2 NVMe (una con PCIe 4.0) y puertos SATA."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de gama media AMD para gaming y trabajo."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM4"},
+        {"name": "Chipset", "value": "AMD B550"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DVI-D / D-Sub (VGA)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "ASUS PRIME B760M-A": {
+    "brandInfo": "ASUS es uno de los mayores fabricantes de placas madre del mundo; la línea PRIME ofrece bases confiables para uso general.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket Intel LGA 1700 y chipset B760, para procesadores Intel de 12ª, 13ª y 14ª generación."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit y salidas HDMI/DisplayPort para gráficos integrados."},
+      {"title": "Almacenamiento", "body": "Ranuras M.2 NVMe PCIe 4.0 y puertos SATA."},
+      {"title": "Casos de uso recomendados", "body": "Equipos modernos Intel de gama media."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel B760"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "ASUS ROG STRIX B760-G GAMING": {
+    "brandInfo": "ASUS ROG (Republic of Gamers) es la línea gamer premium de ASUS, con componentes de alta calidad y estética agresiva.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX gamer con socket Intel LGA 1700 y chipset B760, compatible con Intel de 12ª a 14ª generación y memorias DDR5."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, Wi-Fi 6E y puertos USB de alta velocidad, además de audio de alta calidad."},
+      {"title": "Almacenamiento", "body": "Varias ranuras M.2 NVMe con disipadores y puertos SATA."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama media-alta en formato compacto."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel B760"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "3"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "Wi-Fi 6E"}
+      ]}
+    ]
+  },
+  "ASUS TUF Gaming B550-PLUS": {
+    "brandInfo": "ASUS TUF Gaming es la línea de ASUS enfocada en durabilidad y fiabilidad con componentes de grado militar.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket AMD AM4 y chipset B550, compatible con Ryzen 3000/5000 y PCIe 4.0."},
+      {"title": "Durabilidad", "body": "Componentes TUF de alta resistencia y VRM robusto para soportar procesadores potentes."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, audio de alta definición y múltiples puertos USB."},
+      {"title": "Casos de uso recomendados", "body": "Gaming AMD de gama media-alta y equipos duraderos."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM4"},
+        {"name": "Chipset", "value": "AMD B550"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "ASUS TUF Gaming B650-PLUS": {
+    "brandInfo": "ASUS TUF Gaming es la línea de ASUS enfocada en durabilidad y fiabilidad con componentes de grado militar.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket AMD AM5 y chipset B650, compatible con Ryzen 7000/9000, memorias DDR5 y PCIe 5.0."},
+      {"title": "Durabilidad", "body": "VRM robusto y componentes TUF de alta resistencia, ideal para procesadores potentes."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, audio de alta definición y puertos USB de alta velocidad."},
+      {"title": "Casos de uso recomendados", "body": "Gaming AMD AM5 de gama media-alta y equipos preparados para el futuro."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM5"},
+        {"name": "Chipset", "value": "AMD B650"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0 / 5.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "ASUS TUF GAMING Z790-PLUS": {
+    "brandInfo": "ASUS TUF Gaming es la línea de ASUS enfocada en durabilidad y fiabilidad con componentes de grado militar.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket Intel LGA 1700 y chipset Z790, tope de gama para Intel de 12ª a 14ª generación con soporte de overclocking."},
+      {"title": "Durabilidad", "body": "VRM potente y componentes TUF de alta resistencia para procesadores de alto rendimiento."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, audio de alta definición y abundantes puertos USB de alta velocidad."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento y entusiastas del overclocking en Intel."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel Z790"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 5.0"},
+        {"name": "Ranuras M.2", "value": "4"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "Gigabyte B450M DS3H": {
+    "brandInfo": "Gigabyte es uno de los grandes fabricantes de placas madre y tarjetas gráficas; la línea DS3H ofrece valor para uso general.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket AMD AM4 y chipset B450, una base económica para procesadores Ryzen."},
+      {"title": "Conectividad", "body": "Salidas HDMI, DVI y VGA para gráficos integrados, con varios puertos USB."},
+      {"title": "Almacenamiento", "body": "Ranura M.2 NVMe y puertos SATA para expansión."},
+      {"title": "Casos de uso recomendados", "body": "Equipos económicos y de oficina AM4."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM4"},
+        {"name": "Chipset", "value": "AMD B450"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 3.0"},
+        {"name": "Ranuras M.2", "value": "1"},
+        {"name": "Salidas de video", "value": "HDMI / DVI-D / D-Sub (VGA)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No"}
+      ]}
+    ]
+  },
+  "Gigabyte B550 AORUS ELITE": {
+    "brandInfo": "Gigabyte AORUS es la línea gamer premium de Gigabyte, con VRM robustos y buena conectividad.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket AMD AM4 y chipset B550, compatible con Ryzen 3000/5000 y PCIe 4.0."},
+      {"title": "Alimentación", "body": "VRM robusto con disipadores que permite usar procesadores potentes con estabilidad."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, audio de alta definición y múltiples puertos USB."},
+      {"title": "Casos de uso recomendados", "body": "Gaming AMD de gama media-alta y creación de contenido."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM4"},
+        {"name": "Chipset", "value": "AMD B550"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "Gigabyte B650 AORUS ELITE AX": {
+    "brandInfo": "Gigabyte AORUS es la línea gamer premium de Gigabyte; el sufijo AX indica Wi-Fi integrado.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket AMD AM5 y chipset B650, compatible con Ryzen 7000/9000, memorias DDR5 y PCIe."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit y Wi-Fi 6 integrado, con abundantes puertos USB de alta velocidad."},
+      {"title": "Alimentación", "body": "VRM robusto con disipadores amplios para procesadores potentes."},
+      {"title": "Casos de uso recomendados", "body": "Gaming AMD AM5 de gama media-alta y equipos preparados para el futuro."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM5"},
+        {"name": "Chipset", "value": "AMD B650"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "192 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "3"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "Wi-Fi 6"}
+      ]}
+    ]
+  },
+  "Gigabyte B760 GAMING X": {
+    "brandInfo": "Gigabyte es uno de los grandes fabricantes de placas madre; la línea Gaming X ofrece buenas prestaciones para jugadores.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket Intel LGA 1700 y chipset B760, compatible con Intel de 12ª a 14ª generación y DDR5."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, USB Type-C de alta velocidad y audio de alta definición."},
+      {"title": "Almacenamiento", "body": "Varias ranuras M.2 NVMe con disipadores y puertos SATA."},
+      {"title": "Casos de uso recomendados", "body": "Gaming Intel de gama media y creación de contenido."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel B760"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "192 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "3"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "Gigabyte Z790 AORUS ELITE": {
+    "brandInfo": "Gigabyte AORUS es la línea gamer premium de Gigabyte, con VRM robustos y conectividad avanzada.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket Intel LGA 1700 y chipset Z790, tope de gama con soporte de overclocking, DDR5 y PCIe 5.0."},
+      {"title": "Alimentación", "body": "VRM potente con disipadores amplios para procesadores Intel de alto rendimiento."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit y abundantes puertos USB de alta velocidad, incluyendo Type-C."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de élite, overclocking y estaciones de trabajo Intel."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel Z790"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "192 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 5.0"},
+        {"name": "Ranuras M.2", "value": "4"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "MSI B450M PRO-VDH MAX": {
+    "brandInfo": "MSI es uno de los grandes fabricantes de placas madre y portátiles gamer; la línea PRO está orientada a fiabilidad y valor.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket AMD AM4 y chipset B450, una base económica y confiable para Ryzen."},
+      {"title": "Conectividad", "body": "Salidas HDMI, DVI y VGA para gráficos integrados, con varios puertos USB."},
+      {"title": "Almacenamiento", "body": "Ranura M.2 NVMe y puertos SATA."},
+      {"title": "Casos de uso recomendados", "body": "Equipos económicos y de oficina AM4."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM4"},
+        {"name": "Chipset", "value": "AMD B450"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 3.0"},
+        {"name": "Ranuras M.2", "value": "1"},
+        {"name": "Salidas de video", "value": "HDMI / DVI-D / D-Sub (VGA)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No"}
+      ]}
+    ]
+  },
+  "MSI B550-A PRO": {
+    "brandInfo": "MSI es uno de los grandes fabricantes de placas madre; la línea PRO está orientada a fiabilidad y valor.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket AMD AM4 y chipset B550, compatible con Ryzen 3000/5000 y PCIe 4.0."},
+      {"title": "Conectividad", "body": "Red Gigabit, audio de alta definición y múltiples puertos USB."},
+      {"title": "Almacenamiento", "body": "Ranuras M.2 NVMe y puertos SATA para expansión."},
+      {"title": "Casos de uso recomendados", "body": "Equipos AMD de gama media para trabajo y gaming."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM4"},
+        {"name": "Chipset", "value": "AMD B550"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR4"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "128 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No"}
+      ]}
+    ]
+  },
+  "MSI MAG B760 TOMAHAWK": {
+    "brandInfo": "MSI MAG es la línea gamer accesible de MSI; Tomahawk es reconocida por su VRM robusto y buen equilibrio.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket Intel LGA 1700 y chipset B760, compatible con Intel de 12ª a 14ª generación y DDR5."},
+      {"title": "Alimentación", "body": "VRM robusto con disipadores amplios para procesadores potentes."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, USB Type-C y audio de alta definición."},
+      {"title": "Casos de uso recomendados", "body": "Gaming Intel de gama media-alta y creación de contenido."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel B760"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "192 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "3"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "MSI PRO B650M-A": {
+    "brandInfo": "MSI es uno de los grandes fabricantes de placas madre; la línea PRO está orientada a fiabilidad y valor.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket AMD AM5 y chipset B650, compatible con Ryzen 7000/9000 y memorias DDR5."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, USB de alta velocidad y audio de alta definición."},
+      {"title": "Almacenamiento", "body": "Ranuras M.2 NVMe y puertos SATA para expansión."},
+      {"title": "Casos de uso recomendados", "body": "Equipos AMD AM5 de gama media para trabajo y gaming."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "AMD AM5"},
+        {"name": "Chipset", "value": "AMD B650"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "192 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "MSI PRO B760M-A": {
+    "brandInfo": "MSI es uno de los grandes fabricantes de placas madre; la línea PRO está orientada a fiabilidad y valor.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre Micro-ATX con socket Intel LGA 1700 y chipset B760, compatible con Intel de 12ª a 14ª generación y DDR5."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit, USB de alta velocidad y audio de alta definición."},
+      {"title": "Almacenamiento", "body": "Ranuras M.2 NVMe y puertos SATA para expansión."},
+      {"title": "Casos de uso recomendados", "body": "Equipos Intel de gama media para trabajo y gaming."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel B760"},
+        {"name": "Factor de forma", "value": "Micro-ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "192 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 4.0"},
+        {"name": "Ranuras M.2", "value": "2"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  },
+  "MSI PRO Z790-A": {
+    "brandInfo": "MSI es uno de los grandes fabricantes de placas madre; la línea PRO ofrece fiabilidad para productividad y gaming.",
+    "descriptionSections": [
+      {"title": "Plataforma", "body": "Placa madre ATX con socket Intel LGA 1700 y chipset Z790, con soporte de overclocking, DDR5 y PCIe 5.0."},
+      {"title": "Alimentación", "body": "VRM robusto con disipadores para procesadores Intel de alto rendimiento."},
+      {"title": "Conectividad", "body": "Red de 2.5 Gigabit y abundantes puertos USB de alta velocidad, incluyendo Type-C."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento, productividad y overclocking en Intel."}
+    ],
+    "specsGroups": [
+      {"name": "Plataforma", "features": [
+        {"name": "Socket", "value": "Intel LGA 1700"},
+        {"name": "Chipset", "value": "Intel Z790"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Tipo de memoria", "value": "DDR5"},
+        {"name": "Ranuras", "value": "4 x DIMM"},
+        {"name": "Capacidad máxima", "value": "192 GB"}
+      ]},
+      {"name": "Expansión y almacenamiento", "features": [
+        {"name": "PCI Express", "value": "PCIe 5.0"},
+        {"name": "Ranuras M.2", "value": "4"},
+        {"name": "Salidas de video", "value": "HDMI / DisplayPort"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Red", "value": "2.5 Gigabit LAN"},
+        {"name": "Wi-Fi", "value": "No (versión base)"}
+      ]}
+    ]
+  }
+}

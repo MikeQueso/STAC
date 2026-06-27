@@ -1,0 +1,493 @@
+{
+  "Antec NeoECO 650W 80+ Gold": {
+    "brandInfo": "Antec es un fabricante veterano de gabinetes y fuentes de poder, reconocido por su fiabilidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 650W con certificación 80 PLUS Gold, que ofrece alta eficiencia energética y menor generación de calor."},
+      {"title": "Diseño modular", "body": "Cableado modular que facilita la instalación y mejora el flujo de aire dentro del gabinete."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso para un funcionamiento estable y duradero."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de gama media con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "650 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / SCP"},
+        {"name": "Garantía", "value": "7 años"}
+      ]}
+    ]
+  },
+  "ASUS ROG Strix 750W 80+ Gold Modular": {
+    "brandInfo": "ASUS ROG (Republic of Gamers) es la línea gamer premium de ASUS, con componentes de alta calidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 750W con certificación 80 PLUS Gold y componentes de alta calidad para máxima estabilidad."},
+      {"title": "Refrigeración", "body": "Ventilador axial ROG con modo silencioso a baja carga (0 dB) para un funcionamiento sigiloso."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación limpia y mejor flujo de aire."},
+      {"title": "Casos de uso recomendados", "body": "Equipos gamer de gama media-alta y builds con estética cuidada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "750 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "135 mm axial"},
+        {"name": "Modo silencioso (0 dB)", "value": "Sí"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  },
+  "be quiet! Pure Power 11 600W 80+ Gold": {
+    "brandInfo": "be quiet! es un fabricante alemán especializado en componentes silenciosos de alta calidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 600W con certificación 80 PLUS Gold para alta eficiencia y bajo consumo."},
+      {"title": "Silenciosa", "body": "Ventilador optimizado para un funcionamiento extremadamente silencioso, característica distintiva de la marca."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y componentes de calidad para estabilidad duradera."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de gama media donde el silencio es prioritario."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "600 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm silencioso"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / SCP"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Cooler Master MWE 550 Bronze V2": {
+    "brandInfo": "Cooler Master es un fabricante taiwanés líder en gabinetes, refrigeración y fuentes de poder.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 550W con certificación 80 PLUS Bronze, confiable para equipos de uso general."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso para un funcionamiento estable."},
+      {"title": "Valor", "body": "Excelente opción económica para builds de entrada y gama media."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de oficina y gaming de entrada con GPU dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "550 W"},
+        {"name": "Certificación", "value": "80 PLUS Bronze"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OPP / SCP"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Cooler Master MWE 650 Gold V2": {
+    "brandInfo": "Cooler Master es un fabricante taiwanés líder en gabinetes, refrigeración y fuentes de poder.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 650W con certificación 80 PLUS Gold para alta eficiencia energética."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso para estabilidad duradera."},
+      {"title": "Valor", "body": "Buena relación precio-rendimiento para equipos de gama media."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de gama media con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "650 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Corsair CV550 550W 80+ Bronze": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer, con fuentes de poder muy populares.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 550W con certificación 80 PLUS Bronze, confiable para equipos compactos y de uso general."},
+      {"title": "Confiabilidad", "body": "Condensadores y protecciones que garantizan un funcionamiento estable."},
+      {"title": "Valor", "body": "Opción económica ideal para builds de entrada."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de oficina y gaming de entrada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "550 W"},
+        {"name": "Certificación", "value": "80 PLUS Bronze"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OPP / SCP"},
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  },
+  "Corsair CX650 650W 80+ Bronze": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer; la serie CX es muy popular por su confiabilidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 650W con certificación 80 PLUS Bronze para equipos de gama media."},
+      {"title": "Confiabilidad", "body": "Componentes de calidad y protecciones completas para un funcionamiento estable."},
+      {"title": "Valor", "body": "Gran relación precio-rendimiento para builds gamer accesibles."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama media con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "650 W"},
+        {"name": "Certificación", "value": "80 PLUS Bronze"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / SCP"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "Corsair RM750x 750W 80+ Gold Modular": {
+    "brandInfo": "Corsair es una marca líder en componentes gamer; la serie RMx es referente en fuentes silenciosas de alta calidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 750W con certificación 80 PLUS Gold y condensadores 100% japoneses para máxima fiabilidad."},
+      {"title": "Silenciosa", "body": "Ventilador de 135 mm con modo de cero RPM a baja carga para un funcionamiento prácticamente silencioso."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación limpia."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama alta y equipos premium con tarjeta de video potente."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "750 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "135 mm"},
+        {"name": "Modo cero RPM", "value": "Sí"},
+        {"name": "Condensadores", "value": "100% japoneses"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  },
+  "Corsair RM850x 850W 80+ Gold Modular": {
+    "brandInfo": "Corsair es una marca líder en componentes gamer; la serie RMx es referente en fuentes silenciosas de alta calidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 850W con certificación 80 PLUS Gold y condensadores 100% japoneses para máxima fiabilidad."},
+      {"title": "Silenciosa", "body": "Ventilador de 135 mm con modo de cero RPM a baja carga."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación limpia y mejor flujo de aire."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama alta y equipos con GPU potente como RTX 4070/4080."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "850 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "135 mm"},
+        {"name": "Modo cero RPM", "value": "Sí"},
+        {"name": "Condensadores", "value": "100% japoneses"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  },
+  "EVGA 500 BR 500W 80+ Bronze": {
+    "brandInfo": "EVGA fue un fabricante estadounidense reconocido por sus tarjetas gráficas y fuentes de poder confiables.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 500W con certificación 80 PLUS Bronze para equipos de entrada."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso para un funcionamiento estable."},
+      {"title": "Valor", "body": "Opción económica para builds básicos."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de oficina y gaming de entrada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "500 W"},
+        {"name": "Certificación", "value": "80 PLUS Bronze"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OPP / SCP"},
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  },
+  "EVGA 600 BR 600W 80+ Bronze": {
+    "brandInfo": "EVGA fue un fabricante estadounidense reconocido por sus tarjetas gráficas y fuentes de poder confiables.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 600W con certificación 80 PLUS Bronze para equipos de gama media."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso para estabilidad."},
+      {"title": "Valor", "body": "Buena opción económica para builds gamer accesibles."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y media con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "600 W"},
+        {"name": "Certificación", "value": "80 PLUS Bronze"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OPP / SCP"},
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  },
+  "Gigabyte UD650GM 80+ Gold Modular": {
+    "brandInfo": "Gigabyte es uno de los grandes fabricantes de hardware; su línea UD de fuentes ofrece buen valor.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 650W con certificación 80 PLUS Gold para alta eficiencia energética."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación limpia y mejor flujo de aire."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso de 120 mm."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama media con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "650 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "MSI MAG A650BN 80+ Bronze": {
+    "brandInfo": "MSI es uno de los grandes fabricantes de hardware gamer; la línea MAG ofrece componentes accesibles.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 650W con certificación 80 PLUS Bronze para equipos de gama media."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso para estabilidad."},
+      {"title": "Valor", "body": "Opción económica para builds gamer accesibles."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y media con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "650 W"},
+        {"name": "Certificación", "value": "80 PLUS Bronze"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / SCP"},
+        {"name": "Garantía", "value": "5 años"}
+      ]}
+    ]
+  },
+  "MSI MAG A850GL 80+ Gold Modular": {
+    "brandInfo": "MSI es uno de los grandes fabricantes de hardware gamer; la línea MAG ofrece buen equilibrio de precio y prestaciones.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 850W con certificación 80 PLUS Gold y soporte para el conector PCIe 5.0 (12VHPWR) de las GPU modernas."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación limpia."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso para equipos potentes."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama alta con GPU modernas RTX serie 40."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "850 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "120 mm"},
+        {"name": "Conector PCIe 5.0 (12VHPWR)", "value": "Sí"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  },
+  "Seasonic Focus GX-650 80+ Gold Modular": {
+    "brandInfo": "Seasonic es un fabricante taiwanés legendario de fuentes de poder, considerado de los mejores del mundo en calidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 650W con certificación 80 PLUS Gold y diseño de altísima calidad."},
+      {"title": "Silenciosa", "body": "Modo Fanless híbrido que mantiene el ventilador apagado a baja carga para un funcionamiento silencioso."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación impecable."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama media-alta y equipos premium que exigen máxima fiabilidad."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "650 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "120 mm"},
+        {"name": "Modo Fanless híbrido", "value": "Sí"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP / ONGP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  },
+  "Seasonic Focus GX-750 80+ Gold Modular": {
+    "brandInfo": "Seasonic es un fabricante taiwanés legendario de fuentes de poder, considerado de los mejores del mundo en calidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 750W con certificación 80 PLUS Gold y construcción de altísima calidad."},
+      {"title": "Silenciosa", "body": "Modo Fanless híbrido que apaga el ventilador a baja carga."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación impecable."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama alta y equipos premium con GPU potente."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "750 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "120 mm"},
+        {"name": "Modo Fanless híbrido", "value": "Sí"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP / ONGP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  },
+  "Thermaltake Smart 500W 80+ White": {
+    "brandInfo": "Thermaltake es un fabricante taiwanés de gabinetes, refrigeración y fuentes de poder para gamers.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 500W con certificación 80 PLUS (estándar) para equipos de entrada."},
+      {"title": "Confiabilidad", "body": "Protecciones básicas y ventilador silencioso de 120 mm."},
+      {"title": "Valor", "body": "Opción muy económica para builds básicos."},
+      {"title": "Casos de uso recomendados", "body": "Equipos de oficina y uso general."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "500 W"},
+        {"name": "Certificación", "value": "80 PLUS (White/Standard)"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "No modular"},
+        {"name": "Ventilador", "value": "120 mm"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OPP / SCP"},
+        {"name": "Garantía", "value": "3 años"}
+      ]}
+    ]
+  },
+  "Thermaltake Toughpower GF1 750W 80+ Gold Modular": {
+    "brandInfo": "Thermaltake es un fabricante taiwanés de hardware gamer; la serie Toughpower es su gama de fuentes de alto rendimiento.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 750W con certificación 80 PLUS Gold y condensadores japoneses para máxima fiabilidad."},
+      {"title": "Silenciosa", "body": "Ventilador de 140 mm con modo silencioso para un funcionamiento sigiloso."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación limpia."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama alta y equipos premium con GPU potente."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "750 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "140 mm"},
+        {"name": "Condensadores", "value": "Japoneses"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  },
+  "XPG Core Reactor 650W 80+ Gold Modular": {
+    "brandInfo": "XPG es la línea gamer de ADATA; Core Reactor es su serie de fuentes de alta eficiencia y calidad.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 650W con certificación 80 PLUS Gold y condensadores 100% japoneses para máxima fiabilidad."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular para una instalación limpia."},
+      {"title": "Confiabilidad", "body": "Protecciones completas y ventilador silencioso para estabilidad duradera."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama media-alta con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "650 W"},
+        {"name": "Certificación", "value": "80 PLUS Gold"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "120 mm"},
+        {"name": "Condensadores", "value": "100% japoneses"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  },
+  "XPG Cybercore 850W 80+ Platinum Modular": {
+    "brandInfo": "XPG es la línea gamer de ADATA; Cybercore es su serie premium de fuentes de poder de máxima eficiencia.",
+    "descriptionSections": [
+      {"title": "Eficiencia", "body": "Fuente de 850W con certificación 80 PLUS Platinum, una de las eficiencias más altas del mercado."},
+      {"title": "Totalmente modular", "body": "Cableado completamente modular con conectores de alta calidad."},
+      {"title": "Confiabilidad", "body": "Condensadores 100% japoneses, protecciones completas y ventilador silencioso."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de gama alta y estaciones de trabajo premium."}
+    ],
+    "specsGroups": [
+      {"name": "Potencia y eficiencia", "features": [
+        {"name": "Potencia", "value": "850 W"},
+        {"name": "Certificación", "value": "80 PLUS Platinum"},
+        {"name": "Factor de forma", "value": "ATX"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Modularidad", "value": "Totalmente modular"},
+        {"name": "Ventilador", "value": "135 mm"},
+        {"name": "Condensadores", "value": "100% japoneses"}
+      ]},
+      {"name": "Protecciones y garantía", "features": [
+        {"name": "Protecciones", "value": "OVP / UVP / OCP / OPP / OTP / SCP"},
+        {"name": "Garantía", "value": "10 años"}
+      ]}
+    ]
+  }
+}
