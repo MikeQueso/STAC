@@ -1,0 +1,453 @@
+{
+  "Astro A10 Gen 2": {
+    "brandInfo": "Astro Gaming, parte de Logitech, es una marca especializada en audífonos gamer de calidad y durabilidad.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear alámbricos con buena calidad de sonido para juegos y comunicación clara."},
+      {"title": "Micrófono", "body": "Micrófono flip-to-mute: se silencia al levantarlo, práctico y rápido."},
+      {"title": "Durabilidad", "body": "Construcción resistente diseñada para soportar el uso intenso diario."},
+      {"title": "Casos de uso recomendados", "body": "Gaming en PC y consolas mediante conexión de 3.5 mm."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "32 mm"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico 3.5 mm"},
+        {"name": "Compatibilidad", "value": "PC, PS, Xbox, Switch, móvil"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Flip-to-mute"}
+      ]}
+    ]
+  },
+  "Beats Solo 3": {
+    "brandInfo": "Beats, parte de Apple, es una marca premium de audio reconocida por su estilo y graves potentes.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos on-ear inalámbricos con sonido característico Beats y graves potentes."},
+      {"title": "Batería", "body": "Hasta 40 horas de autonomía y carga rápida Fast Fuel para horas de uso en minutos."},
+      {"title": "Conectividad", "body": "Chip Apple W1 para emparejamiento instantáneo con dispositivos Apple, también compatible con Android."},
+      {"title": "Casos de uso recomendados", "body": "Música, uso diario y movilidad."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "On-ear (supraaural)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico (Bluetooth)"},
+        {"name": "Batería", "value": "Hasta 40 horas"},
+        {"name": "Chip", "value": "Apple W1"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Carga rápida", "value": "Fast Fuel"},
+        {"name": "Plegable", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Corsair HS55 Stereo": {
+    "brandInfo": "Corsair es una marca líder en periféricos gamer reconocida por su calidad.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear alámbricos con diafragmas de 50 mm para un sonido envolvente y claro."},
+      {"title": "Comodidad", "body": "Almohadillas de espuma viscoelástica cómodas para largas sesiones."},
+      {"title": "Micrófono", "body": "Micrófono desmontable con cancelación de ruido para comunicación clara."},
+      {"title": "Casos de uso recomendados", "body": "Gaming en PC y consolas mediante 3.5 mm."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "50 mm"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico 3.5 mm"},
+        {"name": "Compatibilidad", "value": "PC, PS, Xbox, Switch, móvil"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Desmontable con cancelación de ruido"}
+      ]}
+    ]
+  },
+  "Corsair Virtuoso RGB Wireless": {
+    "brandInfo": "Corsair es una marca líder en periféricos gamer; la línea Virtuoso es su gama premium de audio.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear inalámbricos premium con diafragmas de 50 mm y sonido envolvente 7.1."},
+      {"title": "Micrófono broadcast", "body": "Micrófono desmontable de alta calidad con sonido nivel transmisión."},
+      {"title": "Conectividad", "body": "Conexión inalámbrica de baja latencia, USB y 3.5 mm para máxima flexibilidad."},
+      {"title": "Casos de uso recomendados", "body": "Gaming premium, streaming y comunicación de alta calidad."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "50 mm"},
+        {"name": "Sonido envolvente", "value": "7.1"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico 2.4 GHz / USB / 3.5 mm"},
+        {"name": "Batería", "value": "Hasta 20 horas"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Desmontable nivel transmisión"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (iCUE)"}
+      ]}
+    ]
+  },
+  "HyperX Cloud Alpha": {
+    "brandInfo": "HyperX es una marca reconocida de audio y periféricos gamer (hoy parte de HP), famosa por la comodidad de sus audífonos.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear alámbricos con diafragmas de doble cámara de 50 mm que reducen la distorsión y mejoran la claridad."},
+      {"title": "Comodidad", "body": "Diadema de aluminio resistente y almohadillas de espuma viscoelástica muy cómodas."},
+      {"title": "Micrófono", "body": "Micrófono desmontable con cancelación de ruido certificado."},
+      {"title": "Casos de uso recomendados", "body": "Gaming en PC y consolas mediante 3.5 mm."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "50 mm de doble cámara"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico 3.5 mm"},
+        {"name": "Compatibilidad", "value": "PC, PS, Xbox, Switch, móvil"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Desmontable con cancelación de ruido"}
+      ]}
+    ]
+  },
+  "HyperX Cloud Stinger 2": {
+    "brandInfo": "HyperX es una marca reconocida de audio y periféricos gamer (hoy parte de HP).",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear alámbricos con diafragmas de 50 mm y sonido espacial DTS Headphone:X."},
+      {"title": "Comodidad", "body": "Ligeros y cómodos, con almohadillas de espuma para largas sesiones."},
+      {"title": "Micrófono", "body": "Micrófono abatible con silenciamiento al girarlo (swivel-to-mute)."},
+      {"title": "Casos de uso recomendados", "body": "Gaming en PC accesible."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "50 mm"},
+        {"name": "Sonido envolvente", "value": "DTS Headphone:X"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico 3.5 mm"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Abatible (swivel-to-mute)"}
+      ]}
+    ]
+  },
+  "JBL Quantum 100": {
+    "brandInfo": "JBL es una marca legendaria de audio; la línea Quantum está enfocada en gaming.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear alámbricos con diafragmas de 40 mm y el característico sonido JBL QuantumSOUND."},
+      {"title": "Comodidad", "body": "Almohadillas de espuma cómodas para largas sesiones de juego."},
+      {"title": "Micrófono", "body": "Micrófono desmontable con cancelación de eco para voz clara."},
+      {"title": "Casos de uso recomendados", "body": "Gaming en PC y consolas mediante 3.5 mm."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "40 mm"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico 3.5 mm"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Desmontable"}
+      ]}
+    ]
+  },
+  "JBL Tune 510BT": {
+    "brandInfo": "JBL es una marca legendaria de audio reconocida por su sonido Pure Bass.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos on-ear inalámbricos con sonido JBL Pure Bass de graves potentes."},
+      {"title": "Batería", "body": "Hasta 40 horas de autonomía y carga rápida (5 minutos = 2 horas)."},
+      {"title": "Conectividad", "body": "Bluetooth 5.0 con función multipunto para cambiar entre dos dispositivos."},
+      {"title": "Casos de uso recomendados", "body": "Música, uso diario y movilidad."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "On-ear (supraaural)"},
+        {"name": "Sonido", "value": "JBL Pure Bass"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Bluetooth 5.0"},
+        {"name": "Batería", "value": "Hasta 40 horas"},
+        {"name": "Multipunto", "value": "Sí"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Plegable", "value": "Sí"}
+      ]}
+    ]
+  },
+  "JBL Tune 720BT": {
+    "brandInfo": "JBL es una marca legendaria de audio reconocida por su sonido Pure Bass.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos over-ear inalámbricos con sonido JBL Pure Bass y gran calidad para música."},
+      {"title": "Batería", "body": "Hasta 76 horas de autonomía y carga rápida."},
+      {"title": "Conectividad", "body": "Bluetooth 5.3 con app JBL Headphones para ecualización personalizada."},
+      {"title": "Casos de uso recomendados", "body": "Música, uso diario prolongado y movilidad."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Sonido", "value": "JBL Pure Bass"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Bluetooth 5.3"},
+        {"name": "Batería", "value": "Hasta 76 horas"},
+        {"name": "Multipunto", "value": "Sí"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "App de ecualización", "value": "JBL Headphones"}
+      ]}
+    ]
+  },
+  "Logitech G435 Lightspeed": {
+    "brandInfo": "Logitech G es la división gamer de Logitech, líder mundial en periféricos.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear inalámbricos ultraligeros con diafragmas de 40 mm."},
+      {"title": "Ligereza", "body": "Solo 165 g de peso para máxima comodidad en sesiones largas."},
+      {"title": "Conectividad", "body": "Inalámbrico Lightspeed de baja latencia y Bluetooth, compatible con PC, móvil y consolas."},
+      {"title": "Casos de uso recomendados", "body": "Gaming inalámbrico ligero y uso multiplataforma."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "40 mm"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico Lightspeed / Bluetooth"},
+        {"name": "Batería", "value": "Hasta 18 horas"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Peso", "value": "165 g"},
+        {"name": "Micrófono", "value": "Integrado de doble haz"}
+      ]}
+    ]
+  },
+  "Logitech G733 Lightspeed": {
+    "brandInfo": "Logitech G es la división gamer de Logitech, líder mundial en periféricos.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear inalámbricos con diafragmas avanzados y sonido envolvente DTS Headphone:X 2.0."},
+      {"title": "Iluminación", "body": "Iluminación RGB Lightsync con efectos personalizables."},
+      {"title": "Conectividad", "body": "Inalámbrico Lightspeed de baja latencia con hasta 29 horas de batería."},
+      {"title": "Casos de uso recomendados", "body": "Gaming inalámbrico con estética RGB y comodidad."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "40 mm"},
+        {"name": "Sonido envolvente", "value": "DTS Headphone:X 2.0"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico Lightspeed"},
+        {"name": "Batería", "value": "Hasta 29 horas"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Micrófono", "value": "Desmontable Blue VO!CE"},
+        {"name": "Iluminación RGB", "value": "Sí (Lightsync)"}
+      ]}
+    ]
+  },
+  "Razer BlackShark V2": {
+    "brandInfo": "Razer es una de las marcas gamer más reconocidas del mundo, con audio enfocado en e-sports.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear alámbricos con diafragmas TriForce Titanium de 50 mm y sonido envolvente THX Spatial 7.1."},
+      {"title": "Micrófono", "body": "Micrófono desmontable HyperClear cardioide para voz nítida."},
+      {"title": "DAC USB", "body": "Incluye tarjeta de sonido USB para potenciar el audio en PC."},
+      {"title": "Casos de uso recomendados", "body": "Gaming competitivo y e-sports donde la precisión del sonido importa."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "50 mm TriForce Titanium"},
+        {"name": "Sonido envolvente", "value": "THX Spatial 7.1"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico 3.5 mm + DAC USB"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Desmontable HyperClear cardioide"}
+      ]}
+    ]
+  },
+  "Razer Kraken Kitty V2": {
+    "brandInfo": "Razer es una de las marcas gamer más reconocidas del mundo; la línea Kraken Kitty destaca por su diseño con orejas y RGB.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear con diafragmas de 50 mm y sonido envolvente para una experiencia inmersiva."},
+      {"title": "Diseño", "body": "Icónicas orejas de gato con iluminación Razer Chroma RGB e interactividad con stream."},
+      {"title": "Micrófono", "body": "Micrófono cardioide retráctil con voz clara."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, streaming y usuarios que buscan estilo único."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "50 mm"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico USB"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Retráctil cardioide"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (Chroma)"}
+      ]}
+    ]
+  },
+  "Razer Kraken X": {
+    "brandInfo": "Razer es una de las marcas gamer más reconocidas del mundo; el Kraken X es su opción ligera y accesible.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear alámbricos ligeros con diafragmas de 40 mm y sonido envolvente 7.1 (en PC)."},
+      {"title": "Comodidad", "body": "Diseño ultraligero con almohadillas cómodas para sesiones prolongadas."},
+      {"title": "Micrófono", "body": "Micrófono flexible con cardioide para voz clara."},
+      {"title": "Casos de uso recomendados", "body": "Gaming accesible en PC y consolas mediante 3.5 mm."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "40 mm"},
+        {"name": "Sonido envolvente", "value": "7.1 (en PC)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico 3.5 mm"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Flexible cardioide"}
+      ]}
+    ]
+  },
+  "Sennheiser HD 350BT": {
+    "brandInfo": "Sennheiser es un fabricante alemán legendario de audio de alta fidelidad.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos over-ear inalámbricos con la reconocida calidad de sonido Sennheiser."},
+      {"title": "Batería", "body": "Hasta 30 horas de autonomía para uso prolongado."},
+      {"title": "Conectividad", "body": "Bluetooth 5.0 con códecs de alta calidad AAC, aptX y aptX Low Latency."},
+      {"title": "Casos de uso recomendados", "body": "Música de alta calidad, uso diario y movilidad."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Bluetooth 5.0"},
+        {"name": "Códecs", "value": "AAC / aptX / aptX LL"},
+        {"name": "Batería", "value": "Hasta 30 horas"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Plegable", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Skullcandy Hesh Evo": {
+    "brandInfo": "Skullcandy es una marca estadounidense de audio reconocida por su estilo y buena relación precio-valor.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos over-ear inalámbricos con sonido potente y claro para música."},
+      {"title": "Batería", "body": "Hasta 36 horas de autonomía y carga rápida."},
+      {"title": "Conectividad", "body": "Bluetooth con función para guardar tu ubicación si los pierdes (Tile)."},
+      {"title": "Casos de uso recomendados", "body": "Música, uso diario y movilidad."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Bluetooth"},
+        {"name": "Batería", "value": "Hasta 36 horas"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Plegable", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Sony WH-1000XM4": {
+    "brandInfo": "Sony es un gigante de la electrónica; la serie WH-1000X es referente mundial en cancelación de ruido.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos over-ear inalámbricos premium con la mejor cancelación de ruido de su clase y sonido de alta resolución."},
+      {"title": "Cancelación de ruido", "body": "Cancelación activa líder con procesador QN1 que se adapta a tu entorno."},
+      {"title": "Batería y conectividad", "body": "Hasta 30 horas de batería, Bluetooth con códec LDAC, multipunto y carga rápida."},
+      {"title": "Casos de uso recomendados", "body": "Viajes, oficina, música de alta calidad y concentración."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Cancelación de ruido", "value": "Activa (ANC) líder"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Bluetooth (LDAC)"},
+        {"name": "Batería", "value": "Hasta 30 horas"},
+        {"name": "Multipunto", "value": "Sí"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Carga rápida", "value": "Sí (10 min = 5 h)"},
+        {"name": "Asistente de voz", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Sony WH-CH520": {
+    "brandInfo": "Sony es un gigante de la electrónica con amplia gama de audio para todos los presupuestos.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos on-ear inalámbricos compactos con sonido equilibrado y personalizable por app."},
+      {"title": "Batería", "body": "Hasta 50 horas de autonomía y carga rápida."},
+      {"title": "Conectividad", "body": "Bluetooth 5.2 con función multipunto para dos dispositivos."},
+      {"title": "Casos de uso recomendados", "body": "Música, uso diario y movilidad a buen precio."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "On-ear (supraaural)"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Bluetooth 5.2"},
+        {"name": "Batería", "value": "Hasta 50 horas"},
+        {"name": "Multipunto", "value": "Sí"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "App de ecualización", "value": "Sony Headphones Connect"}
+      ]}
+    ]
+  },
+  "SteelSeries Arctis 1": {
+    "brandInfo": "SteelSeries es un fabricante danés de periféricos gamer de alto rendimiento muy usado en e-sports.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear alámbricos con diafragmas de 40 mm y la reconocida firma de sonido SteelSeries."},
+      {"title": "Micrófono", "body": "Micrófono desmontable ClearCast con calidad de transmisión y cancelación de ruido."},
+      {"title": "Compatibilidad", "body": "Conexión universal de 3.5 mm compatible con PC, consolas y móvil."},
+      {"title": "Casos de uso recomendados", "body": "Gaming multiplataforma accesible."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Diafragmas", "value": "40 mm"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico 3.5 mm"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Desmontable ClearCast"}
+      ]}
+    ]
+  },
+  "SteelSeries Arctis Nova 7": {
+    "brandInfo": "SteelSeries es un fabricante danés de periféricos gamer de alto rendimiento; Nova 7 es su gama inalámbrica premium.",
+    "descriptionSections": [
+      {"title": "Audio", "body": "Audífonos gamer over-ear inalámbricos premium con sonido espacial 360 y diafragmas de alta fidelidad."},
+      {"title": "Doble inalámbrico", "body": "Conexión simultánea 2.4 GHz y Bluetooth para mezclar el audio del juego con el del teléfono."},
+      {"title": "Batería", "body": "Hasta 38 horas de autonomía con carga rápida."},
+      {"title": "Casos de uso recomendados", "body": "Gaming inalámbrico premium multiplataforma."}
+    ],
+    "specsGroups": [
+      {"name": "Audio", "features": [
+        {"name": "Tipo", "value": "Over-ear (circumaural)"},
+        {"name": "Sonido envolvente", "value": "Audio espacial 360"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico 2.4 GHz + Bluetooth (simultáneo)"},
+        {"name": "Batería", "value": "Hasta 38 horas"}
+      ]},
+      {"name": "Micrófono", "features": [
+        {"name": "Micrófono", "value": "Retráctil ClearCast Gen 2"}
+      ]}
+    ]
+  }
+}

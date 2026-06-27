@@ -1,0 +1,457 @@
+{
+  "ASUS ROG Gladius III": {
+    "brandInfo": "ASUS ROG (Republic of Gamers) es la línea gamer premium de ASUS, con periféricos de alta calidad.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor óptico de alta precisión, ideal para juegos competitivos."},
+      {"title": "Switches intercambiables", "body": "Sistema Push-Fit que permite cambiar los switches sin soldar para personalizar la sensación de clic."},
+      {"title": "Ergonomía", "body": "Diseño ergonómico para diestros con agarre cómodo y buena durabilidad."},
+      {"title": "Casos de uso recomendados", "body": "Gaming competitivo y de alto rendimiento."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "19,000"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Switches intercambiables", "value": "Sí (Push-Fit)"},
+        {"name": "Iluminación RGB", "value": "Sí (Aura Sync)"}
+      ]}
+    ]
+  },
+  "Corsair Harpoon RGB": {
+    "brandInfo": "Corsair es una marca líder en periféricos gamer reconocida por su calidad y software iCUE.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico ligero con sensor óptico, cómodo para largas sesiones de juego."},
+      {"title": "Ergonomía", "body": "Diseño compacto con laterales de goma para un agarre firme."},
+      {"title": "Personalización", "body": "Iluminación RGB y botones programables mediante el software iCUE."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y uso diario."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "6,000"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (iCUE)"}
+      ]}
+    ]
+  },
+  "Corsair Ironclaw RGB": {
+    "brandInfo": "Corsair es una marca líder en periféricos gamer reconocida por su calidad y software iCUE.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor óptico de alta precisión de hasta 18,000 DPI."},
+      {"title": "Ergonomía", "body": "Diseño de mayor tamaño pensado para manos grandes y agarre palm grip."},
+      {"title": "Personalización", "body": "Iluminación RGB y botones programables mediante iCUE."},
+      {"title": "Casos de uso recomendados", "body": "Gaming para manos grandes y juegos de acción."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "18,000"},
+        {"name": "Botones", "value": "7 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (iCUE)"}
+      ]}
+    ]
+  },
+  "Corsair Katar Pro": {
+    "brandInfo": "Corsair es una marca líder en periféricos gamer reconocida por su calidad y software iCUE.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer ligero con sensor óptico de hasta 12,400 DPI, ideal para juegos rápidos."},
+      {"title": "Ligereza", "body": "Diseño compacto y liviano para movimientos ágiles y precisos."},
+      {"title": "Personalización", "body": "Botones programables mediante el software iCUE."},
+      {"title": "Casos de uso recomendados", "body": "Gaming competitivo de entrada y uso diario."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "12,400"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí"}
+      ]}
+    ]
+  },
+  "HyperX Pulsefire Core": {
+    "brandInfo": "HyperX es una marca reconocida de periféricos gamer (hoy parte de HP), valorada por su buena relación precio-calidad.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor óptico Pixart de hasta 6,200 DPI."},
+      {"title": "Ergonomía", "body": "Diseño cómodo con agarre de goma para sesiones prolongadas."},
+      {"title": "Personalización", "body": "Siete botones programables e iluminación RGB."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y uso diario."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico Pixart"},
+        {"name": "DPI máximo", "value": "6,200"},
+        {"name": "Botones", "value": "7 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí"}
+      ]}
+    ]
+  },
+  "HyperX Pulsefire Haste": {
+    "brandInfo": "HyperX es una marca reconocida de periféricos gamer (hoy parte de HP), valorada por su buena relación precio-calidad.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer ultraligero con diseño de panal y sensor de hasta 16,000 DPI para máxima agilidad."},
+      {"title": "Ligereza", "body": "Su peso de aproximadamente 59 g permite movimientos rápidos y precisos."},
+      {"title": "Personalización", "body": "Seis botones programables e iluminación RGB."},
+      {"title": "Casos de uso recomendados", "body": "Gaming competitivo y de alto rendimiento."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "16,000"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Peso", "value": "~59 g"},
+        {"name": "Estructura", "value": "Panal (honeycomb)"},
+        {"name": "Iluminación RGB", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Logitech G Pro X Superlight": {
+    "brandInfo": "Logitech G es la división gamer de Logitech, líder mundial en periféricos; la serie Pro es usada por jugadores profesionales.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer inalámbrico de competición con sensor HERO 25K, de los más usados por profesionales."},
+      {"title": "Ultraligero", "body": "Peso inferior a 63 g para movimientos extremadamente ágiles y precisos."},
+      {"title": "Inalámbrico Lightspeed", "body": "Conexión inalámbrica Lightspeed de baja latencia, sin compromiso frente al alámbrico."},
+      {"title": "Casos de uso recomendados", "body": "Gaming competitivo profesional y e-sports."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "HERO 25K"},
+        {"name": "DPI máximo", "value": "25,600"},
+        {"name": "Botones", "value": "5 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico (Lightspeed)"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Peso", "value": "< 63 g"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Logitech G102 Lightsync": {
+    "brandInfo": "Logitech G es la división gamer de Logitech, líder mundial en periféricos.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor de hasta 8,000 DPI, ideal para uso diario y gaming de entrada."},
+      {"title": "Personalización", "body": "Iluminación RGB Lightsync y botones programables mediante Logitech G HUB."},
+      {"title": "Diseño", "body": "Forma clásica cómoda y ligera."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y uso diario."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "8,000"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (Lightsync)"}
+      ]}
+    ]
+  },
+  "Logitech G203": {
+    "brandInfo": "Logitech G es la división gamer de Logitech, líder mundial en periféricos.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor de hasta 8,000 DPI, uno de los más vendidos por su valor."},
+      {"title": "Personalización", "body": "Iluminación RGB Lightsync y botones programables mediante Logitech G HUB."},
+      {"title": "Diseño", "body": "Forma clásica cómoda y ligera."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y uso diario."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "8,000"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (Lightsync)"}
+      ]}
+    ]
+  },
+  "Logitech G305 Lightspeed": {
+    "brandInfo": "Logitech G es la división gamer de Logitech, líder mundial en periféricos.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer inalámbrico con sensor HERO de hasta 12,000 DPI y conexión Lightspeed de baja latencia."},
+      {"title": "Batería", "body": "Gran autonomía con una pila AA, ideal para jugar sin preocupaciones."},
+      {"title": "Diseño", "body": "Compacto y ligero, perfecto para llevar."},
+      {"title": "Casos de uso recomendados", "body": "Gaming inalámbrico accesible y uso portátil."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "HERO"},
+        {"name": "DPI máximo", "value": "12,000"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico (Lightspeed)"},
+        {"name": "Batería", "value": "1 pila AA"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Logitech G502 Hero": {
+    "brandInfo": "Logitech G es la división gamer de Logitech, líder mundial en periféricos; el G502 es uno de los mouse gamer más vendidos de la historia.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor HERO 25K de altísima precisión y 11 botones programables."},
+      {"title": "Pesos ajustables", "body": "Incluye pesas removibles para ajustar el balance a tu gusto."},
+      {"title": "Personalización", "body": "Iluminación RGB Lightsync y perfiles mediante Logitech G HUB."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento y juegos con muchos comandos (MMO/MOBA)."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "HERO 25K"},
+        {"name": "DPI máximo", "value": "25,600"},
+        {"name": "Botones", "value": "11 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Pesos ajustables", "value": "Sí"},
+        {"name": "Iluminación RGB", "value": "Sí (Lightsync)"}
+      ]}
+    ]
+  },
+  "Logitech G502 X": {
+    "brandInfo": "Logitech G es la división gamer de Logitech, líder mundial en periféricos; el G502 X moderniza al legendario G502.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor HERO 25K y switches híbridos ópticos-mecánicos LIGHTFORCE."},
+      {"title": "Diseño", "body": "Versión más ligera y refinada del icónico G502, con 13 controles."},
+      {"title": "Personalización", "body": "Perfiles y ajustes mediante Logitech G HUB."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento y juegos con muchos comandos."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "HERO 25K"},
+        {"name": "DPI máximo", "value": "25,600"},
+        {"name": "Botones", "value": "13 controles"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Switches", "value": "Híbridos LIGHTFORCE"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Logitech MX Master 3S": {
+    "brandInfo": "Logitech es líder mundial en periféricos; la serie MX Master es su gama tope para productividad.",
+    "descriptionSections": [
+      {"title": "Productividad", "body": "Mouse inalámbrico ergonómico de gama alta con sensor de 8,000 DPI que funciona incluso sobre cristal."},
+      {"title": "Clics silenciosos", "body": "Botones con clics silenciosos un 90% más callados, ideales para oficina."},
+      {"title": "Scroll MagSpeed", "body": "Rueda electromagnética ultrarrápida y precisa, con scroll horizontal por el pulgar."},
+      {"title": "Casos de uso recomendados", "body": "Productividad, oficina, diseño y trabajo profesional."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Darkfield (funciona en cristal)"},
+        {"name": "DPI máximo", "value": "8,000"},
+        {"name": "Botones", "value": "7"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico (Bluetooth / receptor USB)"},
+        {"name": "Batería", "value": "Recargable USB-C"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Clics silenciosos", "value": "Sí"},
+        {"name": "Scroll", "value": "MagSpeed electromagnético"}
+      ]}
+    ]
+  },
+  "Razer Basilisk V3": {
+    "brandInfo": "Razer es una de las marcas gamer más reconocidas del mundo, con periféricos de alto rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor óptico Focus+ de hasta 26,000 DPI y 11 botones programables."},
+      {"title": "Rueda inteligente", "body": "Rueda de desplazamiento inteligente con modo libre y táctil, además de inclinación."},
+      {"title": "Iluminación", "body": "Razer Chroma RGB con zonas direccionables, incluyendo iluminación inferior."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento y juegos con muchos comandos."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico Focus+"},
+        {"name": "DPI máximo", "value": "26,000"},
+        {"name": "Botones", "value": "11 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (Chroma)"}
+      ]}
+    ]
+  },
+  "Razer DeathAdder Essential": {
+    "brandInfo": "Razer es una de las marcas gamer más reconocidas del mundo; el DeathAdder es uno de sus mouse más icónicos.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor óptico de hasta 6,400 DPI, confiable y económico."},
+      {"title": "Ergonomía", "body": "Diseño ergonómico clásico del DeathAdder, muy cómodo para diestros."},
+      {"title": "Durabilidad", "body": "Switches mecánicos con gran vida útil."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y uso diario."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "6,400"},
+        {"name": "Botones", "value": "5 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Razer DeathAdder V3": {
+    "brandInfo": "Razer es una de las marcas gamer más reconocidas del mundo; el DeathAdder V3 es su versión competitiva ultraligera.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor óptico Focus Pro de hasta 30,000 DPI, de los más precisos del mercado."},
+      {"title": "Ultraligero", "body": "Peso de aproximadamente 59 g para movimientos extremadamente ágiles."},
+      {"title": "Switches ópticos", "body": "Switches ópticos de 3ª generación de gran velocidad y durabilidad."},
+      {"title": "Casos de uso recomendados", "body": "Gaming competitivo profesional y e-sports."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico Focus Pro"},
+        {"name": "DPI máximo", "value": "30,000"},
+        {"name": "Botones", "value": "5 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Peso", "value": "~59 g"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Razer Orochi V2": {
+    "brandInfo": "Razer es una de las marcas gamer más reconocidas del mundo; el Orochi V2 es su mouse inalámbrico ultraligero y portátil.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer inalámbrico ultraligero con sensor de hasta 18,000 DPI."},
+      {"title": "Batería", "body": "Hasta cientos de horas de uso con una sola pila AA o AAA."},
+      {"title": "Portátil", "body": "Diseño compacto y liviano (~60 g), ideal para llevar."},
+      {"title": "Casos de uso recomendados", "body": "Gaming portátil e inalámbrico y uso móvil."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "18,000"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Inalámbrico (Bluetooth / 2.4 GHz)"},
+        {"name": "Batería", "value": "1 pila AA o AAA"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Peso", "value": "~60 g"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Razer Viper Mini": {
+    "brandInfo": "Razer es una de las marcas gamer más reconocidas del mundo; el Viper Mini es su mouse ligero para manos pequeñas.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico ligero con sensor óptico de hasta 8,500 DPI."},
+      {"title": "Ligereza", "body": "Peso de aproximadamente 61 g, ideal para manos pequeñas y movimientos ágiles."},
+      {"title": "Iluminación", "body": "Razer Chroma RGB personalizable."},
+      {"title": "Casos de uso recomendados", "body": "Gaming competitivo para manos pequeñas y uso diario."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "Óptico"},
+        {"name": "DPI máximo", "value": "8,500"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Peso", "value": "~61 g"},
+        {"name": "Iluminación RGB", "value": "Sí (Chroma)"}
+      ]}
+    ]
+  },
+  "SteelSeries Aerox 3": {
+    "brandInfo": "SteelSeries es un fabricante danés de periféricos gamer de alto rendimiento muy usado en e-sports.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico ultraligero con diseño perforado y sensor TrueMove de hasta 8,500 DPI."},
+      {"title": "Ligereza", "body": "Peso de aproximadamente 57 g para máxima agilidad."},
+      {"title": "Resistencia", "body": "Recubrimiento AquaBarrier resistente al agua y al polvo pese a su diseño perforado."},
+      {"title": "Casos de uso recomendados", "body": "Gaming competitivo y de alto rendimiento."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "TrueMove Core"},
+        {"name": "DPI máximo", "value": "8,500"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB-C)"}
+      ]},
+      {"name": "Diseño", "features": [
+        {"name": "Peso", "value": "~57 g"},
+        {"name": "Estructura", "value": "Perforada"},
+        {"name": "Iluminación RGB", "value": "Sí"}
+      ]}
+    ]
+  },
+  "SteelSeries Rival 3": {
+    "brandInfo": "SteelSeries es un fabricante danés de periféricos gamer de alto rendimiento muy usado en e-sports.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Mouse gamer alámbrico con sensor TrueMove Core de hasta 8,500 DPI, gran opción económica."},
+      {"title": "Durabilidad", "body": "Switches de gran vida útil y construcción resistente."},
+      {"title": "Iluminación", "body": "Iluminación RGB en tres zonas personalizable."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y uso diario."}
+    ],
+    "specsGroups": [
+      {"name": "Sensor y rendimiento", "features": [
+        {"name": "Sensor", "value": "TrueMove Core"},
+        {"name": "DPI máximo", "value": "8,500"},
+        {"name": "Botones", "value": "6 programables"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Conexión", "value": "Alámbrico (USB)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "Sí (3 zonas)"}
+      ]}
+    ]
+  }
+}
