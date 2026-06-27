@@ -1,0 +1,517 @@
+{
+  "ADATA XPG Gammix D10 16GB (2x8) DDR4 3200MHz": {
+    "brandInfo": "ADATA, con su línea gamer XPG, es un fabricante taiwanés reconocido por memorias y SSD de buen rendimiento por precio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3200 MHz, ideal para gaming y multitarea en plataformas Intel y AMD."},
+      {"title": "Diseño", "body": "Disipador de aluminio de bajo perfil que ayuda a mantener temperaturas estables."},
+      {"title": "Fácil overclock", "body": "Perfil XMP 2.0 para alcanzar su velocidad nominal con un clic en la BIOS."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, ofimática avanzada y equipos de uso general."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Corsair Dominator Platinum 32GB (2x16) DDR5 6000MHz": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer; la línea Dominator Platinum es su memoria premium.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit premium de 32 GB (2x16) DDR5 a 6000 MHz con baja latencia, para los equipos más exigentes."},
+      {"title": "Diseño premium", "body": "Disipadores de aluminio mecanizado e iluminación RGB Capellix direccionable de alta calidad."},
+      {"title": "Overclock", "body": "Perfiles XMP 3.0 para activar su máximo rendimiento fácilmente."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de élite, edición, renderizado y builds premium DDR5."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "32 GB (2 x 16 GB)"},
+        {"name": "Tipo", "value": "DDR5"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "6000 MHz"},
+        {"name": "Latencia CAS", "value": "CL30"},
+        {"name": "Voltaje", "value": "1.4 V"},
+        {"name": "Perfil", "value": "Intel XMP 3.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Aluminio mecanizado"},
+        {"name": "Iluminación RGB", "value": "Sí (Capellix)"}
+      ]}
+    ]
+  },
+  "Corsair Vengeance 16GB (1x16) DDR4 3200MHz": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer; Vengeance es su línea de memoria más popular.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Módulo único de 16 GB DDR4 a 3200 MHz, ideal para ampliar o armar equipos con opción de expansión futura."},
+      {"title": "Diseño", "body": "Disipador de aluminio de perfil compacto compatible con la mayoría de disipadores de CPU."},
+      {"title": "Overclock", "body": "Perfil XMP 2.0 para alcanzar su velocidad nominal."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, multitarea y actualizaciones de memoria."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (1 x 16 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Corsair Vengeance 32GB (2x16) DDR5 5600MHz": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer; Vengeance es su línea de memoria más popular.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 32 GB (2x16) DDR5 a 5600 MHz, excelente para gaming y productividad en plataformas modernas."},
+      {"title": "Diseño", "body": "Disipador de aluminio de perfil moderado y PMIC integrado para mayor estabilidad DDR5."},
+      {"title": "Overclock", "body": "Perfiles XMP 3.0 de fácil activación."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, edición y equipos nuevos DDR5 (Intel 12/13/14 gen y AMD AM5)."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "32 GB (2 x 16 GB)"},
+        {"name": "Tipo", "value": "DDR5"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "5600 MHz"},
+        {"name": "Latencia CAS", "value": "CL36"},
+        {"name": "Voltaje", "value": "1.25 V"},
+        {"name": "Perfil", "value": "Intel XMP 3.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Corsair Vengeance LPX 16GB (2x8) DDR4 3200MHz": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer; Vengeance LPX es su memoria de bajo perfil más vendida.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3200 MHz, un estándar confiable para gaming y trabajo."},
+      {"title": "Bajo perfil", "body": "Su disipador compacto LPX garantiza compatibilidad con grandes disipadores de CPU y gabinetes pequeños."},
+      {"title": "Overclock", "body": "Perfil XMP 2.0 para alcanzar 3200 MHz fácilmente."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, multitarea y builds compactos."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Bajo perfil (LPX)"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Corsair Vengeance RGB Pro 16GB (2x8) DDR4 3600MHz": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer; Vengeance RGB Pro combina rendimiento e iluminación.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3600 MHz con baja latencia, ideal para gaming de alto rendimiento."},
+      {"title": "Iluminación", "body": "Diez LEDs RGB direccionables por módulo, controlables con el software iCUE."},
+      {"title": "Overclock", "body": "Perfil XMP 2.0 para activar 3600 MHz con un clic."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, builds con estética RGB y multitarea."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3600 MHz"},
+        {"name": "Latencia CAS", "value": "CL18"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio"},
+        {"name": "Iluminación RGB", "value": "Sí (iCUE)"}
+      ]}
+    ]
+  },
+  "Crucial 16GB (2x8) DDR4 3200MHz": {
+    "brandInfo": "Crucial es la marca de consumo de Micron, fabricante directo de memoria, lo que garantiza compatibilidad y fiabilidad.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3200 MHz, confiable y de gran compatibilidad para uso general."},
+      {"title": "Compatibilidad", "body": "Probada con una enorme variedad de equipos; ideal para actualizaciones seguras."},
+      {"title": "Eficiencia", "body": "Bajo voltaje y diseño sencillo sin disipador voluminoso."},
+      {"title": "Casos de uso recomendados", "body": "Ofimática, multitarea, equipos de trabajo y actualizaciones confiables."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL22"},
+        {"name": "Voltaje", "value": "1.2 V"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Crucial Pro 16GB (2x8) DDR5 5600MHz": {
+    "brandInfo": "Crucial es la marca de consumo de Micron, fabricante directo de memoria DDR5.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR5 a 5600 MHz para gaming y productividad en plataformas modernas."},
+      {"title": "Compatibilidad", "body": "Diseñado y probado por Micron para máxima estabilidad en equipos DDR5."},
+      {"title": "Eficiencia", "body": "Voltaje DDR5 de 1.1 V con PMIC integrado en el módulo."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, trabajo y equipos nuevos DDR5."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR5"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "5600 MHz"},
+        {"name": "Latencia CAS", "value": "CL46"},
+        {"name": "Voltaje", "value": "1.1 V"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "G.Skill Flare X5 32GB (2x16) DDR5 6000MHz": {
+    "brandInfo": "G.Skill es un fabricante taiwanés especializado en memoria de alto rendimiento para entusiastas y overclockers.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 32 GB (2x16) DDR5 a 6000 MHz con latencia CL30, optimizado para plataformas AMD."},
+      {"title": "Optimizado para AMD", "body": "Perfil AMD EXPO para activar su máximo rendimiento en placas AM5 con un clic."},
+      {"title": "Diseño", "body": "Disipador de bajo perfil compatible con grandes disipadores de CPU."},
+      {"title": "Casos de uso recomendados", "body": "Gaming AMD Ryzen 7000, edición y productividad."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "32 GB (2 x 16 GB)"},
+        {"name": "Tipo", "value": "DDR5"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "6000 MHz"},
+        {"name": "Latencia CAS", "value": "CL30"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "AMD EXPO"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Bajo perfil"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "G.Skill Ripjaws V 16GB (2x8) DDR4 3200MHz": {
+    "brandInfo": "G.Skill es un fabricante taiwanés especializado en memoria de alto rendimiento; Ripjaws V es su línea DDR4 más popular.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3200 MHz con latencia CL16, gran opción para gaming."},
+      {"title": "Diseño", "body": "Disipador de aluminio con perfil moderado y diseño clásico."},
+      {"title": "Overclock", "body": "Perfil XMP 2.0 para alcanzar 3200 MHz fácilmente."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, multitarea y equipos de uso general."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "G.Skill Trident Z RGB 16GB (2x8) DDR4 3600MHz": {
+    "brandInfo": "G.Skill es un fabricante taiwanés especializado en memoria de alto rendimiento; Trident Z RGB es su línea premium con iluminación.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3600 MHz con latencia CL18, ideal para gaming de alto rendimiento."},
+      {"title": "Iluminación", "body": "Barra de luz RGB de gran calidad, compatible con los sistemas de sincronización de las principales marcas."},
+      {"title": "Overclock", "body": "Perfil XMP 2.0 para activar 3600 MHz."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, builds con estética RGB y entusiastas."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3600 MHz"},
+        {"name": "Latencia CAS", "value": "CL18"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio"},
+        {"name": "Iluminación RGB", "value": "Sí"}
+      ]}
+    ]
+  },
+  "G.Skill Trident Z5 32GB (2x16) DDR5 6000MHz": {
+    "brandInfo": "G.Skill es un fabricante taiwanés especializado en memoria de alto rendimiento; Trident Z5 es su línea premium DDR5.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit premium de 32 GB (2x16) DDR5 a 6000 MHz con latencia CL36, para equipos de alto rendimiento."},
+      {"title": "Diseño", "body": "Disipador de aluminio premium con iluminación RGB de alta calidad."},
+      {"title": "Overclock", "body": "Perfiles XMP 3.0 para máximo rendimiento."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de élite, edición y builds premium DDR5."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "32 GB (2 x 16 GB)"},
+        {"name": "Tipo", "value": "DDR5"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "6000 MHz"},
+        {"name": "Latencia CAS", "value": "CL36"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "Intel XMP 3.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Aluminio premium"},
+        {"name": "Iluminación RGB", "value": "Sí"}
+      ]}
+    ]
+  },
+  "HyperX Fury 8GB DDR4 2666MHz": {
+    "brandInfo": "HyperX es una marca reconocida de memoria y periféricos gamer (hoy parte de HP), valorada por su fiabilidad.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Módulo de 8 GB DDR4 a 2666 MHz, una opción económica para ampliar o armar equipos de entrada."},
+      {"title": "Plug and play", "body": "Autoconfiguración automática a la velocidad nominal sin ajustes complejos."},
+      {"title": "Diseño", "body": "Disipador de bajo perfil compatible con la mayoría de equipos."},
+      {"title": "Casos de uso recomendados", "body": "Oficina, equipos de entrada y actualizaciones económicas."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "8 GB (1 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "2666 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.2 V"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Bajo perfil"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Kingston Fury Beast 16GB (2x8) DDR4 3200MHz": {
+    "brandInfo": "Kingston FURY es la línea gamer de Kingston, el mayor fabricante independiente de memoria del mundo.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3200 MHz con latencia CL16, gran opción para gaming."},
+      {"title": "Plug and play", "body": "Compatible con Intel XMP y optimizado para placas AMD."},
+      {"title": "Diseño", "body": "Disipador de bajo perfil con estilo agresivo."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, multitarea y equipos de uso general."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Bajo perfil"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Kingston Fury Beast 16GB (2x8) DDR5 5200MHz": {
+    "brandInfo": "Kingston FURY es la línea gamer de Kingston, el mayor fabricante independiente de memoria del mundo.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR5 a 5200 MHz para gaming y productividad en plataformas modernas."},
+      {"title": "Plug and play", "body": "Perfiles XMP 3.0 y PMIC integrado para estabilidad DDR5."},
+      {"title": "Diseño", "body": "Disipador de bajo perfil con estilo moderno."},
+      {"title": "Casos de uso recomendados", "body": "Gaming y equipos nuevos DDR5 (Intel y AMD AM5)."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR5"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "5200 MHz"},
+        {"name": "Latencia CAS", "value": "CL40"},
+        {"name": "Voltaje", "value": "1.25 V"},
+        {"name": "Perfil", "value": "Intel XMP 3.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Bajo perfil"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Kingston Fury Beast 8GB DDR4 3200MHz": {
+    "brandInfo": "Kingston FURY es la línea gamer de Kingston, el mayor fabricante independiente de memoria del mundo.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Módulo de 8 GB DDR4 a 3200 MHz con latencia CL16, ideal para ampliar o armar equipos."},
+      {"title": "Plug and play", "body": "Compatible con Intel XMP y optimizado para AMD."},
+      {"title": "Diseño", "body": "Disipador de bajo perfil con estilo agresivo."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada, multitarea y actualizaciones."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "8 GB (1 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Bajo perfil"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Kingston Fury Renegade 32GB (2x16) DDR5 6000MHz": {
+    "brandInfo": "Kingston FURY es la línea gamer de Kingston; Renegade es su gama tope para entusiastas y overclockers.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit premium de 32 GB (2x16) DDR5 a 6000 MHz con latencia CL32, para máximo rendimiento."},
+      {"title": "Diseño", "body": "Disipador premium de aluminio con diseño agresivo de doble tono."},
+      {"title": "Overclock", "body": "Perfiles XMP 3.0 y compatibilidad con perfiles personalizados."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de élite, edición y builds premium DDR5."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "32 GB (2 x 16 GB)"},
+        {"name": "Tipo", "value": "DDR5"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "6000 MHz"},
+        {"name": "Latencia CAS", "value": "CL32"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "Intel XMP 3.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Aluminio premium"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "Patriot Viper Steel 16GB (2x8) DDR4 3200MHz": {
+    "brandInfo": "Patriot es un fabricante estadounidense de memoria y almacenamiento; Viper es su línea gamer de alto rendimiento.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3200 MHz con latencia CL16, sólido para gaming."},
+      {"title": "Diseño", "body": "Disipador de aluminio con acabado en tono acero."},
+      {"title": "Overclock", "body": "Perfil XMP 2.0 para alcanzar 3200 MHz fácilmente."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, multitarea y equipos de uso general."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "PNY XLR8 16GB (2x8) DDR4 3200MHz": {
+    "brandInfo": "PNY es un fabricante estadounidense de memoria, almacenamiento y tarjetas gráficas; XLR8 es su línea gamer.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3200 MHz, una opción confiable y accesible para gaming."},
+      {"title": "Diseño", "body": "Disipador de aluminio de perfil moderado."},
+      {"title": "Overclock", "body": "Perfil XMP 2.0 para activar su velocidad nominal."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, multitarea y equipos de uso general."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  },
+  "TeamGroup T-Force Vulcan Z 16GB (2x8) DDR4 3200MHz": {
+    "brandInfo": "TeamGroup es un fabricante taiwanés de memoria y almacenamiento; T-Force es su línea gamer.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Kit de 16 GB (2x8) DDR4 a 3200 MHz con latencia CL16, excelente relación precio-rendimiento."},
+      {"title": "Diseño", "body": "Disipador de aluminio delgado con buena disipación y estilo gamer."},
+      {"title": "Overclock", "body": "Perfil XMP 2.0 para alcanzar 3200 MHz fácilmente."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, multitarea y equipos accesibles."}
+    ],
+    "specsGroups": [
+      {"name": "Memoria", "features": [
+        {"name": "Capacidad", "value": "16 GB (2 x 8 GB)"},
+        {"name": "Tipo", "value": "DDR4"},
+        {"name": "Factor de forma", "value": "DIMM (escritorio)"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia", "value": "3200 MHz"},
+        {"name": "Latencia CAS", "value": "CL16"},
+        {"name": "Voltaje", "value": "1.35 V"},
+        {"name": "Perfil", "value": "XMP 2.0"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Disipador", "value": "Sí, aluminio delgado"},
+        {"name": "Iluminación RGB", "value": "No"}
+      ]}
+    ]
+  }
+}

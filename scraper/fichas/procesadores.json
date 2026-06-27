@@ -1,0 +1,571 @@
+{
+  "AMD Ryzen 3 4100": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC del mundo; su arquitectura Zen revolucionó el mercado con gran rendimiento multinúcleo por precio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 4 núcleos y 8 hilos basado en arquitectura Zen 2, ideal para equipos de entrada de oficina y gaming básico."},
+      {"title": "Eficiencia", "body": "TDP de 65W que permite usar disipadores modestos y fuentes de poder económicas."},
+      {"title": "Incluye disipador", "body": "Viene con el disipador AMD Wraith Stealth, listo para instalar sin compras adicionales."},
+      {"title": "Casos de uso recomendados", "body": "PCs de oficina, navegación, estudio y gaming de entrada con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 2"},
+        {"name": "Núcleos / Hilos", "value": "4 / 8"},
+        {"name": "Socket", "value": "AMD AM4"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.8 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "4.0 GHz"},
+        {"name": "Caché L3", "value": "6 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "AMD Wraith Stealth"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 5 5500": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; la familia Ryzen 5000 (Zen 3) ofrece excelente rendimiento por precio en socket AM4.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 6 núcleos y 12 hilos con arquitectura Zen 3, una opción muy popular para gaming accesible."},
+      {"title": "Eficiencia", "body": "TDP de 65W con disipador incluido, fácil de enfriar y de bajo consumo."},
+      {"title": "Plataforma", "body": "Compatible con la madura plataforma AM4 y memorias DDR4, ideal para armar equipos económicos."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p, multitarea y equipos de uso general con tarjeta de video dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 3"},
+        {"name": "Núcleos / Hilos", "value": "6 / 12"},
+        {"name": "Socket", "value": "AMD AM4"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.6 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "4.2 GHz"},
+        {"name": "Caché L3", "value": "16 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "AMD Wraith Stealth"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 5 5600": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; la familia Ryzen 5000 (Zen 3) ofrece excelente rendimiento por precio en socket AM4.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 6 núcleos y 12 hilos Zen 3 con 32 MB de caché L3, uno de los mejores para gaming por su relación precio-rendimiento."},
+      {"title": "Eficiencia", "body": "TDP de 65W con disipador Wraith Stealth incluido, fácil de enfriar."},
+      {"title": "Plataforma", "body": "Socket AM4 con soporte DDR4, ideal para builds gamer accesibles y eficientes."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p/1440p, streaming ligero y productividad."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 3"},
+        {"name": "Núcleos / Hilos", "value": "6 / 12"},
+        {"name": "Socket", "value": "AMD AM4"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.5 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "4.4 GHz"},
+        {"name": "Caché L3", "value": "32 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "AMD Wraith Stealth"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 5 5600X": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; la familia Ryzen 5000 (Zen 3) ofrece excelente rendimiento por precio en socket AM4.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 6 núcleos y 12 hilos Zen 3 con frecuencias más altas que el 5600, excelente para gaming de alto rendimiento."},
+      {"title": "Eficiencia", "body": "TDP de 65W con disipador Wraith Stealth incluido."},
+      {"title": "Plataforma", "body": "Socket AM4 con soporte DDR4, base sólida para equipos gamer."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p/1440p de alto rendimiento, streaming y productividad."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 3"},
+        {"name": "Núcleos / Hilos", "value": "6 / 12"},
+        {"name": "Socket", "value": "AMD AM4"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.7 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "4.6 GHz"},
+        {"name": "Caché L3", "value": "32 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "AMD Wraith Stealth"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 5 7600": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; la familia Ryzen 7000 (Zen 4) estrena el socket AM5 con memorias DDR5.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 6 núcleos y 12 hilos con arquitectura Zen 4 y frecuencias de hasta 5.1 GHz, ideal para gaming moderno."},
+      {"title": "Gráficos integrados", "body": "Incluye gráficos RDNA 2 integrados, útiles para diagnóstico o uso sin tarjeta de video dedicada."},
+      {"title": "Plataforma", "body": "Socket AM5 con soporte DDR5 y PCIe 5.0, una base preparada para el futuro. Incluye disipador Wraith Stealth."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p/1440p, productividad y equipos nuevos de plataforma AM5."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 4"},
+        {"name": "Núcleos / Hilos", "value": "6 / 12"},
+        {"name": "Socket", "value": "AMD AM5"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.8 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "5.1 GHz"},
+        {"name": "Caché L3", "value": "32 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "AMD Radeon (RDNA 2)"}
+      ]},
+      {"name": "Memoria y energía", "features": [
+        {"name": "Memoria soportada", "value": "DDR5"},
+        {"name": "TDP", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "AMD Wraith Stealth"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 7 5700X": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; la familia Ryzen 5000 (Zen 3) ofrece excelente rendimiento por precio en socket AM4.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 8 núcleos y 16 hilos Zen 3, excelente para gaming y tareas multinúcleo como edición y streaming."},
+      {"title": "Eficiencia", "body": "TDP de 65W que ofrece gran rendimiento multinúcleo con bajo consumo."},
+      {"title": "Plataforma", "body": "Socket AM4 con DDR4. No incluye disipador, se recomienda uno de torre."},
+      {"title": "Casos de uso recomendados", "body": "Gaming, edición de video, streaming y productividad multinúcleo."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 3"},
+        {"name": "Núcleos / Hilos", "value": "8 / 16"},
+        {"name": "Socket", "value": "AMD AM4"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.4 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "4.6 GHz"},
+        {"name": "Caché L3", "value": "32 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 7 5800X3D": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; el 5800X3D estrenó la tecnología 3D V-Cache, líder en gaming en su plataforma.",
+    "descriptionSections": [
+      {"title": "Rendimiento en gaming", "body": "Procesador de 8 núcleos y 16 hilos con tecnología AMD 3D V-Cache que apila 96 MB de caché L3, ofreciendo el mejor rendimiento gamer del socket AM4."},
+      {"title": "Tecnología 3D V-Cache", "body": "La caché extendida acelera notablemente los juegos sensibles a la memoria, superando a CPUs con mayores frecuencias."},
+      {"title": "Plataforma", "body": "Socket AM4 con DDR4. No incluye disipador; se recomienda refrigeración robusta."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento donde se busca el máximo de FPS en plataforma AM4."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 3 + 3D V-Cache"},
+        {"name": "Núcleos / Hilos", "value": "8 / 16"},
+        {"name": "Socket", "value": "AMD AM4"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.4 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "4.5 GHz"},
+        {"name": "Caché L3", "value": "96 MB (3D V-Cache)"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP", "value": "105 W"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 7 7700X": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; la familia Ryzen 7000 (Zen 4) estrena el socket AM5 con DDR5.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 8 núcleos y 16 hilos Zen 4 con frecuencias de hasta 5.4 GHz, excelente para gaming y creación de contenido."},
+      {"title": "Gráficos integrados", "body": "Incluye gráficos RDNA 2 integrados para uso sin tarjeta dedicada o diagnóstico."},
+      {"title": "Plataforma", "body": "Socket AM5 con DDR5 y PCIe 5.0. Requiere disipador (no incluido) por su mayor TDP."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento, edición, streaming y productividad."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 4"},
+        {"name": "Núcleos / Hilos", "value": "8 / 16"},
+        {"name": "Socket", "value": "AMD AM5"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "4.5 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "5.4 GHz"},
+        {"name": "Caché L3", "value": "32 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "AMD Radeon (RDNA 2)"}
+      ]},
+      {"name": "Memoria y energía", "features": [
+        {"name": "Memoria soportada", "value": "DDR5"},
+        {"name": "TDP", "value": "105 W"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 9 5900X": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; la familia Ryzen 5000 (Zen 3) destaca por su rendimiento multinúcleo.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 12 núcleos y 24 hilos Zen 3, una bestia para productividad, edición y renderizado además de gaming."},
+      {"title": "Multinúcleo", "body": "Sus 12 núcleos y 64 MB de caché lo hacen ideal para cargas de trabajo pesadas y multitarea intensa."},
+      {"title": "Plataforma", "body": "Socket AM4 con DDR4. No incluye disipador; requiere refrigeración robusta."},
+      {"title": "Casos de uso recomendados", "body": "Edición de video, renderizado 3D, compilación, streaming y gaming de alto nivel."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 3"},
+        {"name": "Núcleos / Hilos", "value": "12 / 24"},
+        {"name": "Socket", "value": "AMD AM4"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.7 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "4.8 GHz"},
+        {"name": "Caché L3", "value": "64 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP", "value": "105 W"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "AMD Ryzen 9 7900X": {
+    "brandInfo": "AMD es uno de los dos grandes fabricantes de procesadores para PC; la familia Ryzen 7000 (Zen 4) estrena AM5 con DDR5 y PCIe 5.0.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 12 núcleos y 24 hilos Zen 4 con frecuencias de hasta 5.6 GHz, sobresaliente en productividad y gaming."},
+      {"title": "Gráficos integrados", "body": "Incluye gráficos RDNA 2 integrados para uso sin tarjeta dedicada."},
+      {"title": "Plataforma", "body": "Socket AM5 con DDR5 y PCIe 5.0. Requiere disipador robusto (no incluido) por su TDP de 170W."},
+      {"title": "Casos de uso recomendados", "body": "Estaciones de trabajo, edición 4K, renderizado, compilación y gaming de élite."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Arquitectura", "value": "Zen 4"},
+        {"name": "Núcleos / Hilos", "value": "12 / 24"},
+        {"name": "Socket", "value": "AMD AM5"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "4.7 GHz"},
+        {"name": "Frecuencia máxima (boost)", "value": "5.6 GHz"},
+        {"name": "Caché L3", "value": "64 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "AMD Radeon (RDNA 2)"}
+      ]},
+      {"name": "Memoria y energía", "features": [
+        {"name": "Memoria soportada", "value": "DDR5"},
+        {"name": "TDP", "value": "170 W"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "Intel Core i3-10105F": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la línea Core es su gama principal para PC de escritorio y portátiles.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 4 núcleos y 8 hilos de 10ª generación (Comet Lake), una opción económica para equipos de oficina y gaming básico."},
+      {"title": "Valor", "body": "La variante 'F' no incluye gráficos integrados, lo que reduce su costo si usarás una tarjeta de video dedicada."},
+      {"title": "Plataforma", "body": "Socket LGA 1200 con DDR4. Incluye disipador Intel listo para usar."},
+      {"title": "Casos de uso recomendados", "body": "Oficina, navegación, estudio y gaming de entrada con GPU dedicada."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "10ª (Comet Lake)"},
+        {"name": "Núcleos / Hilos", "value": "4 / 8"},
+        {"name": "Socket", "value": "Intel LGA 1200"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.7 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "4.4 GHz"},
+        {"name": "Caché", "value": "6 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Intel Core i3-12100F": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la 12ª generación (Alder Lake) estrenó el socket LGA 1700.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 4 núcleos y 8 hilos de 12ª generación que ofrece un rendimiento sorprendente en gaming por su precio."},
+      {"title": "Valor", "body": "La variante 'F' sin gráficos integrados reduce el costo para builds con tarjeta de video dedicada."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con soporte DDR4/DDR5. Incluye disipador Intel."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de entrada y media, oficina y multitarea ligera."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "12ª (Alder Lake)"},
+        {"name": "Núcleos / Hilos", "value": "4 / 8"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "3.3 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "4.3 GHz"},
+        {"name": "Caché", "value": "12 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "58 W"},
+        {"name": "Disipador incluido", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Intel Core i5-12400F": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la 12ª generación (Alder Lake) destacó por su gran rendimiento en gaming por precio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador de 6 núcleos y 12 hilos de 12ª generación, uno de los favoritos para gaming por su excelente relación precio-rendimiento."},
+      {"title": "Valor", "body": "La variante 'F' sin gráficos integrados abarata el costo para equipos con GPU dedicada."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con DDR4/DDR5. Incluye disipador Intel."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p/1440p, productividad y equipos de uso general."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "12ª (Alder Lake)"},
+        {"name": "Núcleos / Hilos", "value": "6 / 12"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base", "value": "2.5 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "4.4 GHz"},
+        {"name": "Caché", "value": "18 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Intel Core i5-13400F": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la 13ª generación (Raptor Lake) introdujo arquitectura híbrida de núcleos.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador híbrido de 10 núcleos (6 de rendimiento + 4 de eficiencia) y 16 hilos, excelente para gaming y multitarea."},
+      {"title": "Valor", "body": "La variante 'F' sin gráficos integrados reduce el costo para builds con tarjeta dedicada."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con DDR4/DDR5. Incluye disipador Intel."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p/1440p, productividad y multitarea."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "13ª (Raptor Lake)"},
+        {"name": "Núcleos / Hilos", "value": "10 (6P + 4E) / 16"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base (P)", "value": "2.5 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "4.6 GHz"},
+        {"name": "Caché", "value": "20 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "No (requiere tarjeta de video)"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "65 W"},
+        {"name": "Disipador incluido", "value": "Sí"}
+      ]}
+    ]
+  },
+  "Intel Core i5-13600K": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la serie 'K' es desbloqueada para overclocking.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador híbrido de 14 núcleos (6P + 8E) y 20 hilos de 13ª generación, uno de los mejores para gaming y productividad de su gama."},
+      {"title": "Desbloqueado", "body": "Multiplicador desbloqueado ('K') para overclocking, e incluye gráficos integrados Intel UHD 770."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con DDR4/DDR5. No incluye disipador; requiere refrigeración robusta."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento, edición, streaming y entusiastas del overclocking."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "13ª (Raptor Lake)"},
+        {"name": "Núcleos / Hilos", "value": "14 (6P + 8E) / 20"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base (P)", "value": "3.5 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "5.1 GHz"},
+        {"name": "Caché", "value": "24 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "Intel UHD Graphics 770"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "125 W"},
+        {"name": "Desbloqueado (OC)", "value": "Sí"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "Intel Core i5-14600K": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la 14ª generación (Raptor Lake Refresh) eleva las frecuencias de la serie 'K'.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador híbrido de 14 núcleos (6P + 8E) y 20 hilos con frecuencias de hasta 5.3 GHz, excelente para gaming y creación."},
+      {"title": "Desbloqueado", "body": "Multiplicador desbloqueado para overclocking, con gráficos integrados UHD 770."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con DDR4/DDR5. No incluye disipador; requiere refrigeración robusta."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento, edición, streaming y overclocking."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "14ª (Raptor Lake Refresh)"},
+        {"name": "Núcleos / Hilos", "value": "14 (6P + 8E) / 20"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base (P)", "value": "3.5 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "5.3 GHz"},
+        {"name": "Caché", "value": "24 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "Intel UHD Graphics 770"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "125 W"},
+        {"name": "Desbloqueado (OC)", "value": "Sí"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "Intel Core i7-12700K": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la 12ª generación (Alder Lake) estrenó la arquitectura híbrida.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador híbrido de 12 núcleos (8P + 4E) y 20 hilos de 12ª generación, potente para gaming y productividad."},
+      {"title": "Desbloqueado", "body": "Multiplicador desbloqueado para overclocking, con gráficos integrados UHD 770."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con DDR4/DDR5. No incluye disipador."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de alto rendimiento, edición, streaming y multitarea pesada."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "12ª (Alder Lake)"},
+        {"name": "Núcleos / Hilos", "value": "12 (8P + 4E) / 20"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base (P)", "value": "3.6 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "5.0 GHz"},
+        {"name": "Caché", "value": "25 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "Intel UHD Graphics 770"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "125 W"},
+        {"name": "Desbloqueado (OC)", "value": "Sí"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "Intel Core i7-13700K": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la 13ª generación (Raptor Lake) amplió núcleos y frecuencias.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador híbrido de 16 núcleos (8P + 8E) y 24 hilos con frecuencias de hasta 5.4 GHz, sobresaliente en gaming y creación."},
+      {"title": "Desbloqueado", "body": "Multiplicador desbloqueado para overclocking, con gráficos integrados UHD 770."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con DDR4/DDR5. No incluye disipador; requiere refrigeración robusta."},
+      {"title": "Casos de uso recomendados", "body": "Gaming de élite, edición 4K, renderizado, streaming y multitarea pesada."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "13ª (Raptor Lake)"},
+        {"name": "Núcleos / Hilos", "value": "16 (8P + 8E) / 24"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base (P)", "value": "3.4 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "5.4 GHz"},
+        {"name": "Caché", "value": "30 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "Intel UHD Graphics 770"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "125 W"},
+        {"name": "Desbloqueado (OC)", "value": "Sí"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "Intel Core i9-13900K": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; la serie i9 'K' representa el tope de gama de escritorio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador híbrido de 24 núcleos (8P + 16E) y 32 hilos con frecuencias de hasta 5.8 GHz, uno de los más potentes de su generación."},
+      {"title": "Desbloqueado", "body": "Multiplicador desbloqueado para overclocking extremo, con gráficos integrados UHD 770."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con DDR4/DDR5. No incluye disipador; requiere refrigeración de alto desempeño."},
+      {"title": "Casos de uso recomendados", "body": "Estaciones de trabajo, renderizado, edición 8K, gaming de élite y overclocking."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "13ª (Raptor Lake)"},
+        {"name": "Núcleos / Hilos", "value": "24 (8P + 16E) / 32"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base (P)", "value": "3.0 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "5.8 GHz"},
+        {"name": "Caché", "value": "36 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "Intel UHD Graphics 770"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "125 W"},
+        {"name": "Desbloqueado (OC)", "value": "Sí"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  },
+  "Intel Core i9-14900K": {
+    "brandInfo": "Intel es el mayor fabricante de procesadores x86 del mundo; el i9-14900K es el tope de gama de la 14ª generación de escritorio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Procesador híbrido de 24 núcleos (8P + 16E) y 32 hilos con frecuencias de hasta 6.0 GHz, de los más rápidos para escritorio."},
+      {"title": "Desbloqueado", "body": "Multiplicador desbloqueado para overclocking, con gráficos integrados UHD 770."},
+      {"title": "Plataforma", "body": "Socket LGA 1700 con DDR4/DDR5. No incluye disipador; requiere refrigeración líquida de alto desempeño."},
+      {"title": "Casos de uso recomendados", "body": "Estaciones de trabajo de élite, renderizado, edición 8K y gaming de máximo rendimiento."}
+    ],
+    "specsGroups": [
+      {"name": "Procesador", "features": [
+        {"name": "Generación", "value": "14ª (Raptor Lake Refresh)"},
+        {"name": "Núcleos / Hilos", "value": "24 (8P + 16E) / 32"},
+        {"name": "Socket", "value": "Intel LGA 1700"}
+      ]},
+      {"name": "Rendimiento", "features": [
+        {"name": "Frecuencia base (P)", "value": "3.2 GHz"},
+        {"name": "Frecuencia máxima (turbo)", "value": "6.0 GHz"},
+        {"name": "Caché", "value": "36 MB"}
+      ]},
+      {"name": "Gráficos", "features": [
+        {"name": "Gráficos integrados", "value": "Intel UHD Graphics 770"}
+      ]},
+      {"name": "Energía e incluye", "features": [
+        {"name": "TDP base", "value": "125 W"},
+        {"name": "Desbloqueado (OC)", "value": "Sí"},
+        {"name": "Disipador incluido", "value": "No"}
+      ]}
+    ]
+  }
+}

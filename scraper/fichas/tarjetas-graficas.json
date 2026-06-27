@@ -1,0 +1,570 @@
+{
+  "AMD Radeon RX 6600": {
+    "brandInfo": "AMD Radeon es la división de tarjetas gráficas de AMD; la serie RX 6000 usa la arquitectura RDNA 2 con buen rendimiento por precio.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta gráfica RDNA 2 ideal para gaming a 1080p con altas tasas de cuadros en títulos modernos."},
+      {"title": "Memoria", "body": "8 GB de memoria GDDR6 que ofrecen suficiente espacio para juegos actuales en 1080p."},
+      {"title": "Eficiencia", "body": "Bajo consumo (132W) que permite usarla con fuentes de poder modestas."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p, e-sports y equipos de gama media accesibles. (Especificaciones de reloj varían según el fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "AMD RDNA 2"},
+        {"name": "Unidades de cómputo", "value": "28 CU"},
+        {"name": "Procesadores de flujo", "value": "1,792"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "8 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "128-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4"},
+        {"name": "Resolución máxima", "value": "7680 x 4320 (8K)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (acelerado por hardware)"},
+        {"name": "Tecnología de escalado", "value": "AMD FSR"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TBP)", "value": "132 W"},
+        {"name": "Fuente recomendada", "value": "450 W"}
+      ]}
+    ]
+  },
+  "AMD Radeon RX 6650 XT": {
+    "brandInfo": "AMD Radeon es la división de tarjetas gráficas de AMD; la serie RX 6000 usa la arquitectura RDNA 2.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta RDNA 2 optimizada para gaming a 1080p de alto rendimiento, con frecuencias y ancho de banda mejorados frente a la RX 6600."},
+      {"title": "Memoria", "body": "8 GB GDDR6 con mayor velocidad para sostener altas tasas de cuadros."},
+      {"title": "Características", "body": "Soporta ray tracing por hardware y la tecnología de escalado AMD FSR."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p de alto rendimiento y e-sports. (Relojes varían según el fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "AMD RDNA 2"},
+        {"name": "Unidades de cómputo", "value": "32 CU"},
+        {"name": "Procesadores de flujo", "value": "2,048"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "8 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "128-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí"},
+        {"name": "Tecnología de escalado", "value": "AMD FSR"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TBP)", "value": "176 W"},
+        {"name": "Fuente recomendada", "value": "500 W"}
+      ]}
+    ]
+  },
+  "AMD Radeon RX 6700 XT": {
+    "brandInfo": "AMD Radeon es la división de tarjetas gráficas de AMD; la serie RX 6000 usa la arquitectura RDNA 2.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta RDNA 2 potente para gaming a 1440p con altas tasas de cuadros."},
+      {"title": "Memoria", "body": "12 GB GDDR6 con bus de 192-bit, amplia para resoluciones altas y texturas exigentes."},
+      {"title": "Características", "body": "Ray tracing por hardware y tecnología de escalado AMD FSR."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1440p, e-sports competitivo y creación de contenido. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "AMD RDNA 2"},
+        {"name": "Unidades de cómputo", "value": "40 CU"},
+        {"name": "Procesadores de flujo", "value": "2,560"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "12 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "192-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí"},
+        {"name": "Tecnología de escalado", "value": "AMD FSR"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TBP)", "value": "230 W"},
+        {"name": "Fuente recomendada", "value": "650 W"}
+      ]}
+    ]
+  },
+  "AMD Radeon RX 6750 XT": {
+    "brandInfo": "AMD Radeon es la división de tarjetas gráficas de AMD; la serie RX 6000 usa la arquitectura RDNA 2.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Versión mejorada de la RX 6700 XT con mayores frecuencias, ideal para gaming a 1440p de alto rendimiento."},
+      {"title": "Memoria", "body": "12 GB GDDR6 con bus de 192-bit para resoluciones altas."},
+      {"title": "Características", "body": "Ray tracing por hardware y AMD FSR."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1440p de alto rendimiento y creación de contenido. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "AMD RDNA 2"},
+        {"name": "Unidades de cómputo", "value": "40 CU"},
+        {"name": "Procesadores de flujo", "value": "2,560"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "12 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "192-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí"},
+        {"name": "Tecnología de escalado", "value": "AMD FSR"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TBP)", "value": "250 W"},
+        {"name": "Fuente recomendada", "value": "650 W"}
+      ]}
+    ]
+  },
+  "AMD Radeon RX 7600": {
+    "brandInfo": "AMD Radeon es la división de tarjetas gráficas de AMD; la serie RX 7000 estrena la arquitectura RDNA 3.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta RDNA 3 para gaming a 1080p de alto rendimiento con buena eficiencia energética."},
+      {"title": "Memoria", "body": "8 GB GDDR6 suficientes para juegos modernos en 1080p."},
+      {"title": "Características", "body": "Ray tracing de segunda generación y tecnología de escalado AMD FSR."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p, e-sports y equipos de gama media. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "AMD RDNA 3"},
+        {"name": "Unidades de cómputo", "value": "32 CU"},
+        {"name": "Procesadores de flujo", "value": "2,048"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "8 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "128-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 2.1"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (2ª gen)"},
+        {"name": "Tecnología de escalado", "value": "AMD FSR"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TBP)", "value": "165 W"},
+        {"name": "Fuente recomendada", "value": "550 W"}
+      ]}
+    ]
+  },
+  "AMD Radeon RX 7700 XT": {
+    "brandInfo": "AMD Radeon es la división de tarjetas gráficas de AMD; la serie RX 7000 usa la arquitectura RDNA 3.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta RDNA 3 potente para gaming a 1440p de alto rendimiento."},
+      {"title": "Memoria", "body": "12 GB GDDR6 con bus de 192-bit, amplia para 1440p y texturas exigentes."},
+      {"title": "Características", "body": "Ray tracing de segunda generación y AMD FSR, con salidas DisplayPort 2.1."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1440p de alto rendimiento y creación de contenido. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "AMD RDNA 3"},
+        {"name": "Unidades de cómputo", "value": "54 CU"},
+        {"name": "Procesadores de flujo", "value": "3,456"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "12 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "192-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 2.1"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (2ª gen)"},
+        {"name": "Tecnología de escalado", "value": "AMD FSR"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TBP)", "value": "245 W"},
+        {"name": "Fuente recomendada", "value": "700 W"}
+      ]}
+    ]
+  },
+  "AMD Radeon RX 7800 XT": {
+    "brandInfo": "AMD Radeon es la división de tarjetas gráficas de AMD; la serie RX 7000 usa la arquitectura RDNA 3.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta RDNA 3 de alto rendimiento ideal para gaming a 1440p al máximo e incluso 4K en muchos títulos."},
+      {"title": "Memoria", "body": "16 GB GDDR6 con bus de 256-bit, excelente para 1440p/4K y creación de contenido."},
+      {"title": "Características", "body": "Ray tracing de segunda generación, AMD FSR y salidas DisplayPort 2.1."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1440p al máximo, 4K y creación de contenido. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "AMD RDNA 3"},
+        {"name": "Unidades de cómputo", "value": "60 CU"},
+        {"name": "Procesadores de flujo", "value": "3,840"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "16 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "256-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 2.1"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (2ª gen)"},
+        {"name": "Tecnología de escalado", "value": "AMD FSR"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TBP)", "value": "263 W"},
+        {"name": "Fuente recomendada", "value": "700 W"}
+      ]}
+    ]
+  },
+  "AMD Radeon RX 7900 GRE": {
+    "brandInfo": "AMD Radeon es la división de tarjetas gráficas de AMD; la serie RX 7900 es la gama alta RDNA 3.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta RDNA 3 de gama alta para gaming a 1440p al máximo y 4K con gran fluidez."},
+      {"title": "Memoria", "body": "16 GB GDDR6 con bus de 256-bit, ideal para altas resoluciones y cargas creativas."},
+      {"title": "Características", "body": "Ray tracing de segunda generación, AMD FSR y salidas DisplayPort 2.1."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1440p/4K de alto rendimiento, edición y renderizado. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "AMD RDNA 3"},
+        {"name": "Unidades de cómputo", "value": "80 CU"},
+        {"name": "Procesadores de flujo", "value": "5,120"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "16 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "256-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 2.1"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (2ª gen)"},
+        {"name": "Tecnología de escalado", "value": "AMD FSR"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TBP)", "value": "260 W"},
+        {"name": "Fuente recomendada", "value": "700 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 3050": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la serie RTX 30 (Ampere) introdujo ray tracing de 2ª generación y DLSS.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta Ampere de entrada para gaming a 1080p con soporte de ray tracing y DLSS."},
+      {"title": "Memoria", "body": "8 GB GDDR6 suficientes para juegos modernos en 1080p."},
+      {"title": "Eficiencia", "body": "Bajo consumo (130W) que permite usarla en equipos con fuentes modestas."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p, e-sports y equipos de entrada. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ampere"},
+        {"name": "Núcleos CUDA", "value": "2,560"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "8 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "128-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 2ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "130 W"},
+        {"name": "Fuente recomendada", "value": "550 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 3060": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la serie RTX 30 (Ampere) ofrece ray tracing y DLSS.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta Ampere muy popular para gaming a 1080p al máximo y 1440p con DLSS."},
+      {"title": "Memoria", "body": "12 GB GDDR6, una cantidad generosa que beneficia juegos exigentes y creación de contenido."},
+      {"title": "Características", "body": "Ray tracing de 2ª generación y DLSS para mejorar el rendimiento."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p/1440p, e-sports y creación de contenido. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ampere"},
+        {"name": "Núcleos CUDA", "value": "3,584"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "12 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "192-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 2ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "170 W"},
+        {"name": "Fuente recomendada", "value": "550 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 3060 Ti": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la serie RTX 30 (Ampere) ofrece ray tracing y DLSS.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta Ampere de gran rendimiento para gaming a 1440p con DLSS."},
+      {"title": "Memoria", "body": "8 GB GDDR6 con bus de 256-bit para buen ancho de banda."},
+      {"title": "Características", "body": "Ray tracing de 2ª generación y DLSS."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1440p de alto rendimiento, e-sports y creación. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ampere"},
+        {"name": "Núcleos CUDA", "value": "4,864"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "8 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "256-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 2ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "200 W"},
+        {"name": "Fuente recomendada", "value": "600 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 4060": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la serie RTX 40 (Ada Lovelace) estrena DLSS 3 con generación de cuadros.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta Ada Lovelace para gaming a 1080p de alto rendimiento con DLSS 3."},
+      {"title": "Eficiencia", "body": "Muy eficiente (115W), funciona con fuentes modestas y genera poco calor."},
+      {"title": "Características", "body": "Ray tracing de 3ª generación y DLSS 3 con generación de cuadros para multiplicar el rendimiento."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p al máximo, e-sports y equipos eficientes. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ada Lovelace"},
+        {"name": "Núcleos CUDA", "value": "3,072"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "8 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "128-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 3ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS 3"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "115 W"},
+        {"name": "Fuente recomendada", "value": "550 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 4060 Ti": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la serie RTX 40 (Ada Lovelace) estrena DLSS 3.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta Ada Lovelace para gaming a 1080p al máximo y 1440p con DLSS 3."},
+      {"title": "Eficiencia", "body": "Buen rendimiento por vatio (160W) con generación de poco calor."},
+      {"title": "Características", "body": "Ray tracing de 3ª generación y DLSS 3 con generación de cuadros."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1080p/1440p, e-sports y creación. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ada Lovelace"},
+        {"name": "Núcleos CUDA", "value": "4,352"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "8 GB GDDR6"},
+        {"name": "Bus de memoria", "value": "128-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 3ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS 3"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "160 W"},
+        {"name": "Fuente recomendada", "value": "550 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 4070": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la serie RTX 40 (Ada Lovelace) estrena DLSS 3.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta Ada Lovelace ideal para gaming a 1440p al máximo con excelente eficiencia."},
+      {"title": "Memoria", "body": "12 GB GDDR6X con buen ancho de banda para altas resoluciones."},
+      {"title": "Características", "body": "Ray tracing de 3ª generación y DLSS 3 con generación de cuadros."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1440p al máximo, creación de contenido y algo de 4K. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ada Lovelace"},
+        {"name": "Núcleos CUDA", "value": "5,888"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "12 GB GDDR6X"},
+        {"name": "Bus de memoria", "value": "192-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 3ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS 3"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "200 W"},
+        {"name": "Fuente recomendada", "value": "650 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 4070 Super": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la serie RTX 40 Super refresca la gama con más núcleos.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Versión Super con más núcleos CUDA, excelente para gaming a 1440p al máximo y 4K con DLSS 3."},
+      {"title": "Memoria", "body": "12 GB GDDR6X con buen ancho de banda."},
+      {"title": "Características", "body": "Ray tracing de 3ª generación y DLSS 3 con generación de cuadros."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 1440p/4K, creación de contenido y renderizado. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ada Lovelace"},
+        {"name": "Núcleos CUDA", "value": "7,168"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "12 GB GDDR6X"},
+        {"name": "Bus de memoria", "value": "192-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 3ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS 3"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "220 W"},
+        {"name": "Fuente recomendada", "value": "650 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 4070 Ti Super": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la serie RTX 40 Super refresca la gama alta.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta Ada Lovelace de gama alta para gaming a 4K con DLSS 3 y gran rendimiento en 1440p."},
+      {"title": "Memoria", "body": "16 GB GDDR6X con bus de 256-bit, amplia para 4K y creación de contenido exigente."},
+      {"title": "Características", "body": "Ray tracing de 3ª generación y DLSS 3 con generación de cuadros."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 4K, edición de video, renderizado 3D e IA. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ada Lovelace"},
+        {"name": "Núcleos CUDA", "value": "8,448"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "16 GB GDDR6X"},
+        {"name": "Bus de memoria", "value": "256-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 3ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS 3"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "285 W"},
+        {"name": "Fuente recomendada", "value": "750 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 4080 Super": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la RTX 4080 Super es gama alta de la serie Ada Lovelace.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "Tarjeta de gama alta para gaming a 4K al máximo con ray tracing y DLSS 3."},
+      {"title": "Memoria", "body": "16 GB GDDR6X con bus de 256-bit para 4K y cargas creativas pesadas."},
+      {"title": "Características", "body": "Ray tracing de 3ª generación y DLSS 3 con generación de cuadros."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 4K de élite, edición 8K, renderizado 3D y cargas de IA. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ada Lovelace"},
+        {"name": "Núcleos CUDA", "value": "10,240"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "16 GB GDDR6X"},
+        {"name": "Bus de memoria", "value": "256-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 3ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS 3"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "320 W"},
+        {"name": "Fuente recomendada", "value": "750 W"}
+      ]}
+    ]
+  },
+  "NVIDIA GeForce RTX 4090": {
+    "brandInfo": "NVIDIA es el líder mundial en tarjetas gráficas; la RTX 4090 es la tarjeta tope de gama de la serie Ada Lovelace.",
+    "descriptionSections": [
+      {"title": "Rendimiento", "body": "La tarjeta gráfica de consumo más potente de su generación, diseñada para gaming a 4K al máximo y cargas profesionales extremas."},
+      {"title": "Memoria", "body": "24 GB GDDR6X con bus de 384-bit, capacidad enorme para 4K/8K, IA y creación de contenido."},
+      {"title": "Características", "body": "Ray tracing de 3ª generación y DLSS 3 con generación de cuadros para un rendimiento sin igual."},
+      {"title": "Casos de uso recomendados", "body": "Gaming 4K/8K de élite, renderizado profesional, edición 8K e inteligencia artificial. (Relojes varían por fabricante.)"}
+    ],
+    "specsGroups": [
+      {"name": "Procesador gráfico", "features": [
+        {"name": "Arquitectura", "value": "NVIDIA Ada Lovelace"},
+        {"name": "Núcleos CUDA", "value": "16,384"}
+      ]},
+      {"name": "Memoria", "features": [
+        {"name": "Memoria", "value": "24 GB GDDR6X"},
+        {"name": "Bus de memoria", "value": "384-bit"}
+      ]},
+      {"name": "Conectividad", "features": [
+        {"name": "Interfaz", "value": "PCI Express 4.0"},
+        {"name": "Salidas (típico)", "value": "HDMI 2.1 + DisplayPort 1.4a"},
+        {"name": "Resolución máxima", "value": "7680 x 4320 (8K)"}
+      ]},
+      {"name": "Características", "features": [
+        {"name": "Ray tracing", "value": "Sí (RT Cores 3ª gen)"},
+        {"name": "Tecnología de escalado", "value": "NVIDIA DLSS 3"}
+      ]},
+      {"name": "Control de energía", "features": [
+        {"name": "Consumo (TGP)", "value": "450 W"},
+        {"name": "Fuente recomendada", "value": "850 W"}
+      ]}
+    ]
+  }
+}
