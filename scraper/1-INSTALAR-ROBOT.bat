@@ -1,5 +1,6 @@
 @echo off
 cd /d "%~dp0"
+set PLAYWRIGHT_BROWSERS_PATH=0
 echo ============================================================
 echo   STAC - Instalacion del robot de precios (solo una vez)
 echo ============================================================
