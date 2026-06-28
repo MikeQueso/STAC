@@ -69,7 +69,14 @@ function pickBestMatch(productName, items) {
   const wanted = tokenize(productName);
   const wantedSig = [...new Set(wanted.filter((w) => w.length > 2))];
   const digitToks = wanted.filter((w) => /\d/.test(w));
-  const keyModel = digitToks.sort((a, b) => b.length - a.length)[0] || null;
+  // El "modelo clave" debe ser el modelo real (mx500, rm850x, 5600x, 13900k),
+  // no una especificación (1tb, 850w, 3200mhz, 7200rpm). Preferimos tokens con
+  // letras+dígitos; si no hay, un número puro que no sea unidad (ej. 990).
+  const isUnit = (t) => /^\d+(gb|tb|mb|w|mhz|ghz|rpm|hz|mm|bit)$/.test(t) || /^\d+x\d+$/.test(t);
+  const modelLike = digitToks.filter((t) => /[a-z]/.test(t) && !isUnit(t));
+  const pureNum = digitToks.filter((t) => !isUnit(t) && !/[a-z]/.test(t));
+  const keyModel = modelLike.sort((a, b) => b.length - a.length)[0]
+                || pureNum.sort((a, b) => b.length - a.length)[0] || null;
   const productIsBuild = /comput|laptop|combo|bundle|\bpc\b|\bkit\b/i.test(productName);
   const wantedSet = new Set(wanted);
   const VARIANT_QUALIFIERS = ['ti', 'super'];
@@ -101,7 +108,8 @@ function pickBestMatch(productName, items) {
     if (!productIsBuild && /comput|laptop|combo|bundle/i.test(title)) continue;
     if (!prodHasBadKind && /mantenim|so-?dimm/i.test(title)) continue;
     if (brand && !titleNorm.includes(brand)) continue;       // misma marca
-    if (caps.some((c) => !tokSet.has(c))) continue;           // misma capacidad
+    // Capacidad: comparar contra el título normalizado para aceptar "1 TB" = "1tb".
+    if (caps.some((c) => !titleNorm.includes(c))) continue;   // misma capacidad
     if (keyModel && !tokSet.has(keyModel)) continue;          // mismo modelo
     if (VARIANT_QUALIFIERS.some((q) => tokSet.has(q) && !wantedSet.has(q))) continue;
 
@@ -125,7 +133,13 @@ const GENERIC = new Set([
 function searchQuery(name) {
   const kept = name.split(/\s+/).filter((w) => {
     const c = w.toLowerCase().replace(/[.,()]/g, '');
-    return c && !GENERIC.has(c);
+    if (!c || GENERIC.has(c)) return false;
+    // Quita tokens de especificación que rompen el buscador (capacidad,
+    // potencia, frecuencia, rpm, kits): 1tb, 500gb, 850w, 3200mhz, 7200rpm, 2x8…
+    if (/^\d+(gb|tb|mb|w|mhz|ghz|rpm|hz|mm)$/.test(c)) return false;
+    if (/^\d+x\d+$/.test(c)) return false;
+    if (/^ddr\d$/.test(c) || /^cl\d+$/.test(c)) return false;
+    return true;
   });
   const q = kept.join(' ').trim();
   return q.length >= 3 ? q : name;
@@ -135,15 +149,17 @@ function searchQuery(name) {
 async function searchDDTech(page, productName) {
   const url = `https://ddtech.mx/buscar/${encodeURIComponent(searchQuery(productName)).replace(/%20/g, '+')}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  await page.waitForSelector('a[href*="/producto/"]', { timeout: 8000 }).catch(() => {});
-  await page.waitForTimeout(2000);
+  // Espera a la tarjeta de producto real (h3.name dentro de .product).
+  await page.waitForFunction(() => document.querySelector('.product h3.name'), { timeout: 10000 }).catch(() => {});
+  await page.waitForTimeout(800);
 
-  return await page.$$eval('[class*="product"], .producto, article', (nodes) =>
-    nodes.slice(0, 14).map((n) => ({
-      title: (n.querySelector('[class*="name"], [class*="title"], h2, h3, a')?.textContent || '').trim(),
-      price: (n.querySelector('[class*="price"], [class*="precio"]')?.textContent || '').trim(),
-      url: n.querySelector('a')?.href || ''
-    }))
+  // Tarjeta real de DD Tech: div.product → h3.name (título) + span.price (precio).
+  return await page.$$eval('.product', (nodes) =>
+    nodes.slice(0, 16).map((n) => ({
+      title: (n.querySelector('h3.name, .name')?.textContent || '').trim(),
+      price: (n.querySelector('.price, .product-price')?.textContent || '').trim(),
+      url: n.querySelector('a[href*="/producto/"]')?.href || ''
+    })).filter((x) => x.title)
   ).catch(() => []);
 }
 
