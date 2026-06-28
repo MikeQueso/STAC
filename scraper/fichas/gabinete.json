@@ -1,0 +1,480 @@
+{
+  "Antec AX20": {
+    "brandInfo": "Antec es un fabricante veterano de gabinetes y fuentes de poder, reconocido por su buena relación precio-calidad.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con panel frontal de malla y ventiladores RGB incluidos para un buen flujo de aire y estética gamer."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre ATX, Micro-ATX y Mini-ITX, con espacio para tarjetas de video largas y disipadores altos."},
+      {"title": "Ventilación", "body": "Incluye varios ventiladores RGB de fábrica y soporta radiadores para refrigeración líquida."},
+      {"title": "Casos de uso recomendados", "body": "Equipos gamer de gama media con estética RGB a buen precio."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "4 RGB"},
+        {"name": "Frente", "value": "Malla"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / USB 2.0 / Audio"},
+        {"name": "Color", "value": "Negro"}
+      ]}
+    ]
+  },
+  "Antec NX410": {
+    "brandInfo": "Antec es un fabricante veterano de gabinetes y fuentes de poder, reconocido por su buena relación precio-calidad.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con frente de malla y ventiladores ARGB incluidos para excelente flujo de aire y estética."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre ATX, Micro-ATX y Mini-ITX, con buen espacio para GPU y disipadores."},
+      {"title": "Ventilación", "body": "Trae ventiladores ARGB de fábrica y admite radiadores para enfriamiento líquido."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer de gama media con buena ventilación y estética RGB."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "3 ARGB"},
+        {"name": "Frente", "value": "Malla"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "ASUS TUF Gaming GT301": {
+    "brandInfo": "ASUS TUF Gaming es la línea de ASUS enfocada en durabilidad y buena ventilación con estética gamer.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete compacto media torre con frente de malla y tres ventiladores incluidos para un flujo de aire óptimo."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre ATX, Micro-ATX y Mini-ITX, con asa de transporte integrada."},
+      {"title": "Ventilación", "body": "Incluye ventiladores ARGB y soporta radiadores hasta 360 mm al frente."},
+      {"title": "Casos de uso recomendados", "body": "Gamers que buscan buena ventilación, calidad ASUS y portabilidad."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre compacta"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "3 (1 ARGB)"},
+        {"name": "Frente", "value": "Malla"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.2 / Audio"},
+        {"name": "Color", "value": "Negro"}
+      ]}
+    ]
+  },
+  "Cooler Master MasterBox Q300L": {
+    "brandInfo": "Cooler Master es un fabricante taiwanés líder en gabinetes, refrigeración y fuentes de poder.",
+    "descriptionSections": [
+      {"title": "Diseño compacto", "body": "Gabinete Micro-ATX compacto y versátil, con panel frontal perforado y soportes de E/S reposicionables."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre Micro-ATX y Mini-ITX, con buen espacio pese a su tamaño reducido."},
+      {"title": "Ventilación", "body": "Panel magnético con filtro de polvo y soporte para varios ventiladores."},
+      {"title": "Casos de uso recomendados", "body": "Builds compactos de oficina o gaming en espacios reducidos."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Mini torre"},
+        {"name": "Tarjetas madre", "value": "Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado / acrílico"},
+        {"name": "Ventiladores incluidos", "value": "1"},
+        {"name": "Frente", "value": "Perforado"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.2 / Audio"},
+        {"name": "Color", "value": "Negro"}
+      ]}
+    ]
+  },
+  "Cooler Master MasterBox TD500 Mesh": {
+    "brandInfo": "Cooler Master es un fabricante taiwanés líder en gabinetes, refrigeración y fuentes de poder.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con distintivo frente de malla poligonal y tres ventiladores ARGB incluidos para excelente flujo de aire."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta E-ATX, con amplio espacio para GPU y radiadores grandes."},
+      {"title": "Ventilación", "body": "Incluye ventiladores ARGB y admite radiadores hasta 360 mm."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer de gama media-alta con buena ventilación y estética."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "E-ATX / ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "3 ARGB"},
+        {"name": "Frente", "value": "Malla"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.2 / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "Corsair 2000D Airflow Mini-ITX": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer, reconocida por su calidad.",
+    "descriptionSections": [
+      {"title": "Diseño Mini-ITX", "body": "Gabinete Mini-ITX vertical y compacto con paneles de malla en tres lados para máximo flujo de aire en un tamaño reducido."},
+      {"title": "Compatibilidad", "body": "Diseñado para tarjetas madre Mini-ITX, admite GPU de gran tamaño y refrigeración robusta pese a su formato pequeño."},
+      {"title": "Ventilación", "body": "Mallas amplias y soporte para múltiples ventiladores y radiadores."},
+      {"title": "Casos de uso recomendados", "body": "Builds potentes en formato compacto (SFF) de alto rendimiento."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Mini torre (SFF, vertical)"},
+        {"name": "Tarjetas madre", "value": "Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Frente y laterales", "value": "Malla (Airflow)"},
+        {"name": "Ventiladores incluidos", "value": "Según versión"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.2 Tipo-C / Tipo-A / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "Corsair 4000D Airflow": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer; el 4000D Airflow es uno de los gabinetes más vendidos de su categoría.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con frente de alto flujo de aire, gestión de cables RapidRoute y dos ventiladores incluidos."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con amplio espacio para GPU largas y radiadores de 360 mm."},
+      {"title": "Ventilación", "body": "Frente optimizado para flujo de aire y soporte para múltiples ventiladores y radiadores."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer de gama media-alta que buscan buen flujo de aire y armado limpio."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "2"},
+        {"name": "Frente", "value": "Alto flujo de aire"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.1 Tipo-C / Tipo-A / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "Corsair iCUE 4000X RGB": {
+    "brandInfo": "Corsair es una marca líder en componentes y periféricos gamer; la serie iCUE integra iluminación controlada por software.",
+    "descriptionSections": [
+      {"title": "Diseño y RGB", "body": "Gabinete media torre con tres ventiladores RGB incluidos y controlador iCUE para iluminación personalizable."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con amplio espacio para GPU y radiadores de 360 mm."},
+      {"title": "Ventilación", "body": "Paneles de cristal templado al frente y lateral, con buen flujo de aire y soporte para radiadores."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer con estética RGB premium controlada por software."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "3 RGB (iCUE)"},
+        {"name": "Frente", "value": "Cristal templado"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.1 Tipo-C / Tipo-A / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "Deepcool CC560": {
+    "brandInfo": "Deepcool es un fabricante de refrigeración y gabinetes con gran relación precio-rendimiento.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con frente de malla y cuatro ventiladores incluidos de fábrica, excelente valor en ventilación."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con buen espacio para GPU y disipadores altos."},
+      {"title": "Ventilación", "body": "Cuatro ventiladores preinstalados y panel de cristal templado."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer de gama media que buscan mucha ventilación a bajo precio."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "4"},
+        {"name": "Frente", "value": "Malla"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / Audio"},
+        {"name": "Color", "value": "Negro"}
+      ]}
+    ]
+  },
+  "Deepcool Matrexx 55": {
+    "brandInfo": "Deepcool es un fabricante de refrigeración y gabinetes con gran relación precio-rendimiento.",
+    "descriptionSections": [
+      {"title": "Diseño", "body": "Gabinete media torre con panel frontal y lateral de cristal templado, con soporte ARGB e iluminación sincronizable."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta E-ATX, con amplio espacio para GPU y radiadores."},
+      {"title": "Ventilación", "body": "Admite múltiples ventiladores y radiadores hasta 360 mm."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer con estética limpia y buena capacidad de expansión."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "E-ATX / ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Frente", "value": "Cristal templado"},
+        {"name": "Soporte RGB", "value": "Sí (ARGB)"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / Audio"},
+        {"name": "Color", "value": "Negro"}
+      ]}
+    ]
+  },
+  "Lian Li Lancool 205 Mesh": {
+    "brandInfo": "Lian Li es un fabricante taiwanés premium de gabinetes, reconocido por su calidad de construcción en aluminio y acero.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con frente de malla y ventiladores incluidos para excelente flujo de aire."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con amplio espacio para GPU largas y radiadores."},
+      {"title": "Ventilación", "body": "Frente y filtros de malla optimizados, con ventiladores ARGB de fábrica."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer de gama media que valoran calidad de construcción y ventilación."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "2-3 ARGB"},
+        {"name": "Frente", "value": "Malla"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / Tipo-C / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "Lian Li PC-O11 Dynamic": {
+    "brandInfo": "Lian Li es un fabricante taiwanés premium de gabinetes; el PC-O11 Dynamic es un referente para builds de exhibición y refrigeración líquida.",
+    "descriptionSections": [
+      {"title": "Diseño dual-chamber", "body": "Gabinete media torre con doble cámara y amplios paneles de cristal templado al frente y lateral, ideal para builds de exhibición."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta E-ATX y gran capacidad de radiadores (hasta tres de 360 mm)."},
+      {"title": "Refrigeración líquida", "body": "Uno de los gabinetes favoritos para custom loops y AIO por su enorme soporte de radiadores y ventiladores."},
+      {"title": "Casos de uso recomendados", "body": "Builds premium de exhibición y refrigeración líquida avanzada."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (doble cámara)"},
+        {"name": "Tarjetas madre", "value": "E-ATX / ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Frente", "value": "Cristal templado"},
+        {"name": "Soporte de radiadores", "value": "Hasta 3 x 360 mm"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / Tipo-C / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "Montech Air 100": {
+    "brandInfo": "Montech es un fabricante de gabinetes y fuentes con muy buena relación precio-valor, popular en builds económicos.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete Micro-ATX compacto con frente de malla y ventiladores ARGB incluidos para buen flujo de aire."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre Micro-ATX y Mini-ITX, con buen espacio para su tamaño."},
+      {"title": "Ventilación", "body": "Ventiladores ARGB preinstalados y frente de malla para refrigeración eficiente."},
+      {"title": "Casos de uso recomendados", "body": "Builds compactos y económicos con estética RGB."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Mini torre"},
+        {"name": "Tarjetas madre", "value": "Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "4 ARGB"},
+        {"name": "Frente", "value": "Malla"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "Montech X3 Mesh": {
+    "brandInfo": "Montech es un fabricante de gabinetes y fuentes con muy buena relación precio-valor, popular en builds económicos.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con frente de malla y hasta seis ventiladores ARGB incluidos, excelente valor en ventilación."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con buen espacio para GPU y radiadores."},
+      {"title": "Ventilación", "body": "Gran cantidad de ventiladores ARGB de fábrica y frente de malla de alto flujo."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer de gama media con mucha ventilación y RGB a bajo precio."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "6 ARGB"},
+        {"name": "Frente", "value": "Malla"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "MSI MAG Forge 100M": {
+    "brandInfo": "MSI es uno de los grandes fabricantes de hardware gamer; la línea MAG ofrece productos accesibles.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con frente de malla parcial y ventiladores incluidos (incluyendo RGB) para buen flujo de aire."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con buen espacio para GPU y radiadores."},
+      {"title": "Ventilación", "body": "Ventiladores preinstalados y soporte para radiadores; panel de cristal templado."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer de gama media con estética RGB a buen precio."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "4 (1 RGB)"},
+        {"name": "Frente", "value": "Malla / cristal"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.2 / Audio"},
+        {"name": "Color", "value": "Negro"}
+      ]}
+    ]
+  },
+  "NZXT H5 Flow": {
+    "brandInfo": "NZXT es un fabricante estadounidense de gabinetes y refrigeración con diseño limpio y premium muy popular.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Gabinete media torre con paneles perforados para alto flujo de aire y el estilo minimalista característico de NZXT."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con amplio espacio para GPU y radiadores."},
+      {"title": "Ventilación", "body": "Frente y base perforados con ventiladores incluidos y soporte para radiadores."},
+      {"title": "Casos de uso recomendados", "body": "Builds gamer con estética limpia y buen flujo de aire."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "2"},
+        {"name": "Frente", "value": "Perforado (Flow)"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.2 Tipo-C / Tipo-A / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "NZXT H510 (Negro-Blanco)": {
+    "brandInfo": "NZXT es un fabricante estadounidense de gabinetes y refrigeración con diseño limpio y premium muy popular.",
+    "descriptionSections": [
+      {"title": "Diseño minimalista", "body": "Gabinete media torre con el icónico diseño limpio de NZXT, panel de cristal templado y gestión de cables sencilla."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con buen espacio para GPU y radiadores."},
+      {"title": "Ventilación", "body": "Incluye ventiladores y canal para cables; soporta radiadores."},
+      {"title": "Casos de uso recomendados", "body": "Builds con estética limpia y elegante."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "2"},
+        {"name": "Frente", "value": "Cerrado (estética limpia)"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.1 Tipo-C / Tipo-A / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "NZXT H510 Flow": {
+    "brandInfo": "NZXT es un fabricante estadounidense de gabinetes y refrigeración con diseño limpio y premium muy popular.",
+    "descriptionSections": [
+      {"title": "Diseño y flujo de aire", "body": "Versión del H510 con frente perforado para mejor flujo de aire, manteniendo la estética minimalista de NZXT."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre hasta ATX, con buen espacio para GPU y radiadores."},
+      {"title": "Ventilación", "body": "Frente perforado y soporte para radiadores; panel de cristal templado."},
+      {"title": "Casos de uso recomendados", "body": "Builds con estética limpia y mejor ventilación que el H510 estándar."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Media torre (Mid-Tower)"},
+        {"name": "Tarjetas madre", "value": "ATX / Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "2"},
+        {"name": "Frente", "value": "Perforado (Flow)"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.1 Tipo-C / Tipo-A / Audio"},
+        {"name": "Color", "value": "Negro / Blanco"}
+      ]}
+    ]
+  },
+  "Thermaltake Versa H18": {
+    "brandInfo": "Thermaltake es un fabricante taiwanés de gabinetes, refrigeración y fuentes de poder para gamers.",
+    "descriptionSections": [
+      {"title": "Diseño compacto", "body": "Gabinete Micro-ATX económico con panel de cristal templado, ideal para builds de entrada."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre Micro-ATX y Mini-ITX, con buen espacio para su tamaño."},
+      {"title": "Ventilación", "body": "Soporta varios ventiladores y filtros de polvo; admite radiadores compactos."},
+      {"title": "Casos de uso recomendados", "body": "Builds económicos y de oficina en formato compacto."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Mini torre"},
+        {"name": "Tarjetas madre", "value": "Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "1"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / USB 2.0 / Audio"},
+        {"name": "Color", "value": "Negro"}
+      ]}
+    ]
+  },
+  "Thermaltake View 100": {
+    "brandInfo": "Thermaltake es un fabricante taiwanés de gabinetes, refrigeración y fuentes de poder para gamers.",
+    "descriptionSections": [
+      {"title": "Diseño y RGB", "body": "Gabinete Micro-ATX con amplios paneles de cristal templado y ventilador ARGB incluido, con estética de exhibición."},
+      {"title": "Compatibilidad", "body": "Soporta tarjetas madre Micro-ATX y Mini-ITX, con buen espacio para GPU."},
+      {"title": "Ventilación", "body": "Ventilador ARGB preinstalado y soporte para radiadores."},
+      {"title": "Casos de uso recomendados", "body": "Builds compactos con estética RGB a buen precio."}
+    ],
+    "specsGroups": [
+      {"name": "Tipo y compatibilidad", "features": [
+        {"name": "Tipo", "value": "Mini torre"},
+        {"name": "Tarjetas madre", "value": "Micro-ATX / Mini-ITX"}
+      ]},
+      {"name": "Ventilación y panel", "features": [
+        {"name": "Panel lateral", "value": "Cristal templado"},
+        {"name": "Ventiladores incluidos", "value": "1 ARGB"},
+        {"name": "Frente", "value": "Cristal templado"}
+      ]},
+      {"name": "Conectividad y diseño", "features": [
+        {"name": "Puertos frontales", "value": "USB 3.0 / Audio"},
+        {"name": "Color", "value": "Negro"}
+      ]}
+    ]
+  }
+}
