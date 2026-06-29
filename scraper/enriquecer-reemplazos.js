@@ -17,13 +17,17 @@ function splitSegments(text) {
 }
 
 const MARCAS_CONOCIDAS = [
+  // Marcas de equipo armado/terminado primero — para que "Dell ... Intel Core i5"
+  // detecte "Dell" y no "Intel" (que también aparece, pero es el procesador).
+  'Dell', 'Lenovo', 'Xtreme', 'Yeyian', 'Ghia', 'Vorago', 'Qian', 'Powerbit', 'Digital Master',
   'Kingston FURY', 'Kingston', 'ADATA XPG', 'Adata', 'Samsung', 'Crucial', 'Seagate', 'WD',
   'Corsair', 'ASUS ROG', 'ASUS TUF', 'ASUS', 'Logitech', 'Redragon', 'AULA', 'Cooler Master',
-  'XZEAL', 'Gigabyte', 'MSI', 'Aerocool', 'Naceb', 'ASRock', 'Intel', 'AMD', 'Sapphire',
+  'XZEAL', 'Gigabyte', 'MSI', 'Aerocool', 'Naceb', 'ASRock', 'Sapphire',
   'PowerColor', 'HP', 'Canon', 'Epson', 'Brother', 'Razer', 'TeamGroup', 'T-Force', 'Acer',
   'BALAM RUSH', 'Thermaltake', 'Lian Li', 'NZXT', 'Montech', 'Deepcool', 'XPG', 'G.Skill',
   'SteelSeries', 'JBL', 'Sony', 'HyperX', 'Astro', 'be quiet!', 'EVGA', 'Seasonic', 'Antec',
-  'ID-Cooling', 'Thermalright', 'ARCTIC',
+  'ID-Cooling', 'Thermalright', 'ARCTIC', 'Cougar', 'Munfrost',
+  'Intel', 'AMD',
 ];
 function detectBrand(fullTitle) {
   for (const m of MARCAS_CONOCIDAS) {
@@ -111,6 +115,22 @@ function labelFor(category, seg) {
       if (/gb$/.test(s) && /gddr/i.test(seg)) return 'Memoria de video';
       if (/gddr/.test(s)) return 'Tipo de memoria';
       if (/pci express|pcie/.test(s)) return 'Interfaz';
+      break;
+    case 'Ventiladores':
+      if (/mm$/.test(s)) return 'Tamaño';
+      if (/argb|rgb/.test(s)) return 'Iluminación';
+      if (/anillo/.test(s)) return 'Diseño';
+      if (/negro|blanco|rojo|azul/.test(s)) return 'Color';
+      if (/^[a-z0-9-/ ]+$/i.test(seg) && /\d/.test(seg) && seg.length <= 24) return 'Número de parte';
+      break;
+    case 'Computadoras ya armadas':
+      if (/core|ryzen|celeron|pentium|n100|n95/.test(s)) return 'Procesador';
+      if (/^\d+gb$/.test(s)) return 'Memoria RAM';
+      if (/ssd|hdd/.test(s)) return 'Almacenamiento';
+      if (/wi-?fi/.test(s)) return 'Conectividad';
+      if (/windows|zorin|freedos|sin sistema/.test(s)) return 'Sistema operativo';
+      if (/teclado|mouse/.test(s)) return 'Incluye';
+      if (/geforce|radeon|\brtx\b|\bgtx\b|rx \d/.test(s)) return 'Tarjeta gráfica';
       break;
   }
   if (/^\d+\s?(gb|tb)$/.test(s)) return 'Capacidad';
