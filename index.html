@@ -770,7 +770,7 @@
       <button class="btn-icon" title="Buscar">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
-      <button class="btn-icon" title="Carrito" style="position:relative">
+      <button class="btn-icon" id="cart-open-btn" title="Carrito" style="position:relative">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="cart-badge">0</span>
       </button>
@@ -1025,6 +1025,17 @@
   </div>
 </div>
 
+<!-- ── MODAL CARRITO ─────────────────────────────────────────── -->
+<div id="cart-overlay" class="modal-overlay hidden" style="z-index:1002;">
+  <div class="admin-card" style="max-width:520px;">
+    <div class="admin-header">
+      <h2>🛒 Tu carrito</h2>
+      <button class="modal-close" id="cart-close">✕</button>
+    </div>
+    <div class="admin-body" id="cart-body" style="padding:20px 24px;"></div>
+  </div>
+</div>
+
 <script>
   /* ════════════════════════════════════════════════════════
      STAC · Conexión con Supabase
@@ -1038,6 +1049,7 @@
   let categoriesCache = [];
   let isLoginMode = false;
   let preciosTabState = null; // { allProducts, porProducto } — para el modal de editar precio
+  let cartCache = []; // [{ id, product_id, quantity, products: {...} }]
 
   const pageWrapper   = document.getElementById('page-wrapper');
   const authOverlay   = document.getElementById('auth-overlay');
@@ -1168,6 +1180,7 @@
     updateHeaderUI();
     renderProducts();
     renderHomeCatGrid();
+    await loadCart();
   }
 
   function updateHeaderUI() {
@@ -1554,10 +1567,7 @@
     grid.querySelectorAll('[data-cart]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const badge = document.querySelector('.cart-badge');
-        if (badge) badge.textContent = parseInt(badge.textContent) + 1;
-        btn.textContent = '✓';
-        setTimeout(() => { btn.textContent = '+'; }, 1000);
+        addToCart(btn.getAttribute('data-cart'), btn);
       });
     });
 
@@ -2036,6 +2046,120 @@
     precioEditOverlay.classList.add('hidden');
   });
 
+  /* ════════════════════════════════════════════════════════
+     CARRITO DE COMPRA
+  ════════════════════════════════════════════════════════ */
+  const cartOverlay = document.getElementById('cart-overlay');
+
+  async function loadCart() {
+    if (!currentUser) { cartCache = []; renderCartBadge(); return; }
+    const { data, error } = await sb.from('cart_items')
+      .select('id, product_id, quantity, products(id, name, price, images)')
+      .eq('user_id', currentUser.id);
+    if (error) { console.error('No se pudo cargar el carrito:', error.message); return; }
+    cartCache = data || [];
+    renderCartBadge();
+  }
+
+  function renderCartBadge() {
+    const badge = document.querySelector('.cart-badge');
+    if (!badge) return;
+    const total = cartCache.reduce((s, it) => s + it.quantity, 0);
+    badge.textContent = String(total);
+  }
+
+  async function addToCart(productId, btn) {
+    if (!currentUser) { setLoginMode(true); openGate(); return; }
+    const existing = cartCache.find((it) => it.product_id === productId);
+    if (existing) {
+      const { error } = await sb.from('cart_items').update({ quantity: existing.quantity + 1 }).eq('id', existing.id);
+      if (error) { alert('Error: ' + error.message); return; }
+    } else {
+      const { error } = await sb.from('cart_items').insert({ user_id: currentUser.id, product_id: productId, quantity: 1 });
+      if (error) { alert('Error: ' + error.message); return; }
+    }
+    if (btn) { const orig = btn.textContent; btn.textContent = '✓'; setTimeout(() => { btn.textContent = orig; }, 1000); }
+    await loadCart();
+  }
+
+  async function setCartQty(itemId, qty) {
+    if (qty <= 0) { await removeFromCart(itemId); return; }
+    await sb.from('cart_items').update({ quantity: qty }).eq('id', itemId);
+    await loadCart();
+    renderCartModal();
+  }
+
+  async function removeFromCart(itemId) {
+    await sb.from('cart_items').delete().eq('id', itemId);
+    await loadCart();
+    renderCartModal();
+  }
+
+  function renderCartModal() {
+    const body = document.getElementById('cart-body');
+    if (!cartCache.length) {
+      body.innerHTML = '<p style="color:var(--text-dim); font-size:13.5px; text-align:center; padding:30px 0;">Tu carrito está vacío.</p>';
+      return;
+    }
+    const total = cartCache.reduce((s, it) => s + (it.products ? it.products.price * it.quantity : 0), 0);
+    body.innerHTML = `
+      <div style="display:flex; flex-direction:column; gap:14px; max-height:50vh; overflow-y:auto; margin-bottom:18px;">
+        ${cartCache.map((it) => {
+          const p = it.products;
+          if (!p) return '';
+          const img = (p.images && p.images[0]) || '';
+          return `
+          <div style="display:flex; gap:12px; align-items:center;">
+            <div style="width:56px; height:56px; flex-shrink:0; border-radius:8px; overflow:hidden; background:var(--bg-surface); border:1px solid var(--border);">
+              ${img ? `<img src="${escapeHtml(img)}" style="width:100%; height:100%; object-fit:cover;">` : ''}
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; color:var(--text-primary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(p.name)}</div>
+              <div style="font-size:12.5px; color:var(--blue-glow); font-weight:600;">$${Number(p.price).toLocaleString('es-MX')}</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <button type="button" class="btn-admin-panel cart-qty-btn" data-item="${it.id}" data-delta="-1" style="padding:2px 8px;">−</button>
+              <span style="min-width:18px; text-align:center; font-size:13px;">${it.quantity}</span>
+              <button type="button" class="btn-admin-panel cart-qty-btn" data-item="${it.id}" data-delta="1" style="padding:2px 8px;">+</button>
+            </div>
+            <button type="button" class="cart-remove-btn" data-item="${it.id}" title="Quitar" style="background:none; border:none; color:#FF7070; font-size:16px; cursor:pointer;">🗑️</button>
+          </div>`;
+        }).join('')}
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border); margin-bottom:16px;">
+        <span style="font-size:14px; color:var(--text-body);">Total</span>
+        <span style="font-size:18px; font-weight:700; color:var(--text-primary);">$${total.toLocaleString('es-MX', { maximumFractionDigits: 0 })}</span>
+      </div>
+      <button type="button" id="cart-checkout-btn" class="auth-submit">💳 Proceder al pago</button>
+    `;
+
+    body.querySelectorAll('.cart-qty-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const it = cartCache.find((x) => String(x.id) === btn.dataset.item);
+        if (it) setCartQty(it.id, it.quantity + Number(btn.dataset.delta));
+      });
+    });
+    body.querySelectorAll('.cart-remove-btn').forEach((btn) => {
+      btn.addEventListener('click', () => removeFromCart(Number(btn.dataset.item)));
+    });
+    const checkoutBtn = document.getElementById('cart-checkout-btn');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        alert('El pago con tarjeta está por habilitarse muy pronto. ¡Gracias por tu paciencia!');
+      });
+    }
+  }
+
+  document.getElementById('cart-open-btn').addEventListener('click', async () => {
+    if (!currentUser) { setLoginMode(true); openGate(); return; }
+    await loadCart();
+    renderCartModal();
+    cartOverlay.classList.remove('hidden');
+  });
+  document.getElementById('cart-close').addEventListener('click', () => {
+    cartOverlay.classList.add('hidden');
+  });
+
   function renderDetailViewMode() {
     const p = currentDetailProduct;
     clearDetailExtraSections();
@@ -2094,11 +2218,17 @@
         renderDetailEditMode();
       });
     }
-    document.getElementById('detail-addcart-btn').addEventListener('click', () => {
-      const badge = document.querySelector('.cart-badge');
+    document.getElementById('detail-addcart-btn').addEventListener('click', async () => {
       const qty = parseInt(document.getElementById('detail-qty-input').value) || 1;
-      if (badge) badge.textContent = parseInt(badge.textContent) + qty;
       const btn = document.getElementById('detail-addcart-btn');
+      if (!currentUser) { setLoginMode(true); openGate(); return; }
+      const existing = cartCache.find((it) => it.product_id === p.id);
+      if (existing) {
+        await sb.from('cart_items').update({ quantity: existing.quantity + qty }).eq('id', existing.id);
+      } else {
+        await sb.from('cart_items').insert({ user_id: currentUser.id, product_id: p.id, quantity: qty });
+      }
+      await loadCart();
       btn.textContent = '✓ Agregado';
       setTimeout(() => { btn.textContent = '🛒 Agregar al carrito'; }, 1200);
     });
