@@ -343,6 +343,16 @@ async function run() {
   if (hasDDTech) provasCorridos.push('DD Tech');
   if (hasAbasteo) provasCorridos.push('Abasteo');
 
+  // Salvaguarda: si una corrida produce casi 0 resultados (sitio caído,
+  // bloqueo temporal de IP, etc.), NO borramos los precios buenos que ya
+  // había — eso dejaría la tabla vacía. Solo borramos+insertamos si el
+  // resultado tiene una cobertura mínima razonable.
+  const MIN_FRACCION = 0.05; // al menos 5% del catálogo encontrado
+  if (rows.length < products.length * MIN_FRACCION) {
+    console.log(`Cobertura demasiado baja (${rows.length}/${products.length}) — no se borra nada para no perder datos buenos.`);
+    return;
+  }
+
   if (provasCorridos.length) {
     const { error: delError } = await sb.from('precios_abasto').delete().in('proveedor', provasCorridos);
     if (delError) console.error('Error borrando precios viejos:', delError.message);
