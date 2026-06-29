@@ -1014,6 +1014,17 @@
   </div>
 </div>
 
+<!-- ── MODAL EDITAR PRECIO (desde Panel Admin → Precios de proveedores) ── -->
+<div id="precioedit-overlay" class="modal-overlay hidden" style="z-index:1001;">
+  <div class="admin-card" style="max-width:560px;">
+    <div class="admin-header">
+      <h2 id="precioedit-title">Editar precio</h2>
+      <button class="modal-close" id="precioedit-close">✕</button>
+    </div>
+    <div class="admin-body" id="precioedit-body" style="padding:20px 24px;"></div>
+  </div>
+</div>
+
 <script>
   /* ════════════════════════════════════════════════════════
      STAC · Conexión con Supabase
@@ -1026,11 +1037,13 @@
   let productsCache = [];
   let categoriesCache = [];
   let isLoginMode = false;
+  let preciosTabState = null; // { allProducts, porProducto } — para el modal de editar precio
 
   const pageWrapper   = document.getElementById('page-wrapper');
   const authOverlay   = document.getElementById('auth-overlay');
   const adminOverlay  = document.getElementById('admin-overlay');
   const detailOverlay = document.getElementById('detail-overlay');
+  const precioEditOverlay = document.getElementById('precioedit-overlay');
   const registerForm  = document.getElementById('register-form');
   const loginForm     = document.getElementById('login-form');
   const authError     = document.getElementById('auth-error');
@@ -1941,6 +1954,87 @@
     isCreatingNewProduct = false;
   });
 
+  /* ── Modal: editar precio desde "Precios de proveedores" ── */
+  function openPrecioEditModal(productId) {
+    if (!preciosTabState) return;
+    const prod = preciosTabState.allProducts.find(p => p.id === productId);
+    if (!prod) return;
+    const found = preciosTabState.porProducto[productId] || [];
+
+    const img = (prod.images && prod.images[0]) || '';
+    const provRows = ['Abasteo', 'DD Tech', 'Office Depot', 'Cyberpuerta'].map(prov => {
+      const f = found.find(x => x.proveedor === prov);
+      if (!f) return `<tr><td>${prov}</td><td style="color:var(--text-dim);">— sin dato</td><td></td></tr>`;
+      return `<tr>
+        <td>${prov}</td>
+        <td>$${Number(f.precio).toLocaleString('es-MX')}</td>
+        <td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow); font-size:11.5px;">ver →</a>` : ''}</td>
+      </tr>`;
+    }).join('');
+
+    document.getElementById('precioedit-title').textContent = prod.name;
+    document.getElementById('precioedit-body').innerHTML = `
+      <div style="display:flex; gap:18px; margin-bottom:18px; flex-wrap:wrap;">
+        <div style="width:120px; height:120px; flex-shrink:0; border-radius:10px; overflow:hidden; background:var(--bg-surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center;">
+          ${img ? `<img src="${escapeHtml(img)}" style="width:100%; height:100%; object-fit:cover;">` : '<span style="color:var(--text-dim); font-size:11px;">sin imagen</span>'}
+        </div>
+        <table class="admin-table" style="flex:1; min-width:220px;">
+          <thead><tr><th>Proveedor</th><th>Precio</th><th></th></tr></thead>
+          <tbody>${provRows}</tbody>
+        </table>
+      </div>
+      <div class="auth-field">
+        <label>Tu precio de venta actual</label>
+        <input type="number" id="precioedit-input" value="${Number(prod.price)}" min="0" step="1">
+      </div>
+      <p style="font-size:13px; color:var(--text-body); margin:4px 0 16px;">
+        Margen sobre el precio más bajo encontrado: <strong id="precioedit-margen" style="color:var(--text-primary);">—</strong>
+      </p>
+      <button type="button" id="precioedit-save" class="auth-submit">💾 Guardar precio</button>
+      <p id="precioedit-msg" style="font-size:12.5px; margin-top:10px; display:none;"></p>
+    `;
+
+    let lowest = null;
+    found.forEach(f => { const v = Number(f.precio); if (v > 0 && (lowest === null || v < lowest)) lowest = v; });
+
+    const input = document.getElementById('precioedit-input');
+    const margenEl = document.getElementById('precioedit-margen');
+    const updateMargen = () => {
+      const val = Number(input.value);
+      if (lowest === null || !val) { margenEl.textContent = '— sin referencia'; margenEl.style.color = 'var(--text-dim)'; return; }
+      const margen = ((val - lowest) / lowest) * 100;
+      const ganancia = val - lowest;
+      margenEl.textContent = `${margen.toFixed(1)}% (≈ $${ganancia.toLocaleString('es-MX', { maximumFractionDigits: 0 })} de ganancia vs. $${lowest.toLocaleString('es-MX')})`;
+      margenEl.style.color = margen >= 0 ? 'var(--accent-green)' : '#FF7070';
+    };
+    updateMargen();
+    input.addEventListener('input', updateMargen);
+
+    document.getElementById('precioedit-save').addEventListener('click', async () => {
+      const val = Number(input.value);
+      const msg = document.getElementById('precioedit-msg');
+      if (!val || val <= 0) {
+        msg.textContent = 'Pon un precio válido.'; msg.style.color = '#FF7070'; msg.style.display = 'block';
+        return;
+      }
+      const { error } = await sb.from('products').update({ price: val }).eq('id', productId);
+      msg.style.display = 'block';
+      if (error) { msg.textContent = 'Error: ' + error.message; msg.style.color = '#FF7070'; return; }
+      msg.textContent = '✓ Precio actualizado.'; msg.style.color = 'var(--accent-green)';
+      prod.price = val; // refleja el cambio si se reabre el modal sin recargar
+      setTimeout(() => {
+        precioEditOverlay.classList.add('hidden');
+        renderAdminTab('precios'); // refresca la tabla con el nuevo precio
+      }, 700);
+    });
+
+    precioEditOverlay.classList.remove('hidden');
+  }
+
+  document.getElementById('precioedit-close').addEventListener('click', () => {
+    precioEditOverlay.classList.add('hidden');
+  });
+
   function renderDetailViewMode() {
     const p = currentDetailProduct;
     clearDetailExtraSections();
@@ -2842,7 +2936,7 @@
       }
     } else if (tab === 'precios') {
       const { data: allProducts, error: prodErr } = await sb.from('products')
-        .select('id,name,category,price').order('category').order('name');
+        .select('id,name,category,price,images').order('category').order('name');
       if (prodErr) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(prodErr.message)}</p>`; return; }
 
       const { data: precios, error: precioErr } = await sb.from('precios_abasto')
@@ -2868,7 +2962,7 @@
         </div>
         <table class="admin-table">
           <thead><tr>
-            <th>Producto</th><th>Tu precio</th><th>Abasteo</th><th>DD Tech</th><th>Office Depot</th><th>Cyberpuerta</th><th>Mejor precio · Dónde</th><th>Margen estimado</th>
+            <th>Producto</th><th>Tu precio</th><th>Abasteo</th><th>DD Tech</th><th>Office Depot</th><th>Cyberpuerta</th><th>Mejor precio · Dónde</th><th>Margen estimado</th><th></th>
           </tr></thead>
           <tbody>
             ${(allProducts || []).map(prod => {
@@ -2892,7 +2986,7 @@
                 : '<span style="color:var(--text-dim);">— sin referencia</span>';
 
               return `
-                <tr>
+                <tr class="precios-row" data-product-id="${prod.id}" style="cursor:pointer;">
                   <td>${escapeHtml(prod.name)}</td>
                   <td>$${Number(prod.price).toLocaleString('es-MX')}</td>
                   ${cells.join('')}
@@ -2900,10 +2994,22 @@
                   <td style="color:${margen === null ? 'var(--text-dim)' : margen >= 0 ? 'var(--accent-green)' : '#FF7070'};">
                     ${margen === null ? '—' : `${margen.toFixed(1)}%`}
                   </td>
+                  <td><button type="button" class="btn-admin-panel precios-edit-btn" data-product-id="${prod.id}" style="padding:4px 10px; font-size:11.5px;">✏️ Editar</button></td>
                 </tr>`;
             }).join('')}
           </tbody>
         </table>`;
+
+      // Estado para abrir el modal de edición sin tener que re-consultar Supabase.
+      preciosTabState = { allProducts: allProducts || [], porProducto };
+
+      body.querySelectorAll('.precios-edit-btn, .precios-row').forEach(el => {
+        el.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return; // no abrir el modal al hacer click en un link de proveedor
+          const id = el.dataset.productId || el.closest('[data-product-id]')?.dataset.productId;
+          if (id) openPrecioEditModal(id);
+        });
+      });
 
       document.getElementById('precios-csv-btn').addEventListener('click', () => {
         const headers = [
