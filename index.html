@@ -2144,8 +2144,23 @@
     });
     const checkoutBtn = document.getElementById('cart-checkout-btn');
     if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', () => {
-        alert('El pago con tarjeta está por habilitarse muy pronto. ¡Gracias por tu paciencia!');
+      checkoutBtn.addEventListener('click', async () => {
+        checkoutBtn.disabled = true;
+        checkoutBtn.textContent = 'Conectando con el banco...';
+        try {
+          const { data, error } = await sb.functions.invoke('create-checkout-session', { body: {} });
+          if (error) throw error;
+          if (data && data.error) throw new Error(data.error);
+          if (data && data.url) {
+            window.location.href = data.url; // redirige a la página de pago de Stripe
+          } else {
+            throw new Error('No se recibió la URL de pago.');
+          }
+        } catch (e) {
+          alert('No se pudo iniciar el pago: ' + (e.message || e));
+          checkoutBtn.disabled = false;
+          checkoutBtn.textContent = '💳 Proceder al pago';
+        }
       });
     }
   }
@@ -3423,6 +3438,15 @@
 
     // Re-dibujar el grid de categorías DESPUÉS de resolver la sesión.
     renderHomeCatGrid();
+
+    // Mensaje de confirmación al volver de Stripe Checkout.
+    if (location.hash === '#pago-exitoso') {
+      setTimeout(() => alert('¡Pago realizado con éxito! Gracias por tu compra.'), 300);
+      history.replaceState(null, '', location.pathname);
+    } else if (location.hash === '#pago-cancelado') {
+      setTimeout(() => alert('El pago fue cancelado. Tu carrito sigue intacto.'), 300);
+      history.replaceState(null, '', location.pathname);
+    }
 
     sb.auth.onAuthStateChange((event) => {
       if (event === 'SIGNED_OUT') {

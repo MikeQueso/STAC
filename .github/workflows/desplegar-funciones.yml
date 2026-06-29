@@ -17,3 +17,13 @@ jobs:
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: supabase functions deploy ai-generate --project-ref limxmsfsasyrcpnpjgqo
+
+      - name: Desplegar create-checkout-session
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: supabase functions deploy create-checkout-session --project-ref limxmsfsasyrcpnpjgqo
+
+      - name: Desplegar stripe-webhook
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: supabase functions deploy stripe-webhook --project-ref limxmsfsasyrcpnpjgqo --no-verify-jwt
