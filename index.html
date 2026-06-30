@@ -2195,22 +2195,36 @@
   });
 
   async function showOrderSuccess() {
-    if (!currentUser) return;
-    // Carga el pedido más reciente (puede estar en 'pending' si el webhook aún no procesó)
-    const { data: orders } = await sb.from('orders')
-      .select('id, total, created_at, order_items(name, price, quantity, product_id)')
-      .eq('user_id', currentUser.id)
-      .in('status', ['paid', 'pending'])
-      .order('created_at', { ascending: false })
-      .limit(1);
-
-    const order = orders && orders[0];
     const body = document.getElementById('success-body');
+    successOverlay.classList.remove('hidden');
+
+    // Muestra mensaje base inmediatamente mientras carga
+    body.innerHTML = `<p style="color:var(--text-body); text-align:center; padding:30px 0; font-size:16px;">
+      Cargando tu pedido...</p>`;
+
+    let order = null;
+    try {
+      if (currentUser) {
+        const { data: orders } = await sb.from('orders')
+          .select('id, total, created_at, order_items(name, price, quantity, product_id)')
+          .eq('user_id', currentUser.id)
+          .in('status', ['paid', 'pending'])
+          .order('created_at', { ascending: false })
+          .limit(1);
+        order = orders && orders[0];
+      }
+    } catch (e) {
+      console.error('Error cargando pedido:', e);
+    }
 
     if (!order) {
-      body.innerHTML = `<p style="color:var(--text-body); text-align:center; padding:20px 0;">
-        ¡Gracias por tu compra! Tu pedido está siendo procesado.</p>`;
-      successOverlay.classList.remove('hidden');
+      body.innerHTML = `
+        <div style="text-align:center; padding:20px 0;">
+          <div style="font-size:48px; margin-bottom:12px;">🎉</div>
+          <p style="color:var(--text-primary); font-size:17px; font-weight:600; margin-bottom:8px;">¡Pago realizado con éxito!</p>
+          <p style="color:var(--accent-green); font-size:13.5px;">📧 Te enviamos el ticket de compra a tu correo registrado.</p>
+          <p style="color:var(--text-dim); font-size:12.5px; margin-top:8px;">Gracias por tu compra en STAC.</p>
+        </div>`;
       return;
     }
 
@@ -3552,7 +3566,7 @@
     // Mensaje de confirmación al volver de Stripe Checkout.
     if (location.hash === '#pago-exitoso') {
       history.replaceState(null, '', location.pathname);
-      setTimeout(() => showOrderSuccess(), 400);
+      await showOrderSuccess();
     } else if (location.hash === '#pago-cancelado') {
       history.replaceState(null, '', location.pathname);
       setTimeout(() => alert('El pago fue cancelado. Tu carrito sigue intacto.'), 300);
