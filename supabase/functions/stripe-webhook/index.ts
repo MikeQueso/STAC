@@ -35,7 +35,20 @@ serve(async (req) => {
     const userId = session.metadata?.user_id;
 
     if (orderId) {
-      await sb.from("orders").update({ status: "paid", paid_at: new Date().toISOString() }).eq("id", orderId);
+      const shipping = session.shipping_details;
+      const address = shipping?.address || {};
+      await sb.from("orders").update({
+        status: "paid",
+        paid_at: new Date().toISOString(),
+        shipping_name: shipping?.name || session.customer_details?.name || null,
+        shipping_phone: session.customer_details?.phone || null,
+        shipping_line1: address.line1 || null,
+        shipping_line2: address.line2 || null,
+        shipping_city: address.city || null,
+        shipping_state: address.state || null,
+        shipping_postal_code: address.postal_code || null,
+        shipping_country: address.country || null,
+      }).eq("id", orderId);
     }
     if (userId) {
       await sb.from("cart_items").delete().eq("user_id", userId);

@@ -368,6 +368,7 @@
       width: 100%; max-width: 768px; min-height: 540px;
       box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,95,255,0.12);
     }
+    .auth-card .modal-close { position: absolute; top: 14px; right: 14px; z-index: 200; }
     .auth-card h2 {
       font-family: 'Rajdhani', sans-serif;
       font-size: 26px; font-weight: 700; color: var(--text-primary);
@@ -1008,10 +1009,11 @@
 <!-- ── MODAL REGISTRO / LOGIN ────────────────────────────────── -->
 <div id="auth-overlay" class="modal-overlay hidden">
   <div class="auth-card" id="auth-card">
+    <button type="button" class="modal-close" id="auth-close">✕</button>
     <div class="form-container fc-register">
       <form id="register-form">
         <h2>Crear cuenta</h2>
-        <p class="auth-msg">Antes de seguir navegando en el sitio nos gustaría que te registraras.</p>
+        <p class="auth-msg">Crea tu cuenta para completar tu compra.</p>
         <div class="auth-error" id="auth-error-register"></div>
         <div class="auth-field">
           <label>Usuario</label>
@@ -1121,6 +1123,7 @@
     </div>
     <div class="admin-tabs">
       <button class="admin-tab active" data-tab="users">Usuarios registrados</button>
+      <button class="admin-tab" data-tab="orders">Pedidos</button>
       <button class="admin-tab" data-tab="views">Actividad reciente</button>
       <button class="admin-tab" data-tab="images">Enriquecer productos con Icecat</button>
       <button class="admin-tab" data-tab="precios">Precios de proveedores</button>
@@ -1269,6 +1272,8 @@
     pageWrapper.classList.remove('blurred');
     document.body.style.overflow = '';
   }
+  document.getElementById('auth-close').addEventListener('click', closeGate);
+  authOverlay.addEventListener('click', (e) => { if (e.target === authOverlay) closeGate(); });
 
   function setLoginMode(toLogin) {
     isLoginMode = toLogin;
@@ -1472,8 +1477,6 @@
       currentUser = null;
       updateHeaderUI();
       renderProducts();
-      setLoginMode(true);
-      openGate();
     });
 
     if (currentUser.role === 'admin') {
@@ -3279,6 +3282,36 @@
             `).join('')}
           </tbody>
         </table>`;
+    } else if (tab === 'orders') {
+      const { data: orders, error } = await sb
+        .from('orders')
+        .select('id, total, status, created_at, paid_at, shipping_name, shipping_phone, shipping_line1, shipping_line2, shipping_city, shipping_state, shipping_postal_code, shipping_country, order_items(name, quantity)')
+        .order('created_at', { ascending: false })
+        .limit(100);
+      if (error) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(error.message)}</p>`; return; }
+      const statusLabel = { paid: '✅ Pagado', pending: '⏳ Pendiente', canceled: '✕ Cancelado' };
+      body.innerHTML = `
+        <table class="admin-table">
+          <thead><tr><th>Fecha</th><th>Estado</th><th>Productos</th><th>Total</th><th>Cliente / Envío</th></tr></thead>
+          <tbody>
+            ${(orders || []).map(o => {
+              const addr = [o.shipping_line1, o.shipping_line2, o.shipping_city, o.shipping_state, o.shipping_postal_code, o.shipping_country].filter(Boolean).join(', ');
+              const items = (o.order_items || []).map(i => `${i.quantity}× ${escapeHtml(i.name)}`).join('<br>');
+              return `
+              <tr>
+                <td>${new Date(o.created_at).toLocaleString('es-MX')}</td>
+                <td>${statusLabel[o.status] || escapeHtml(o.status)}</td>
+                <td style="font-size:12px;">${items || '—'}</td>
+                <td>$${Number(o.total).toLocaleString('es-MX')}</td>
+                <td style="font-size:12px; max-width:260px;">
+                  ${o.shipping_name ? `<strong>${escapeHtml(o.shipping_name)}</strong><br>` : ''}
+                  ${o.shipping_phone ? `📞 ${escapeHtml(o.shipping_phone)}<br>` : ''}
+                  ${addr ? escapeHtml(addr) : '<span style="color:var(--text-dim);">Sin dirección (pedido no pagado o anterior a esta función)</span>'}
+                </td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>`;
     } else if (tab === 'views') {
       const { data: views, error } = await sb
         .from('product_views')
@@ -3734,8 +3767,6 @@
       await loadCurrentUser();
     } else {
       updateHeaderUI();
-      setLoginMode(true);
-      openGate();
     }
 
     // Re-dibujar el grid de categorías DESPUÉS de resolver la sesión.

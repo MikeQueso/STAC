@@ -130,6 +130,7 @@ serve(async (req) => {
       cancel_url: `${siteUrl}/#pago-cancelado`,
       metadata: { order_id: order.id, user_id: userId },
       shipping_address_collection: { allowed_countries: ["MX"] },
+      phone_number_collection: { enabled: true },
     });
 
     await sbAuth.from("orders").update({ stripe_session_id: session.id }).eq("id", order.id);
