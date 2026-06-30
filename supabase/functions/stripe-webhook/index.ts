@@ -1,13 +1,15 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import Stripe from "npm:stripe@14.21.0";
+import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 serve(async (req) => {
   const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
   const webhookSecret = Deno.env.get("STRIPE_WEBHOOK_SECRET");
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  const resendKey = Deno.env.get("RESEND_API_KEY");
+  const gmailUser = Deno.env.get("GMAIL_USER");
+  const gmailPassword = Deno.env.get("GMAIL_APP_PASSWORD");
 
   if (!stripeKey || !webhookSecret || !supabaseUrl || !serviceKey) {
     return new Response("Faltan variables de entorno en Supabase.", { status: 500 });
@@ -39,8 +41,8 @@ serve(async (req) => {
       await sb.from("cart_items").delete().eq("user_id", userId);
     }
 
-    // Enviar email de confirmación si Resend está configurado
-    if (resendKey && orderId && userId) {
+    // Enviar email de confirmación vía Gmail SMTP si está configurado
+    if (gmailUser && gmailPassword && orderId && userId) {
       try {
         // Obtener datos del usuario
         const { data: userData } = await sb.auth.admin.getUserById(userId);
@@ -143,19 +145,23 @@ serve(async (req) => {
 </body>
 </html>`;
 
-            await fetch("https://api.resend.com/emails", {
-              method: "POST",
-              headers: {
-                "Authorization": `Bearer ${resendKey}`,
-                "Content-Type": "application/json",
+            const client = new SMTPClient({
+              connection: {
+                hostname: "smtp.gmail.com",
+                port: 465,
+                tls: true,
+                auth: { username: gmailUser, password: gmailPassword },
               },
-              body: JSON.stringify({
-                from: "STAC <onboarding@resend.dev>",
-                to: [email],
-                subject: "✅ Tu compra en STAC fue confirmada",
-                html,
-              }),
             });
+
+            await client.send({
+              from: `STAC <${gmailUser}>`,
+              to: email,
+              subject: "✅ Tu compra en STAC fue confirmada",
+              html,
+            });
+
+            await client.close();
           }
         }
       } catch (emailErr) {
