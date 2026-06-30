@@ -360,11 +360,12 @@
     .hidden { display: none; }
 
     .auth-card {
+      position: relative;
+      overflow: hidden;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 40px 36px;
-      max-width: 400px; width: 100%;
+      width: 100%; max-width: 768px; min-height: 540px;
       box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,95,255,0.12);
     }
     .auth-card h2 {
@@ -372,7 +373,7 @@
       font-size: 26px; font-weight: 700; color: var(--text-primary);
       margin-bottom: 8px;
     }
-    .auth-msg { font-size: 13.5px; color: var(--text-body); margin-bottom: 22px; line-height: 1.6; }
+    .auth-msg { font-size: 13.5px; color: var(--text-body); margin-bottom: 20px; line-height: 1.6; }
     .auth-field { margin-bottom: 14px; }
     .auth-field label {
       display: block; font-size: 11.5px; color: var(--text-dim);
@@ -397,11 +398,10 @@
     }
     .auth-submit:hover { background: var(--blue-bright); box-shadow: 0 0 20px rgba(0,95,255,0.35); }
     .auth-submit:disabled { opacity: 0.6; cursor: default; }
-    .auth-switch { text-align: center; margin-top: 18px; font-size: 13px; color: var(--text-dim); }
-    .auth-switch button {
-      background: none; border: none; color: var(--blue-glow);
-      cursor: pointer; font-size: 13px; font-weight: 600;
-      text-decoration: underline; font-family: 'IBM Plex Sans', sans-serif;
+    .auth-switch-mobile {
+      display: none; width: 100%; margin-top: 16px; background: none; border: none;
+      color: var(--blue-glow); cursor: pointer; font-size: 13px; font-weight: 600;
+      text-decoration: underline; font-family: 'IBM Plex Sans', sans-serif; text-align: center;
     }
     .auth-error {
       background: rgba(255,62,62,0.1); border: 1px solid rgba(255,62,62,0.3);
@@ -409,6 +409,74 @@
       border-radius: 6px; margin-bottom: 14px; display: none; line-height: 1.5;
     }
     .auth-error.show { display: block; }
+
+    /* ── Panel deslizante login / registro ── */
+    .form-container {
+      position: absolute; top: 0; left: 0; height: 100%; width: 50%;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 48px 46px; overflow-y: auto;
+      transition: transform .6s ease-in-out, opacity .6s ease-in-out;
+    }
+    .form-container.fc-register { z-index: 2; opacity: 1; transform: translateX(0); }
+    .form-container.fc-login    { z-index: 1; opacity: 0; transform: translateX(0); pointer-events: none; }
+    .auth-card.right-panel-active .fc-register { transform: translateX(100%); opacity: 0; pointer-events: none; }
+    .auth-card.right-panel-active .fc-login    { transform: translateX(100%); opacity: 1; z-index: 5; pointer-events: auto; }
+
+    .overlay-container {
+      position: absolute; top: 0; left: 50%; width: 50%; height: 100%;
+      overflow: hidden; z-index: 100;
+      transition: transform .6s ease-in-out;
+    }
+    .auth-card.right-panel-active .overlay-container { transform: translateX(-100%); }
+    .overlay {
+      position: relative; left: -100%; width: 200%; height: 100%;
+      background: linear-gradient(135deg, var(--accent-red) 0%, var(--blue-core) 100%);
+      color: #fff; transform: translateX(0);
+      transition: transform .6s ease-in-out;
+    }
+    .auth-card.right-panel-active .overlay { transform: translateX(50%); }
+    .overlay-panel {
+      position: absolute; top: 0; width: 50%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 0 42px;
+      transition: transform .6s ease-in-out;
+    }
+    .overlay-left { left: 0; transform: translateX(-20%); }
+    .auth-card.right-panel-active .overlay-left { transform: translateX(0); }
+    .overlay-right { right: 0; transform: translateX(0); }
+    .auth-card.right-panel-active .overlay-right { transform: translateX(20%); }
+    .overlay-logo-wrap {
+      background: #fff; border-radius: 14px; padding: 10px 20px; margin-bottom: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .overlay-logo { height: 46px; display: block; }
+    .overlay-panel h2 {
+      font-family: 'Rajdhani', sans-serif; font-size: 25px; font-weight: 700;
+      color: #fff; margin-bottom: 10px;
+    }
+    .overlay-panel p { font-size: 13.5px; line-height: 1.65; margin-bottom: 26px; opacity: 0.95; }
+    .ghost-btn {
+      background: transparent; border: 2px solid #fff; color: #fff;
+      padding: 11px 34px; border-radius: 24px; font-weight: 700; font-size: 12.5px;
+      letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer;
+      transition: all .2s; font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .ghost-btn:hover { background: rgba(255,255,255,0.18); }
+
+    @media (max-width: 700px) {
+      .auth-card { max-width: 420px; min-height: 0; }
+      .form-container {
+        position: relative; width: 100%; height: auto;
+        padding: 40px 30px 30px; transition: none !important;
+        transform: none !important; display: none;
+      }
+      .form-container.fc-register { display: flex; opacity: 1; z-index: 1; }
+      .form-container.fc-login { display: none; opacity: 1; z-index: 1; }
+      .auth-card.right-panel-active .form-container.fc-register { display: none; }
+      .auth-card.right-panel-active .form-container.fc-login { display: flex; }
+      .overlay-container { display: none; }
+      .auth-switch-mobile { display: block; }
+    }
 
     .admin-card {
       background: var(--bg-card); border: 1px solid var(--border);
@@ -916,42 +984,62 @@
 
 <!-- ── MODAL REGISTRO / LOGIN ────────────────────────────────── -->
 <div id="auth-overlay" class="modal-overlay hidden">
-  <div class="auth-card">
-    <h2 id="auth-title">Crear tu cuenta</h2>
-    <p class="auth-msg">Antes de seguir navegando en el sitio nos gustaría que te registraras.</p>
-    <div class="auth-error" id="auth-error"></div>
+  <div class="auth-card" id="auth-card">
+    <div class="form-container fc-register">
+      <form id="register-form">
+        <h2>Crear cuenta</h2>
+        <p class="auth-msg">Antes de seguir navegando en el sitio nos gustaría que te registraras.</p>
+        <div class="auth-error" id="auth-error-register"></div>
+        <div class="auth-field">
+          <label>Usuario</label>
+          <input type="text" id="reg-username" required minlength="3" autocomplete="username" />
+        </div>
+        <div class="auth-field">
+          <label>Correo electrónico</label>
+          <input type="email" id="reg-email" required autocomplete="email" />
+        </div>
+        <div class="auth-field">
+          <label>Contraseña</label>
+          <input type="password" id="reg-password" required minlength="6" autocomplete="new-password" />
+        </div>
+        <button type="submit" class="auth-submit">Crear cuenta</button>
+        <button type="button" class="auth-switch-mobile" id="switch-to-login-mobile">¿Ya tienes un usuario? Inicia sesión</button>
+      </form>
+    </div>
 
-    <form id="register-form">
-      <div class="auth-field">
-        <label>Usuario</label>
-        <input type="text" id="reg-username" required minlength="3" autocomplete="username" />
-      </div>
-      <div class="auth-field">
-        <label>Correo electrónico</label>
-        <input type="email" id="reg-email" required autocomplete="email" />
-      </div>
-      <div class="auth-field">
-        <label>Contraseña</label>
-        <input type="password" id="reg-password" required minlength="6" autocomplete="new-password" />
-      </div>
-      <button type="submit" class="auth-submit">Crear cuenta</button>
-    </form>
+    <div class="form-container fc-login">
+      <form id="login-form">
+        <h2>Inicia sesión</h2>
+        <p class="auth-msg">Ingresa tus datos para continuar comprando en STAC.</p>
+        <div class="auth-error" id="auth-error-login"></div>
+        <div class="auth-field">
+          <label>Usuario</label>
+          <input type="text" id="login-username" required autocomplete="username" />
+        </div>
+        <div class="auth-field">
+          <label>Contraseña</label>
+          <input type="password" id="login-password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="auth-submit">Iniciar sesión</button>
+        <button type="button" class="auth-switch-mobile" id="switch-to-register-mobile">¿No tienes cuenta? Regístrate</button>
+      </form>
+    </div>
 
-    <form id="login-form" style="display:none;">
-      <div class="auth-field">
-        <label>Usuario</label>
-        <input type="text" id="login-username" required autocomplete="username" />
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <div class="overlay-logo-wrap"><img src="stac-logo.png" alt="STAC" class="overlay-logo" /></div>
+          <h2>¡Hola!</h2>
+          <p>Crea tu cuenta y descubre todo lo que STAC tiene para ti.</p>
+          <button type="button" class="ghost-btn" id="switch-to-register">Regístrate</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <div class="overlay-logo-wrap"><img src="stac-logo.png" alt="STAC" class="overlay-logo" /></div>
+          <h2>¡Bienvenido de nuevo!</h2>
+          <p>Inicia sesión con tu usuario para seguir comprando en STAC.</p>
+          <button type="button" class="ghost-btn" id="switch-to-login">Inicia sesión</button>
+        </div>
       </div>
-      <div class="auth-field">
-        <label>Contraseña</label>
-        <input type="password" id="login-password" required autocomplete="current-password" />
-      </div>
-      <button type="submit" class="auth-submit">Iniciar sesión</button>
-    </form>
-
-    <div class="auth-switch">
-      <span id="switch-text">¿Ya tienes un usuario?</span>
-      <button type="button" id="switch-btn">Inicia sesión</button>
     </div>
   </div>
 </div>
@@ -1076,15 +1164,14 @@
 
   const pageWrapper   = document.getElementById('page-wrapper');
   const authOverlay   = document.getElementById('auth-overlay');
+  const authCard      = document.getElementById('auth-card');
   const adminOverlay  = document.getElementById('admin-overlay');
   const detailOverlay = document.getElementById('detail-overlay');
   const precioEditOverlay = document.getElementById('precioedit-overlay');
   const registerForm  = document.getElementById('register-form');
   const loginForm     = document.getElementById('login-form');
-  const authError     = document.getElementById('auth-error');
-  const authTitle     = document.getElementById('auth-title');
-  const switchBtn     = document.getElementById('switch-btn');
-  const switchText    = document.getElementById('switch-text');
+  const authErrorRegister = document.getElementById('auth-error-register');
+  const authErrorLogin    = document.getElementById('auth-error-login');
 
   function escapeHtml(str) {
     const div = document.createElement('div');
@@ -1095,8 +1182,14 @@
     return (str == null ? '' : String(str))
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
-  function showError(msg) { authError.textContent = msg; authError.classList.add('show'); }
-  function clearError() { authError.textContent = ''; authError.classList.remove('show'); }
+  function showError(msg) {
+    const el = isLoginMode ? authErrorLogin : authErrorRegister;
+    el.textContent = msg; el.classList.add('show');
+  }
+  function clearError() {
+    authErrorRegister.textContent = ''; authErrorRegister.classList.remove('show');
+    authErrorLogin.textContent = ''; authErrorLogin.classList.remove('show');
+  }
 
   function openGate() {
     authOverlay.classList.remove('hidden');
@@ -1112,21 +1205,12 @@
   function setLoginMode(toLogin) {
     isLoginMode = toLogin;
     clearError();
-    if (toLogin) {
-      registerForm.style.display = 'none';
-      loginForm.style.display = 'block';
-      authTitle.textContent = 'Inicia sesión';
-      switchText.textContent = '¿No tienes cuenta?';
-      switchBtn.textContent = 'Regístrate';
-    } else {
-      loginForm.style.display = 'none';
-      registerForm.style.display = 'block';
-      authTitle.textContent = 'Crear tu cuenta';
-      switchText.textContent = '¿Ya tienes un usuario?';
-      switchBtn.textContent = 'Inicia sesión';
-    }
+    authCard.classList.toggle('right-panel-active', toLogin);
   }
-  switchBtn.addEventListener('click', () => setLoginMode(!isLoginMode));
+  document.getElementById('switch-to-login').addEventListener('click', () => setLoginMode(true));
+  document.getElementById('switch-to-register').addEventListener('click', () => setLoginMode(false));
+  document.getElementById('switch-to-login-mobile').addEventListener('click', () => setLoginMode(true));
+  document.getElementById('switch-to-register-mobile').addEventListener('click', () => setLoginMode(false));
 
   /* ───────── REGISTRO ───────── */
   registerForm.addEventListener('submit', async (e) => {
