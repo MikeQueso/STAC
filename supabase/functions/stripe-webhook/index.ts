@@ -72,7 +72,7 @@ serve(async (req) => {
 
           const { data: order } = await sb
             .from("orders")
-            .select("total, created_at")
+            .select("total, created_at, shipping_name, shipping_phone, shipping_line1, shipping_line2, shipping_city, shipping_state, shipping_postal_code, shipping_country")
             .eq("id", orderId)
             .single();
 
@@ -82,6 +82,18 @@ serve(async (req) => {
             const fecha = new Date(order.created_at).toLocaleDateString("es-MX", {
               year: "numeric", month: "long", day: "numeric",
             });
+
+            const addressLine = [order.shipping_line1, order.shipping_line2, order.shipping_city, order.shipping_state, order.shipping_postal_code, order.shipping_country]
+              .filter(Boolean).join(", ");
+            const shippingHtml = order.shipping_name ? `
+              <div style="background:#f4f7fc;border:1px solid #dde4f0;border-left:4px solid #cc1f1f;border-radius:8px;padding:16px 20px;margin-bottom:24px;">
+                <p style="margin:0 0 6px;color:#111;font-size:13.5px;font-weight:700;">📦 Dirección de envío</p>
+                <p style="margin:0;color:#555;font-size:13px;line-height:1.6;">
+                  ${order.shipping_name}<br>
+                  ${addressLine}
+                  ${order.shipping_phone ? `<br>📞 ${order.shipping_phone}` : ""}
+                </p>
+              </div>` : "";
 
             const itemsHtml = items.map((it: any) => `
               <tr style="background:#ffffff;">
@@ -125,6 +137,8 @@ serve(async (req) => {
         <tbody>${itemsHtml}</tbody>
       </table>
 
+      ${shippingHtml}
+
       <!-- Desglose fiscal -->
       <div style="background:#f4f7fc;border:1px solid #dde4f0;border-left:4px solid #1a5cb0;border-radius:8px;padding:16px 20px;margin-bottom:24px;">
         <table style="width:100%;border-collapse:collapse;">
@@ -164,6 +178,9 @@ serve(async (req) => {
             const itemsText = items.map((it: any) =>
               `- ${it.name} | Cant. ${it.quantity} | $${Number(it.price).toLocaleString("es-MX")} c/u | $${(it.price * it.quantity).toLocaleString("es-MX", { maximumFractionDigits: 0 })}`
             ).join("\n");
+            const shippingText = order.shipping_name
+              ? `\nDirección de envío:\n${order.shipping_name}\n${addressLine}${order.shipping_phone ? `\nTel: ${order.shipping_phone}` : ""}\n`
+              : "";
             const text = `Gracias por tu compra en STAC
 
 Fecha: ${fecha}
@@ -171,7 +188,7 @@ Pedido: ${orderId}
 
 Productos:
 ${itemsText}
-
+${shippingText}
 Subtotal (sin IVA): $${subtotal.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 IVA (16%): $${iva.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 Total pagado: $${Number(order.total).toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN
