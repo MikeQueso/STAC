@@ -84,9 +84,10 @@ const CATEGORY_PREFIX = new Set([
   'microfono', 'webcam', 'monitor', 'base', 'soporte', 'kit',
 ]);
 
-// Elige el resultado que mejor coincide con el nombre del producto.
-function pickBestMatch(productName, items) {
-  if (!items || !items.length) return null;
+// Extrae la "firma" de un producto (marca, modelo clave, capacidades…) una
+// sola vez, para reusarla tanto al armar variantes de búsqueda como al
+// comparar candidatos.
+function extractSignature(productName) {
   const wanted = tokenize(productName);
   const wantedSig = [...new Set(wanted.filter((w) => w.length > 2))];
   const digitToks = wanted.filter((w) => /\d/.test(w));
@@ -94,13 +95,18 @@ function pickBestMatch(productName, items) {
   // no una especificación (1tb, 850w, 3200mhz, 7200rpm). Preferimos tokens con
   // letras+dígitos; si no hay, un número puro que no sea unidad (ej. 990).
   const isUnit = (t) => /^\d+(gb|tb|mb|w|mhz|ghz|rpm|hz|mm|bit)$/.test(t) || /^\d+x\d+$/.test(t);
-  const modelLike = digitToks.filter((t) => /[a-z]/.test(t) && !isUnit(t));
+  // Tipos de memoria (gddr6, gddr6x, ddr4, ddr5…) no son el modelo del
+  // producto aunque tengan letras+dígitos — si no se excluyen, "RX 6650 XT"
+  // con "GDDR6" termina tomando "gddr6" como modelo clave y deja de exigir
+  // que el resultado realmente sea un "6650" (acepta cualquier otra GPU con
+  // GDDR6, p.ej. una RX 7600).
+  const isMemType = (t) => /^g?ddr\d+x?$/.test(t);
+  const modelLike = digitToks.filter((t) => /[a-z]/.test(t) && !isUnit(t) && !isMemType(t));
   const pureNum = digitToks.filter((t) => !isUnit(t) && !/[a-z]/.test(t));
   const keyModel = modelLike.sort((a, b) => b.length - a.length)[0]
                 || pureNum.sort((a, b) => b.length - a.length)[0] || null;
   const productIsBuild = /comput|laptop|combo|bundle|\bpc\b|\bkit\b/i.test(productName);
   const wantedSet = new Set(wanted);
-  const VARIANT_QUALIFIERS = ['ti', 'super'];
 
   // Marca: primera palabra "significativa" del producto (saltando prefijos de
   // categoría como "Unidad de Estado Sólido SSD"), normalizada sin signos. Si
@@ -110,9 +116,11 @@ function pickBestMatch(productName, items) {
   while (start < allWords.length - 1 && CATEGORY_PREFIX.has(foldWord(allWords[start]))) {
     start++;
   }
-  const words = allWords.slice(start);
-  let brand = foldWord(words[0]);
-  if (brand.length <= 3 && words[1]) brand += foldWord(words[1]);
+  const significantWords = allWords.slice(start);
+  const brandIsShort = foldWord(significantWords[0]).length <= 3 && significantWords[1];
+  let brand = foldWord(significantWords[0]);
+  if (brandIsShort) brand += foldWord(significantWords[1]);
+  const brandDisplay = (brandIsShort ? significantWords.slice(0, 2) : significantWords.slice(0, 1)).join(' ');
 
   // Capacidades (16GB, 1TB…) que el resultado DEBE tener para no confundir
   // 16GB con 8GB, 1TB con 500GB, etc.
@@ -121,6 +129,44 @@ function pickBestMatch(productName, items) {
   // El producto no es un kit de mantenimiento ni RAM de laptop, salvo que su
   // propio nombre lo diga.
   const prodHasBadKind = /mantenim|so-?dimm/i.test(productName);
+
+  return { wanted, wantedSig, wantedSet, keyModel, brand, brandDisplay, caps, productIsBuild, prodHasBadKind };
+}
+
+// Variantes de búsqueda, de la más específica a la más amplia. Si la primera
+// no trae resultados (o ninguno pasa el comparador), se intenta la siguiente
+// — así un producto con un nombre muy largo/descriptivo igual se encuentra
+// aunque tarde más. El comparador (pickBestMatch) sigue exigiendo la misma
+// marca/modelo/capacidad sin importar qué variante haya traído el candidato.
+function buildQueryVariants(productName) {
+  const sig = extractSignature(productName);
+  const variants = [];
+  const add = (q) => { const t = (q || '').trim(); if (t.length >= 2 && !variants.includes(t)) variants.push(t); };
+
+  add(searchQuery(productName));                                  // 1. nombre acortado (actual)
+  if (sig.brandDisplay && sig.keyModel) add(`${sig.brandDisplay} ${sig.keyModel}`); // 2. marca + modelo clave
+  if (sig.keyModel) add(sig.keyModel);                             // 3. solo el modelo clave
+  if (sig.brandDisplay) add(sig.brandDisplay);                     // 4. solo la marca (último recurso)
+
+  return variants;
+}
+
+// Prueba cada variante de búsqueda con `searchFn` hasta encontrar un
+// candidato que pase pickBestMatch, o se agoten las variantes.
+async function searchWithFallback(searchFn, productName, variants) {
+  for (const query of variants) {
+    const items = await searchFn(query);
+    const match = pickBestMatch(productName, items);
+    if (match) return match;
+  }
+  return null;
+}
+
+// Elige el resultado que mejor coincide con el nombre del producto.
+function pickBestMatch(productName, items) {
+  if (!items || !items.length) return null;
+  const { wantedSig, wantedSet, keyModel, brand, caps, productIsBuild, prodHasBadKind } = extractSignature(productName);
+  const VARIANT_QUALIFIERS = ['ti', 'super'];
 
   let best = null;
   let bestScore = 1;
@@ -173,8 +219,10 @@ function searchQuery(name) {
 }
 
 // ─── DD TECH (ddtech.mx · resultados por JS → requiere navegador) ───────────
-async function searchDDTech(page, productName) {
-  const url = `https://ddtech.mx/buscar/${encodeURIComponent(searchQuery(productName)).replace(/%20/g, '+')}`;
+// `query` ya viene armado por buildQueryVariants() — no construye el suyo,
+// para poder probar varias variantes (cascada) desde el llamador.
+async function searchDDTech(page, query) {
+  const url = `https://ddtech.mx/buscar/${encodeURIComponent(query).replace(/%20/g, '+')}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
   // Espera a la tarjeta de producto real (h3.name dentro de .product).
   await page.waitForFunction(() => document.querySelector('.product h3.name'), { timeout: 10000 }).catch(() => {});
@@ -192,8 +240,8 @@ async function searchDDTech(page, productName) {
 
 // ─── ABASTEO (abasteo.mx · misma plataforma OXID que Cyberpuerta, precios
 //     públicos · resultados por JS → requiere navegador) ────────────────────
-async function searchAbasteo(page, productName) {
-  const url = `https://www.abasteo.mx/index.php?cl=search&searchparam=${encodeURIComponent(searchQuery(productName))}`;
+async function searchAbasteo(page, query) {
+  const url = `https://www.abasteo.mx/index.php?cl=search&searchparam=${encodeURIComponent(query)}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
   await page.waitForSelector('.c-product-card', { timeout: 8000 }).catch(() => {});
   await page.waitForTimeout(800);
@@ -208,8 +256,8 @@ async function searchAbasteo(page, productName) {
 }
 
 // ─── CYBERPUERTA (HTTP directo · solo funciona desde IP residencial / PC) ──
-async function searchCyberpuerta(productName) {
-  const url = `https://www.cyberpuerta.mx/index.php?cl=search&searchparam=${encodeURIComponent(searchQuery(productName))}`;
+async function searchCyberpuerta(query) {
+  const url = `https://www.cyberpuerta.mx/index.php?cl=search&searchparam=${encodeURIComponent(query)}`;
   const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'es-MX,es;q=0.9' } }).catch(() => null);
   if (!res || !res.ok) return [];
   const html = await res.text();
@@ -225,8 +273,8 @@ async function searchCyberpuerta(productName) {
 
 // ─── OFFICE DEPOT MX (officedepot.com.mx · precios en JSON-LD del HTML →
 //     HTTP directo, sin navegador) · útil para tintas/cartuchos ────────────
-async function searchOfficeDepot(productName) {
-  const url = `https://www.officedepot.com.mx/search?text=${encodeURIComponent(searchQuery(productName))}`;
+async function searchOfficeDepot(query) {
+  const url = `https://www.officedepot.com.mx/search?text=${encodeURIComponent(query)}`;
   const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'es-MX,es;q=0.9' } }).catch(() => null);
   if (!res || !res.ok) return [];
   const html = await res.text();
@@ -279,8 +327,8 @@ async function run() {
   if (CYBERPUERTA_ENABLED) {
     await mapPool(products, 4, async (product) => {
       try {
-        const items = await searchCyberpuerta(product.name);
-        const match = pickBestMatch(product.name, items);
+        const variants = buildQueryVariants(product.name);
+        const match = await searchWithFallback((q) => searchCyberpuerta(q), product.name, variants);
         if (match) {
           conCyber++;
           rows.push({
@@ -296,8 +344,8 @@ async function run() {
   // ── Office Depot (HTTP directo, en paralelo) · sobre todo tintas ──
   await mapPool(products, 4, async (product) => {
     try {
-      const items = await searchOfficeDepot(product.name);
-      const match = pickBestMatch(product.name, items);
+      const variants = buildQueryVariants(product.name);
+      const match = await searchWithFallback((q) => searchOfficeDepot(q), product.name, variants);
       if (match) {
         conOD++;
         rows.push({
@@ -321,8 +369,8 @@ async function run() {
       while (i < products.length) {
         const product = products[i++];
         try {
-          const items = await searchDDTech(page, product.name);
-          const match = pickBestMatch(product.name, items);
+          const variants = buildQueryVariants(product.name);
+          const match = await searchWithFallback((q) => searchDDTech(page, q), product.name, variants);
           if (match) {
             conDD++;
             rows.push({
@@ -346,8 +394,8 @@ async function run() {
       while (i < products.length) {
         const product = products[i++];
         try {
-          const items = await searchAbasteo(page, product.name);
-          const match = pickBestMatch(product.name, items);
+          const variants = buildQueryVariants(product.name);
+          const match = await searchWithFallback((q) => searchAbasteo(page, q), product.name, variants);
           if (match) {
             conAbasteo++;
             rows.push({

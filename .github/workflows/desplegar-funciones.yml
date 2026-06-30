@@ -32,3 +32,8 @@ jobs:
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: supabase functions deploy password-reset --project-ref limxmsfsasyrcpnpjgqo --no-verify-jwt
+
+      - name: Desplegar trigger-precios-scraper
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: supabase functions deploy trigger-precios-scraper --project-ref limxmsfsasyrcpnpjgqo

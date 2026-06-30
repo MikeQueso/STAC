@@ -3381,6 +3381,7 @@
             Precio más bajo encontrado en cada proveedor (no se actualiza solo tu precio de venta).
             ${ultimaActualizacion ? `Última revisión: ${new Date(ultimaActualizacion).toLocaleString('es-MX')}.` : 'Todavía no hay datos — el robot corre una vez al día.'}
           </p>
+          <button type="button" id="precios-run-btn" class="btn-admin-panel" style="white-space:nowrap;">🤖 Actualizar precios ahora</button>
           <button type="button" id="precios-csv-btn" class="btn-admin-panel" style="white-space:nowrap;">⬇️ Descargar CSV</button>
         </div>
         <table class="admin-table">
@@ -3432,6 +3433,30 @@
           const id = el.dataset.productId || el.closest('[data-product-id]')?.dataset.productId;
           if (id) openPrecioEditModal(id);
         });
+      });
+
+      document.getElementById('precios-run-btn').addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        if (!confirm('Esto inicia una revisión de precios en DD Tech, Abasteo y Office Depot para los 269 productos. Tarda varios minutos. ¿Continuar?')) return;
+        btn.disabled = true; btn.textContent = '⏳ Iniciando...';
+        try {
+          const { data: { session } } = await sb.auth.getSession();
+          const res = await fetch(`${SUPABASE_URL}/functions/v1/trigger-precios-scraper`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${session.access_token}`,
+              'apikey': SUPABASE_ANON_KEY,
+            },
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) throw new Error(data.error || 'No se pudo iniciar la revisión.');
+          alert('✅ Revisión de precios iniciada. Tarda varios minutos — recarga esta pestaña más tarde para ver los resultados actualizados.\n\nPuedes ver el progreso en GitHub → Actions → "Revisión diaria de precios de proveedores".');
+        } catch (err) {
+          alert('❌ ' + err.message);
+        } finally {
+          btn.disabled = false; btn.textContent = '🤖 Actualizar precios ahora';
+        }
       });
 
       document.getElementById('precios-csv-btn').addEventListener('click', () => {
