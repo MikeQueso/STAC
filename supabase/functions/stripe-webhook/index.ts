@@ -66,11 +66,11 @@ serve(async (req) => {
             });
 
             const itemsHtml = items.map((it: any) => `
-              <tr>
-                <td style="padding:10px 12px; border-bottom:1px solid #1a3a6b; color:#e8f1ff; font-size:14px;">${it.name}</td>
-                <td style="padding:10px 12px; border-bottom:1px solid #1a3a6b; text-align:center; color:#9db8d8;">${it.quantity}</td>
-                <td style="padding:10px 12px; border-bottom:1px solid #1a3a6b; text-align:right; color:#9db8d8;">$${Number(it.price).toLocaleString("es-MX")}</td>
-                <td style="padding:10px 12px; border-bottom:1px solid #1a3a6b; text-align:right; color:#00aaff; font-weight:600;">$${(it.price * it.quantity).toLocaleString("es-MX", { maximumFractionDigits: 0 })}</td>
+              <tr style="background:#ffffff;">
+                <td style="padding:10px 12px; border-bottom:1px solid #dde4f0; color:#111; font-size:13.5px;">${it.name}</td>
+                <td style="padding:10px 12px; border-bottom:1px solid #dde4f0; text-align:center; color:#555;">${it.quantity}</td>
+                <td style="padding:10px 12px; border-bottom:1px solid #dde4f0; text-align:right; color:#555;">$${Number(it.price).toLocaleString("es-MX")}</td>
+                <td style="padding:10px 12px; border-bottom:1px solid #dde4f0; text-align:right; color:#1a5cb0; font-weight:700;">$${(it.price * it.quantity).toLocaleString("es-MX", { maximumFractionDigits: 0 })}</td>
               </tr>`).join("");
 
             const html = `
@@ -81,55 +81,61 @@ serve(async (req) => {
   <div style="max-width:600px;margin:0 auto;padding:32px 16px;">
 
     <!-- Header -->
-    <div style="background:linear-gradient(135deg,#003820,#005030);border-radius:12px 12px 0 0;padding:28px 32px;text-align:center;">
-      <div style="font-size:36px;margin-bottom:8px;">✅</div>
-      <h1 style="margin:0;color:#00e5b0;font-size:22px;font-weight:700;">¡Pago confirmado!</h1>
-      <p style="margin:6px 0 0;color:#9db8d8;font-size:14px;">Gracias por tu compra en <strong style="color:#e8f1ff;">STAC</strong></p>
+    <div style="background:linear-gradient(135deg,#0a1a3a,#1a0a0a);border-radius:12px 12px 0 0;padding:28px 32px;text-align:center;border-bottom:3px solid #cc1f1f;">
+      <img src="https://mikequeso.github.io/STAC/favicon.png" alt="STAC" style="width:72px;height:72px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;">
+      <h1 style="margin:0;color:#ffffff;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">SOPORTE TÉCNICO AVANZADO EN COMPUTACIÓN</h1>
+      <div style="margin:14px auto 0;background:linear-gradient(135deg,#cc1f1f,#1a5cb0);border-radius:8px;padding:12px 24px;display:inline-block;">
+        <span style="color:#ffffff;font-size:20px;font-weight:700;">✅ ¡Pago confirmado!</span>
+      </div>
+      <p style="margin:10px 0 0;color:#aac4e8;font-size:13.5px;">Gracias por tu compra en <strong style="color:#ffffff;">STAC</strong></p>
     </div>
 
     <!-- Body -->
-    <div style="background:#071528;padding:28px 32px;border:1px solid rgba(0,95,255,0.18);border-top:none;">
-      <p style="color:#9db8d8;font-size:13.5px;margin:0 0 20px;">Fecha: <strong style="color:#e8f1ff;">${fecha}</strong> &nbsp;|&nbsp; Pedido: <span style="color:#1e90ff;font-family:monospace;font-size:12px;">${orderId}</span></p>
+    <div style="background:#ffffff;padding:28px 32px;border:1px solid #dde4f0;border-top:none;">
+      <p style="color:#555;font-size:13.5px;margin:0 0 20px;">Fecha: <strong style="color:#111;">${fecha}</strong> &nbsp;|&nbsp; Pedido: <span style="color:#1a5cb0;font-family:monospace;font-size:12px;">${orderId}</span></p>
 
       <!-- Tabla de productos -->
       <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
         <thead>
-          <tr style="background:#0c1e3a;">
-            <th style="padding:10px 12px;text-align:left;color:#9db8d8;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Producto</th>
-            <th style="padding:10px 12px;text-align:center;color:#9db8d8;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Cant.</th>
-            <th style="padding:10px 12px;text-align:right;color:#9db8d8;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Precio unit.</th>
-            <th style="padding:10px 12px;text-align:right;color:#9db8d8;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Importe</th>
+          <tr style="background:#1a0a0a;">
+            <th style="padding:10px 12px;text-align:left;color:#ffffff;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Producto</th>
+            <th style="padding:10px 12px;text-align:center;color:#ffffff;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Cant.</th>
+            <th style="padding:10px 12px;text-align:right;color:#ffffff;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Precio unit.</th>
+            <th style="padding:10px 12px;text-align:right;color:#ffffff;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Importe</th>
           </tr>
         </thead>
         <tbody>${itemsHtml}</tbody>
       </table>
 
       <!-- Desglose fiscal -->
-      <div style="background:#0c1e3a;border:1px solid rgba(0,95,255,0.25);border-radius:10px;padding:16px 20px;margin-bottom:24px;">
-        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-          <span style="color:#9db8d8;font-size:13.5px;">Subtotal (sin IVA)</span>
-          <span style="color:#e8f1ff;font-size:13.5px;">$${subtotal.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-          <span style="color:#9db8d8;font-size:13.5px;">IVA (16%)</span>
-          <span style="color:#e8f1ff;font-size:13.5px;">$${iva.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(0,95,255,0.2);">
-          <span style="color:#e8f1ff;font-size:16px;font-weight:700;">Total pagado</span>
-          <span style="color:#00e5b0;font-size:18px;font-weight:700;">$${Number(order.total).toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN</span>
-        </div>
+      <div style="background:#f4f7fc;border:1px solid #dde4f0;border-left:4px solid #1a5cb0;border-radius:8px;padding:16px 20px;margin-bottom:24px;">
+        <table style="width:100%;border-collapse:collapse;">
+          <tr>
+            <td style="padding:5px 0;color:#555;font-size:13.5px;">Subtotal (sin IVA)</td>
+            <td style="padding:5px 0;text-align:right;color:#111;font-size:13.5px;">$${subtotal.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          </tr>
+          <tr>
+            <td style="padding:5px 0;color:#555;font-size:13.5px;">IVA (16%)</td>
+            <td style="padding:5px 0;text-align:right;color:#111;font-size:13.5px;">$${iva.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          </tr>
+          <tr style="border-top:2px solid #dde4f0;">
+            <td style="padding:12px 0 5px;color:#111;font-size:16px;font-weight:700;">Total pagado</td>
+            <td style="padding:12px 0 5px;text-align:right;color:#cc1f1f;font-size:18px;font-weight:700;">$${Number(order.total).toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN</td>
+          </tr>
+        </table>
       </div>
 
-      <p style="color:#4a6a90;font-size:12px;text-align:center;margin:0;">
+      <p style="color:#888;font-size:12px;text-align:center;margin:0;line-height:1.7;">
         Los precios incluyen IVA (16%) conforme a la Ley del Impuesto al Valor Agregado vigente en México.<br>
         Este comprobante no es una factura fiscal (CFDI). Para solicitar factura contáctanos.
       </p>
     </div>
 
     <!-- Footer -->
-    <div style="background:#040d1a;border:1px solid rgba(0,95,255,0.18);border-top:none;border-radius:0 0 12px 12px;padding:20px 32px;text-align:center;">
-      <p style="color:#4a6a90;font-size:12px;margin:0;">
-        STAC – Componentes para PC &nbsp;|&nbsp; <a href="https://mikequeso.github.io/STAC" style="color:#1e90ff;">mikequeso.github.io/STAC</a>
+    <div style="background:linear-gradient(135deg,#1a0a0a,#0a1a3a);border-radius:0 0 12px 12px;padding:20px 32px;text-align:center;">
+      <p style="color:#aac4e8;font-size:12px;margin:0;">
+        <strong style="color:#ffffff;">STAC</strong> – Soporte Técnico Avanzado en Computación<br>
+        <a href="https://mikequeso.github.io/STAC" style="color:#cc1f1f;text-decoration:none;">mikequeso.github.io/STAC</a>
       </p>
     </div>
 
