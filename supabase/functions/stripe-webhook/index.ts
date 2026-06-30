@@ -42,11 +42,14 @@ serve(async (req) => {
     }
 
     // Enviar email de confirmación vía Gmail SMTP si está configurado
+    console.log("[email] gmailUser configurado:", !!gmailUser, "gmailPassword configurado:", !!gmailPassword, "orderId:", orderId, "userId:", userId);
     if (gmailUser && gmailPassword && orderId && userId) {
       try {
         // Obtener datos del usuario
-        const { data: userData } = await sb.auth.admin.getUserById(userId);
+        const { data: userData, error: userErr } = await sb.auth.admin.getUserById(userId);
+        if (userErr) console.error("[email] Error obteniendo usuario:", userErr.message);
         const email = userData?.user?.email;
+        console.log("[email] Correo destino resuelto:", email || "(ninguno)");
         if (email) {
           // Obtener items del pedido
           const { data: items } = await sb
@@ -145,6 +148,7 @@ serve(async (req) => {
 </body>
 </html>`;
 
+            console.log("[email] Conectando a smtp.gmail.com:465...");
             const client = new SMTPClient({
               connection: {
                 hostname: "smtp.gmail.com",
@@ -154,6 +158,7 @@ serve(async (req) => {
               },
             });
 
+            console.log("[email] Conectado. Enviando mensaje a", email, "...");
             await client.send({
               from: `STAC <${gmailUser}>`,
               to: email,
@@ -162,11 +167,15 @@ serve(async (req) => {
             });
 
             await client.close();
+            console.log("[email] Enviado correctamente a", email);
+          } else {
+            console.error("[email] No se pudo enviar: items o order vacíos.", { items, order });
           }
         }
       } catch (emailErr) {
         // El email falló pero el pago ya está registrado — no retornamos error
-        console.error("Error enviando email:", emailErr);
+        const msg = emailErr instanceof Error ? `${emailErr.name}: ${emailErr.message}\n${emailErr.stack}` : JSON.stringify(emailErr);
+        console.error("[email] Error enviando email:", msg);
       }
     }
 
