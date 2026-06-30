@@ -63,6 +63,27 @@ function tokenize(s) {
   return s.toLowerCase().replace(/[^\w\s]/g, ' ').split(/\s+/).filter(Boolean);
 }
 
+// Quita acentos (á→a, ó→o…) antes de normalizar a [a-z0-9], para que "Sólido"
+// no se reduzca a "slido" y deje de coincidir con palabras conocidas.
+function foldWord(s) {
+  return (s || '')
+    .normalize('NFD').replace(/\p{Diacritic}/gu, '')
+    .toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+// Palabras de categoría/descripción que algunos productos del catálogo ponen
+// ANTES de la marca real (ej. "Unidad de Estado Sólido SSD Adata Legend 710",
+// "Diadema ASUS...", "Fuente de Poder Naceb..."). Se saltan al buscar la marca
+// para no terminar comparando contra "unidad", "diadema" o "fuente".
+const CATEGORY_PREFIX = new Set([
+  'unidad', 'de', 'estado', 'solido', 'sólido', 'ssd', 'hdd', 'disco',
+  'disipador', 'para', 'cpu', 'tarjeta', 'video', 'gráfica', 'grafica', 'madre',
+  'memoria', 'ram', 'gabinete', 'gamer', 'impresora', 'multifuncional',
+  'mouse', 'teclado', 'procesador', 'fuente', 'poder', 'diadema',
+  'ventilador', 'ventiladores', 'audífonos', 'audifonos', 'micrófono',
+  'microfono', 'webcam', 'monitor', 'base', 'soporte', 'kit',
+]);
+
 // Elige el resultado que mejor coincide con el nombre del producto.
 function pickBestMatch(productName, items) {
   if (!items || !items.length) return null;
@@ -81,11 +102,17 @@ function pickBestMatch(productName, items) {
   const wantedSet = new Set(wanted);
   const VARIANT_QUALIFIERS = ['ti', 'super'];
 
-  // Marca: primera palabra del producto (normalizada sin signos). Si es muy
-  // corta (MSI, AMD, be...), se concatena la segunda para mayor precisión.
-  const words = productName.split(/\s+/);
-  let brand = (words[0] || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  if (brand.length <= 3 && words[1]) brand += words[1].toLowerCase().replace(/[^a-z0-9]/g, '');
+  // Marca: primera palabra "significativa" del producto (saltando prefijos de
+  // categoría como "Unidad de Estado Sólido SSD"), normalizada sin signos. Si
+  // es muy corta (MSI, AMD, be...), se concatena la siguiente para precisión.
+  const allWords = productName.split(/\s+/);
+  let start = 0;
+  while (start < allWords.length - 1 && CATEGORY_PREFIX.has(foldWord(allWords[start]))) {
+    start++;
+  }
+  const words = allWords.slice(start);
+  let brand = foldWord(words[0]);
+  if (brand.length <= 3 && words[1]) brand += foldWord(words[1]);
 
   // Capacidades (16GB, 1TB…) que el resultado DEBE tener para no confundir
   // 16GB con 8GB, 1TB con 500GB, etc.
@@ -102,7 +129,7 @@ function pickBestMatch(productName, items) {
     if (price === null || price <= 0) continue;
     const title = item.title || '';
     const titleStr = title.toLowerCase();
-    const titleNorm = titleStr.replace(/[^a-z0-9]/g, '');
+    const titleNorm = foldWord(title);
     const tokSet = new Set(tokenize(title));
 
     if (!productIsBuild && /comput|laptop|combo|bundle/i.test(title)) continue;
