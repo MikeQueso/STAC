@@ -148,6 +148,26 @@ serve(async (req) => {
 </body>
 </html>`;
 
+            const itemsText = items.map((it: any) =>
+              `- ${it.name} | Cant. ${it.quantity} | $${Number(it.price).toLocaleString("es-MX")} c/u | $${(it.price * it.quantity).toLocaleString("es-MX", { maximumFractionDigits: 0 })}`
+            ).join("\n");
+            const text = `Gracias por tu compra en STAC
+
+Fecha: ${fecha}
+Pedido: ${orderId}
+
+Productos:
+${itemsText}
+
+Subtotal (sin IVA): $${subtotal.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+IVA (16%): $${iva.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+Total pagado: $${Number(order.total).toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN
+
+Los precios incluyen IVA conforme a la legislación vigente en México. Este comprobante no es una factura fiscal (CFDI).
+
+STAC - Soporte Técnico Avanzado en Computación
+https://mikequeso.github.io/STAC`;
+
             console.log("[email] Conectando a smtp.gmail.com:465...");
             const client = new SMTPClient({
               connection: {
@@ -162,7 +182,9 @@ serve(async (req) => {
             await client.send({
               from: `STAC <${gmailUser}>`,
               to: email,
-              subject: "✅ Tu compra en STAC fue confirmada",
+              replyTo: gmailUser,
+              subject: `Confirmación de tu compra en STAC - Pedido ${orderId.slice(0, 8)}`,
+              content: text,
               html,
             });
 
