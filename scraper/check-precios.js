@@ -166,7 +166,7 @@ async function searchWithFallback(searchFn, productName, variants) {
 function pickBestMatch(productName, items) {
   if (!items || !items.length) return null;
   const { wantedSig, wantedSet, keyModel, brand, caps, productIsBuild, prodHasBadKind } = extractSignature(productName);
-  const VARIANT_QUALIFIERS = ['ti', 'super'];
+  const VARIANT_QUALIFIERS = ['ti', 'super', 'pro'];
 
   let best = null;
   let bestScore = 1;
