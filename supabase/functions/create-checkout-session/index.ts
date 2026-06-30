@@ -75,6 +75,8 @@ serve(async (req) => {
       const price = Number(p.price);
       const qty = Number(it.quantity);
       total += price * qty;
+      // Enviamos el precio sin IVA a Stripe y agregamos IVA como línea separada
+      const priceExIva = Math.round((price / 1.16) * 100); // centavos sin IVA
       lineItems.push({
         price_data: {
           currency: "mxn",
@@ -82,12 +84,22 @@ serve(async (req) => {
             name: p.name,
             images: p.images && p.images.length ? [p.images[0]] : undefined,
           },
-          unit_amount: Math.round(price * 100), // Stripe usa centavos
+          unit_amount: priceExIva,
         },
         quantity: qty,
       });
       orderItemsDraft.push({ product_id: p.id, name: p.name, price, quantity: qty });
     }
+    // Línea de IVA (16% sobre el subtotal sin IVA = total - total/1.16)
+    const ivaAmount = Math.round(total * 100) - lineItems.reduce((s, l) => s + l.price_data.unit_amount * l.quantity, 0);
+    lineItems.push({
+      price_data: {
+        currency: "mxn",
+        product_data: { name: "IVA (16%)" },
+        unit_amount: ivaAmount,
+      },
+      quantity: 1,
+    });
     if (!lineItems.length) {
       return new Response(JSON.stringify({ error: "El carrito está vacío." }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },

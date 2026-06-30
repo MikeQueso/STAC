@@ -2137,9 +2137,19 @@
           </div>`;
         }).join('')}
       </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border); margin-bottom:16px;">
-        <span style="font-size:14px; color:var(--text-body);">Total</span>
-        <span style="font-size:18px; font-weight:700; color:var(--text-primary);">$${total.toLocaleString('es-MX', { maximumFractionDigits: 0 })}</span>
+      <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin-bottom:16px; font-size:13.5px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span style="color:var(--text-dim);">Subtotal (sin IVA)</span>
+          <span style="color:var(--text-body);">$${(total/1.16).toLocaleString('es-MX', { maximumFractionDigits: 2 })}</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+          <span style="color:var(--text-dim);">IVA (16%)</span>
+          <span style="color:var(--text-body);">$${(total - total/1.16).toLocaleString('es-MX', { maximumFractionDigits: 2 })}</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding-top:10px; border-top:1px solid var(--border);">
+          <span style="font-size:15px; font-weight:700; color:var(--text-primary);">Total</span>
+          <span style="font-size:17px; font-weight:700; color:var(--accent-green);">$${total.toLocaleString('es-MX', { maximumFractionDigits: 0 })}</span>
+        </div>
       </div>
       <button type="button" id="cart-checkout-btn" class="auth-submit">💳 Proceder al pago</button>
     `;
