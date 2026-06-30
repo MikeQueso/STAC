@@ -43,6 +43,12 @@ const CONFIG = {
   'Tarjeta Gráfica':   { needed: 1,  src: 'dd', queries: ['tarjeta de video', 'tarjeta de video rtx', 'tarjeta de video radeon'], must: /geforce|radeon|\brtx\b|\bgtx\b|rx\s?\d|intel arc/i, reject: /soporte|riser|cable|extensor|adaptador|base|cooler/i },
   'Impresoras':        { needed: 17, src: 'od', render: true, queries: ['impresora', 'impresora laser', 'impresora tinta continua', 'impresora multifuncional'], must: /impresora|multifuncional/i },
   'Tinta de impresora':{ needed: 11, src: 'od', queries: ['cartucho tinta hp', 'cartucho tinta canon', 'botella tinta epson', 'cartucho tinta brother', 'toner'], must: /tinta|cartucho|toner|tóner|botella/i },
+  // A diferencia de las demas categorias, aqui SI queremos resultados tipo
+  // "Computadora ..." (ver allowBuild abajo, que desactiva el filtro global
+  // que excluye comput/pc/combo para las demas categorias).
+  // Las gamer de DD Tech casi todas traen GPU dedicada y superan $15,000;
+  // Abasteo tiene equipos de oficina/basicos sin GPU dedicada, mas baratos.
+  'Computadoras ya armadas': { needed: 5, src: 'ab', allowBuild: true, maxPrice: 15000, queries: ['computadora', 'computadora de escritorio', 'pc de escritorio', 'computadora oficina'], must: /computadora|\bpc\b/i, reject: /laptop|notebook|barebone|gabinete\s*$/i },
 };
 
 async function ddSearch(page, q) {
@@ -54,6 +60,20 @@ async function ddSearch(page, q) {
     title: (n.querySelector('h3.name, .name')?.textContent || '').trim(),
     price: (n.querySelector('.price, .product-price')?.textContent || '').trim(),
     url: n.querySelector('a[href*="/producto/"]')?.href || '',
+  })).filter((x) => x.title && x.url)).catch(() => []);
+}
+
+// ─── ABASTEO (misma plataforma OXID que Cyberpuerta, precios publicos) ──
+async function abSearch(page, q) {
+  const url = `https://www.abasteo.mx/index.php?cl=search&searchparam=${encodeURIComponent(q)}`;
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForSelector('.c-product-card', { timeout: 8000 }).catch(() => {});
+  await page.waitForTimeout(600);
+  return await page.$$eval('.c-product-card', (nodes) => nodes.slice(0, 16).map((n) => ({
+    title: (n.querySelector('.c-product-pic__product-img')?.getAttribute('alt') || '').trim(),
+    price: (n.querySelector('.c-product-price__price')?.textContent || '').trim(),
+    image: n.querySelector('.c-product-pic__product-img')?.getAttribute('src') || '',
+    url: n.querySelector('.c-product-pic__link')?.href || '',
   })).filter((x) => x.title && x.url)).catch(() => []);
 }
 
@@ -120,6 +140,8 @@ async function odSearch(q) {
   return items;
 }
 
+const CAT_ARG = (process.argv.find((a) => a.startsWith('--cat=')) || '').replace('--cat=', '');
+
 (async () => {
   const { data: existing } = await sb.from('products').select('name');
   const existingCodes = new Set();
@@ -130,6 +152,7 @@ async function odSearch(q) {
   const out = {};
 
   for (const [cat, cfg] of Object.entries(CONFIG)) {
+    if (CAT_ARG && cat !== CAT_ARG) continue;
     const picked = [];
     const usedCodes = new Set();
     const usedUrls = new Set();
@@ -141,6 +164,7 @@ async function odSearch(q) {
     for (const q of cfg.queries) {
       if (picked.length >= cfg.needed * 3) break;
       const items = cfg.src === 'dd' ? await ddSearch(page, q)
+                  : cfg.src === 'ab' ? await abSearch(page, q)
                   : cfg.render ? await odRender(page, q)
                   : await odSearch(q);
       for (const it of items) raw.push(it);
@@ -150,10 +174,11 @@ async function odSearch(q) {
       if (picked.length >= cfg.needed) break;
       const price = parsePrice(it.price);
       if (!price) continue;
+      if (cfg.maxPrice && price > cfg.maxPrice) continue;
       const title = it.title;
       if (!cfg.must.test(title.slice(0, 60))) continue;          // es de la categoria (al inicio)
       if (cfg.reject && cfg.reject.test(title)) continue;        // descarta accesorios/otra categoria
-      if (/comput|laptop|combo|bundle|\bpc\b|barebone/i.test(title)) continue;
+      if (!cfg.allowBuild && /comput|laptop|combo|bundle|\bpc\b|barebone/i.test(title)) continue;
       const nm = norm(title);
       if (usedNames.has(nm)) continue;                           // no repetir el mismo modelo
       const codes = modelCodes(title);
@@ -165,7 +190,8 @@ async function odSearch(q) {
       usedUrls.add(it.url);
       usedNames.add(nm);
       for (const c of codes) usedCodes.add(c);
-      picked.push({ name: title, category: cat, price, image, url: it.url, proveedor: cfg.src === 'dd' ? 'DD Tech' : 'Office Depot' });
+      const proveedor = cfg.src === 'dd' ? 'DD Tech' : cfg.src === 'ab' ? 'Abasteo' : 'Office Depot';
+      picked.push({ name: title, category: cat, price, image, url: it.url, proveedor });
     }
     out[cat] = picked;
     console.log(`${cat}: ${picked.length}/${cfg.needed}`);

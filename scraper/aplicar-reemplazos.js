@@ -18,6 +18,7 @@ const PREFIX = {
   'Gabinete': 'GAB', 'Impresoras': 'IMP', 'Memoria RAM': 'RAM', 'Mouse': 'MOU',
   'Placa Madre': 'MB', 'Procesador': 'CPU', 'Refrigeración': 'ACFRE',
   'Tarjeta Gráfica': 'GPU', 'Tinta de impresora': 'TIN',
+  'Computadoras ya armadas': 'PC',
 };
 
 function extFromType(ct, url) {
@@ -50,7 +51,7 @@ function labelFor(seg) {
 function buildFicha(fullName, category, price, proveedor) {
   const segs = fullName.split('/').map((s) => s.trim()).filter(Boolean);
   const display = segs[0] || fullName;
-  const brand = (display.replace(/^(gabinete|fuente de poder|memoria ram|tarjeta madre|tarjeta de video|procesador|disipador|audifonos?|mouse|impresora|cartucho|botella|toner|t[oó]ner)\s*(gamer|de poder|ram)?\s*/i, '').split(/\s+/)[0]) || '';
+  const brand = (display.replace(/^(gabinete|fuente de poder|memoria ram|tarjeta madre|tarjeta de video|procesador|disipador|audifonos?|mouse|impresora|cartucho|botella|toner|t[oó]ner|computadora)\s*(gamer|de poder|ram|de escritorio)?\s*/i, '').split(/\s+/)[0]) || '';
 
   const features = [];
   const seen = new Set();
