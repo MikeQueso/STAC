@@ -403,6 +403,31 @@
       color: var(--blue-glow); cursor: pointer; font-size: 13px; font-weight: 600;
       text-decoration: underline; font-family: 'IBM Plex Sans', sans-serif; text-align: center;
     }
+    .forgot-pw-link {
+      display: block; width: 100%; margin-top: 12px; background: none; border: none;
+      color: var(--text-dim); cursor: pointer; font-size: 12.5px;
+      text-decoration: underline; font-family: 'IBM Plex Sans', sans-serif; text-align: center;
+    }
+    .forgot-pw-link:hover { color: var(--blue-glow); }
+
+    .forgot-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 36px 32px; max-width: 380px; width: 100%; position: relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,95,255,0.12);
+    }
+    .forgot-card .modal-close { position: absolute; top: 14px; right: 14px; }
+    .forgot-card h2 {
+      font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 8px;
+    }
+    .forgot-step { display: none; }
+    .forgot-step.active { display: block; }
+    .forgot-success {
+      text-align: center; color: var(--accent-green); font-size: 13.5px;
+      background: rgba(0,229,176,0.08); border: 1px solid rgba(0,229,176,0.25);
+      border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; display: none; line-height: 1.5;
+    }
+    .forgot-success.show { display: block; }
     .auth-error {
       background: rgba(255,62,62,0.1); border: 1px solid rgba(255,62,62,0.3);
       color: #FF7070; font-size: 12.5px; padding: 9px 12px;
@@ -1019,6 +1044,7 @@
           <input type="password" id="login-password" required autocomplete="current-password" />
         </div>
         <button type="submit" class="auth-submit">Iniciar sesión</button>
+        <button type="button" class="forgot-pw-link" id="open-forgot-btn">¿Olvidaste tu contraseña?</button>
         <button type="button" class="auth-switch-mobile" id="switch-to-register-mobile">¿No tienes cuenta? Regístrate</button>
       </form>
     </div>
@@ -1039,6 +1065,49 @@
           <button type="button" class="ghost-btn" id="switch-to-login">Inicia sesión</button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL RECUPERAR CONTRASEÑA ─────────────────────────────── -->
+<div id="forgot-overlay" class="modal-overlay hidden" style="z-index:1002;">
+  <div class="forgot-card">
+    <button type="button" class="modal-close" id="forgot-close">✕</button>
+
+    <div class="forgot-step active" id="forgot-step-1">
+      <h2>Recuperar contraseña</h2>
+      <p class="auth-msg">Ingresa tu usuario y correo electrónico registrados; te enviaremos un código temporal.</p>
+      <div class="auth-error" id="forgot-error-1"></div>
+      <form id="forgot-request-form">
+        <div class="auth-field">
+          <label>Usuario</label>
+          <input type="text" id="forgot-username" required autocomplete="username" />
+        </div>
+        <div class="auth-field">
+          <label>Correo electrónico</label>
+          <input type="email" id="forgot-email" required autocomplete="email" />
+        </div>
+        <button type="submit" class="auth-submit">Enviar código</button>
+      </form>
+    </div>
+
+    <div class="forgot-step" id="forgot-step-2">
+      <h2>Ingresa el código</h2>
+      <p class="auth-msg">Revisa tu correo electrónico, te enviamos un código de 6 dígitos válido por 15 minutos.</p>
+      <div class="forgot-success" id="forgot-sent-msg">📧 Código enviado correctamente.</div>
+      <div class="auth-error" id="forgot-error-2"></div>
+      <form id="forgot-confirm-form">
+        <div class="auth-field">
+          <label>Código</label>
+          <input type="text" id="forgot-code" required maxlength="6" inputmode="numeric" autocomplete="one-time-code" />
+        </div>
+        <div class="auth-field">
+          <label>Nueva contraseña</label>
+          <input type="password" id="forgot-new-password" required minlength="6" autocomplete="new-password" />
+        </div>
+        <button type="submit" class="auth-submit">Cambiar contraseña</button>
+        <button type="button" class="auth-switch-mobile" id="forgot-resend-btn" style="display:block;">¿No te llegó? Solicitar otro código</button>
+      </form>
     </div>
   </div>
 </div>
@@ -1210,6 +1279,98 @@
   document.getElementById('switch-to-register').addEventListener('click', () => setLoginMode(false));
   document.getElementById('switch-to-login-mobile').addEventListener('click', () => setLoginMode(true));
   document.getElementById('switch-to-register-mobile').addEventListener('click', () => setLoginMode(false));
+
+  /* ───────── RECUPERAR CONTRASEÑA ───────── */
+  const forgotOverlay   = document.getElementById('forgot-overlay');
+  const forgotStep1     = document.getElementById('forgot-step-1');
+  const forgotStep2     = document.getElementById('forgot-step-2');
+  const forgotError1    = document.getElementById('forgot-error-1');
+  const forgotError2    = document.getElementById('forgot-error-2');
+  const forgotSentMsg   = document.getElementById('forgot-sent-msg');
+  const forgotRequestForm = document.getElementById('forgot-request-form');
+  const forgotConfirmForm = document.getElementById('forgot-confirm-form');
+  let forgotUsername = '';
+
+  function showForgotError(step, msg) {
+    const el = step === 1 ? forgotError1 : forgotError2;
+    el.textContent = msg; el.classList.add('show');
+  }
+  function clearForgotErrors() {
+    forgotError1.textContent = ''; forgotError1.classList.remove('show');
+    forgotError2.textContent = ''; forgotError2.classList.remove('show');
+  }
+  function openForgot() {
+    clearForgotErrors();
+    forgotSentMsg.classList.remove('show');
+    forgotStep1.classList.add('active');
+    forgotStep2.classList.remove('active');
+    forgotRequestForm.reset();
+    forgotConfirmForm.reset();
+    forgotOverlay.classList.remove('hidden');
+  }
+  function closeForgot() {
+    forgotOverlay.classList.add('hidden');
+  }
+
+  document.getElementById('open-forgot-btn').addEventListener('click', openForgot);
+  document.getElementById('forgot-close').addEventListener('click', closeForgot);
+  document.getElementById('forgot-resend-btn').addEventListener('click', async () => {
+    clearForgotErrors();
+    await requestResetCode(forgotUsername, document.getElementById('forgot-email').value.trim());
+  });
+
+  async function requestResetCode(username, email) {
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/password-reset`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'request', username, email }),
+    });
+    const data = await res.json().catch(() => ({}));
+    return { ok: res.ok, error: data.error };
+  }
+
+  forgotRequestForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearForgotErrors();
+    const username = document.getElementById('forgot-username').value.trim();
+    const email = document.getElementById('forgot-email').value.trim();
+    const btn = forgotRequestForm.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Enviando...';
+
+    const { ok, error } = await requestResetCode(username, email);
+    btn.disabled = false; btn.textContent = 'Enviar código';
+
+    if (!ok) { showForgotError(1, error || 'No se pudo enviar el código.'); return; }
+
+    forgotUsername = username;
+    forgotSentMsg.classList.add('show');
+    forgotStep1.classList.remove('active');
+    forgotStep2.classList.add('active');
+  });
+
+  forgotConfirmForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearForgotErrors();
+    const code = document.getElementById('forgot-code').value.trim();
+    const newPassword = document.getElementById('forgot-new-password').value;
+    const btn = forgotConfirmForm.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Cambiando...';
+
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/password-reset`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'confirm', username: forgotUsername, code, newPassword }),
+    });
+    const data = await res.json().catch(() => ({}));
+    btn.disabled = false; btn.textContent = 'Cambiar contraseña';
+
+    if (!res.ok) { showForgotError(2, data.error || 'No se pudo cambiar la contraseña.'); return; }
+
+    closeForgot();
+    setLoginMode(true);
+    document.getElementById('login-username').value = forgotUsername;
+    alert('Tu contraseña fue actualizada. Ya puedes iniciar sesión.');
+  });
 
   /* ───────── REGISTRO ───────── */
   registerForm.addEventListener('submit', async (e) => {
