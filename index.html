@@ -1025,14 +1025,26 @@
   </div>
 </div>
 
-<!-- ── MODAL PAGO EXITOSO ─────────────────────────────────────── -->
-<div id="success-overlay" class="modal-overlay hidden" style="z-index:1003;">
-  <div class="admin-card" style="max-width:580px;">
-    <div class="admin-header" style="background:linear-gradient(135deg,#003820,#005030);">
-      <h2 style="color:#00E5B0;">✅ ¡Pago exitoso!</h2>
-      <button class="modal-close" id="success-close">✕</button>
-    </div>
-    <div class="admin-body" id="success-body" style="padding:24px;"></div>
+<!-- ── BANNER PAGO EXITOSO ────────────────────────────────────── -->
+<div id="pago-exitoso-banner" style="
+  display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+  background:rgba(4,13,26,0.85); z-index:9999;
+  align-items:center; justify-content:center;">
+  <div style="
+    background:var(--bg-card); border:1px solid var(--accent-green);
+    border-radius:16px; padding:40px 36px; max-width:460px; width:90%;
+    text-align:center; box-shadow:0 0 40px rgba(0,229,176,0.2);">
+    <div style="font-size:56px; margin-bottom:16px;">✅</div>
+    <h2 style="color:var(--accent-green); font-size:22px; font-weight:700; margin-bottom:10px;">¡Compra completada!</h2>
+    <p style="color:var(--text-primary); font-size:15px; margin-bottom:8px;">Tu pago fue procesado exitosamente.</p>
+    <p style="color:var(--text-body); font-size:14px; margin-bottom:24px;">
+      📧 Revisa tu correo electrónico — te enviamos el ticket de compra con el detalle y desglose de IVA.
+    </p>
+    <button onclick="document.getElementById('pago-exitoso-banner').style.display='none'"
+      style="background:var(--accent-green); color:#000; border:none; border-radius:8px;
+      padding:12px 32px; font-size:15px; font-weight:700; cursor:pointer;">
+      Entendido
+    </button>
   </div>
 </div>
 
@@ -3566,7 +3578,8 @@
     // Mensaje de confirmación al volver de Stripe Checkout.
     if (location.hash === '#pago-exitoso') {
       history.replaceState(null, '', location.pathname);
-      await showOrderSuccess();
+      const banner = document.getElementById('pago-exitoso-banner');
+      if (banner) { banner.style.display = 'flex'; }
     } else if (location.hash === '#pago-cancelado') {
       history.replaceState(null, '', location.pathname);
       setTimeout(() => alert('El pago fue cancelado. Tu carrito sigue intacto.'), 300);
