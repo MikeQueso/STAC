@@ -13,7 +13,9 @@
       --bg-deep: #040D1A;
       --bg-card: #071528;
       --bg-surface: #0C1E3A;
+      --blue-core: #005FFF;
       --blue-glow: #00AAFF;
+      --accent-red: #FF3E3E;
       --text-primary: #E8F1FF;
       --text-body: #9DB8D8;
       --text-dim: #4A6A90;
@@ -33,32 +35,51 @@
     }
     .card {
       background: var(--bg-card);
-      border: 1px solid var(--accent-green);
+      border: 1px solid var(--border);
       border-radius: 18px;
       max-width: 560px;
       width: 100%;
-      padding: 40px 36px;
-      box-shadow: 0 0 50px rgba(0,229,176,0.15);
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,95,255,0.12);
     }
-    .icon { font-size: 56px; text-align: center; margin-bottom: 14px; }
+    .card-header {
+      background: linear-gradient(135deg, var(--accent-red) 0%, var(--blue-core) 100%);
+      text-align: center;
+      padding: 32px 32px 28px;
+    }
+    .card-header img { height: 88px; display: block; margin: 0 auto 6px; }
+    .card-header .brand-tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: #fff; opacity: 0.9; margin-bottom: 16px;
+    }
+    .card-header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 24px;
+      padding: 9px 22px;
+      font-size: 15px; font-weight: 700; color: #fff;
+    }
+    .card-body { padding: 32px 36px 36px; }
     h1 {
       font-family: 'Rajdhani', sans-serif;
-      color: var(--accent-green);
-      font-size: 26px;
+      color: var(--text-primary);
+      font-size: 22px;
       text-align: center;
       margin-bottom: 8px;
     }
     .sub {
       text-align: center;
-      color: var(--text-primary);
-      font-size: 14.5px;
+      color: var(--text-body);
+      font-size: 14px;
       margin-bottom: 4px;
     }
     .email-note {
       text-align: center;
       color: var(--accent-green);
       font-size: 13.5px;
-      margin: 14px 0 24px;
+      margin: 16px 0 24px;
       background: rgba(0,229,176,0.08);
       border: 1px solid rgba(0,229,176,0.25);
       border-radius: 10px;
@@ -120,16 +141,22 @@
 </head>
 <body>
   <div class="card">
-    <div class="icon">✅</div>
-    <h1>¡Compra completada!</h1>
-    <p class="sub">Tu pago fue procesado exitosamente.</p>
-    <div class="email-note">📧 Revisa tu correo electrónico — te enviamos el ticket de compra con el desglose de IVA.</div>
+    <div class="card-header">
+      <img src="favicon.png" alt="STAC" />
+      <div class="brand-tag">Soporte Técnico Avanzado en Computación</div>
+      <span class="badge">✅ ¡Pago confirmado!</span>
+    </div>
+    <div class="card-body">
+      <h1>¡Gracias por tu compra!</h1>
+      <p class="sub">Tu pago fue procesado exitosamente.</p>
+      <div class="email-note">📧 Revisa tu correo electrónico — te enviamos el ticket de compra con el desglose de IVA.</div>
 
-    <div id="loading">Cargando el detalle de tu pedido...</div>
-    <div id="items-list" style="display:none;"></div>
-    <div id="totals" style="display:none;"></div>
+      <div id="loading">Cargando el detalle de tu pedido...</div>
+      <div id="items-list" style="display:none;"></div>
+      <div id="totals" style="display:none;"></div>
 
-    <a href="index.html" class="btn">Volver a la tienda</a>
+      <a href="index.html" class="btn">Volver a la tienda</a>
+    </div>
   </div>
 
   <script>
