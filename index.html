@@ -455,6 +455,7 @@
       color: #fff; margin-bottom: 10px;
     }
     .overlay-panel p { font-size: 13.5px; line-height: 1.65; margin-bottom: 26px; opacity: 0.95; }
+    .overlay-hint { font-size: 12px; font-weight: 600; margin: -16px 0 12px; opacity: 0.85; }
     .ghost-btn {
       background: transparent; border: 2px solid #fff; color: #fff;
       padding: 11px 34px; border-radius: 24px; font-weight: 700; font-size: 12.5px;
@@ -1031,6 +1032,7 @@
           <div class="overlay-logo-wrap"><img src="stac-logo.png" alt="STAC" class="overlay-logo" /></div>
           <h2>¡Hola!</h2>
           <p>Crea tu cuenta y descubre todo lo que STAC tiene para ti.</p>
+          <p class="overlay-hint">¿No tienes cuenta?</p>
           <button type="button" class="ghost-btn" id="switch-to-register">Regístrate</button>
         </div>
         <div class="overlay-panel overlay-right">
@@ -1312,7 +1314,7 @@
       currentUser = null;
       updateHeaderUI();
       renderProducts();
-      setLoginMode(false);
+      setLoginMode(true);
       openGate();
     });
 
@@ -3549,7 +3551,7 @@
       await loadCurrentUser();
     } else {
       updateHeaderUI();
-      setLoginMode(false);
+      setLoginMode(true);
       openGate();
     }
 
