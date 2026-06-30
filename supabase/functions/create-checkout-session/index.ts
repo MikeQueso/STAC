@@ -126,7 +126,7 @@ serve(async (req) => {
       mode: "payment",
       payment_method_types: ["card"],
       line_items: lineItems,
-      success_url: `${siteUrl}/#pago-exitoso`,
+      success_url: `${siteUrl}/success.html?order=${order.id}`,
       cancel_url: `${siteUrl}/#pago-cancelado`,
       metadata: { order_id: order.id, user_id: userId },
       shipping_address_collection: { allowed_countries: ["MX"] },
