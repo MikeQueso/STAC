@@ -141,9 +141,15 @@
     .user-chip {
       display: flex; align-items: center; gap: 10px;
       background: var(--bg-surface); border: 1px solid var(--border);
-      padding: 6px 8px 6px 14px; border-radius: 9px;
+      padding: 5px 8px 5px 6px; border-radius: 9px;
     }
     .user-chip span { font-size: 13px; color: var(--text-primary); font-weight: 500; white-space: nowrap; }
+    .user-avatar-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: none; border: none; padding: 2px; cursor: pointer;
+      border-radius: 20px; transition: background .15s;
+    }
+    .user-avatar-btn:hover { background: rgba(0,170,255,0.1); }
     .btn-logout, .btn-admin-panel {
       background: transparent; border: 1px solid var(--border);
       color: var(--text-body); font-size: 12px; padding: 6px 12px;
@@ -1114,6 +1120,39 @@
   </div>
 </div>
 
+<!-- ── MODAL MI CUENTA ──────────────────────────────────────────── -->
+<div id="profile-overlay" class="modal-overlay hidden" style="z-index:1002;">
+  <div class="forgot-card" style="max-width:420px;">
+    <button type="button" class="modal-close" id="profile-close">✕</button>
+    <h2 style="margin-bottom:18px;">Mi cuenta</h2>
+
+    <div style="display:flex; flex-direction:column; align-items:center; margin-bottom:22px;">
+      <div id="profile-avatar-wrap" style="position:relative; width:84px; height:84px; cursor:pointer;">
+        <div id="profile-avatar-display"></div>
+        <div style="position:absolute; bottom:-2px; right:-2px; background:var(--blue-core); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:13px; border:2px solid var(--bg-card);">📷</div>
+      </div>
+      <input type="file" id="profile-avatar-input" accept="image/*" style="display:none;" />
+      <button type="button" id="profile-avatar-remove" style="display:none; margin-top:10px; background:none; border:none; color:var(--text-dim); font-size:11.5px; text-decoration:underline; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Quitar foto</button>
+    </div>
+
+    <div class="auth-error" id="profile-error"></div>
+    <div class="forgot-success" id="profile-success">✅ Cambios guardados.</div>
+
+    <form id="profile-form">
+      <div class="auth-field">
+        <label>Usuario</label>
+        <input type="text" id="profile-username" required minlength="3" autocomplete="username" />
+      </div>
+      <div class="auth-field">
+        <label>Correo electrónico</label>
+        <input type="email" id="profile-email" required autocomplete="email" />
+        <p style="font-size:11px; color:var(--text-dim); margin-top:5px;">Si lo cambias, te enviaremos un correo de confirmación a la nueva dirección antes de aplicarlo.</p>
+      </div>
+      <button type="submit" class="auth-submit">Guardar cambios</button>
+    </form>
+  </div>
+</div>
+
 <!-- ── MODAL PANEL ADMIN ─────────────────────────────────────── -->
 <div id="admin-overlay" class="modal-overlay hidden">
   <div class="admin-card">
@@ -1252,6 +1291,14 @@
   function escapeHtmlForStore(str) {
     return (str == null ? '' : String(str))
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  // Avatar circular: la foto del usuario si tiene, o un ícono "anónimo" por defecto.
+  function avatarHtml(url, size) {
+    const s = size || 30;
+    if (url) {
+      return `<img src="${escapeHtml(url)}" style="width:${s}px; height:${s}px; border-radius:50%; object-fit:cover; flex-shrink:0; display:block;" />`;
+    }
+    return `<span style="width:${s}px; height:${s}px; border-radius:50%; background:var(--bg-surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:${Math.round(s*0.55)}px; flex-shrink:0;">🙍</span>`;
   }
   function showError(msg) {
     const el = isLoginMode ? authErrorLogin : authErrorRegister;
@@ -1462,7 +1509,11 @@
       document.getElementById('open-login-btn').addEventListener('click', () => { setLoginMode(true); openGate(); });
       return;
     }
-    let html = `<div class="user-chip"><span>👋 ${escapeHtml(currentUser.username)}</span>`;
+    let html = `<div class="user-chip">
+      <button type="button" class="user-avatar-btn" id="open-profile-btn">
+        ${avatarHtml(currentUser.avatar_url, 30)}
+        <span>${escapeHtml(currentUser.username)}</span>
+      </button>`;
     if (currentUser.role === 'admin') {
       html += `<button class="btn-admin-panel" id="open-categories-btn">Categorías</button>`;
       html += `<button class="btn-admin-panel" id="open-newprod-btn">+ Producto</button>`;
@@ -1471,6 +1522,8 @@
     }
     html += `<button class="btn-logout" id="logout-btn">Salir</button></div>`;
     actions.innerHTML = html;
+
+    document.getElementById('open-profile-btn').addEventListener('click', openProfilePanel);
 
     document.getElementById('logout-btn').addEventListener('click', async () => {
       await sb.auth.signOut();
@@ -1496,6 +1549,95 @@
       });
     }
   }
+
+  /* ───────── MI CUENTA ───────── */
+  const profileOverlay = document.getElementById('profile-overlay');
+  const profileError   = document.getElementById('profile-error');
+  const profileSuccess = document.getElementById('profile-success');
+  const profileAvatarInput = document.getElementById('profile-avatar-input');
+  let pendingAvatarFile = null;
+
+  function renderProfileAvatarPreview(url) {
+    document.getElementById('profile-avatar-display').innerHTML = avatarHtml(url, 84);
+    document.getElementById('profile-avatar-remove').style.display = url ? 'block' : 'none';
+  }
+
+  function openProfilePanel() {
+    if (!currentUser) return;
+    pendingAvatarFile = null;
+    profileError.textContent = ''; profileError.classList.remove('show');
+    profileSuccess.classList.remove('show');
+    document.getElementById('profile-username').value = currentUser.username || '';
+    document.getElementById('profile-email').value = currentUser.email || '';
+    renderProfileAvatarPreview(currentUser.avatar_url);
+    profileOverlay.classList.remove('hidden');
+  }
+  document.getElementById('profile-close').addEventListener('click', () => profileOverlay.classList.add('hidden'));
+  profileOverlay.addEventListener('click', (e) => { if (e.target === profileOverlay) profileOverlay.classList.add('hidden'); });
+
+  document.getElementById('profile-avatar-wrap').addEventListener('click', () => profileAvatarInput.click());
+  profileAvatarInput.addEventListener('change', () => {
+    const file = profileAvatarInput.files[0];
+    if (!file) return;
+    pendingAvatarFile = file;
+    renderProfileAvatarPreview(URL.createObjectURL(file));
+    document.getElementById('profile-avatar-remove').style.display = 'block';
+  });
+  document.getElementById('profile-avatar-remove').addEventListener('click', () => {
+    pendingAvatarFile = 'remove';
+    profileAvatarInput.value = '';
+    renderProfileAvatarPreview(null);
+  });
+
+  document.getElementById('profile-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    profileError.textContent = ''; profileError.classList.remove('show');
+    profileSuccess.classList.remove('show');
+
+    const newUsername = document.getElementById('profile-username').value.trim();
+    const newEmail = document.getElementById('profile-email').value.trim();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Guardando...';
+
+    try {
+      let avatarUrl = currentUser.avatar_url || null;
+      if (pendingAvatarFile === 'remove') {
+        avatarUrl = null;
+      } else if (pendingAvatarFile) {
+        const ext = (pendingAvatarFile.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+        const path = `${currentUser.id}/${Date.now()}.${ext}`;
+        const { error: upErr } = await sb.storage.from('avatars').upload(path, pendingAvatarFile, { cacheControl: '3600', upsert: true });
+        if (upErr) throw upErr;
+        avatarUrl = sb.storage.from('avatars').getPublicUrl(path).data.publicUrl;
+      }
+
+      if (newUsername.length < 3) throw new Error('El usuario debe tener al menos 3 caracteres.');
+
+      const emailChanged = newEmail !== currentUser.email;
+      const updates = { username: newUsername, avatar_url: avatarUrl };
+      if (emailChanged) updates.email = newEmail;
+      const { error: profErr } = await sb.from('profiles').update(updates).eq('id', currentUser.id);
+      if (profErr) throw new Error(profErr.message.toLowerCase().includes('duplicate') ? 'Ese nombre de usuario ya existe.' : profErr.message);
+
+      if (emailChanged) {
+        const { error: emailErr } = await sb.auth.updateUser({ email: newEmail });
+        if (emailErr) throw emailErr;
+      }
+
+      currentUser = { ...currentUser, username: newUsername, email: newEmail, avatar_url: avatarUrl };
+      pendingAvatarFile = null;
+      updateHeaderUI();
+      profileSuccess.textContent = emailChanged
+        ? '✅ Guardado. Revisa tu correo para confirmar el cambio de dirección.'
+        : '✅ Cambios guardados.';
+      profileSuccess.classList.add('show');
+    } catch (err) {
+      profileError.textContent = err.message || 'No se pudo guardar.';
+      profileError.classList.add('show');
+    } finally {
+      btn.disabled = false; btn.textContent = 'Guardar cambios';
+    }
+  });
 
   /* ───────── CATEGORÍAS ───────── */
   function categoryOptionsHtml(selected) {
