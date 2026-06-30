@@ -524,16 +524,16 @@
       font-size: 22px; cursor: pointer; line-height: 1;
     }
     .modal-close:hover { color: var(--text-primary); }
-    .admin-tabs { display: flex; gap: 8px; padding: 14px 24px 0; }
+    .admin-tabs { display: flex; gap: 8px; padding: 14px 24px 0; overflow-x: auto; flex-wrap: nowrap; }
     .admin-tab {
       background: none; border: none; color: var(--text-dim);
       font-size: 13px; font-weight: 600; padding: 8px 4px;
       cursor: pointer; border-bottom: 2px solid transparent;
-      font-family: 'IBM Plex Sans', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif; white-space: nowrap; flex-shrink: 0;
     }
     .admin-tab.active { color: var(--blue-glow); border-color: var(--blue-glow); }
-    .admin-body { padding: 18px 24px 24px; overflow-y: auto; flex: 1; }
-    .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .admin-body { padding: 18px 24px 24px; overflow: auto; flex: 1; }
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
     .admin-table th {
       text-align: left; color: var(--text-dim); font-size: 10.5px;
       text-transform: uppercase; letter-spacing: 0.05em;
@@ -846,6 +846,19 @@
       .user-chip span { font-size: 11.5px; max-width: 70px; overflow: hidden; text-overflow: ellipsis; }
       .btn-logout, .btn-admin-panel { font-size: 11px; padding: 5px 8px; }
       #home-section { padding-top: 88px !important; }
+      .admin-quick-action { display: none; }
+      .admin-card, .mini-modal-card, .detail-card { max-height: 88vh; border-radius: 12px; }
+      .admin-header { padding: 14px 16px; }
+      .admin-header h2 { font-size: 16px; }
+      .admin-tabs { padding: 10px 16px 0; gap: 14px; }
+      .admin-body { padding: 14px 16px 18px; }
+      .mini-modal-card { padding: 22px 18px; }
+      .detail-info, .detail-gallery { padding: 20px 18px; }
+      .detail-title { font-size: 21px; }
+      .detail-price { font-size: 27px; }
+    }
+    @media (max-width: 700px) {
+      .auth-card, .forgot-card { width: calc(100% - 16px); }
     }
   </style>
 </head>
@@ -1515,9 +1528,9 @@
         <span>${escapeHtml(currentUser.username)}</span>
       </button>`;
     if (currentUser.role === 'admin') {
-      html += `<button class="btn-admin-panel" id="open-categories-btn">Categorías</button>`;
-      html += `<button class="btn-admin-panel" id="open-newprod-btn">+ Producto</button>`;
-      html += `<button class="btn-admin-panel" id="open-import-btn">Importar CSV</button>`;
+      html += `<button class="btn-admin-panel admin-quick-action" id="open-categories-btn">Categorías</button>`;
+      html += `<button class="btn-admin-panel admin-quick-action" id="open-newprod-btn">+ Producto</button>`;
+      html += `<button class="btn-admin-panel admin-quick-action" id="open-import-btn">Importar CSV</button>`;
       html += `<button class="btn-admin-panel" id="open-admin-btn">Panel Admin</button>`;
     }
     html += `<button class="btn-logout" id="logout-btn">Salir</button></div>`;
