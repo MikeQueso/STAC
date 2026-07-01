@@ -2081,8 +2081,9 @@
     });
   });
 
-  document.getElementById('svc-editor-close').addEventListener('click', () => document.getElementById('svc-editor-overlay').classList.add('hidden'));
-  document.getElementById('svc-cancel-btn').addEventListener('click',      () => document.getElementById('svc-editor-overlay').classList.add('hidden'));
+  function closeSvcEditor() { const o = document.getElementById('svc-editor-overlay'); o.classList.add('hidden'); o.style.display = ''; }
+  document.getElementById('svc-editor-close').addEventListener('click', closeSvcEditor);
+  document.getElementById('svc-cancel-btn').addEventListener('click',   closeSvcEditor);
 
   document.getElementById('svc-save-btn').addEventListener('click', async () => {
     const btn = document.getElementById('svc-save-btn');
@@ -2100,7 +2101,7 @@
     else {
       servicesCache[svcEditingId] = payload;
       renderServicesGrid();
-      document.getElementById('svc-editor-overlay').classList.add('hidden');
+      closeSvcEditor();
     }
     btn.disabled = false; btn.textContent = 'Guardar';
   });
