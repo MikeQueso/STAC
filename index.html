@@ -1912,7 +1912,7 @@
 
   function renderServicesGrid() {
     const grid = document.getElementById('services-grid');
-    const isAdmin = currentUser && userProfile && userProfile.role === 'admin';
+    const isAdmin = currentUser && currentUser.role === 'admin';
     grid.innerHTML = [1, 2, 3].map(id => {
       const s = servicesCache[id] || { id, icon: '🛠️', title: 'Próximamente', description: 'Estamos preparando la información de este servicio.' };
       return `
