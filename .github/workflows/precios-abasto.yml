@@ -1,8 +1,8 @@
-name: Revisión diaria de precios de proveedores
+name: Revisión de precios de proveedores (cada hora)
 
 on:
   schedule:
-    - cron: '0 13 * * *'   # 7:00 AM hora de México (UTC-6)
+    - cron: '0 * * * *'    # cada hora en punto
   workflow_dispatch:        # permite correrlo manualmente desde GitHub
     inputs:
       debug:

@@ -2591,16 +2591,8 @@
         }).join('')}
       </div>
       <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin-bottom:16px; font-size:13.5px;">
-        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-          <span style="color:var(--text-dim);">Subtotal (sin IVA)</span>
-          <span style="color:var(--text-body);">$${(total/1.16).toLocaleString('es-MX', { maximumFractionDigits: 2 })}</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-          <span style="color:var(--text-dim);">IVA (16%)</span>
-          <span style="color:var(--text-body);">$${(total - total/1.16).toLocaleString('es-MX', { maximumFractionDigits: 2 })}</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; padding-top:10px; border-top:1px solid var(--border);">
-          <span style="font-size:15px; font-weight:700; color:var(--text-primary);">Total</span>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="font-size:15px; font-weight:700; color:var(--text-primary);">Total (IVA incluido)</span>
           <span style="font-size:17px; font-weight:700; color:var(--accent-green);">$${total.toLocaleString('es-MX', { maximumFractionDigits: 0 })}</span>
         </div>
       </div>
