@@ -103,13 +103,21 @@ async function uploadImage(id, url) {
 
   await sb.storage.createBucket(BUCKET, { public: true }).catch(() => {});
 
+  // Pre-carga el numero más alto de ref existente por prefijo para no colisionar.
+  const { data: existingRefs } = await sb.from('products').select('ref').like('ref', '%-R%');
+  const maxRefN = {};
+  for (const { ref } of existingRefs || []) {
+    const m = ref.match(/^(.+)-R(\d+)$/);
+    if (m) maxRefN[m[1]] = Math.max(maxRefN[m[1]] || 0, parseInt(m[2], 10));
+  }
+
   let creados = 0, fallos = 0, borrados = 0;
   const idsViejosABorrar = [];
 
   for (const [cat, list] of Object.entries(cand)) {
     if (CAT_ARG && cat !== CAT_ARG) continue;                    // procesar solo una categoria
     const refBase = PREFIX[cat] || 'STAC';
-    let n = 1;
+    let n = (maxRefN[refBase] || 0) + 1;
     let creadosCat = 0;
     for (const c of list) {
       const id = crypto.randomUUID();

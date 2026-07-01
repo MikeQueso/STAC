@@ -140,12 +140,17 @@ async function odSearch(q) {
   return items;
 }
 
-const CAT_ARG = (process.argv.find((a) => a.startsWith('--cat=')) || '').replace('--cat=', '');
+const CAT_ARG    = (process.argv.find((a) => a.startsWith('--cat='))    || '').replace('--cat=', '');
+const NEEDED_ARG = (process.argv.find((a) => a.startsWith('--needed=')) || '').replace('--needed=', '');
 
 (async () => {
   const { data: existing } = await sb.from('products').select('name');
   const existingCodes = new Set();
-  for (const p of existing) for (const c of modelCodes(p.name)) existingCodes.add(c);
+  const existingNames = new Set();
+  for (const p of existing) {
+    for (const c of modelCodes(p.name)) existingCodes.add(c);
+    existingNames.add(p.name.split('/')[0].toLowerCase().replace(/[^a-z0-9]/g, ''));
+  }
 
   const browser = await chromium.launch();
   const page = await (await browser.newContext({ userAgent: UA })).newPage();
@@ -153,6 +158,7 @@ const CAT_ARG = (process.argv.find((a) => a.startsWith('--cat=')) || '').replace
 
   for (const [cat, cfg] of Object.entries(CONFIG)) {
     if (CAT_ARG && cat !== CAT_ARG) continue;
+    if (NEEDED_ARG) cfg.needed = parseInt(NEEDED_ARG, 10);
     const picked = [];
     const usedCodes = new Set();
     const usedUrls = new Set();
@@ -180,7 +186,7 @@ const CAT_ARG = (process.argv.find((a) => a.startsWith('--cat=')) || '').replace
       if (cfg.reject && cfg.reject.test(title)) continue;        // descarta accesorios/otra categoria
       if (!cfg.allowBuild && /comput|laptop|combo|bundle|\bpc\b|barebone/i.test(title)) continue;
       const nm = norm(title);
-      if (usedNames.has(nm)) continue;                           // no repetir el mismo modelo
+      if (usedNames.has(nm) || existingNames.has(nm)) continue;  // no repetir el mismo modelo
       const codes = modelCodes(title);
       if (codes.some((c) => existingCodes.has(c) || usedCodes.has(c))) continue; // no duplicar
       if (usedUrls.has(it.url)) continue;
