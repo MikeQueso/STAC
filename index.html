@@ -933,34 +933,55 @@
       </p>
     </div>
 
-    <div id="services-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; max-width:980px; margin:0 auto 64px;">
-      <div class="service-card" data-service="1" style="background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:14px; padding:28px 24px; text-align:left; display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(12,30,58,0.06);">
-        <div style="font-size:30px; margin-bottom:14px;">🛠️</div>
-        <h3 style="font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:#0C1E3A; margin-bottom:10px;">Próximamente</h3>
-        <p style="font-size:13.5px; color:#5A7090; line-height:1.6; flex:1;">Estamos preparando la información de este servicio.</p>
-        <button type="button" class="service-readmore" data-service="1" style="margin-top:16px; background:none; border:none; color:#005FFF; font-size:13px; font-weight:600; cursor:pointer; text-align:left; padding:0; font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
-      </div>
-
-      <div class="service-card" data-service="2" style="background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:14px; padding:28px 24px; text-align:left; display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(12,30,58,0.06);">
-        <div style="font-size:30px; margin-bottom:14px;">🌐</div>
-        <h3 style="font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:#0C1E3A; margin-bottom:10px;">Creación de sitios publicitarios en un entorno web</h3>
-        <p style="font-size:13.5px; color:#5A7090; line-height:1.6; flex:1;">Diseñamos y desarrollamos páginas web a la medida para promocionar tu negocio.</p>
-        <button type="button" class="service-readmore" data-service="2" style="margin-top:16px; background:none; border:none; color:#005FFF; font-size:13px; font-weight:600; cursor:pointer; text-align:left; padding:0; font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
-      </div>
-
-      <div class="service-card" data-service="3" style="background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:14px; padding:28px 24px; text-align:left; display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(12,30,58,0.06);">
-        <div style="font-size:30px; margin-bottom:14px;">🛠️</div>
-        <h3 style="font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:#0C1E3A; margin-bottom:10px;">Próximamente</h3>
-        <p style="font-size:13.5px; color:#5A7090; line-height:1.6; flex:1;">Estamos preparando la información de este servicio.</p>
-        <button type="button" class="service-readmore" data-service="3" style="margin-top:16px; background:none; border:none; color:#005FFF; font-size:13px; font-weight:600; cursor:pointer; text-align:left; padding:0; font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
-      </div>
-    </div>
+    <div id="services-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; max-width:980px; margin:0 auto 64px;"></div>
 
     <div id="service-detail" class="hidden" style="max-width:760px; margin:0 auto 64px; background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:16px; padding:36px 32px; text-align:left; box-shadow:0 12px 36px rgba(12,30,58,0.08);">
       <div id="service-detail-icon" style="font-size:38px; margin-bottom:16px;"></div>
       <h3 id="service-detail-title" style="font-family:'Rajdhani',sans-serif; font-size:24px; font-weight:700; color:#0C1E3A; margin-bottom:14px;"></h3>
-      <p id="service-detail-body" style="font-size:14.5px; color:#324A66; line-height:1.8; white-space:pre-line;"></p>
+      <div id="service-detail-body" style="font-size:14.5px; color:#324A66; line-height:1.8;"></div>
       <button type="button" id="service-detail-close" style="margin-top:24px; background:#0C1E3A; color:#fff; border:none; padding:10px 22px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Cerrar</button>
+    </div>
+
+    <!-- ── Editor de servicios (solo admin) ── -->
+    <div id="svc-editor-overlay" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:3100;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:660px;padding:28px 28px 24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+          <h3 style="font-family:'Rajdhani',sans-serif;font-size:21px;font-weight:700;color:var(--text-primary);margin:0;">Editar servicio</h3>
+          <button id="svc-editor-close" style="background:none;border:none;color:var(--text-dim);font-size:22px;cursor:pointer;line-height:1;">✕</button>
+        </div>
+
+        <!-- Ícono + Título -->
+        <div style="display:flex;gap:12px;margin-bottom:16px;">
+          <div>
+            <label style="font-size:11px;font-weight:600;color:var(--text-dim);letter-spacing:.08em;display:block;margin-bottom:6px;">ÍCONO</label>
+            <input id="svc-icon" type="text" maxlength="4" style="width:62px;text-align:center;font-size:24px;padding:7px 4px;border:1px solid var(--border);border-radius:8px;background:var(--bg-surface);color:var(--text-primary);">
+          </div>
+          <div style="flex:1;">
+            <label style="font-size:11px;font-weight:600;color:var(--text-dim);letter-spacing:.08em;display:block;margin-bottom:6px;">TÍTULO DEL SERVICIO</label>
+            <input id="svc-title" type="text" placeholder="Nombre del servicio" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg-surface);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:14px;box-sizing:border-box;">
+          </div>
+        </div>
+
+        <!-- Descripción breve -->
+        <div style="margin-bottom:22px;">
+          <label style="font-size:11px;font-weight:600;color:var(--text-dim);letter-spacing:.08em;display:block;margin-bottom:6px;">DESCRIPCIÓN BREVE <span style="font-weight:400;text-transform:none;font-size:11px;">(aparece en la tarjeta)</span></label>
+          <textarea id="svc-description" rows="2" placeholder="Una línea que resume el servicio…" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg-surface);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;resize:vertical;box-sizing:border-box;"></textarea>
+        </div>
+
+        <!-- Secciones -->
+        <label style="font-size:11px;font-weight:600;color:var(--text-dim);letter-spacing:.08em;display:block;margin-bottom:10px;">CONTENIDO DETALLADO <span style="font-weight:400;text-transform:none;font-size:11px;">(se ve al presionar "leer más")</span></label>
+        <div id="svc-sections-list" style="display:flex;flex-direction:column;gap:12px;margin-bottom:12px;"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
+          <button type="button" class="svc-add-btn" data-type="text" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Párrafo</button>
+          <button type="button" class="svc-add-btn" data-type="list" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Lista</button>
+          <button type="button" class="svc-add-btn" data-type="image" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Imagen</button>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;gap:10px;padding-top:16px;border-top:1px solid var(--border);">
+          <button id="svc-cancel-btn" style="padding:10px 20px;border:1px solid var(--border);border-radius:8px;background:none;color:var(--text-body);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">Cancelar</button>
+          <button id="svc-save-btn" class="auth-submit" style="margin:0;padding:10px 28px;min-width:120px;">Guardar</button>
+        </div>
+      </div>
     </div>
 
     <div id="home-cat-grid" class="home-cat-grid"></div>
@@ -1550,6 +1571,7 @@
     updateHeaderUI();
     renderProducts();
     renderHomeCatGrid();
+    renderServicesGrid();
     await loadCart();
   }
 
@@ -1879,44 +1901,206 @@
     el.addEventListener('click', (e) => { e.preventDefault(); showHome(); });
   });
 
-  /* ───────── SERVICIOS (acerca de nosotros) ───────── */
-  const SERVICES = {
-    1: {
-      icon: '🛠️',
-      title: 'Próximamente',
-      body: 'Estamos preparando la información de este servicio. Vuelve más adelante para conocer todos los detalles.'
-    },
-    2: {
-      icon: '🌐',
-      title: 'Creación de sitios publicitarios en un entorno web',
-      body: 'Diseñamos y desarrollamos páginas web a la medida para promocionar tu negocio o tus productos, con un diseño profesional, rápido y adaptado a cualquier dispositivo.\n\nNos encargamos de todo el proceso: desde la planeación y el diseño visual, hasta la programación, la integración de catálogos, formularios de contacto y todo lo necesario para que tu presencia en línea sea efectiva.\n\nIdeal para negocios que buscan dar a conocer sus servicios o productos, atraer más clientes y tener una imagen sólida en internet. Contáctanos para cotizar tu proyecto.'
-    },
-    3: {
-      icon: '🛠️',
-      title: 'Próximamente',
-      body: 'Estamos preparando la información de este servicio. Vuelve más adelante para conocer todos los detalles.'
+  /* ───────── SERVICIOS DINÁMICOS ───────── */
+  let servicesCache = {};
+
+  async function loadServices() {
+    const { data } = await sb.from('services').select('*').order('id');
+    if (data) { for (const s of data) servicesCache[s.id] = s; }
+    renderServicesGrid();
+  }
+
+  function renderServicesGrid() {
+    const grid = document.getElementById('services-grid');
+    const isAdmin = currentUser && userProfile && userProfile.role === 'admin';
+    grid.innerHTML = [1, 2, 3].map(id => {
+      const s = servicesCache[id] || { id, icon: '🛠️', title: 'Próximamente', description: 'Estamos preparando la información de este servicio.' };
+      return `
+        <div class="service-card" data-service="${id}" style="background:#fff;border:1px solid rgba(0,95,255,0.14);border-radius:14px;padding:28px 24px;text-align:left;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(12,30,58,0.06);position:relative;">
+          ${isAdmin ? `<button class="svc-edit-btn" data-id="${id}" title="Editar servicio" style="position:absolute;top:10px;right:10px;background:rgba(0,95,255,0.08);border:1px solid rgba(0,95,255,0.2);border-radius:6px;padding:3px 9px;font-size:11.5px;cursor:pointer;color:#005FFF;font-family:'IBM Plex Sans',sans-serif;">✏️ Editar</button>` : ''}
+          <div style="font-size:30px;margin-bottom:14px;">${escapeHtml(s.icon || '🛠️')}</div>
+          <h3 style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#0C1E3A;margin-bottom:10px;">${escapeHtml(s.title)}</h3>
+          <p style="font-size:13.5px;color:#5A7090;line-height:1.6;flex:1;">${escapeHtml(s.description)}</p>
+          <button type="button" class="service-readmore" data-service="${id}" style="margin-top:16px;background:none;border:none;color:#005FFF;font-size:13px;font-weight:600;cursor:pointer;text-align:left;padding:0;font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
+        </div>`;
+    }).join('');
+
+    grid.querySelectorAll('.service-readmore').forEach(btn => {
+      btn.addEventListener('click', () => showServiceDetail(Number(btn.dataset.service)));
+    });
+    grid.querySelectorAll('.svc-edit-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => { e.stopPropagation(); openServiceEditor(Number(btn.dataset.id)); });
+    });
+  }
+
+  function showServiceDetail(id) {
+    const s = servicesCache[id];
+    if (!s) return;
+    document.getElementById('service-detail-icon').textContent = s.icon || '🛠️';
+    document.getElementById('service-detail-title').textContent = s.title;
+    renderDetailSections(s.sections || []);
+    document.getElementById('services-grid').style.display = 'none';
+    document.getElementById('service-detail').classList.remove('hidden');
+  }
+
+  function renderDetailSections(sections) {
+    const body = document.getElementById('service-detail-body');
+    if (!sections || !sections.length) {
+      body.innerHTML = '<p style="color:#324A66;line-height:1.8;">Estamos preparando la información de este servicio. Vuelve más adelante para conocer todos los detalles.</p>';
+      return;
     }
-  };
+    body.innerHTML = sections.map(sec => {
+      if (sec.type === 'text') {
+        return `<p style="margin-bottom:16px;line-height:1.8;color:#324A66;">${escapeHtml(sec.content || '').replace(/\n/g, '<br>')}</p>`;
+      }
+      if (sec.type === 'list') {
+        const tag = sec.style === 'number' ? 'ol' : 'ul';
+        const items = (sec.items || []).map(i => `<li style="margin-bottom:5px;">${escapeHtml(i)}</li>`).join('');
+        return `<${tag} style="margin-bottom:16px;padding-left:22px;line-height:1.8;color:#324A66;">${items}</${tag}>`;
+      }
+      if (sec.type === 'image') {
+        return `<div style="margin-bottom:16px;"><img src="${escapeHtml(sec.url||'')}" alt="${escapeHtml(sec.caption||'')}" style="max-width:100%;border-radius:10px;display:block;">${sec.caption ? `<p style="font-size:12px;color:#7A8FA8;margin-top:6px;">${escapeHtml(sec.caption)}</p>` : ''}</div>`;
+      }
+      return '';
+    }).join('');
+  }
 
-  const servicesGrid = document.getElementById('services-grid');
-  const serviceDetail = document.getElementById('service-detail');
+  document.getElementById('service-detail-close').addEventListener('click', () => {
+    document.getElementById('service-detail').classList.add('hidden');
+    document.getElementById('services-grid').style.display = 'grid';
+  });
 
-  document.querySelectorAll('.service-readmore').forEach(btn => {
+  /* ── Editor de servicios (admin) ── */
+  let svcEditingId = null;
+  let svcSections  = [];   // estado mutable del editor
+
+  function openServiceEditor(id) {
+    svcEditingId = id;
+    const s = servicesCache[id] || { icon: '🛠️', title: '', description: '', sections: [] };
+    svcSections = JSON.parse(JSON.stringify(s.sections || []));
+    document.getElementById('svc-icon').value        = s.icon || '🛠️';
+    document.getElementById('svc-title').value       = s.title || '';
+    document.getElementById('svc-description').value = s.description || '';
+    renderSvcSectionsList();
+    document.getElementById('svc-editor-overlay').classList.remove('hidden');
+  }
+
+  function renderSvcSectionsList() {
+    const container = document.getElementById('svc-sections-list');
+    if (!svcSections.length) {
+      container.innerHTML = '<p style="font-size:13px;color:var(--text-dim);text-align:center;padding:12px 0;">Sin secciones — agrega párrafos, listas o imágenes abajo.</p>';
+      return;
+    }
+    container.innerHTML = svcSections.map((sec, i) => {
+      const isFirst = i === 0, isLast = i === svcSections.length - 1;
+      const navBtns = `
+        <div style="display:flex;gap:4px;">
+          <button type="button" class="svc-sec-up" data-i="${i}" ${isFirst ? 'disabled' : ''} style="background:none;border:1px solid var(--border);border-radius:5px;padding:2px 7px;cursor:pointer;color:var(--text-dim);font-size:13px;">▲</button>
+          <button type="button" class="svc-sec-down" data-i="${i}" ${isLast ? 'disabled' : ''} style="background:none;border:1px solid var(--border);border-radius:5px;padding:2px 7px;cursor:pointer;color:var(--text-dim);font-size:13px;">▼</button>
+          <button type="button" class="svc-sec-del" data-i="${i}" style="background:none;border:1px solid rgba(255,80,80,0.4);border-radius:5px;padding:2px 7px;cursor:pointer;color:#ff6b6b;font-size:13px;">🗑</button>
+        </div>`;
+
+      if (sec.type === 'text') return `
+        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:11.5px;font-weight:600;color:var(--text-dim);">📝 PÁRRAFO</span>${navBtns}
+          </div>
+          <textarea class="svc-sec-text" data-i="${i}" rows="3" placeholder="Escribe el contenido del párrafo…" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;resize:vertical;box-sizing:border-box;">${escapeHtml(sec.content || '')}</textarea>
+        </div>`;
+
+      if (sec.type === 'list') {
+        const itemsHtml = (sec.items || []).map((item, j) => `
+          <div style="display:flex;gap:6px;margin-bottom:5px;">
+            <input type="text" class="svc-list-item" data-i="${i}" data-j="${j}" value="${escapeHtml(item)}" placeholder="Punto ${j+1}…" style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+            <button type="button" class="svc-list-item-del" data-i="${i}" data-j="${j}" style="background:none;border:1px solid rgba(255,80,80,0.3);border-radius:6px;padding:4px 8px;cursor:pointer;color:#ff6b6b;font-size:12px;">✕</button>
+          </div>`).join('');
+        return `
+        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:11.5px;font-weight:600;color:var(--text-dim);">📋 LISTA</span>
+              <label style="font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:4px;cursor:pointer;">
+                <input type="checkbox" class="svc-list-numbered" data-i="${i}" ${sec.style==='number'?'checked':''} style="cursor:pointer;">
+                Numerada
+              </label>
+            </div>${navBtns}
+          </div>
+          <div class="svc-list-items" data-i="${i}">${itemsHtml}</div>
+          <button type="button" class="svc-list-add" data-i="${i}" style="margin-top:4px;background:none;border:1px dashed var(--border);border-radius:6px;padding:4px 12px;cursor:pointer;color:var(--text-dim);font-size:12px;font-family:'IBM Plex Sans',sans-serif;">+ Agregar punto</button>
+        </div>`;
+      }
+
+      if (sec.type === 'image') return `
+        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:11.5px;font-weight:600;color:var(--text-dim);">🖼️ IMAGEN</span>${navBtns}
+          </div>
+          ${sec.url ? `<img src="${escapeHtml(sec.url)}" style="max-width:100%;max-height:160px;object-fit:contain;border-radius:7px;display:block;margin-bottom:8px;">` : ''}
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <label style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(0,95,255,0.1);border:1px solid rgba(0,95,255,0.25);border-radius:7px;cursor:pointer;font-size:12.5px;color:#005FFF;font-family:'IBM Plex Sans',sans-serif;font-weight:600;">
+              📁 ${sec.url ? 'Cambiar imagen' : 'Elegir imagen'}
+              <input type="file" accept="image/*" class="svc-img-input" data-i="${i}" style="display:none;">
+            </label>
+            <input type="text" class="svc-img-caption" data-i="${i}" value="${escapeHtml(sec.caption||'')}" placeholder="Pie de foto (opcional)" style="flex:1;min-width:140px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;">
+          </div>
+        </div>`;
+      return '';
+    }).join('');
+
+    // eventos dentro de las secciones
+    container.querySelectorAll('.svc-sec-up').forEach(b => b.addEventListener('click', () => { const i=+b.dataset.i; [svcSections[i-1],svcSections[i]]=[svcSections[i],svcSections[i-1]]; renderSvcSectionsList(); }));
+    container.querySelectorAll('.svc-sec-down').forEach(b => b.addEventListener('click', () => { const i=+b.dataset.i; [svcSections[i],svcSections[i+1]]=[svcSections[i+1],svcSections[i]]; renderSvcSectionsList(); }));
+    container.querySelectorAll('.svc-sec-del').forEach(b => b.addEventListener('click', () => { svcSections.splice(+b.dataset.i,1); renderSvcSectionsList(); }));
+    container.querySelectorAll('.svc-sec-text').forEach(ta => ta.addEventListener('input', () => { svcSections[+ta.dataset.i].content = ta.value; }));
+    container.querySelectorAll('.svc-list-numbered').forEach(cb => cb.addEventListener('change', () => { svcSections[+cb.dataset.i].style = cb.checked ? 'number' : 'bullet'; }));
+    container.querySelectorAll('.svc-list-item').forEach(inp => inp.addEventListener('input', () => { svcSections[+inp.dataset.i].items[+inp.dataset.j] = inp.value; }));
+    container.querySelectorAll('.svc-list-item-del').forEach(b => b.addEventListener('click', () => { svcSections[+b.dataset.i].items.splice(+b.dataset.j,1); renderSvcSectionsList(); }));
+    container.querySelectorAll('.svc-list-add').forEach(b => b.addEventListener('click', () => { svcSections[+b.dataset.i].items.push(''); renderSvcSectionsList(); }));
+    container.querySelectorAll('.svc-img-caption').forEach(inp => inp.addEventListener('input', () => { svcSections[+inp.dataset.i].caption = inp.value; }));
+    container.querySelectorAll('.svc-img-input').forEach(inp => inp.addEventListener('change', async () => {
+      const file = inp.files[0]; if (!file) return;
+      const i = +inp.dataset.i;
+      const ext = file.name.split('.').pop().toLowerCase();
+      const path = `services/${svcEditingId}/${Date.now()}.${ext}`;
+      const { error } = await sb.storage.from('productos').upload(path, file, { contentType: file.type, upsert: true });
+      if (error) { alert('Error al subir imagen: ' + error.message); return; }
+      svcSections[i].url = sb.storage.from('productos').getPublicUrl(path).data.publicUrl;
+      renderSvcSectionsList();
+    }));
+  }
+
+  document.querySelectorAll('.svc-add-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-service');
-      const data = SERVICES[id];
-      if (!data) return;
-      document.getElementById('service-detail-icon').textContent = data.icon;
-      document.getElementById('service-detail-title').textContent = data.title;
-      document.getElementById('service-detail-body').textContent = data.body;
-      servicesGrid.style.display = 'none';
-      serviceDetail.classList.remove('hidden');
+      const type = btn.dataset.type;
+      if (type === 'text')  svcSections.push({ type: 'text', content: '' });
+      if (type === 'list')  svcSections.push({ type: 'list', style: 'bullet', items: [''] });
+      if (type === 'image') svcSections.push({ type: 'image', url: '', caption: '' });
+      renderSvcSectionsList();
     });
   });
 
-  document.getElementById('service-detail-close').addEventListener('click', () => {
-    serviceDetail.classList.add('hidden');
-    servicesGrid.style.display = 'grid';
+  document.getElementById('svc-editor-close').addEventListener('click', () => document.getElementById('svc-editor-overlay').classList.add('hidden'));
+  document.getElementById('svc-cancel-btn').addEventListener('click',      () => document.getElementById('svc-editor-overlay').classList.add('hidden'));
+
+  document.getElementById('svc-save-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('svc-save-btn');
+    btn.disabled = true; btn.textContent = 'Guardando…';
+    const payload = {
+      id:          svcEditingId,
+      icon:        document.getElementById('svc-icon').value.trim() || '🛠️',
+      title:       document.getElementById('svc-title').value.trim(),
+      description: document.getElementById('svc-description').value.trim(),
+      sections:    svcSections,
+      updated_at:  new Date().toISOString(),
+    };
+    const { error } = await sb.from('services').upsert(payload, { onConflict: 'id' });
+    if (error) { alert('Error al guardar: ' + error.message); }
+    else {
+      servicesCache[svcEditingId] = payload;
+      renderServicesGrid();
+      document.getElementById('svc-editor-overlay').classList.add('hidden');
+    }
+    btn.disabled = false; btn.textContent = 'Guardar';
   });
 
   /* ───────── CARGAR PRODUCTOS ───────── */
@@ -3942,10 +4126,11 @@
 
   /* ───────── INIT ───────── */
   (async function init() {
-    // Solo categorías + sesión en paralelo (sin productos — se cargan al elegir categoría)
+    // Categorías, sesión y servicios en paralelo
     const [, sessionResult] = await Promise.all([
       loadCategories(),
-      sb.auth.getSession()
+      sb.auth.getSession(),
+      loadServices(),
     ]);
 
     const session = sessionResult.data?.session;
