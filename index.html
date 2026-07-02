@@ -537,7 +537,7 @@
 
     .admin-card {
       background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; max-width: 760px; width: 100%; max-height: 82vh;
+      border-radius: 16px; max-width: 1160px; width: calc(100% - 32px); max-height: 92vh;
       display: flex; flex-direction: column; overflow: hidden;
       box-shadow: 0 24px 80px rgba(0,0,0,0.6);
     }
@@ -3928,6 +3928,41 @@
       const ultimaActualizacion = (precios || []).reduce((max, p) =>
         !max || new Date(p.actualizado_at) > new Date(max) ? p.actualizado_at : max, null);
 
+      // Categorías únicas para los filtros
+      const categoriasUnicas = ['Todos', ...Array.from(new Set((allProducts || []).map(p => p.category).filter(Boolean))).sort()];
+
+      function buildPreciosRow(prod) {
+        const found = porProducto[prod.id] || [];
+        const byProv = {};
+        found.forEach(f => byProv[f.proveedor] = f);
+
+        const cells = ['Abasteo', 'DD Tech', 'Office Depot', 'Cyberpuerta'].map(prov => {
+          const f = byProv[prov];
+          if (!f) return '<td style="color:var(--text-dim);">—</td>';
+          return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
+        });
+
+        let lowestF = null;
+        found.forEach(f => { const p = Number(f.precio); if (p > 0 && (!lowestF || p < Number(lowestF.precio))) lowestF = f; });
+        const lowest = lowestF ? Number(lowestF.precio) : null;
+        const margen = lowest ? (((Number(prod.price) - lowest) / lowest) * 100) : null;
+
+        const mejorCelda = lowestF
+          ? `${lowestF.url ? `<a href="${escapeHtml(lowestF.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${lowest.toLocaleString('es-MX')}</a>` : `$${lowest.toLocaleString('es-MX')}`} <span style="color:var(--text-dim);">· ${escapeHtml(lowestF.proveedor)}</span>`
+          : '<span style="color:var(--text-dim);">— sin referencia</span>';
+
+        return `<tr class="precios-row" data-product-id="${prod.id}" data-category="${escapeHtml(prod.category || '')}" style="cursor:pointer;">
+          <td>${escapeHtml(prod.name)}</td>
+          <td>$${Number(prod.price).toLocaleString('es-MX')}</td>
+          ${cells.join('')}
+          <td>${mejorCelda}</td>
+          <td style="color:${margen === null ? 'var(--text-dim)' : margen >= 0 ? 'var(--accent-green)' : '#FF7070'};">
+            ${margen === null ? '—' : `${margen.toFixed(1)}%`}
+          </td>
+          <td><button type="button" class="btn-admin-panel precios-edit-btn" data-product-id="${prod.id}" style="padding:4px 10px; font-size:11.5px;">✏️ Editar</button></td>
+        </tr>`;
+      }
+
       body.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap;">
           <p style="font-size:12.5px; color:var(--text-dim); margin:0; flex:1; min-width:220px;">
@@ -3937,45 +3972,47 @@
           <button type="button" id="precios-run-btn" class="btn-admin-panel" style="white-space:nowrap;">🤖 Actualizar precios ahora</button>
           <button type="button" id="precios-csv-btn" class="btn-admin-panel" style="white-space:nowrap;">⬇️ Descargar CSV</button>
         </div>
+
+        <div id="precios-cat-tabs" style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;">
+          ${categoriasUnicas.map((cat, i) => `
+            <button type="button" class="precios-cat-btn${i === 0 ? ' active' : ''}" data-cat="${escapeHtml(cat)}"
+              style="padding:5px 14px; border-radius:20px; border:1.5px solid ${i === 0 ? 'var(--blue-glow)' : 'rgba(255,255,255,0.12)'}; background:${i === 0 ? 'rgba(59,130,246,0.18)' : 'transparent'}; color:${i === 0 ? 'var(--blue-glow)' : 'var(--text-dim)'}; font-size:12px; cursor:pointer; white-space:nowrap; transition:all .18s;">
+              ${escapeHtml(cat)}
+            </button>`).join('')}
+        </div>
+
         <table class="admin-table">
           <thead><tr>
             <th>Producto</th><th>Tu precio</th><th>Abasteo</th><th>DD Tech</th><th>Office Depot</th><th>Cyberpuerta</th><th>Mejor precio · Dónde</th><th>Margen estimado</th><th></th>
           </tr></thead>
-          <tbody>
-            ${(allProducts || []).map(prod => {
-              const found = porProducto[prod.id] || [];
-              const byProv = {};
-              found.forEach(f => byProv[f.proveedor] = f);
-
-              const cells = ['Abasteo', 'DD Tech', 'Office Depot', 'Cyberpuerta'].map(prov => {
-                const f = byProv[prov];
-                if (!f) return '<td style="color:var(--text-dim);">—</td>';
-                return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
-              });
-
-              let lowestF = null;
-              found.forEach(f => { const p = Number(f.precio); if (p > 0 && (!lowestF || p < Number(lowestF.precio))) lowestF = f; });
-              const lowest = lowestF ? Number(lowestF.precio) : null;
-              const margen = lowest ? (((Number(prod.price) - lowest) / lowest) * 100) : null;
-
-              const mejorCelda = lowestF
-                ? `${lowestF.url ? `<a href="${escapeHtml(lowestF.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${lowest.toLocaleString('es-MX')}</a>` : `$${lowest.toLocaleString('es-MX')}`} <span style="color:var(--text-dim);">· ${escapeHtml(lowestF.proveedor)}</span>`
-                : '<span style="color:var(--text-dim);">— sin referencia</span>';
-
-              return `
-                <tr class="precios-row" data-product-id="${prod.id}" style="cursor:pointer;">
-                  <td>${escapeHtml(prod.name)}</td>
-                  <td>$${Number(prod.price).toLocaleString('es-MX')}</td>
-                  ${cells.join('')}
-                  <td>${mejorCelda}</td>
-                  <td style="color:${margen === null ? 'var(--text-dim)' : margen >= 0 ? 'var(--accent-green)' : '#FF7070'};">
-                    ${margen === null ? '—' : `${margen.toFixed(1)}%`}
-                  </td>
-                  <td><button type="button" class="btn-admin-panel precios-edit-btn" data-product-id="${prod.id}" style="padding:4px 10px; font-size:11.5px;">✏️ Editar</button></td>
-                </tr>`;
-            }).join('')}
+          <tbody id="precios-tbody">
+            ${(allProducts || []).map(buildPreciosRow).join('')}
           </tbody>
         </table>`;
+
+      // Lógica de filtrado por categoría
+      const catTabs = body.querySelectorAll('.precios-cat-btn');
+      const tbody = body.querySelector('#precios-tbody');
+      catTabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          catTabs.forEach(b => {
+            b.style.border = 'rgba(255,255,255,0.12)';
+            b.style.background = 'transparent';
+            b.style.color = 'var(--text-dim)';
+            b.style.borderColor = 'rgba(255,255,255,0.12)';
+            b.classList.remove('active');
+          });
+          btn.style.borderColor = 'var(--blue-glow)';
+          btn.style.background = 'rgba(59,130,246,0.18)';
+          btn.style.color = 'var(--blue-glow)';
+          btn.classList.add('active');
+
+          const sel = btn.dataset.cat;
+          tbody.querySelectorAll('tr.precios-row').forEach(tr => {
+            tr.style.display = (sel === 'Todos' || tr.dataset.category === sel) ? '' : 'none';
+          });
+        });
+      });
 
       // Estado para abrir el modal de edición sin tener que re-consultar Supabase.
       preciosTabState = { allProducts: allProducts || [], porProducto };
