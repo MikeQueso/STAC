@@ -2486,8 +2486,7 @@
     const n = Number(stock);
     if (isNaN(n)) return '';
     if (n <= 0) return `<span class="detail-stock low">Agotado</span>`;
-    if (n <= 5) return `<span class="detail-stock low">Quedan ${n} pzas.</span>`;
-    return `<span class="detail-stock ok">${n} disponibles</span>`;
+    return `<span class="detail-stock ok">Sobre pedido</span>`;
   }
 
   function specsListHtml(specsText) {
