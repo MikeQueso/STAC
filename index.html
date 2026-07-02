@@ -2152,9 +2152,9 @@
       const i = +inp.dataset.i;
       const ext = file.name.split('.').pop().toLowerCase();
       const path = `services/${svcEditingId}/${Date.now()}.${ext}`;
-      const { error } = await sb.storage.from('productos').upload(path, file, { contentType: file.type, upsert: true });
+      const { error } = await sb.storage.from('product-images').upload(path, file, { contentType: file.type, upsert: true });
       if (error) { alert('Error al subir imagen: ' + error.message); return; }
-      svcSections[i].url = sb.storage.from('productos').getPublicUrl(path).data.publicUrl;
+      svcSections[i].url = sb.storage.from('product-images').getPublicUrl(path).data.publicUrl;
       renderSvcSectionsList();
     }));
   }
