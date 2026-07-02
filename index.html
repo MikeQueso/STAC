@@ -2799,7 +2799,10 @@
       <p style="font-size:13px; color:var(--text-body); margin:4px 0 16px;">
         Margen sobre el precio más bajo encontrado: <strong id="precioedit-margen" style="color:var(--text-primary);">—</strong>
       </p>
-      <button type="button" id="precioedit-save" class="auth-submit">💾 Guardar precio</button>
+      <div style="display:flex; gap:10px; margin-top:4px;">
+        <button type="button" id="precioedit-save" class="auth-submit" style="flex:1;">💾 Guardar precio</button>
+        <button type="button" id="precioedit-delete" class="auth-submit" style="background:#FF7070; flex:0 0 auto; padding:0 18px;">🗑️ Eliminar</button>
+      </div>
       <p id="precioedit-msg" style="font-size:12.5px; margin-top:10px; display:none;"></p>
     `;
 
@@ -2830,10 +2833,23 @@
       msg.style.display = 'block';
       if (error) { msg.textContent = 'Error: ' + error.message; msg.style.color = '#FF7070'; return; }
       msg.textContent = '✓ Precio actualizado.'; msg.style.color = 'var(--accent-green)';
-      prod.price = val; // refleja el cambio si se reabre el modal sin recargar
+      prod.price = val;
       setTimeout(() => {
         precioEditOverlay.classList.add('hidden');
-        renderAdminTab('precios'); // refresca la tabla con el nuevo precio
+        renderAdminTab('precios');
+      }, 700);
+    });
+
+    document.getElementById('precioedit-delete').addEventListener('click', async () => {
+      const msg = document.getElementById('precioedit-msg');
+      if (!confirm(`¿Eliminar "${prod.name}" del catálogo? Esta acción no se puede deshacer.`)) return;
+      const { error } = await sb.from('products').delete().eq('id', productId);
+      msg.style.display = 'block';
+      if (error) { msg.textContent = 'Error: ' + error.message; msg.style.color = '#FF7070'; return; }
+      msg.textContent = '✓ Producto eliminado.'; msg.style.color = 'var(--accent-green)';
+      setTimeout(() => {
+        precioEditOverlay.classList.add('hidden');
+        renderAdminTab('precios');
       }, 700);
     });
 
