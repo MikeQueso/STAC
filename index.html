@@ -1932,7 +1932,7 @@
     const bulkBar = document.getElementById('bulk-bar');
     if (bulkBar) {
       const isAdmin = isAdminView();
-      bulkBar.classList.toggle('hidden', !isAdmin);
+      bulkBar.style.display = isAdmin ? 'flex' : 'none';
       if (isAdmin) {
         setupBulkBar();
         document.getElementById('bulk-toggle-btn').style.display = '';
