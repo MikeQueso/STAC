@@ -3936,18 +3936,25 @@
         const byProv = {};
         found.forEach(f => byProv[f.proveedor] = f);
 
+        // Construye link de búsqueda usando el nombre del producto (siempre disponible)
+        const q = encodeURIComponent(prod.name.replace(/,.*$/, '').trim()); // hasta la primera coma = nombre corto
+        const fallbackUrls = {
+          'Abasteo':      `https://www.abasteo.mx/index.php?cl=search&searchparam=${q}`,
+          'DD Tech':      `https://ddtech.mx/buscar/${q.replace(/%20/g, '+')}`,
+          'Office Depot': `https://www.officedepot.com.mx/search?text=${q}`,
+          'Cyberpuerta':  `https://www.cyberpuerta.mx/index.php?cl=search&searchparam=${q}`,
+        };
+        const searchLink = (prov) => `<a href="${escapeHtml(fallbackUrls[prov])}" target="_blank" rel="noopener" style="color:var(--text-dim); font-size:11px; text-decoration:underline; text-underline-offset:2px;">🔍 buscar</a>`;
+
         const cells = ['Abasteo', 'DD Tech', 'Office Depot', 'Cyberpuerta'].map(prov => {
           const f = byProv[prov];
-          if (!f) return '<td style="color:var(--text-dim);">—</td>';
           // Tiene precio real
-          if (f.precio !== null && Number(f.precio) > 0) {
+          if (f && f.precio !== null && Number(f.precio) > 0) {
             return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
           }
-          // Sin precio pero con link de búsqueda
-          if (f.url) {
-            return `<td><a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--text-dim); font-size:11px; text-decoration:underline; text-underline-offset:2px;">🔍 buscar</a></td>`;
-          }
-          return '<td style="color:var(--text-dim);">—</td>';
+          // Sin precio: muestra link de búsqueda (de BD si existe, si no construido del nombre)
+          const searchUrl = (f && f.url) ? f.url : fallbackUrls[prov];
+          return `<td>${searchLink(prov)}</td>`;
         });
 
         let lowestF = null;
