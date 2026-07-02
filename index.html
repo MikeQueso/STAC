@@ -1367,6 +1367,8 @@
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   let currentUser = null;
+  let previewAsClient = false;
+  function isAdminView() { return currentUser && currentUser.role === 'admin' && !previewAsClient; }
   let productsCache = [];
   let categoriesCache = [];
   let isLoginMode = false;
@@ -1611,14 +1613,27 @@
       document.getElementById('open-login-btn').addEventListener('click', () => { setLoginMode(true); openGate(); });
       return;
     }
-    actions.innerHTML = `<div class="user-chip">
-      <button type="button" class="user-avatar-btn" id="open-profile-btn">
-        ${avatarHtml(currentUser.avatar_url, 30)}
-        <span>${escapeHtml(currentUser.username)}</span>
-      </button>
+    const isAdmin = currentUser.role === 'admin';
+    actions.innerHTML = `<div style="display:flex;align-items:center;gap:8px;">
+      ${isAdmin ? `<button id="preview-toggle-btn" title="${previewAsClient ? 'Volver a vista admin' : 'Ver como cliente'}" style="background:${previewAsClient ? '#005FFF' : 'rgba(0,95,255,0.1)'};color:${previewAsClient ? '#fff' : '#005FFF'};border:1px solid ${previewAsClient ? '#005FFF' : 'rgba(0,95,255,0.3)'};border-radius:8px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;display:flex;align-items:center;gap:5px;">${previewAsClient ? '⚙️ Admin' : '👁 Cliente'}</button>` : ''}
+      <div class="user-chip">
+        <button type="button" class="user-avatar-btn" id="open-profile-btn">
+          ${avatarHtml(currentUser.avatar_url, 30)}
+          <span>${escapeHtml(currentUser.username)}</span>
+        </button>
+      </div>
     </div>`;
     document.getElementById('open-profile-btn').addEventListener('click', openProfilePanel);
-    document.getElementById('profile-admin-links').style.display = currentUser.role === 'admin' ? 'block' : 'none';
+    document.getElementById('profile-admin-links').style.display = isAdmin ? 'block' : 'none';
+    if (isAdmin) {
+      document.getElementById('preview-toggle-btn').addEventListener('click', () => {
+        previewAsClient = !previewAsClient;
+        updateHeaderUI();
+        renderServicesGrid();
+        renderProducts();
+        renderHomeCatGrid();
+      });
+    }
   }
 
   /* ───────── MI CUENTA (panel desplegable) ───────── */
@@ -1966,7 +1981,7 @@
 
   function renderServicesGrid() {
     const grid = document.getElementById('services-grid');
-    const isAdmin = currentUser && currentUser.role === 'admin';
+    const isAdmin = isAdminView();
 
     // Usa los IDs del caché; si está vacío muestra 3 tarjetas por defecto
     let ids = Object.keys(servicesCache).map(Number).sort((a, b) => a - b);
