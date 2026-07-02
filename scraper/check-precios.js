@@ -82,6 +82,8 @@ const CATEGORY_PREFIX = new Set([
   'mouse', 'teclado', 'procesador', 'fuente', 'poder', 'diadema',
   'ventilador', 'ventiladores', 'audífonos', 'audifonos', 'micrófono',
   'microfono', 'webcam', 'monitor', 'base', 'soporte', 'kit',
+  // prefijos comunes en nombres de computadoras de escritorio
+  'computadora', 'escritorio', 'mini', 'pc',
 ]);
 
 // Extrae la "firma" de un producto (marca, modelo clave, capacidades…) una
