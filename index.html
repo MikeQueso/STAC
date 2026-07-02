@@ -1931,7 +1931,7 @@
     selectMode = false;
     const bulkBar = document.getElementById('bulk-bar');
     if (bulkBar) {
-      const isAdmin = currentUser && currentUser.role === 'admin';
+      const isAdmin = isAdminView();
       bulkBar.classList.toggle('hidden', !isAdmin);
       if (isAdmin) {
         setupBulkBar();
