@@ -325,6 +325,25 @@ async function run() {
   const rows = [];
   let conAbasteo = 0, conDD = 0, conOD = 0, conCyber = 0;
 
+  // Construye la URL de búsqueda (fallback cuando no hay match exacto)
+  function searchUrlFor(proveedor, query) {
+    const q = encodeURIComponent(query);
+    if (proveedor === 'DD Tech') return `https://ddtech.mx/buscar/${q.replace(/%20/g, '+')}`;
+    if (proveedor === 'Abasteo') return `https://www.abasteo.mx/index.php?cl=search&searchparam=${q}`;
+    if (proveedor === 'Office Depot') return `https://www.officedepot.com.mx/search?text=${q}`;
+    if (proveedor === 'Cyberpuerta') return `https://www.cyberpuerta.mx/index.php?cl=search&searchparam=${q}`;
+    return null;
+  }
+  // Marca el url como "link de búsqueda" usando precio=null y encontrado_como=null
+  function noMatchRow(product, proveedor) {
+    const query = searchQuery(product.name);
+    return {
+      product_id: product.id, proveedor, precio: null,
+      url: searchUrlFor(proveedor, query), encontrado_como: null,
+      actualizado_at: new Date().toISOString()
+    };
+  }
+
   // ── Cyberpuerta (HTTP directo, en paralelo) · solo si está activado (PC en casa) ──
   if (CYBERPUERTA_ENABLED) {
     await mapPool(products, 4, async (product) => {
@@ -333,10 +352,9 @@ async function run() {
         const match = await searchWithFallback((q) => searchCyberpuerta(q), product.name, variants);
         if (match) {
           conCyber++;
-          rows.push({
-            product_id: product.id, proveedor: 'Cyberpuerta', precio: match.price,
-            url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
-          });
+          rows.push({ product_id: product.id, proveedor: 'Cyberpuerta', precio: match.price, url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString() });
+        } else {
+          rows.push(noMatchRow(product, 'Cyberpuerta'));
         }
       } catch (e) { console.error(`Cyberpuerta "${product.name}":`, e.message); }
     });
@@ -350,10 +368,9 @@ async function run() {
       const match = await searchWithFallback((q) => searchOfficeDepot(q), product.name, variants);
       if (match) {
         conOD++;
-        rows.push({
-          product_id: product.id, proveedor: 'Office Depot', precio: match.price,
-          url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
-        });
+        rows.push({ product_id: product.id, proveedor: 'Office Depot', precio: match.price, url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString() });
+      } else {
+        rows.push(noMatchRow(product, 'Office Depot'));
       }
     } catch (e) { console.error(`Office Depot "${product.name}":`, e.message); }
   });
@@ -375,10 +392,9 @@ async function run() {
           const match = await searchWithFallback((q) => searchDDTech(page, q), product.name, variants);
           if (match) {
             conDD++;
-            rows.push({
-              product_id: product.id, proveedor: 'DD Tech', precio: match.price,
-              url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
-            });
+            rows.push({ product_id: product.id, proveedor: 'DD Tech', precio: match.price, url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString() });
+          } else {
+            rows.push(noMatchRow(product, 'DD Tech'));
           }
         } catch (e) { console.error(`DD Tech "${product.name}":`, e.message); }
       }
@@ -400,10 +416,9 @@ async function run() {
           const match = await searchWithFallback((q) => searchAbasteo(page, q), product.name, variants);
           if (match) {
             conAbasteo++;
-            rows.push({
-              product_id: product.id, proveedor: 'Abasteo', precio: match.price,
-              url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString()
-            });
+            rows.push({ product_id: product.id, proveedor: 'Abasteo', precio: match.price, url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString() });
+          } else {
+            rows.push(noMatchRow(product, 'Abasteo'));
           }
         } catch (e) { console.error(`Abasteo "${product.name}":`, e.message); }
       }
@@ -424,9 +439,10 @@ async function run() {
   // bloqueo temporal de IP, etc.), NO borramos los precios buenos que ya
   // había — eso dejaría la tabla vacía. Solo borramos+insertamos si el
   // resultado tiene una cobertura mínima razonable.
-  const MIN_FRACCION = 0.05; // al menos 5% del catálogo encontrado
-  if (rows.length < products.length * MIN_FRACCION) {
-    console.log(`Cobertura demasiado baja (${rows.length}/${products.length}) — no se borra nada para no perder datos buenos.`);
+  const MIN_FRACCION = 0.05; // al menos 5% del catálogo con precio real encontrado
+  const rowsConPrecio = rows.filter(r => r.precio !== null && Number(r.precio) > 0);
+  if (rowsConPrecio.length < products.length * MIN_FRACCION) {
+    console.log(`Cobertura demasiado baja (${rowsConPrecio.length}/${products.length} con precio) — no se borra nada para no perder datos buenos.`);
     return;
   }
 

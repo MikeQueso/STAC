@@ -3939,7 +3939,15 @@
         const cells = ['Abasteo', 'DD Tech', 'Office Depot', 'Cyberpuerta'].map(prov => {
           const f = byProv[prov];
           if (!f) return '<td style="color:var(--text-dim);">—</td>';
-          return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
+          // Tiene precio real
+          if (f.precio !== null && Number(f.precio) > 0) {
+            return `<td>${f.url ? `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--blue-glow);">$${Number(f.precio).toLocaleString('es-MX')}</a>` : `$${Number(f.precio).toLocaleString('es-MX')}`}</td>`;
+          }
+          // Sin precio pero con link de búsqueda
+          if (f.url) {
+            return `<td><a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--text-dim); font-size:11px; text-decoration:underline; text-underline-offset:2px;">🔍 buscar</a></td>`;
+          }
+          return '<td style="color:var(--text-dim);">—</td>';
         });
 
         let lowestF = null;
