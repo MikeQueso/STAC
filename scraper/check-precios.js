@@ -240,8 +240,20 @@ async function searchDDTech(page, query) {
   ).catch(() => []);
 }
 
-// ─── ABASTEO (abasteo.mx · misma plataforma OXID que Cyberpuerta, precios
-//     públicos · resultados por JS → requiere navegador) ────────────────────
+// ─── ABASTEO (abasteo.mx · login con cuenta de distribuidor para precios reales) ──
+async function loginAbasteo(page) {
+  await page.goto('https://www.abasteo.mx/index.php?cl=login', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForSelector('input[name="lgn_usr"]', { timeout: 8000 }).catch(() => {});
+  await page.fill('input[name="lgn_usr"]', process.env.ABASTEO_USER || '');
+  await page.fill('input[name="lgn_pwd"]', process.env.ABASTEO_PASS || '');
+  await page.click('button[type="submit"], input[type="submit"]');
+  await page.waitForTimeout(2000);
+  // Verifica que el login fue exitoso buscando elemento de cuenta
+  const loggedIn = await page.$('.c-account, [class*="account"], a[href*="mi-cuenta"]').catch(() => null);
+  if (loggedIn) console.log('✓ Abasteo: login exitoso como distribuidor');
+  else console.warn('⚠ Abasteo: login posiblemente fallido — continuando con precios públicos');
+}
+
 async function searchAbasteo(page, query) {
   const url = `https://www.abasteo.mx/index.php?cl=search&searchparam=${encodeURIComponent(query)}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
@@ -299,8 +311,8 @@ async function run() {
   }
   console.log(`Catálogo: ${products.length} productos.`);
 
-  const hasAbasteo = ABASTEO_ENABLED;   // precios públicos, no requiere login
-  const hasDDTech = true;               // ddtech.mx es público, no requiere login
+  const hasAbasteo = ABASTEO_ENABLED || !!(process.env.ABASTEO_USER && process.env.ABASTEO_PASS);
+  const hasDDTech = true;
   const t0 = Date.now();
 
   // Modo debug: captura el HTML renderizado para afinar selectores.
@@ -403,10 +415,14 @@ async function run() {
     console.log(`DD Tech: ${conDD}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
   }
 
-  // ── Abasteo (4 pestañas en paralelo, precios públicos) ──
+  // ── Abasteo (login con cuenta distribuidora + 4 pestañas en paralelo) ──
   if (hasAbasteo) {
     const CONC = 4;
     const pages = await Promise.all(Array.from({ length: CONC }, () => context.newPage()));
+    // Login en todas las pestañas para obtener precios de distribuidor
+    if (process.env.ABASTEO_USER && process.env.ABASTEO_PASS) {
+      await Promise.all(pages.map(p => loginAbasteo(p).catch(e => console.warn('Login Abasteo:', e.message))));
+    }
     let i = 0;
     await Promise.all(pages.map(async (page) => {
       while (i < products.length) {
