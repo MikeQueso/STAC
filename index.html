@@ -905,11 +905,8 @@
       <a href="#">Contacto</a>
     </nav>
     <div class="header-actions">
-      <button class="btn-icon" title="Buscar">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </button>
-      <button class="btn-icon" id="cart-open-btn" title="Carrito" style="position:relative">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <button id="cart-open-btn" title="Carrito" style="position:relative;background:var(--blue-core);border:none;border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,box-shadow .2s;" onmouseover="this.style.background='var(--blue-bright)';this.style.boxShadow='0 0 18px rgba(0,95,255,0.45)'" onmouseout="this.style.background='var(--blue-core)';this.style.boxShadow='none'">
+        <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="cart-badge">0</span>
       </button>
       <div id="header-actions-dynamic"></div>
