@@ -1,0 +1,31 @@
+name: Enriquecer productos con Abasteo
+
+on:
+  workflow_dispatch:   # ejecución manual desde GitHub Actions
+
+jobs:
+  enriquecer:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scraper
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Instalar navegador de Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Enriquecer productos con datos de Abasteo
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          ABASTEO_USER: ${{ secrets.ABASTEO_USER }}
+          ABASTEO_PASS: ${{ secrets.ABASTEO_PASS }}
+        run: node enriquecer-abasteo.js
