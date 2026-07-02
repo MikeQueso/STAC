@@ -699,11 +699,19 @@
       transform: translateY(-4px);
       box-shadow: 0 10px 32px rgba(0,95,255,0.22);
     }
-    .home-cat-canvas {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; opacity: 0.28; border-radius: 14px;
+    .home-cat-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0.32; border-radius: 14px; pointer-events: none;
+      animation: catBgZoom 14s ease-in-out infinite;
     }
-    .home-cat-card:hover .home-cat-canvas { opacity: 0.45; transition: opacity .22s; }
+    .home-cat-card:hover .home-cat-bg { opacity: 0.5; transition: opacity .3s; }
+    @keyframes catBgZoom {
+      0%   { transform: scale(1)    translate(0,    0); }
+      33%  { transform: scale(1.08) translate(-1%, -1%); }
+      66%  { transform: scale(1.06) translate(1%,   0); }
+      100% { transform: scale(1)    translate(0,    0); }
+    }
     .home-cat-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; }
     .home-cat-icon { font-size: 40px; line-height: 1; }
     .home-cat-name {
@@ -1820,16 +1828,19 @@
       grid.innerHTML = Array(8).fill('<div class="home-cat-skeleton"></div>').join('');
       return;
     }
-    grid.innerHTML = categoriesCache.map(c => `
+    grid.innerHTML = categoriesCache.map(c => {
+      const img = CAT_IMAGES[c.name];
+      const bgDiv = img ? `<div class="home-cat-bg" style="background-image:url('${img}')"></div>` : '';
+      return `
       <div class="home-cat-card" data-homecat="${escapeHtml(c.name)}">
-        <canvas class="home-cat-canvas" data-cat="${escapeHtml(c.name)}"></canvas>
+        ${bgDiv}
         <div class="home-cat-content">
           <div class="home-cat-icon">${CATEGORY_ICONS[c.name] || '📦'}</div>
           <div class="home-cat-name">${escapeHtml(c.name)}</div>
           <div class="home-cat-count" id="cat-count-${c.id}">...</div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
 
     grid.querySelectorAll('[data-homecat]').forEach(card => {
       card.addEventListener('click', () => {
@@ -1838,270 +1849,29 @@
       });
     });
 
-    initCatAnims(grid);
     // Cargar conteos en segundo plano
     fetchCategoryCounts();
   }
 
-  /* ── Animaciones de fondo para las tarjetas de categoría ── */
-  const _catAnimIds = [];
-  function stopCatAnims() {
-    while (_catAnimIds.length) _catAnimIds.pop().cancel();
-  }
-
-  const CAT_DRAW = {
-    'Procesador': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const cols = 8, rows = 6, cw = w / cols, ch = h / rows;
-      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-        const phase = (r * cols + c) * 0.4 + t * 2;
-        const alpha = 0.3 + 0.7 * Math.abs(Math.sin(phase));
-        ctx.fillStyle = `rgba(80,200,255,${alpha})`;
-        ctx.fillRect(c * cw + 3, r * ch + 3, cw - 6, ch - 6);
-      }
-    },
-    'Tarjeta Gráfica': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const cols = 6;
-      for (let i = 0; i < cols; i++) {
-        const hue = ((i / cols) * 360 + t * 60) % 360;
-        const barH = h * (0.4 + 0.6 * Math.abs(Math.sin(t * 1.5 + i)));
-        ctx.fillStyle = `hsla(${hue},100%,65%,0.7)`;
-        ctx.fillRect((w / cols) * i + 3, h - barH, w / cols - 6, barH);
-      }
-    },
-    'Memoria RAM': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const rows = 10;
-      for (let i = 0; i < rows; i++) {
-        const y = (i / rows) * h;
-        const offset = (t * 40 + i * 12) % w;
-        const alpha = 0.2 + 0.8 * ((i % 3 === 0) ? Math.abs(Math.sin(t * 3 + i)) : 0.3);
-        ctx.fillStyle = `rgba(100,255,150,${alpha})`;
-        ctx.fillRect(0, y, offset, 3);
-        ctx.fillRect(w - (w - offset), y, w - offset, 3);
-      }
-    },
-    'Placa Madre': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const lines = [[0.1,0,0.1,0.7],[0.3,0,0.3,0.5],[0.5,0,0.5,0.9],[0.7,0.2,0.7,1],[0.9,0,0.9,0.6],
-                     [0,0.2,0.6,0.2],[0,0.5,1,0.5],[0.2,0.8,1,0.8]];
-      lines.forEach(([x1,y1,x2,y2], idx) => {
-        const progress = ((t * 0.8 + idx * 0.3) % 1);
-        const grd = ctx.createLinearGradient(x1*w, y1*h, x2*w, y2*h);
-        grd.addColorStop(Math.max(0, progress - 0.3), 'rgba(0,255,160,0)');
-        grd.addColorStop(progress, 'rgba(0,255,160,0.9)');
-        grd.addColorStop(Math.min(1, progress + 0.1), 'rgba(0,255,160,0)');
-        ctx.strokeStyle = grd; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.moveTo(x1*w, y1*h); ctx.lineTo(x2*w, y2*h); ctx.stroke();
-      });
-    },
-    'Fuente de Poder': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const cx = w / 2, cy = h / 2;
-      for (let i = 0; i < 6; i++) {
-        if (Math.sin(t * 4 + i * 1.2) < 0) continue;
-        const angle = (i / 6) * Math.PI * 2 + t;
-        const len = 20 + 30 * Math.abs(Math.sin(t * 3 + i));
-        const x1 = cx + Math.cos(angle) * 15;
-        const y1 = cy + Math.sin(angle) * 15;
-        const jitter = () => (Math.random() - 0.5) * 8;
-        ctx.beginPath(); ctx.moveTo(x1, y1);
-        ctx.lineTo(x1 + Math.cos(angle) * len * 0.5 + jitter(), y1 + Math.sin(angle) * len * 0.5 + jitter());
-        ctx.lineTo(x1 + Math.cos(angle) * len + jitter(), y1 + Math.sin(angle) * len + jitter());
-        ctx.strokeStyle = `rgba(255,220,50,${0.5 + 0.5 * Math.random()})`;
-        ctx.lineWidth = 1.5 + Math.random() * 1.5;
-        ctx.stroke();
-      }
-    },
-    'Almacenamiento': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const cx = w / 2, cy = h / 2;
-      for (let r = 8; r < Math.max(w, h) * 0.7; r += 14) {
-        const start = t * 0.6 + r * 0.08;
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, start, start + Math.PI * 1.5);
-        const alpha = Math.max(0, 0.7 - r / (Math.max(w,h) * 0.7));
-        ctx.strokeStyle = `rgba(100,160,255,${alpha})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      }
-    },
-    'Refrigeración': (ctx, w, h, t) => {
-      if (!ctx._flakes) {
-        ctx._flakes = Array.from({length: 20}, () => ({
-          x: Math.random() * w, y: Math.random() * h,
-          r: 2 + Math.random() * 4, spd: 0.3 + Math.random() * 0.6,
-          drift: (Math.random() - 0.5) * 0.4,
-        }));
-      }
-      ctx.clearRect(0, 0, w, h);
-      for (const f of ctx._flakes) {
-        f.y += f.spd; f.x += f.drift;
-        if (f.y > h + 8) { f.y = -8; f.x = Math.random() * w; }
-        ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(180,230,255,${0.5 + 0.5 * (f.r / 6)})`;
-        ctx.fill();
-      }
-    },
-    'Gabinete': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      for (let i = 0; i < 5; i++) {
-        const x = ((t * 30 + i * (w / 5)) % (w + 60)) - 30;
-        const grd = ctx.createLinearGradient(x - 15, 0, x + 15, 0);
-        grd.addColorStop(0, 'rgba(120,160,220,0)');
-        grd.addColorStop(0.5, `rgba(120,160,220,0.4)`);
-        grd.addColorStop(1, 'rgba(120,160,220,0)');
-        ctx.fillStyle = grd;
-        ctx.save(); ctx.translate(x, 0); ctx.transform(1, 0, 0.4, 1, 0, 0);
-        ctx.fillRect(-20, 0, 40, h); ctx.restore();
-      }
-    },
-    'Mouse': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const cx = w / 2, cy = h / 2;
-      for (let i = 0; i < 5; i++) {
-        const phase = (t * 0.8 - i * 0.5) % (Math.PI * 2);
-        const r = 10 + i * 16 + Math.max(0, Math.sin(phase)) * 8;
-        const alpha = Math.max(0, 0.6 - i * 0.1) * Math.max(0, Math.sin(phase + 0.5));
-        ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(100,200,255,${alpha})`; ctx.lineWidth = 2; ctx.stroke();
-      }
-    },
-    'Teclado': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const cols = 8, rows = 5;
-      const kw = w / cols, kh = h / rows;
-      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-        const hue = ((c + r) * 30 + t * 40) % 360;
-        const on = Math.sin(t * 2 + c * 0.7 + r * 1.2) > 0.6;
-        if (!on) continue;
-        ctx.fillStyle = `hsla(${hue},90%,65%,0.6)`;
-        ctx.fillRect(c * kw + 2, r * kh + 2, kw - 4, kh - 4);
-      }
-    },
-    'Monitor': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const scanY = (t * 50) % (h + 10) - 5;
-      ctx.fillStyle = 'rgba(80,200,255,0.2)';
-      ctx.fillRect(0, scanY, w, 6);
-      for (let y = 0; y < h; y += 4) {
-        ctx.fillStyle = 'rgba(0,0,0,0.1)';
-        ctx.fillRect(0, y, w, 1);
-      }
-      for (let x = 0; x < w; x += 3) {
-        const hue = (x / w) * 360;
-        ctx.fillStyle = `hsla(${hue},70%,60%,0.06)`;
-        ctx.fillRect(x, 0, 1, h);
-      }
-    },
-    'Audífonos': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const bars = 14, bw = w / bars;
-      for (let i = 0; i < bars; i++) {
-        const barH = h * (0.15 + 0.75 * Math.abs(Math.sin(t * 3 + i * 0.7)));
-        const hue = 180 + i * 8;
-        ctx.fillStyle = `hsla(${hue},90%,60%,0.7)`;
-        ctx.fillRect(i * bw + 2, h - barH, bw - 4, barH);
-      }
-    },
-    'Auriculares': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const bars = 14, bw = w / bars;
-      for (let i = 0; i < bars; i++) {
-        const barH = h * (0.15 + 0.75 * Math.abs(Math.sin(t * 3 + i * 0.7)));
-        const hue = 200 + i * 8;
-        ctx.fillStyle = `hsla(${hue},90%,60%,0.7)`;
-        ctx.fillRect(i * bw + 2, h - barH, bw - 4, barH);
-      }
-    },
-    'Ventiladores': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const cx = w / 2, cy = h / 2, blades = 7, r = Math.min(w, h) * 0.38;
-      for (let i = 0; i < blades; i++) {
-        const a = t * 3 + (i / blades) * Math.PI * 2;
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.arc(cx, cy, r, a, a + 0.65, false);
-        ctx.closePath();
-        const alpha = 0.35 + 0.35 * Math.abs(Math.sin(t * 3 + i));
-        ctx.fillStyle = `rgba(100,180,255,${alpha})`;
-        ctx.fill();
-      }
-      ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,230,255,0.7)'; ctx.fill();
-    },
-    'Computadoras ya armadas': (ctx, w, h, t) => {
-      if (!ctx._drops) {
-        ctx._drops = Array.from({length: 24}, () => ({
-          x: Math.floor(Math.random() * 10) * (w / 10),
-          y: Math.random() * h, spd: 0.8 + Math.random() * 1.5,
-          char: Math.floor(Math.random() * 16).toString(16),
-          life: Math.random(),
-        }));
-      }
-      ctx.fillStyle = 'rgba(0,0,0,0.12)'; ctx.fillRect(0, 0, w, h);
-      ctx.font = `bold 11px 'JetBrains Mono', monospace`;
-      for (const d of ctx._drops) {
-        d.y += d.spd;
-        if (d.y > h + 16) { d.y = -16; d.x = Math.floor(Math.random() * 10) * (w / 10); }
-        ctx.fillStyle = `rgba(0,255,100,${0.4 + 0.6 * d.life})`;
-        ctx.fillText(d.char, d.x, d.y);
-        d.char = Math.floor(Math.random() * 16).toString(16);
-      }
-    },
-    'Impresoras': (ctx, w, h, t) => {
-      ctx.clearRect(0, 0, w, h);
-      const scanY = (t * 35) % (h + 4) - 2;
-      for (let y = Math.max(0, scanY - 20); y <= Math.min(h, scanY + 2); y++) {
-        const alpha = 0.3 * (1 - (scanY - y) / 22);
-        ctx.fillStyle = `rgba(120,200,255,${alpha})`;
-        ctx.fillRect(0, y, w, 1);
-      }
-      ctx.fillStyle = 'rgba(120,200,255,0.25)';
-      ctx.fillRect(0, scanY, w, 3);
-    },
-    'Tinta de impresora': (ctx, w, h, t) => {
-      if (!ctx._drops) {
-        ctx._drops = Array.from({length: 16}, () => ({
-          x: Math.random() * w, y: Math.random() * h,
-          r: 3 + Math.random() * 8,
-          hue: Math.floor(Math.random() * 4) * 90,
-          vx: (Math.random() - 0.5) * 0.3, vy: 0.2 + Math.random() * 0.4,
-        }));
-      }
-      ctx.clearRect(0, 0, w, h);
-      for (const d of ctx._drops) {
-        d.y += d.vy; d.x += d.vx;
-        if (d.y > h + 12) { d.y = -12; d.x = Math.random() * w; d.hue = Math.floor(Math.random() * 4) * 90; }
-        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${d.hue},90%,55%,0.55)`; ctx.fill();
-      }
-    },
+  /* ── Imágenes de fondo por categoría (Unsplash, licencia libre) ── */
+  const CAT_IMAGES = {
+    'Almacenamiento':         'https://images.unsplash.com/photo-1601737487795-dab272f52420?w=600&q=80&fit=crop',
+    'Audífonos':              'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80&fit=crop',
+    'Computadoras ya armadas':'https://images.unsplash.com/photo-1619597455322-4fbbd820250a?w=600&q=80&fit=crop',
+    'Fuente de Poder':        'https://images.unsplash.com/photo-1716062890647-60feae0609d0?w=600&q=80&fit=crop',
+    'Gabinete':               'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&q=80&fit=crop',
+    'Impresoras':             'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80&fit=crop',
+    'Memoria RAM':            'https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?w=600&q=80&fit=crop',
+    'Mouse':                  'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=600&q=80&fit=crop',
+    'Placa Madre':            'https://images.unsplash.com/photo-1515630278258-407f66498911?w=600&q=80&fit=crop',
+    'Procesador':             'https://images.unsplash.com/photo-1717444309226-c0809d4b5bde?w=600&q=80&fit=crop',
+    'Refrigeración':          'https://images.unsplash.com/photo-1660855552442-1bae49431379?w=600&q=80&fit=crop',
+    'Tarjeta Gráfica':        'https://images.unsplash.com/photo-1716967318503-05b7064afa41?w=600&q=80&fit=crop',
+    'Tinta de impresora':     'https://images.unsplash.com/photo-1558470598-a5dda9640f68?w=600&q=80&fit=crop',
+    'Ventiladores':           'https://images.unsplash.com/photo-1728299178576-3cf10b17132a?w=600&q=80&fit=crop',
   };
 
-  function initCatAnims(grid) {
-    stopCatAnims();
-    grid.querySelectorAll('.home-cat-canvas').forEach(canvas => {
-      const card = canvas.closest('.home-cat-card');
-      const cat = canvas.dataset.cat;
-      const draw = CAT_DRAW[cat];
-      if (!draw) return;
-
-      const resize = () => { canvas.width = card.offsetWidth; canvas.height = card.offsetHeight; };
-      resize();
-      const ctx = canvas.getContext('2d');
-      let start = null, rafId = null;
-      function loop(ts) {
-        if (!start) start = ts;
-        draw(ctx, canvas.width, canvas.height, (ts - start) / 1000);
-        rafId = requestAnimationFrame(loop);
-      }
-      rafId = requestAnimationFrame(loop);
-      _catAnimIds.push({ cancel: () => { if (rafId) cancelAnimationFrame(rafId); } });
-    });
-  }
-  /* ── fin animaciones ── */
+  /* ── fin imágenes de categoría ── */
 
   async function fetchCategoryCounts() {
     for (const c of categoriesCache) {
