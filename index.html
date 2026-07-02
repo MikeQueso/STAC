@@ -1265,7 +1265,7 @@
       <button class="admin-tab active" data-tab="users">Usuarios registrados</button>
       <button class="admin-tab" data-tab="orders">Pedidos</button>
       <button class="admin-tab" data-tab="views">Actividad reciente</button>
-      <button class="admin-tab" data-tab="images">Enriquecer productos con Icecat</button>
+      <button class="admin-tab" data-tab="images">Enriquecer productos con IA</button>
       <button class="admin-tab" data-tab="precios">Precios de proveedores</button>
     </div>
     <div class="admin-body" id="admin-body"></div>
@@ -3166,13 +3166,8 @@
     const info = document.getElementById('detail-info');
     info.innerHTML = `
       <div class="detail-field" style="background:var(--bg-surface); padding:14px; border-radius:8px; border:1px solid var(--border); margin-bottom:18px;">
-        <label style="margin-bottom:8px;">🔍 Buscar en Icecat (opcional)</label>
-        <div style="display:flex; gap:8px; margin-bottom:8px;">
-          <input type="text" id="icecat-vendor" placeholder="Marca (ej. AMD)" style="flex:1;" />
-          <input type="text" id="icecat-model" placeholder="Modelo (ej. 7600X)" style="flex:1;" />
-        </div>
+        <label style="margin-bottom:8px;">🤖 Generar ficha con IA</label>
         <div style="display:flex; gap:8px;">
-          <button type="button" id="icecat-search-btn" style="flex:1; background:var(--blue-core); color:#fff; border:none; padding:9px; border-radius:7px; font-size:12.5px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Buscar en Icecat</button>
           <button type="button" id="ai-generate-btn" style="flex:1; background:var(--accent-green); color:#04231a; border:none; padding:9px; border-radius:7px; font-size:12.5px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">🤖 Generar con IA</button>
         </div>
         <div id="icecat-search-result" style="margin-top:10px; font-size:12px; line-height:1.6;"></div>
@@ -3226,41 +3221,6 @@
     `;
 
     renderBadgeImagesEditSection();
-
-    document.getElementById('icecat-search-btn').addEventListener('click', async () => {
-      const vendor = document.getElementById('icecat-vendor').value.trim();
-      const model = document.getElementById('icecat-model').value.trim();
-      const resultBox = document.getElementById('icecat-search-result');
-      const searchBtn = document.getElementById('icecat-search-btn');
-
-      if (!vendor || !model) {
-        resultBox.innerHTML = '<span style="color:#FF7070;">Escribe marca y modelo.</span>';
-        return;
-      }
-
-      resultBox.innerHTML = 'Buscando...';
-      searchBtn.disabled = true;
-
-      try {
-        const data = await fetchIcecatData(vendor, model);
-
-        document.getElementById('df-name').value = data.title || document.getElementById('df-name').value;
-        if (!document.getElementById('df-brand').value) document.getElementById('df-brand').value = vendor;
-        if (data.description) document.getElementById('df-description').value = data.description;
-        if (data.specs) document.getElementById('df-specs').value = data.specs;
-
-        // Guardar campos enriquecidos en variables temporales para el guardado posterior
-        currentDetailProduct._descriptionHtml = data.descriptionHtml || '';
-        currentDetailProduct._specsGroups = data.specsGroups || [];
-        currentDetailProduct._brandInfo = data.brandInfo || '';
-
-        resultBox.innerHTML = '<span style="color:var(--accent-green);">✓ Datos encontrados y autocompletados arriba.</span>' +
-          (data.imageUrl ? `<br><img src="${escapeHtml(data.imageUrl)}" style="max-width:90px; border-radius:6px; margin-top:8px; display:block;" /><a href="${escapeHtml(data.imageUrl)}" target="_blank" style="color:var(--blue-glow); font-size:11px;">Ver imagen oficial (descárgala y súbela con el botón "+" de arriba)</a>` : '');
-      } catch (err) {
-        resultBox.innerHTML = `<span style="color:#FF7070;">${escapeHtml(err.message)}</span>`;
-      }
-      searchBtn.disabled = false;
-    });
 
     document.getElementById('ai-generate-btn').addEventListener('click', async () => {
       const resultBox = document.getElementById('icecat-search-result');
@@ -3546,7 +3506,7 @@
       skipEmptyLines: true,
       complete: async (results) => {
         const rows = results.data;
-        let okCount = 0, errCount = 0, enrichedCount = 0;
+        let okCount = 0, errCount = 0;
         const errMsgs = [];
 
         for (let i = 0; i < rows.length; i++) {
@@ -3565,19 +3525,6 @@
             errCount++;
             errMsgs.push(`Fila saltada (falta categoria/precio, y nombre o marca+referencia): ${name || ref || '(sin datos)'}`);
             continue;
-          }
-
-          // Si falta nombre o descripción y sí hay marca+referencia, autocompletar con Icecat
-          if (brand && ref && (!name || !description)) {
-            try {
-              const icecatData = await fetchIcecatData(brand, ref);
-              if (!name && icecatData.title) name = icecatData.title;
-              if (!description && icecatData.description) description = icecatData.description;
-              if (!specs && icecatData.specs) specs = icecatData.specs;
-              enrichedCount++;
-            } catch (err) {
-              // No se encontró en Icecat, seguimos con lo que haya en el CSV
-            }
           }
 
           if (!name) name = `${brand} ${ref}`.trim();
@@ -3649,7 +3596,6 @@
 
         summary.innerHTML = `
           <div class="ok">✓ ${okCount} producto(s) importado(s) correctamente</div>
-          ${enrichedCount ? `<div style="color:var(--blue-glow);">🔍 ${enrichedCount} autocompletado(s) con datos de Icecat</div>` : ''}
           ${errCount ? `<div class="err">✕ ${errCount} con error</div><div style="font-size:11.5px; color:var(--text-dim); margin-top:6px;">${errMsgs.slice(0, 5).map(m => escapeHtml(m)).join('<br>')}</div>` : ''}
         `;
         await loadProducts();
@@ -3660,125 +3606,6 @@
       }
     });
   });
-
-  /* ───────── BÚSQUEDA EN ICECAT ───────── */
-  async function fetchIcecatData(vendor, model) {
-    const fnUrl = `${SUPABASE_URL}/functions/v1/icecat-search?prod_id=${encodeURIComponent(model)}&vendor=${encodeURIComponent(vendor)}&lang=ES`;
-    const res = await fetch(fnUrl, {
-      headers: {
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'apikey': SUPABASE_ANON_KEY
-      }
-    });
-    const xmlText = await res.text();
-    return parseIcecatXML(xmlText);
-  }
-
-  function parseIcecatXML(xmlText) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xmlText, 'text/xml');
-
-    if (doc.querySelector('parsererror')) throw new Error('Respuesta inesperada de Icecat.');
-
-    const productEl = doc.querySelector('Product');
-    if (!productEl) throw new Error('No se pudo leer la respuesta de Icecat.');
-
-    const errMsg = productEl.getAttribute('ErrorMessage');
-    if (errMsg) throw new Error(errMsg);
-
-    // Título
-    const title = productEl.getAttribute('Title') || productEl.getAttribute('Name') || '';
-
-    // Descripción HTML enriquecida
-    const descEl = doc.querySelector('ProductDescription');
-    let descriptionHtml = '';
-    let shortDesc = '';
-    if (descEl) {
-      const longDesc = descEl.getAttribute('LongDesc') || '';
-      shortDesc = descEl.getAttribute('ShortDesc') || '';
-      const titleInfo = descEl.getAttribute('TitleInfo') || '';
-      if (longDesc) {
-        // Armar HTML con título de sección + descripción larga
-        descriptionHtml = titleInfo
-          ? `<p class="pd-section-title">${escapeHtml(titleInfo)}</p><p>${escapeHtml(longDesc)}</p>`
-          : `<p>${escapeHtml(longDesc)}</p>`;
-      } else if (shortDesc) {
-        descriptionHtml = `<p>${escapeHtml(shortDesc)}</p>`;
-      }
-    }
-
-    // Specs agrupadas por categoría
-    const groupMap = {};  // id → { name, order, features[] }
-    // Recolectar grupos de categorías del producto
-    Array.from(doc.querySelectorAll('CategoryFeatureGroup')).forEach(g => {
-      const id = g.getAttribute('ID');
-      const nameEl = g.querySelector('Name');
-      const name = nameEl ? nameEl.getAttribute('Value') : (g.getAttribute('Name') || 'General');
-      groupMap[id] = { name, features: [] };
-    });
-
-    // Recolectar features agrupadas
-    Array.from(doc.querySelectorAll('ProductFeature')).forEach(pf => {
-      const categoryGroupId = pf.getAttribute('CategoryFeatureGroup_id') || '0';
-      const featureEl = pf.querySelector('Feature');
-      const nameEl = featureEl ? featureEl.querySelector('Name') : null;
-      const measureEl = featureEl ? featureEl.querySelector('Measure > Signs > Sign') : null;
-      const localValueEl = pf.querySelector('LocalValue');
-      const valueEl = localValueEl ? localValueEl.querySelector('Value') : null;
-
-      const name = nameEl ? nameEl.getAttribute('Value') : null;
-      const value = valueEl ? valueEl.getAttribute('Value') : null;
-      const unit = measureEl ? measureEl.getAttribute('Value') : '';
-
-      if (name && value) {
-        if (!groupMap[categoryGroupId]) groupMap[categoryGroupId] = { name: 'General', features: [] };
-        groupMap[categoryGroupId].features.push({ name, value: unit ? `${value} ${unit}` : value });
-      }
-    });
-
-    // Fallback: si no había grupos declarados pero sí features (formato más simple)
-    if (Object.keys(groupMap).length === 0 || Object.values(groupMap).every(g => g.features.length === 0)) {
-      const fallbackGroup = { name: 'Especificaciones', features: [] };
-      Array.from(doc.querySelectorAll('Feature')).forEach(f => {
-        const nameEl = f.querySelector('Name');
-        const valueEl = f.querySelector('Value');
-        const name = nameEl ? nameEl.getAttribute('Value') : null;
-        const value = valueEl ? valueEl.getAttribute('Value') : null;
-        if (name && value) fallbackGroup.features.push({ name, value });
-      });
-      if (fallbackGroup.features.length) groupMap['fallback'] = fallbackGroup;
-    }
-
-    const specsGroups = Object.values(groupMap).filter(g => g.features.length > 0);
-    // También armar el formato texto plano para retrocompatibilidad
-    const specLines = specsGroups.flatMap(g => g.features.map(f => `${f.name}: ${f.value}`));
-
-    // Imagen
-    let imageUrl = null;
-    const picEl = doc.querySelector('ProductPicture');
-    if (picEl) imageUrl = picEl.getAttribute('Pic') || picEl.getAttribute('LowPic') || picEl.getAttribute('ThumbPic');
-    if (!imageUrl) imageUrl = productEl.getAttribute('HighPic') || productEl.getAttribute('Pic') || null;
-
-    // Info del fabricante / marca
-    let brandInfo = '';
-    const brandEl = doc.querySelector('Supplier');
-    if (brandEl) {
-      const brandName = brandEl.getAttribute('Name') || '';
-      const brandDesc = brandEl.getAttribute('Description') || '';
-      if (brandDesc) brandInfo = brandDesc;
-      else if (brandName) brandInfo = brandName;
-    }
-
-    return {
-      title,
-      description: shortDesc || '',
-      descriptionHtml,
-      specs: specLines.join('\n'),
-      specsGroups,
-      imageUrl,
-      brandInfo
-    };
-  }
 
   /* ───────── PANEL ADMIN ───────── */
   async function openAdminPanel() {
@@ -3882,7 +3709,6 @@
         .select('id,name,brand,category,ref,images,description_html,specs_json,badge_images');
       if (error) { body.innerHTML = `<p style="color:#FF7070;">${escapeHtml(error.message)}</p>`; return; }
       const pendingAll = (allProducts || []);
-      // Cuenta cuántas características tiene la ficha actual de cada producto.
       const countFeatures = (p) => {
         let n = 0;
         if (p.specs_json) {
@@ -3890,24 +3716,13 @@
         }
         return n;
       };
-      // "Pobres" = sin ficha o con muy pocas specs (las que conviene mejorar con IA).
       const poorFichas = pendingAll.filter(p => countFeatures(p) < 12);
 
       body.innerHTML = `
-        <div style="margin-bottom:18px; padding:14px; background:var(--bg-surface); border-radius:10px; border:1px solid var(--border);">
-          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">🔍 Paso 1 — Icecat (datos exactos del fabricante)</div>
-          <p style="font-size:12.5px; color:var(--text-body); margin-bottom:10px; line-height:1.6;">
-            Trae fotos y especificaciones oficiales y exhaustivas. Es la fuente más confiable (la misma que usan Cyberpuerta/Abasteo). <strong style="color:var(--text-primary);">Re-procesar TODOS</strong> vuelve a consultar Icecat para todo el catálogo y sobrescribe con datos reales lo que encuentre.
-          </p>
-          <button type="button" id="bulkicecat-all-btn" class="auth-submit">
-            🔍 Re-procesar TODOS con Icecat (${pendingAll.length})
-          </button>
-        </div>
-
         <div style="margin-bottom:18px; padding:14px; background:var(--bg-surface); border-radius:10px; border:1px solid rgba(0,229,176,0.2);">
-          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:var(--accent-green); margin-bottom:6px;">🤖 Paso 2 — Mejorar fichas pobres con IA</div>
+          <div style="font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:var(--accent-green); margin-bottom:6px;">🤖 Mejorar fichas con IA</div>
           <p style="font-size:12.5px; color:var(--text-body); margin-bottom:10px; line-height:1.6;">
-            Genera fichas detalladas con IA <strong style="color:var(--text-primary);">solo</strong> para los productos que quedaron con pocos datos (los que Icecat no encontró). No toca las fichas buenas de Icecat. Hay <strong style="color:var(--text-primary);">${poorFichas.length}</strong> ficha(s) pobre(s).
+            Genera fichas detalladas con IA para los productos que tienen pocos datos. No toca las fichas que ya tienen buena información. Hay <strong style="color:var(--text-primary);">${poorFichas.length}</strong> ficha(s) por mejorar.
           </p>
           <button type="button" id="bulkai-poor-btn" class="auth-submit" style="background:var(--accent-green); color:#04231a;" ${poorFichas.length ? '' : 'disabled'}>
             ${poorFichas.length ? `🤖 Mejorar ${poorFichas.length} ficha(s) con IA` : '✓ Todas tienen buena ficha'}
@@ -3917,11 +3732,6 @@
         <div id="bulkimg-summary" style="font-size:12.5px; line-height:1.6;"></div>
       `;
 
-      document.getElementById('bulkicecat-all-btn').addEventListener('click', () => {
-        if (confirm('¿Re-procesar TODOS los productos con Icecat? Sobrescribe con datos oficiales lo que encuentre. Tarda varios minutos.')) {
-          runBulkImageFetch(pendingAll);
-        }
-      });
       if (poorFichas.length) {
         document.getElementById('bulkai-poor-btn').addEventListener('click', () => runBulkAIEnrich(poorFichas));
       }
@@ -4254,91 +4064,6 @@
       specsGroups: parsed.specsGroups || [],
       brandInfo: parsed.brandInfo || ''
     };
-  }
-
-  async function fetchIcecatImageBlob(imageUrl) {
-    const fnUrl = `${SUPABASE_URL}/functions/v1/icecat-search?image_url=${encodeURIComponent(imageUrl)}`;
-    const res = await fetch(fnUrl, {
-      headers: { 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'apikey': SUPABASE_ANON_KEY }
-    });
-    if (!res.ok) throw new Error('No se pudo descargar la imagen.');
-    const blob = await res.blob();
-    const ext = (blob.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
-    return new File([blob], `icecat.${ext}`, { type: blob.type || 'image/jpeg' });
-  }
-
-  async function runBulkImageFetch(pending) {
-    const btn = document.getElementById('bulkicecat-all-btn');
-    const summary = document.getElementById('bulkimg-summary');
-    if (btn) btn.disabled = true;
-
-    let found = 0, notFound = 0;
-    const notFoundList = [];
-
-    for (let i = 0; i < pending.length; i++) {
-      const p = pending[i];
-      summary.innerHTML = `Procesando ${i + 1} de ${pending.length}: <strong style="color:var(--text-primary)">${escapeHtml(p.name)}</strong>...`;
-
-      const vendor = (p.brand || '').trim();
-      // Icecat funciona mucho mejor con el número de parte (MPN) que con el
-      // nombre descriptivo. Usamos el REF si existe; si no, el nombre sin la marca.
-      let searchTerm = (p.ref || '').trim();
-      if (!searchTerm) {
-        searchTerm = (p.name || '').trim();
-        if (vendor && searchTerm.toLowerCase().startsWith(vendor.toLowerCase())) {
-          searchTerm = searchTerm.slice(vendor.length).trim();
-        }
-      }
-
-      if (!vendor || !searchTerm) {
-        notFound++; notFoundList.push(p.name);
-        continue;
-      }
-
-      try {
-        const data = await fetchIcecatData(vendor, searchTerm);
-        const updatePayload = {};
-
-        // Foto principal
-        if (data.imageUrl && (!p.images || !p.images.length)) {
-          try {
-            const file = await fetchIcecatImageBlob(data.imageUrl);
-            const url = await uploadProductImage(p.id, file);
-            updatePayload.images = [url];
-          } catch(e) { /* sin imagen */ }
-        }
-
-        // Descripción enriquecida
-        if (data.descriptionHtml) updatePayload.description_html = data.descriptionHtml;
-        if (data.description && !p.description) updatePayload.description = data.description;
-
-        // Specs agrupadas
-        if (data.specsGroups && data.specsGroups.length) {
-          updatePayload.specs_json = JSON.stringify(data.specsGroups);
-          if (!p.specs && data.specs) updatePayload.specs = data.specs;
-        }
-
-        // Info del fabricante
-        if (data.brandInfo && !p.brand_info) updatePayload.brand_info = data.brandInfo;
-
-        if (Object.keys(updatePayload).length > 0) {
-          await sb.from('products').update(updatePayload).eq('id', p.id);
-          found++;
-        } else {
-          notFound++; notFoundList.push(p.name);
-        }
-      } catch (err) {
-        notFound++; notFoundList.push(p.name);
-      }
-    }
-
-    summary.innerHTML = `
-      <div class="ok" style="margin-bottom:4px;">✓ ${found} producto(s) enriquecidos (foto + descripción + specs)</div>
-      <div style="color:var(--text-dim); margin-bottom:4px;">○ ${notFound} sin coincidencia en Icecat</div>
-      ${notFoundList.length ? `<div style="font-size:11px; color:var(--text-dim); margin-top:8px; max-height:140px; overflow-y:auto; border-top:1px solid var(--border); padding-top:8px;">${notFoundList.map(n => escapeHtml(n)).join('<br>')}</div>` : ''}
-    `;
-    if (btn) btn.textContent = '✓ Listo';
-    await loadProducts();
   }
 
   /* ───────── INIT ───────── */

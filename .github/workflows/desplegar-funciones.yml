@@ -1,7 +1,7 @@
 name: Desplegar funciones de Supabase
 
 on:
-  workflow_dispatch:   # manual: córrelo cuando cambien las funciones (ai-generate / icecat-search)
+  workflow_dispatch:   # manual: córrelo cuando cambien las funciones (ai-generate)
 
 jobs:
   deploy:
