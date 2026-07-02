@@ -2313,7 +2313,7 @@
   function renderProducts() {
     const grid = document.getElementById('products-grid');
     if (!grid) return;
-    const isAdmin = currentUser && currentUser.role === 'admin';
+    const isAdmin = isAdminView();
 
     if (!productsCache.length) {
       grid.innerHTML = '<p class="products-loading">No hay productos en esta categoría todavía.</p>';
@@ -2999,7 +2999,7 @@
       });
     });
 
-    const isAdmin = currentUser && currentUser.role === 'admin';
+    const isAdmin = isAdminView();
     const info = document.getElementById('detail-info');
     info.innerHTML = `
       ${isAdmin ? `<button type="button" class="detail-edit-toggle" id="detail-edit-toggle">✏️ Editar</button>` : ''}
