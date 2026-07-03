@@ -987,11 +987,14 @@
       </button>
     </div>
 
-    <div id="service-detail" class="hidden" style="max-width:760px; margin:0 auto 64px; background:#fff; border:1px solid rgba(0,95,255,0.14); border-radius:16px; padding:36px 32px; text-align:left; box-shadow:0 12px 36px rgba(12,30,58,0.08);">
-      <div id="service-detail-icon" style="font-size:38px; margin-bottom:16px;"></div>
-      <h3 id="service-detail-title" style="font-family:'Rajdhani',sans-serif; font-size:24px; font-weight:700; color:#0C1E3A; margin-bottom:14px;"></h3>
-      <div id="service-detail-body" style="font-size:14.5px; color:#324A66; line-height:1.8;"></div>
-      <button type="button" id="service-detail-close" style="margin-top:24px; background:#0C1E3A; color:#fff; border:none; padding:10px 22px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Cerrar</button>
+    <div id="service-detail" class="hidden" style="position:fixed;inset:0;z-index:3000;background:rgba(12,30,58,0.55);overflow-y:auto;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px 60px;">
+      <div style="background:#fff;border-radius:18px;max-width:760px;width:100%;padding:36px 32px;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,0.3);position:relative;">
+        <button type="button" id="service-detail-close" style="position:absolute;top:18px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:#7A8FA8;line-height:1;">✕</button>
+        <div id="service-detail-icon" style="font-size:38px; margin-bottom:16px;"></div>
+        <h3 id="service-detail-title" style="font-family:'Rajdhani',sans-serif; font-size:24px; font-weight:700; color:#0C1E3A; margin-bottom:14px;"></h3>
+        <div id="service-detail-body" style="font-size:14.5px; color:#324A66; line-height:1.8;"></div>
+        <button type="button" id="service-detail-close-bottom" style="margin-top:28px; background:#0C1E3A; color:#fff; border:none; padding:10px 22px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Cerrar</button>
+      </div>
     </div>
 
     <!-- ── Editor de servicios (solo admin) ── -->
@@ -2086,8 +2089,10 @@
     document.getElementById('service-detail-icon').textContent = s.icon || '🛠️';
     document.getElementById('service-detail-title').textContent = s.title;
     renderDetailSections(s.sections || []);
-    document.getElementById('services-grid').style.display = 'none';
-    document.getElementById('service-detail').classList.remove('hidden');
+    const overlay = document.getElementById('service-detail');
+    overlay.classList.remove('hidden');
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   }
 
   function renderDetailSections(sections) {
@@ -2114,9 +2119,16 @@
     }).join('');
   }
 
-  document.getElementById('service-detail-close').addEventListener('click', () => {
-    document.getElementById('service-detail').classList.add('hidden');
-    document.getElementById('services-grid').style.display = 'grid';
+  function closeServiceDetail() {
+    const overlay = document.getElementById('service-detail');
+    overlay.classList.add('hidden');
+    overlay.style.display = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('service-detail-close').addEventListener('click', closeServiceDetail);
+  document.getElementById('service-detail-close-bottom').addEventListener('click', closeServiceDetail);
+  document.getElementById('service-detail').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeServiceDetail();
   });
 
   /* ── Editor de servicios (admin) ── */
