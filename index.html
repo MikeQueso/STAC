@@ -2050,7 +2050,7 @@
           ${isAdmin ? `<button class="svc-edit-btn" data-id="${id}" title="Editar servicio" style="position:absolute;top:10px;right:10px;background:rgba(0,95,255,0.08);border:1px solid rgba(0,95,255,0.2);border-radius:6px;padding:3px 9px;font-size:11.5px;cursor:pointer;color:#005FFF;font-family:'IBM Plex Sans',sans-serif;">✏️ Editar</button>` : ''}
           <div style="font-size:30px;margin-bottom:14px;">${escapeHtml(s.icon || '🛠️')}</div>
           <h3 style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#0C1E3A;margin-bottom:10px;">${escapeHtml(s.title)}</h3>
-          <p style="font-size:13.5px;color:#5A7090;line-height:1.6;flex:1;">${escapeHtml(s.description)}</p>
+          <p style="font-size:13.5px;color:#5A7090;line-height:1.6;flex:1;">${/<[a-z][\s\S]*>/i.test(s.description || '') ? sanitizeHtml(s.description) : escapeHtml(s.description)}</p>
           <button type="button" class="service-readmore" data-service="${id}" style="margin-top:16px;background:none;border:none;color:#005FFF;font-size:13px;font-weight:600;cursor:pointer;text-align:left;padding:0;font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
         </div>`;
     }).join('');
