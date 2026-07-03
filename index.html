@@ -939,9 +939,44 @@
     <!-- ── ACERCA DE NOSOTROS + SERVICIOS ───────────────────────── -->
     <div id="about-section" style="max-width:760px; margin:0 auto 64px; text-align:center;">
       <h2 style="font-family:'Rajdhani',sans-serif; font-size:clamp(28px,3.5vw,42px); font-weight:700; color:#0C1E3A; margin-bottom:18px;">¿Quiénes somos?</h2>
-      <p style="font-size:15.5px; color:#324A66; line-height:1.75;">
+      <p id="about-text" style="font-size:15.5px; color:#324A66; line-height:1.75;">
         STAC es una empresa especializada en tecnología que combina <strong style="color:#0C1E3A;">servicios profesionales de soporte técnico</strong> con una <strong style="color:#0C1E3A;">tienda en línea de componentes y accesorios de PC</strong>. Acompañamos a nuestros clientes en todo el ciclo de vida de su equipo: desde el ensamblado e instalación, hasta el mantenimiento, la actualización y la compra de las piezas que necesitan, siempre con asesoría experta y garantía de calidad.
       </p>
+    </div>
+    <div style="text-align:center; margin-top:-48px; margin-bottom:48px;">
+      <button id="about-edit-btn" style="display:none; background:rgba(0,95,255,0.08); color:#005FFF; border:1px solid rgba(0,95,255,0.25); border-radius:7px; padding:5px 14px; font-size:12px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif; align-items:center; gap:5px;">✏️ Editar texto</button>
+    </div>
+
+    <!-- Modal editar ¿Quiénes somos? -->
+    <div id="about-edit-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:4000; align-items:center; justify-content:center;">
+      <div style="background:#fff; border-radius:14px; width:100%; max-width:600px; margin:20px; padding:28px 28px 24px; box-shadow:0 20px 60px rgba(0,0,0,0.25);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+          <h3 style="font-family:'Rajdhani',sans-serif; font-size:20px; font-weight:700; color:#0C1E3A; margin:0;">Editar ¿Quiénes somos?</h3>
+          <button id="about-modal-close" style="background:none; border:none; font-size:22px; cursor:pointer; color:#7A8FA8; line-height:1;">✕</button>
+        </div>
+        <div style="border:1px solid #dde3ec; border-radius:8px; overflow:hidden; margin-bottom:18px;">
+          <div style="display:flex; align-items:center; gap:4px; padding:6px 8px; background:#f4f6fa; border-bottom:1px solid #dde3ec; flex-wrap:wrap;">
+            <button class="about-fmt-btn" data-cmd="bold" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;font-weight:700;color:#0C1E3A;">B</button>
+            <button class="about-fmt-btn" data-cmd="italic" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;font-style:italic;color:#0C1E3A;">I</button>
+            <input type="color" id="about-color-inp" title="Color de texto" onmousedown="event.preventDefault()" style="width:28px;height:28px;padding:1px;border:1px solid #c8d0dc;border-radius:5px;cursor:pointer;background:none;">
+            <select id="about-size-sel" onmousedown="event.stopPropagation()" style="padding:3px 6px;border:1px solid #c8d0dc;border-radius:5px;font-size:12px;color:#0C1E3A;background:#fff;cursor:pointer;">
+              <option value="11px">Chico</option>
+              <option value="14px" selected>Normal</option>
+              <option value="18px">Grande</option>
+              <option value="24px">Extra</option>
+            </select>
+            <span style="color:#c8d0dc;margin:0 2px;">|</span>
+            <button class="about-fmt-btn" data-cmd="justifyLeft" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;color:#0C1E3A;">⬅</button>
+            <button class="about-fmt-btn" data-cmd="justifyCenter" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;color:#0C1E3A;">☰</button>
+            <button class="about-fmt-btn" data-cmd="justifyRight" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;color:#0C1E3A;">➡</button>
+          </div>
+          <div id="about-edit-content" contenteditable="true" style="min-height:140px; padding:12px 14px; outline:none; background:#fff; color:#324A66; font-family:'IBM Plex Sans',sans-serif; font-size:15.5px; line-height:1.75;"></div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px;">
+          <button id="about-modal-cancel" style="background:none; border:1px solid #dde3ec; border-radius:8px; padding:9px 20px; font-size:13px; font-weight:600; cursor:pointer; color:#324A66; font-family:'IBM Plex Sans',sans-serif;">Cancelar</button>
+          <button id="about-modal-save" style="background:#005FFF; color:#fff; border:none; border-radius:8px; padding:9px 20px; font-size:13px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Guardar</button>
+        </div>
+      </div>
     </div>
 
     <h2 style="text-align:center; font-family:'Rajdhani',sans-serif; font-size:clamp(26px,4vw,42px); font-weight:800; color:#0C1E3A; margin:0 0 32px; letter-spacing:0.5px;">Nuestros servicios</h2>
@@ -1391,6 +1426,12 @@
     div.textContent = str == null ? '' : String(str);
     return div.innerHTML;
   }
+  function sanitizeHtml(html) {
+    return (html || '')
+      .replace(/<script[\s\S]*?<\/script>/gi, '')
+      .replace(/<iframe[\s\S]*?>/gi, '')
+      .replace(/\son\w+\s*=["'][^"']*["']/gi, '');
+  }
   function escapeHtmlForStore(str) {
     return (str == null ? '' : String(str))
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -1625,6 +1666,8 @@
     </div>`;
     document.getElementById('open-profile-btn').addEventListener('click', openProfilePanel);
     document.getElementById('profile-admin-links').style.display = isAdmin ? 'block' : 'none';
+    const aboutEditBtn = document.getElementById('about-edit-btn');
+    if (aboutEditBtn) aboutEditBtn.style.display = isAdmin && !previewAsClient ? 'inline-flex' : 'none';
     if (isAdmin) {
       document.getElementById('preview-toggle-btn').addEventListener('click', () => {
         previewAsClient = !previewAsClient;
@@ -2055,7 +2098,9 @@
     }
     body.innerHTML = sections.map(sec => {
       if (sec.type === 'text') {
-        return `<p style="margin-bottom:16px;line-height:1.8;color:#324A66;">${escapeHtml(sec.content || '').replace(/\n/g, '<br>')}</p>`;
+        const content = sec.content || '';
+        const html = /<[a-z][\s\S]*>/i.test(content) ? sanitizeHtml(content) : escapeHtml(content).replace(/\n/g, '<br>');
+        return `<div style="margin-bottom:16px;line-height:1.8;color:#324A66;">${html}</div>`;
       }
       if (sec.type === 'list') {
         const tag = sec.style === 'number' ? 'ol' : 'ul';
@@ -2154,7 +2199,24 @@
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
             <span style="font-size:11.5px;font-weight:600;color:var(--text-dim);">📝 PÁRRAFO</span>${navBtns}
           </div>
-          <textarea class="svc-sec-text" data-i="${i}" rows="6" placeholder="Escribe el contenido del párrafo… (sin límite de caracteres)" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;resize:vertical;box-sizing:border-box;">${escapeHtml(sec.content || '')}</textarea>
+          <div style="border:1px solid var(--border);border-radius:7px;overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:4px;padding:5px 7px;background:var(--bg-surface);border-bottom:1px solid var(--border);flex-wrap:wrap;">
+              <button type="button" class="svc-fmt-btn" data-cmd="bold" data-i="${i}" style="background:none;border:1px solid var(--border);border-radius:5px;padding:2px 8px;cursor:pointer;font-size:13px;font-weight:700;color:var(--text-primary);">B</button>
+              <button type="button" class="svc-fmt-btn" data-cmd="italic" data-i="${i}" style="background:none;border:1px solid var(--border);border-radius:5px;padding:2px 8px;cursor:pointer;font-size:13px;font-style:italic;color:var(--text-primary);">I</button>
+              <input type="color" class="svc-color-inp" data-i="${i}" title="Color de texto" style="width:26px;height:26px;padding:1px;border:1px solid var(--border);border-radius:5px;cursor:pointer;background:none;">
+              <select class="svc-size-sel" data-i="${i}" style="padding:2px 5px;border:1px solid var(--border);border-radius:5px;font-size:12px;color:var(--text-primary);background:var(--bg-card);cursor:pointer;">
+                <option value="11px">Chico</option>
+                <option value="14px" selected>Normal</option>
+                <option value="18px">Grande</option>
+                <option value="24px">Extra</option>
+              </select>
+              <span style="color:var(--border);margin:0 2px;">|</span>
+              <button type="button" class="svc-fmt-btn" data-cmd="justifyLeft" data-i="${i}" style="background:none;border:1px solid var(--border);border-radius:5px;padding:2px 8px;cursor:pointer;font-size:13px;color:var(--text-primary);">⬅</button>
+              <button type="button" class="svc-fmt-btn" data-cmd="justifyCenter" data-i="${i}" style="background:none;border:1px solid var(--border);border-radius:5px;padding:2px 8px;cursor:pointer;font-size:13px;color:var(--text-primary);">☰</button>
+              <button type="button" class="svc-fmt-btn" data-cmd="justifyRight" data-i="${i}" style="background:none;border:1px solid var(--border);border-radius:5px;padding:2px 8px;cursor:pointer;font-size:13px;color:var(--text-primary);">➡</button>
+            </div>
+            <div class="svc-sec-text" contenteditable="true" data-i="${i}" style="min-height:120px;padding:10px 12px;outline:none;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.7;border-radius:0 0 7px 7px;"></div>
+          </div>
         </div>`;
 
       if (sec.type === 'list') {
@@ -2200,7 +2262,38 @@
     container.querySelectorAll('.svc-sec-up').forEach(b => b.addEventListener('click', () => { const i=+b.dataset.i; [svcSections[i-1],svcSections[i]]=[svcSections[i],svcSections[i-1]]; renderSvcSectionsList(); }));
     container.querySelectorAll('.svc-sec-down').forEach(b => b.addEventListener('click', () => { const i=+b.dataset.i; [svcSections[i],svcSections[i+1]]=[svcSections[i+1],svcSections[i]]; renderSvcSectionsList(); }));
     container.querySelectorAll('.svc-sec-del').forEach(b => b.addEventListener('click', () => { svcSections.splice(+b.dataset.i,1); renderSvcSectionsList(); }));
-    container.querySelectorAll('.svc-sec-text').forEach(ta => ta.addEventListener('input', () => { svcSections[+ta.dataset.i].content = ta.value; }));
+    // Inicializar contenido de contenteditable (innerHTML, no value)
+    container.querySelectorAll('.svc-sec-text[contenteditable]').forEach(div => { div.innerHTML = svcSections[+div.dataset.i].content || ''; });
+    container.querySelectorAll('.svc-sec-text[contenteditable]').forEach(div => div.addEventListener('input', () => { svcSections[+div.dataset.i].content = div.innerHTML; }));
+    container.querySelectorAll('.svc-fmt-btn').forEach(btn => {
+      btn.addEventListener('mousedown', e => e.preventDefault());
+      btn.addEventListener('click', () => {
+        const cmd = btn.dataset.cmd;
+        document.execCommand(cmd, false, null);
+        const editor = container.querySelector(`.svc-sec-text[data-i="${btn.dataset.i}"]`);
+        if (editor) svcSections[+btn.dataset.i].content = editor.innerHTML;
+      });
+    });
+    container.querySelectorAll('.svc-color-inp').forEach(inp => {
+      inp.addEventListener('input', () => {
+        document.execCommand('styleWithCSS', false, true);
+        document.execCommand('foreColor', false, inp.value);
+        const editor = container.querySelector(`.svc-sec-text[data-i="${inp.dataset.i}"]`);
+        if (editor) svcSections[+inp.dataset.i].content = editor.innerHTML;
+      });
+    });
+    container.querySelectorAll('.svc-size-sel').forEach(sel => {
+      sel.addEventListener('mousedown', e => e.stopPropagation());
+      sel.addEventListener('change', () => {
+        const i = +sel.dataset.i;
+        const editor = container.querySelector(`.svc-sec-text[data-i="${i}"]`);
+        if (!editor) return;
+        editor.focus();
+        document.execCommand('fontSize', false, 7);
+        editor.querySelectorAll('font[size="7"]').forEach(el => { el.removeAttribute('size'); el.style.fontSize = sel.value; });
+        svcSections[i].content = editor.innerHTML;
+      });
+    });
     container.querySelectorAll('.svc-list-numbered').forEach(cb => cb.addEventListener('change', () => { svcSections[+cb.dataset.i].style = cb.checked ? 'number' : 'bullet'; }));
     container.querySelectorAll('.svc-list-item').forEach(inp => inp.addEventListener('input', () => { svcSections[+inp.dataset.i].items[+inp.dataset.j] = inp.value; }));
     container.querySelectorAll('.svc-list-item-del').forEach(b => b.addEventListener('click', () => { svcSections[+b.dataset.i].items.splice(+b.dataset.j,1); renderSvcSectionsList(); }));
@@ -2231,6 +2324,45 @@
   function closeSvcEditor() { const o = document.getElementById('svc-editor-overlay'); o.classList.add('hidden'); o.style.display = ''; }
   document.getElementById('svc-editor-close').addEventListener('click', closeSvcEditor);
   document.getElementById('svc-cancel-btn').addEventListener('click',   closeSvcEditor);
+
+  /* ── Modal ¿Quiénes somos? ── */
+  const aboutModal = document.getElementById('about-edit-modal');
+  document.getElementById('about-edit-btn').addEventListener('click', () => {
+    const aboutText = document.getElementById('about-text');
+    document.getElementById('about-edit-content').innerHTML = aboutText ? aboutText.innerHTML : '';
+    aboutModal.style.display = 'flex';
+  });
+  function closeAboutModal() { aboutModal.style.display = 'none'; }
+  document.getElementById('about-modal-close').addEventListener('click', closeAboutModal);
+  document.getElementById('about-modal-cancel').addEventListener('click', closeAboutModal);
+  aboutModal.addEventListener('click', e => { if (e.target === aboutModal) closeAboutModal(); });
+
+  document.querySelectorAll('.about-fmt-btn').forEach(btn => {
+    btn.addEventListener('mousedown', e => e.preventDefault());
+    btn.addEventListener('click', () => { document.execCommand(btn.dataset.cmd, false, null); });
+  });
+  document.getElementById('about-color-inp').addEventListener('input', function() {
+    document.execCommand('styleWithCSS', false, true);
+    document.execCommand('foreColor', false, this.value);
+  });
+  document.getElementById('about-size-sel').addEventListener('change', function() {
+    const editor = document.getElementById('about-edit-content');
+    editor.focus();
+    document.execCommand('fontSize', false, 7);
+    editor.querySelectorAll('font[size="7"]').forEach(el => { el.removeAttribute('size'); el.style.fontSize = this.value; });
+  });
+
+  document.getElementById('about-modal-save').addEventListener('click', async () => {
+    const saveBtn = document.getElementById('about-modal-save');
+    saveBtn.disabled = true; saveBtn.textContent = 'Guardando…';
+    const html = document.getElementById('about-edit-content').innerHTML;
+    const { error } = await sb.from('services').upsert({ id: 0, title: 'about', description: html });
+    saveBtn.disabled = false; saveBtn.textContent = 'Guardar';
+    if (error) { alert('Error al guardar: ' + error.message); return; }
+    const aboutText = document.getElementById('about-text');
+    if (aboutText) aboutText.innerHTML = sanitizeHtml(html);
+    closeAboutModal();
+  });
 
   document.getElementById('svc-save-btn').addEventListener('click', async () => {
     const btn = document.getElementById('svc-save-btn');
@@ -4068,6 +4200,14 @@
 
   /* ───────── INIT ───────── */
   (async function init() {
+    // Cargar texto "¿Quiénes somos?" desde Supabase si existe
+    sb.from('services').select('description').eq('id', 0).maybeSingle().then(({ data }) => {
+      if (data && data.description) {
+        const el = document.getElementById('about-text');
+        if (el) el.innerHTML = sanitizeHtml(data.description);
+      }
+    });
+
     // Categorías, sesión y servicios en paralelo
     const [, sessionResult] = await Promise.all([
       loadCategories(),
