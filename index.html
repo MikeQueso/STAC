@@ -2302,23 +2302,32 @@
     container.querySelectorAll('.svc-sec-down').forEach(b => b.addEventListener('click', () => { const i=+b.dataset.i; [svcSections[i],svcSections[i+1]]=[svcSections[i+1],svcSections[i]]; renderSvcSectionsList(); }));
     container.querySelectorAll('.svc-sec-del').forEach(b => b.addEventListener('click', () => { svcSections.splice(+b.dataset.i,1); renderSvcSectionsList(); }));
     // Inicializar contenido de contenteditable (innerHTML, no value)
-    container.querySelectorAll('.svc-sec-text[contenteditable]').forEach(div => { div.innerHTML = svcSections[+div.dataset.i].content || ''; });
-    container.querySelectorAll('.svc-sec-text[contenteditable]').forEach(div => div.addEventListener('input', () => { svcSections[+div.dataset.i].content = div.innerHTML; }));
+    container.querySelectorAll('.svc-sec-text[contenteditable]').forEach(div => {
+      div.innerHTML = svcSections[+div.dataset.i].content || '';
+      trackEditorSelection(div);
+      div.addEventListener('input', () => { svcSections[+div.dataset.i].content = div.innerHTML; });
+    });
     container.querySelectorAll('.svc-fmt-btn').forEach(btn => {
       btn.addEventListener('mousedown', e => e.preventDefault());
       btn.addEventListener('click', () => {
-        const cmd = btn.dataset.cmd;
-        document.execCommand(cmd, false, null);
         const editor = container.querySelector(`.svc-sec-text[data-i="${btn.dataset.i}"]`);
-        if (editor) svcSections[+btn.dataset.i].content = editor.innerHTML;
+        if (!editor) return;
+        withEditorSelection(editor, () => {
+          document.execCommand('styleWithCSS', false, false);
+          document.execCommand(btn.dataset.cmd, false, null);
+        });
+        svcSections[+btn.dataset.i].content = editor.innerHTML;
       });
     });
     container.querySelectorAll('.svc-color-inp').forEach(inp => {
       inp.addEventListener('input', () => {
-        document.execCommand('styleWithCSS', false, true);
-        document.execCommand('foreColor', false, inp.value);
         const editor = container.querySelector(`.svc-sec-text[data-i="${inp.dataset.i}"]`);
-        if (editor) svcSections[+inp.dataset.i].content = editor.innerHTML;
+        if (!editor) return;
+        withEditorSelection(editor, () => {
+          document.execCommand('styleWithCSS', false, true);
+          document.execCommand('foreColor', false, inp.value);
+        });
+        svcSections[+inp.dataset.i].content = editor.innerHTML;
       });
     });
     container.querySelectorAll('.svc-size-sel').forEach(sel => {
@@ -2327,8 +2336,9 @@
         const i = +sel.dataset.i;
         const editor = container.querySelector(`.svc-sec-text[data-i="${i}"]`);
         if (!editor) return;
-        editor.focus();
-        document.execCommand('fontSize', false, 7);
+        withEditorSelection(editor, () => {
+          document.execCommand('fontSize', false, 7);
+        });
         editor.querySelectorAll('font[size="7"]').forEach(el => { el.removeAttribute('size'); el.style.fontSize = sel.value; });
         svcSections[i].content = editor.innerHTML;
       });
@@ -2348,6 +2358,35 @@
       svcSections[i].url = sb.storage.from('product-images').getPublicUrl(path).data.publicUrl;
       renderSvcSectionsList();
     }));
+  }
+
+  /* Selección de contenteditable: el selector de color y el de tamaño roban el
+     foco al abrirse, y el navegador descarta la selección — sin esto, aplicar
+     color/tamaño no hace nada. Se guarda el rango en cada interacción y se
+     restaura antes de ejecutar el comando de formato. */
+  const _edRanges = new WeakMap();
+  function trackEditorSelection(editor) {
+    const save = () => {
+      const sel = window.getSelection();
+      if (sel.rangeCount && editor.contains(sel.anchorNode)) {
+        _edRanges.set(editor, sel.getRangeAt(0).cloneRange());
+      }
+    };
+    ['keyup', 'mouseup', 'input', 'focus'].forEach(ev => editor.addEventListener(ev, save));
+  }
+  function withEditorSelection(editor, fn) {
+    editor.focus();
+    const saved = _edRanges.get(editor);
+    if (saved) {
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(saved);
+    }
+    fn();
+    const sel = window.getSelection();
+    if (sel.rangeCount && editor.contains(sel.anchorNode)) {
+      _edRanges.set(editor, sel.getRangeAt(0).cloneRange());
+    }
   }
 
   document.querySelectorAll('.svc-add-btn').forEach(btn => {
@@ -2376,25 +2415,34 @@
   document.getElementById('about-modal-cancel').addEventListener('click', closeAboutModal);
   aboutModal.addEventListener('click', e => { if (e.target === aboutModal) closeAboutModal(); });
 
+  trackEditorSelection(document.getElementById('about-edit-content'));
   document.querySelectorAll('.about-fmt-btn').forEach(btn => {
     btn.addEventListener('mousedown', e => e.preventDefault());
-    btn.addEventListener('click', () => { document.execCommand(btn.dataset.cmd, false, null); });
+    btn.addEventListener('click', () => {
+      withEditorSelection(document.getElementById('about-edit-content'), () => {
+        document.execCommand('styleWithCSS', false, false);
+        document.execCommand(btn.dataset.cmd, false, null);
+      });
+    });
   });
   document.getElementById('about-color-inp').addEventListener('input', function() {
-    document.execCommand('styleWithCSS', false, true);
-    document.execCommand('foreColor', false, this.value);
+    withEditorSelection(document.getElementById('about-edit-content'), () => {
+      document.execCommand('styleWithCSS', false, true);
+      document.execCommand('foreColor', false, this.value);
+    });
   });
   document.getElementById('about-size-sel').addEventListener('change', function() {
     const editor = document.getElementById('about-edit-content');
-    editor.focus();
-    document.execCommand('fontSize', false, 7);
+    withEditorSelection(editor, () => {
+      document.execCommand('fontSize', false, 7);
+    });
     editor.querySelectorAll('font[size="7"]').forEach(el => { el.removeAttribute('size'); el.style.fontSize = this.value; });
   });
 
   document.getElementById('about-modal-save').addEventListener('click', async () => {
     const saveBtn = document.getElementById('about-modal-save');
     saveBtn.disabled = true; saveBtn.textContent = 'Guardando…';
-    const html = document.getElementById('about-edit-content').innerHTML;
+    const html = sanitizeHtml(document.getElementById('about-edit-content').innerHTML);
     const { error } = await sb.from('services').upsert({ id: 0, title: 'about', description: html });
     saveBtn.disabled = false; saveBtn.textContent = 'Guardar';
     if (error) { alert('Error al guardar: ' + error.message); return; }
@@ -2411,7 +2459,7 @@
       icon:        document.getElementById('svc-icon').value.trim() || '🛠️',
       title:       document.getElementById('svc-title').value.trim(),
       description: document.getElementById('svc-description').value.trim(),
-      sections:    svcSections,
+      sections:    svcSections.map(s => s.type === 'text' ? { ...s, content: sanitizeHtml(s.content || '') } : s),
       updated_at:  new Date().toISOString(),
     };
     const { error } = await sb.from('services').upsert(payload, { onConflict: 'id' });
@@ -4086,7 +4134,8 @@
 
           const prov = (name) => {
             const f = byProv[name];
-            return [f ? Number(f.precio) : '', f ? (f.encontrado_como || '') : '', f ? (f.url || '') : ''];
+            const p = f ? Number(f.precio) : 0;
+            return [p > 0 ? p : '', f ? (f.encontrado_como || '') : '', f ? (f.url || '') : ''];
           };
 
           const row = [

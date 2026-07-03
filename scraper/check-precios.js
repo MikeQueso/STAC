@@ -346,11 +346,13 @@ async function run() {
     if (proveedor === 'Cyberpuerta') return `https://www.cyberpuerta.mx/index.php?cl=search&searchparam=${q}`;
     return null;
   }
-  // Marca el url como "link de búsqueda" usando precio=null y encontrado_como=null
+  // Marca el url como "link de búsqueda" usando precio=0 y encontrado_como=null.
+  // OJO: la columna precio es NOT NULL en Supabase — un null aquí hacía fallar
+  // el insert del lote COMPLETO del proveedor (por eso la tabla quedaba vacía).
   function noMatchRow(product, proveedor) {
     const query = searchQuery(product.name);
     return {
-      product_id: product.id, proveedor, precio: null,
+      product_id: product.id, proveedor, precio: 0,
       url: searchUrlFor(proveedor, query), encontrado_como: null,
       actualizado_at: new Date().toISOString()
     };
