@@ -877,7 +877,7 @@
       #about-section { padding-left: 8px; padding-right: 8px; }
       #services-grid { padding-left: 8px; padding-right: 8px; }
       .service-card { padding: 20px 16px !important; }
-      #service-detail { padding: 24px 18px !important; margin-left: 8px; margin-right: 8px; }
+      #service-detail-inner { padding: 24px 18px !important; }
       #whatsapp-bubble { max-width: 170px !important; font-size: 12px !important; }
       .header-inner { gap: 8px; padding: 0 12px; }
       .header-inner > .logo img { height: 40px !important; }
@@ -997,9 +997,9 @@
       </button>
     </div>
 
-    <div id="service-detail" class="hidden" style="position:fixed;inset:0;z-index:3000;background:rgba(12,30,58,0.55);display:flex;align-items:flex-start;justify-content:center;padding:40px 16px 60px;">
-      <div style="background:#fff;border-radius:18px;max-width:760px;width:100%;max-height:calc(100vh - 100px);overflow-y:auto;padding:36px 32px;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,0.3);position:relative;">
-        <button type="button" id="service-detail-close" style="position:sticky;top:0;float:right;background:none;border:none;font-size:22px;cursor:pointer;color:#7A8FA8;line-height:1;z-index:1;">✕</button>
+    <div id="service-detail" style="position:fixed;inset:0;z-index:3000;background:rgba(12,30,58,0.55);display:none;align-items:flex-start;justify-content:center;padding:40px 16px 60px;box-sizing:border-box;">
+      <div id="service-detail-inner" style="background:#fff;border-radius:18px;max-width:760px;width:100%;max-height:calc(100vh - 100px);overflow-y:auto;padding:36px 32px;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,0.3);position:relative;box-sizing:border-box;flex-shrink:0;">
+        <button type="button" id="service-detail-close" style="position:absolute;top:18px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:#7A8FA8;line-height:1;">✕</button>
         <div id="service-detail-icon" style="font-size:38px; margin-bottom:16px;"></div>
         <h3 id="service-detail-title" style="font-family:'Rajdhani',sans-serif; font-size:24px; font-weight:700; color:#0C1E3A; margin-bottom:14px;"></h3>
         <div id="service-detail-body" style="font-size:14.5px; color:#324A66; line-height:1.8;"></div>
@@ -2100,8 +2100,7 @@
     document.getElementById('service-detail-title').textContent = s.title;
     renderDetailSections(s.sections || []);
     const overlay = document.getElementById('service-detail');
-    overlay.classList.remove('hidden');
-    overlay.style.display = 'block';
+    overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
   }
@@ -2132,8 +2131,7 @@
 
   function closeServiceDetail() {
     const overlay = document.getElementById('service-detail');
-    overlay.classList.add('hidden');
-    overlay.style.display = '';
+    overlay.style.display = 'none';
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
   }
