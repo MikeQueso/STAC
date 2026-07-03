@@ -458,14 +458,21 @@ async function run() {
   let totalGuardados = 0;
   for (const prov of proveedoresQueCorrieron) {
     const rowsProv = rows.filter(r => r.proveedor === prov);
+    if (rowsProv.length === 0) continue; // proveedor no procesado en esta corrida
+
     const conPrecio = rowsProv.filter(r => r.precio !== null && Number(r.precio) > 0).length;
     console.log(`  ${prov}: ${conPrecio}/${rowsProv.length} con precio`);
 
-    // Si no hay ni un solo precio para este proveedor, probable fallo del scrape —
-    // conservar los datos anteriores en lugar de borrarlos.
     if (conPrecio === 0) {
-      console.log(`  ↳ Sin precios encontrados para ${prov} — conservando datos anteriores.`);
-      continue;
+      // Sin precios: proteger datos anteriores si ya existen; si la tabla está vacía
+      // para este proveedor, guardar igual (links de búsqueda son útiles).
+      const { count } = await sb.from('precios_abasto')
+        .select('*', { count: 'exact', head: true }).eq('proveedor', prov);
+      if (count > 0) {
+        console.log(`  ↳ ${prov}: sin precios — conservando ${count} filas anteriores.`);
+        continue;
+      }
+      console.log(`  ↳ ${prov}: sin precios pero tabla vacía — guardando links de búsqueda.`);
     }
 
     const { error: delErr } = await sb.from('precios_abasto').delete().eq('proveedor', prov);
