@@ -445,38 +445,40 @@ async function run() {
 
   await browser.close();
 
-  // Borra lo viejo de los proveedores que sí corrieron e inserta lo nuevo.
-  const provasCorridos = ['Office Depot'];
-  if (CYBERPUERTA_ENABLED) provasCorridos.push('Cyberpuerta');
-  if (hasDDTech) provasCorridos.push('DD Tech');
-  if (hasAbasteo) provasCorridos.push('Abasteo');
+  // Guarda por proveedor: solo reemplaza los datos de un proveedor si encontró
+  // al menos 1 resultado en esta corrida. Así si un proveedor falla (sitio caído,
+  // bloqueo temporal), sus precios anteriores se conservan.
+  const proveedoresQueCorrieron = [
+    { nombre: 'Office Depot', activo: true },
+    { nombre: 'Cyberpuerta',  activo: CYBERPUERTA_ENABLED },
+    { nombre: 'DD Tech',      activo: hasDDTech },
+    { nombre: 'Abasteo',      activo: hasAbasteo },
+  ].filter(p => p.activo).map(p => p.nombre);
 
-  // Salvaguarda: si una corrida produce casi 0 resultados (sitio caído,
-  // bloqueo temporal de IP, etc.), NO borramos los precios buenos que ya
-  // había — eso dejaría la tabla vacía. Solo borramos+insertamos si el
-  // resultado tiene una cobertura mínima razonable.
-  const MIN_FRACCION = 0.05; // al menos 5% del catálogo con precio real encontrado
-  const rowsConPrecio = rows.filter(r => r.precio !== null && Number(r.precio) > 0);
-  if (rowsConPrecio.length < products.length * MIN_FRACCION) {
-    console.log(`Cobertura demasiado baja (${rowsConPrecio.length}/${products.length} con precio) — no se borra nada para no perder datos buenos.`);
-    return;
-  }
+  let totalGuardados = 0;
+  for (const prov of proveedoresQueCorrieron) {
+    const rowsProv = rows.filter(r => r.proveedor === prov);
+    const conPrecio = rowsProv.filter(r => r.precio !== null && Number(r.precio) > 0).length;
+    console.log(`  ${prov}: ${conPrecio}/${rowsProv.length} con precio`);
 
-  if (provasCorridos.length) {
-    const { error: delError } = await sb.from('precios_abasto').delete().in('proveedor', provasCorridos);
-    if (delError) console.error('Error borrando precios viejos:', delError.message);
-  }
-
-  if (rows.length) {
-    const { error: insError } = await sb.from('precios_abasto').insert(rows);
-    if (insError) {
-      console.error('Error guardando en Supabase:', insError.message);
-      process.exit(1);
+    // Si no hay ni un solo precio para este proveedor, probable fallo del scrape —
+    // conservar los datos anteriores en lugar de borrarlos.
+    if (conPrecio === 0) {
+      console.log(`  ↳ Sin precios encontrados para ${prov} — conservando datos anteriores.`);
+      continue;
     }
-    console.log(`Guardados ${rows.length} precios en total.`);
-  } else {
-    console.log('No se encontró ningún precio coincidente.');
+
+    const { error: delErr } = await sb.from('precios_abasto').delete().eq('proveedor', prov);
+    if (delErr) { console.error(`Error borrando ${prov}:`, delErr.message); continue; }
+
+    const { error: insErr } = await sb.from('precios_abasto').insert(rowsProv);
+    if (insErr) { console.error(`Error guardando ${prov}:`, insErr.message); continue; }
+
+    totalGuardados += rowsProv.length;
+    console.log(`  ↳ ${prov}: ${rowsProv.length} filas guardadas (${conPrecio} con precio).`);
   }
+
+  console.log(`\nTotal guardado: ${totalGuardados} filas.`);
 }
 
 run();
