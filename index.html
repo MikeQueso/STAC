@@ -1443,7 +1443,10 @@
     return (html || '')
       .replace(/<script[\s\S]*?<\/script>/gi, '')
       .replace(/<iframe[\s\S]*?>/gi, '')
-      .replace(/\son\w+\s*=["'][^"']*["']/gi, '');
+      .replace(/\son\w+\s*=["'][^"']*["']/gi, '')
+      // Colores con variables CSS (p.ej. var(--text-primary)) vienen del tema
+      // oscuro del editor y quedan ilegibles sobre fondo blanco — se eliminan.
+      .replace(/color:\s*var\([^)]*\)\s*;?/gi, '');
   }
   function escapeHtmlForStore(str) {
     return (str == null ? '' : String(str))
