@@ -544,6 +544,7 @@
     .admin-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 24px; border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
     }
     .admin-header h2 { font-family: 'Rajdhani', sans-serif; font-size: 20px; color: var(--text-primary); }
     .modal-close {
@@ -559,7 +560,7 @@
       font-family: 'IBM Plex Sans', sans-serif; white-space: nowrap; flex-shrink: 0;
     }
     .admin-tab.active { color: var(--blue-glow); border-color: var(--blue-glow); }
-    .admin-body { padding: 18px 24px 24px; overflow: auto; flex: 1; }
+    .admin-body { padding: 18px 24px 24px; overflow: auto; flex: 1; min-height: 0; }
     .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
     .admin-table th {
       text-align: left; color: var(--text-dim); font-size: 10.5px;
@@ -988,7 +989,7 @@
         <!-- Descripción breve -->
         <div style="margin-bottom:22px;">
           <label style="font-size:11px;font-weight:600;color:var(--text-dim);letter-spacing:.08em;display:block;margin-bottom:6px;">DESCRIPCIÓN BREVE <span style="font-weight:400;text-transform:none;font-size:11px;">(aparece en la tarjeta)</span></label>
-          <textarea id="svc-description" rows="2" placeholder="Una línea que resume el servicio…" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg-surface);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;resize:vertical;box-sizing:border-box;"></textarea>
+          <textarea id="svc-description" rows="4" placeholder="Describe el servicio brevemente… (sin límite de caracteres)" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg-surface);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;resize:vertical;box-sizing:border-box;"></textarea>
         </div>
 
         <!-- Secciones -->
@@ -2154,7 +2155,7 @@
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
             <span style="font-size:11.5px;font-weight:600;color:var(--text-dim);">📝 PÁRRAFO</span>${navBtns}
           </div>
-          <textarea class="svc-sec-text" data-i="${i}" rows="3" placeholder="Escribe el contenido del párrafo…" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;resize:vertical;box-sizing:border-box;">${escapeHtml(sec.content || '')}</textarea>
+          <textarea class="svc-sec-text" data-i="${i}" rows="6" placeholder="Escribe el contenido del párrafo… (sin límite de caracteres)" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;resize:vertical;box-sizing:border-box;">${escapeHtml(sec.content || '')}</textarea>
         </div>`;
 
       if (sec.type === 'list') {
