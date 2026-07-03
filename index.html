@@ -2103,6 +2103,7 @@
     overlay.classList.remove('hidden');
     overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
 
   function renderDetailSections(sections) {
@@ -2134,6 +2135,7 @@
     overlay.classList.add('hidden');
     overlay.style.display = '';
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
   document.getElementById('service-detail-close').addEventListener('click', closeServiceDetail);
   document.getElementById('service-detail-close-bottom').addEventListener('click', closeServiceDetail);
