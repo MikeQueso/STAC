@@ -370,7 +370,10 @@ async function run() {
         } else {
           rows.push(noMatchRow(product, 'Cyberpuerta'));
         }
-      } catch (e) { console.error(`Cyberpuerta "${product.name}":`, e.message); }
+      } catch (e) {
+        console.error(`Cyberpuerta "${product.name}":`, e.message);
+        rows.push(noMatchRow(product, 'Cyberpuerta'));
+      }
     });
     console.log(`Cyberpuerta: ${conCyber}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
   }
@@ -386,7 +389,10 @@ async function run() {
       } else {
         rows.push(noMatchRow(product, 'Office Depot'));
       }
-    } catch (e) { console.error(`Office Depot "${product.name}":`, e.message); }
+    } catch (e) {
+      console.error(`Office Depot "${product.name}":`, e.message);
+      rows.push(noMatchRow(product, 'Office Depot'));
+    }
   });
   console.log(`Office Depot: ${conOD}/${products.length} con precio. (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
 
@@ -410,7 +416,10 @@ async function run() {
           } else {
             rows.push(noMatchRow(product, 'DD Tech'));
           }
-        } catch (e) { console.error(`DD Tech "${product.name}":`, e.message); }
+        } catch (e) {
+          console.error(`DD Tech "${product.name}":`, e.message);
+          rows.push(noMatchRow(product, 'DD Tech'));
+        }
       }
     }));
     await Promise.all(pages.map((p) => p.close()));
@@ -438,7 +447,10 @@ async function run() {
           } else {
             rows.push(noMatchRow(product, 'Abasteo'));
           }
-        } catch (e) { console.error(`Abasteo "${product.name}":`, e.message); }
+        } catch (e) {
+          console.error(`Abasteo "${product.name}":`, e.message);
+          rows.push(noMatchRow(product, 'Abasteo')); // error de red: guardar al menos el link de búsqueda
+        }
       }
     }));
     await Promise.all(pages.map((p) => p.close()));
