@@ -538,13 +538,12 @@
     .admin-card {
       background: var(--bg-card); border: 1px solid var(--border);
       border-radius: 16px; max-width: 1160px; width: calc(100% - 32px); max-height: 92vh;
-      display: flex; flex-direction: column; overflow: hidden;
+      display: grid; grid-template-rows: auto auto 1fr; overflow: hidden;
       box-shadow: 0 24px 80px rgba(0,0,0,0.6);
     }
     .admin-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 24px; border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
     }
     .admin-header h2 { font-family: 'Rajdhani', sans-serif; font-size: 20px; color: var(--text-primary); }
     .modal-close {
@@ -552,7 +551,7 @@
       font-size: 22px; cursor: pointer; line-height: 1;
     }
     .modal-close:hover { color: var(--text-primary); }
-    .admin-tabs { display: flex; gap: 8px; padding: 14px 24px 0; overflow-x: auto; flex-wrap: nowrap; flex-shrink: 0; }
+    .admin-tabs { display: flex; gap: 8px; padding: 14px 24px 0; overflow-x: auto; flex-wrap: nowrap; }
     .admin-tab {
       background: none; border: none; color: var(--text-dim);
       font-size: 13px; font-weight: 600; padding: 8px 4px;
@@ -560,7 +559,7 @@
       font-family: 'IBM Plex Sans', sans-serif; white-space: nowrap; flex-shrink: 0;
     }
     .admin-tab.active { color: var(--blue-glow); border-color: var(--blue-glow); }
-    .admin-body { padding: 18px 24px 24px; overflow: auto; flex: 1; min-height: 0; }
+    .admin-body { padding: 18px 24px 24px; overflow: auto; min-height: 0; }
     .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
     .admin-table th {
       text-align: left; color: var(--text-dim); font-size: 10.5px;
