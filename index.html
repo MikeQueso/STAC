@@ -997,8 +997,8 @@
       </button>
     </div>
 
-    <div id="service-detail" class="hidden" style="position:fixed;inset:0;z-index:3000;background:rgba(12,30,58,0.55);overflow-y:auto;align-items:flex-start;justify-content:center;padding:40px 16px 60px;">
-      <div style="background:#fff;border-radius:18px;max-width:760px;width:100%;padding:36px 32px;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,0.3);position:relative;">
+    <div id="service-detail" class="hidden" style="position:fixed;inset:0;z-index:3000;background:rgba(12,30,58,0.55);overflow-y:auto;">
+      <div style="background:#fff;border-radius:18px;max-width:760px;width:calc(100% - 32px);margin:40px auto 60px;padding:36px 32px;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,0.3);position:relative;">
         <button type="button" id="service-detail-close" style="position:absolute;top:18px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:#7A8FA8;line-height:1;">✕</button>
         <div id="service-detail-icon" style="font-size:38px; margin-bottom:16px;"></div>
         <h3 id="service-detail-title" style="font-family:'Rajdhani',sans-serif; font-size:24px; font-weight:700; color:#0C1E3A; margin-bottom:14px;"></h3>
@@ -2101,7 +2101,7 @@
     renderDetailSections(s.sections || []);
     const overlay = document.getElementById('service-detail');
     overlay.classList.remove('hidden');
-    overlay.style.display = 'flex';
+    overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
 
