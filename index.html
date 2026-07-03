@@ -2040,7 +2040,7 @@
     const isAdmin = isAdminView();
 
     // Usa los IDs del caché; si está vacío muestra 3 tarjetas por defecto
-    let ids = Object.keys(servicesCache).map(Number).sort((a, b) => a - b);
+    let ids = Object.keys(servicesCache).map(Number).filter(n => n > 0).sort((a, b) => a - b);
     if (!ids.length) ids = [1, 2, 3];
 
     grid.innerHTML = ids.map(id => {
