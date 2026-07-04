@@ -35,30 +35,33 @@ function extFromType(ct, url) {
   return m ? m[1].toLowerCase().replace('jpeg', 'jpg') : 'jpg';
 }
 
-// Galería de una página de producto de Abasteo (OXID, mismas rutas que
-// Cyberpuerta). Las miniaturas usan /generated/product/N/ANCHOxALTO_75/x.jpg;
-// la versión master (máxima resolución) vive en /master/product/N/x.jpg.
+// Galería de una página de producto de Abasteo. Las fotos REALES del producto
+// viven en cyberpuerta.mx/img/product/{S|M|XL}/CODIGO-hash.ext:
+//   - imagen principal: clase .c-pdp-left__main-picture (tamaño M)
+//   - vistas del carrusel: clase .cpx-square-img__img (tamaño S)
+// OJO: NO tomar imágenes sueltas de /out/pictures/ (sellos ISO9001, GPTW,
+// paquetería) ni .cpx-product-image__img (son productos RELACIONADOS).
 async function abasteoGallery(page, url) {
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  await page.waitForTimeout(800);
-  const srcs = await page.$$eval('img', (imgs) =>
-    imgs.map((i) => i.src || i.getAttribute('data-src') || '').filter(Boolean)
-  ).catch(() => []);
+  await page.waitForTimeout(1200);
+  const data = await page.evaluate(() => ({
+    main: document.querySelector('.c-pdp-left__main-picture')?.src || '',
+    thumbs: [...document.querySelectorAll('.cpx-square-img__img')].map((i) => i.src).filter(Boolean),
+  })).catch(() => ({ main: '', thumbs: [] }));
+
   const out = [];
   const seen = new Set();
-  for (const s of srcs) {
-    // Solo imágenes DEL PRODUCTO (/master/product/ o /generated/product/).
-    // El resto de /out/pictures/ son plantilla del sitio: sellos ISO9001,
-    // GPTW, logos de paquetería (wysiwigpro/, deliveryset/, cms/...).
-    if (!/\/out\/pictures\/(master|generated)\/product\//.test(s) || /blank\.gif|logo/i.test(s)) continue;
-    const file = s.split('/').pop();
-    if (seen.has(file)) continue;
+  const push = (src) => {
+    if (!src || !/\/img\/product\//.test(src)) return;
+    const file = src.split('/').pop();
+    if (seen.has(file)) return;
     seen.add(file);
-    // miniatura generada -> master en alta resolución; si master no existe,
-    // uploadImage recibirá ambas y usará la original como respaldo
-    const master = s.replace(/\/generated\/product\/(\d+)\/[0-9_x]+\//, '/master/product/$1/');
-    out.push(master === s ? { url: s } : { url: master, fallback: s });
-  }
+    // probar en orden: XL (máxima), L, M y por último la URL original
+    const sizes = ['XL', 'L', 'M'].map((sz) => src.replace(/\/img\/product\/[A-Z]+\//, `/img/product/${sz}/`));
+    out.push({ urls: [...new Set([...sizes, src])] });
+  };
+  push(data.main);
+  for (const t of data.thumbs) push(t);
   return out.slice(0, MAX_IMGS);
 }
 
@@ -89,15 +92,19 @@ async function fetchImage(url) {
   if (!res || !res.ok) return null;
   const ct = res.headers.get('content-type') || '';
   if (!/image/.test(ct)) return null;
+  if (/svg/.test(ct)) return null; // los SVG son logos de plantilla, nunca fotos de producto
   const buf = Buffer.from(await res.arrayBuffer());
   if (buf.length < 3000) return null; // descarta iconos/miniaturas rotas
   return { buf, ct };
 }
 
 async function uploadImage(productId, n, item) {
-  let img = await fetchImage(item.url);
-  let usedUrl = item.url;
-  if (!img && item.fallback) { img = await fetchImage(item.fallback); usedUrl = item.fallback; }
+  const tries = item.urls || [item.url, item.fallback].filter(Boolean);
+  let img = null, usedUrl = '';
+  for (const u of tries) {
+    img = await fetchImage(u);
+    if (img) { usedUrl = u; break; }
+  }
   if (!img) return null;
   const ext = extFromType(img.ct, usedUrl);
   const path = `${productId}/${n}.${ext}`;
