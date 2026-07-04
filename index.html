@@ -977,8 +977,9 @@
       .reveal { opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
       .reveal.revealed { opacity:1; transform:none; }
       /* ── Carrusel de servicios ── */
-      #services-grid .service-card { flex:0 0 calc((100% - 20px)/2); box-sizing:border-box; min-width:0; }
-      @media (max-width:640px) { #services-grid .service-card { flex:0 0 100%; } }
+      /* Cada servicio ocupa todo el ancho: banner completo por posición */
+      #services-grid .service-card { flex:0 0 100%; box-sizing:border-box; min-width:0; }
+      @media (max-width:640px) { .service-card-hero { padding:30px 22px !important; min-height:0 !important; } .service-card-hero p { max-width:100% !important; } }
       .svc-dot { width:9px; height:9px; border-radius:50%; border:none; background:#C3CFDE; cursor:pointer; padding:0; transition:background .3s, transform .3s; }
       .svc-dot.active { background:#005FFF; transform:scale(1.3); }
       .service-card-hero { transition:transform .35s ease, box-shadow .35s ease; }
@@ -994,21 +995,38 @@
       .ticker-item:hover { color:#4D9FFF; }
       .ticker-sep { color:#D72638; font-size:13px; align-self:center; }
       @keyframes tickerMove { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-      /* ── Partículas tecnológicas flotando en la portada ── */
-      .hero-particle { position:absolute; bottom:-30px; opacity:0; pointer-events:none; z-index:0; animation:particleRise linear infinite; }
-      @keyframes particleRise {
-        0%   { transform:translateY(0) rotate(0deg); opacity:0; }
-        12%  { opacity:.30; }
-        85%  { opacity:.22; }
-        100% { transform:translateY(-580px) rotate(35deg); opacity:0; }
+      /* ── Productos de la tienda flotando en la portada ── */
+      .hero-particle {
+        position:absolute; bottom:-80px; width:60px; height:60px; object-fit:contain;
+        border-radius:13px; background:rgba(255,255,255,0.78); padding:7px; box-sizing:border-box;
+        box-shadow:0 8px 22px rgba(12,30,58,0.18); border:1px solid rgba(0,95,255,0.10);
+        opacity:0; pointer-events:none; z-index:0; animation:particleRise linear infinite;
       }
+      @keyframes particleRise {
+        0%   { transform:translateY(0) rotate(-4deg); opacity:0; }
+        12%  { opacity:.75; }
+        85%  { opacity:.55; }
+        100% { transform:translateY(-640px) rotate(7deg); opacity:0; }
+      }
+      /* ── Botón directo a la tienda ── */
+      #hero-cta {
+        position:relative; z-index:1; margin-top:10px;
+        background:linear-gradient(135deg,#005FFF 0%,#0C7CFF 100%); color:#fff; border:none;
+        border-radius:13px; padding:15px 36px; font-family:'Rajdhani',sans-serif; font-weight:700;
+        font-size:17.5px; letter-spacing:1.2px; cursor:pointer;
+        box-shadow:0 10px 30px rgba(0,95,255,0.35);
+        animation:ctaPulse 2.6s ease-in-out infinite;
+        transition:transform .25s ease;
+      }
+      #hero-cta:hover { transform:translateY(-3px) scale(1.04); }
+      @keyframes ctaPulse { 0%,100% { box-shadow:0 10px 30px rgba(0,95,255,0.35); } 50% { box-shadow:0 12px 46px rgba(0,95,255,0.62); } }
       /* ── Invitación a descubrir ── */
       #hero-scroll-hint { display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:6px; color:#5A7090; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:14px; letter-spacing:1.5px; cursor:pointer; user-select:none; position:relative; z-index:1; transition:color .25s; }
       #hero-scroll-hint:hover { color:#005FFF; }
       #hero-scroll-hint .chev { font-size:22px; line-height:1; animation:chevBounce 1.6s ease-in-out infinite; }
       @keyframes chevBounce { 0%,100% { transform:translateY(0); opacity:.55; } 50% { transform:translateY(7px); opacity:1; } }
       @media (prefers-reduced-motion: reduce) {
-        #hero-logo, #hero-glow, .hero-orb, .ticker-track, .hero-particle, #hero-scroll-hint .chev { animation:none !important; }
+        #hero-logo, #hero-glow, .hero-orb, .ticker-track, .hero-particle, #hero-scroll-hint .chev, #hero-cta { animation:none !important; }
         .reveal { opacity:1; transform:none; transition:none; }
       }
     </style>
@@ -1016,14 +1034,9 @@
       <div class="hero-orb hero-orb-red"></div>
       <div class="hero-orb hero-orb-blue"></div>
       <div id="hero-glow"></div>
-      <span class="hero-particle" style="left:6%;  font-size:20px; animation-duration:11s; animation-delay:0s;">⚙️</span>
-      <span class="hero-particle" style="left:16%; font-size:15px; animation-duration:14s; animation-delay:3s;">💾</span>
-      <span class="hero-particle" style="left:26%; font-size:18px; animation-duration:12s; animation-delay:6s;">🖥️</span>
-      <span class="hero-particle" style="left:72%; font-size:16px; animation-duration:13s; animation-delay:1.5s;">🔧</span>
-      <span class="hero-particle" style="left:82%; font-size:20px; animation-duration:15s; animation-delay:5s;">🖱️</span>
-      <span class="hero-particle" style="left:90%; font-size:15px; animation-duration:11.5s; animation-delay:8s;">⌨️</span>
-      <span class="hero-particle" style="left:48%; font-size:14px; animation-duration:16s; animation-delay:9s;">💻</span>
+      <div id="hero-particles" style="position:absolute; inset:0; pointer-events:none; z-index:0;"></div>
       <img id="hero-logo" src="stac-logo.png" alt="STAC" style="height:440px; max-width:90%; display:block; margin:0 auto;" />
+      <button type="button" id="hero-cta">🛒 IR A LA TIENDA ONLINE</button>
       <div id="hero-scroll-hint">DESLIZA PARA DESCUBRIR<span class="chev">⌄</span></div>
     </div>
 
@@ -2157,15 +2170,15 @@
       if (filled) {
         const t = SVC_THEMES[themeIdx++ % SVC_THEMES.length];
         return `
-        <div class="service-card service-card-hero" data-service="${id}" style="position:relative;overflow:hidden;background:${t.bg};border:none;border-radius:18px;padding:32px 28px;text-align:left;display:flex;flex-direction:column;box-shadow:0 14px 34px rgba(12,30,58,0.28);color:#fff;">
-          <div style="position:absolute;right:-50px;top:-50px;width:230px;height:230px;border-radius:50%;background:${t.orb1};filter:blur(52px);pointer-events:none;"></div>
-          <div style="position:absolute;left:-60px;bottom:-70px;width:210px;height:210px;border-radius:50%;background:${t.orb2};filter:blur(56px);pointer-events:none;"></div>
-          <div style="position:absolute;right:6px;bottom:-18px;font-size:130px;line-height:1;opacity:0.14;transform:rotate(-12deg);pointer-events:none;">${escapeHtml(s.icon || '🛠️')}</div>
-          ${isAdmin ? `<button class="svc-edit-btn" data-id="${id}" title="Editar servicio" style="position:absolute;top:12px;right:12px;z-index:2;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 9px;font-size:11.5px;cursor:pointer;color:#fff;font-family:'IBM Plex Sans',sans-serif;">✏️ Editar</button>` : ''}
-          <div style="position:relative;display:inline-flex;width:62px;height:62px;align-items:center;justify-content:center;border-radius:16px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.22);font-size:31px;margin-bottom:16px;">${escapeHtml(s.icon || '🛠️')}</div>
-          <h3 style="position:relative;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:0.3px;">${escapeHtml(s.title)}</h3>
-          <p style="position:relative;font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.65;flex:1;">${descHtml}</p>
-          <button type="button" class="service-readmore" data-service="${id}" style="position:relative;margin-top:18px;align-self:flex-start;background:#fff;color:#0C1E3A;border:none;border-radius:9px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;box-shadow:0 4px 14px rgba(0,0,0,0.22);">Leer más →</button>
+        <div class="service-card service-card-hero" data-service="${id}" style="position:relative;overflow:hidden;background:${t.bg};border:none;border-radius:20px;padding:46px 50px;min-height:330px;text-align:left;display:flex;flex-direction:column;box-shadow:0 14px 34px rgba(12,30,58,0.28);color:#fff;">
+          <div style="position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:${t.orb1};filter:blur(60px);pointer-events:none;"></div>
+          <div style="position:absolute;left:-70px;bottom:-80px;width:260px;height:260px;border-radius:50%;background:${t.orb2};filter:blur(62px);pointer-events:none;"></div>
+          <div style="position:absolute;right:30px;bottom:-30px;font-size:210px;line-height:1;opacity:0.15;transform:rotate(-10deg);pointer-events:none;">${escapeHtml(s.icon || '🛠️')}</div>
+          ${isAdmin ? `<button class="svc-edit-btn" data-id="${id}" title="Editar servicio" style="position:absolute;top:14px;right:14px;z-index:2;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 9px;font-size:11.5px;cursor:pointer;color:#fff;font-family:'IBM Plex Sans',sans-serif;">✏️ Editar</button>` : ''}
+          <div style="position:relative;display:inline-flex;width:70px;height:70px;align-items:center;justify-content:center;border-radius:18px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.22);font-size:35px;margin-bottom:18px;">${escapeHtml(s.icon || '🛠️')}</div>
+          <h3 style="position:relative;font-family:'Rajdhani',sans-serif;font-size:clamp(24px,3.2vw,34px);font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:0.4px;">${escapeHtml(s.title)}</h3>
+          <p style="position:relative;font-size:14.5px;color:rgba(255,255,255,0.86);line-height:1.7;flex:1;max-width:640px;">${descHtml}</p>
+          <button type="button" class="service-readmore" data-service="${id}" style="position:relative;margin-top:22px;align-self:flex-start;background:#fff;color:#0C1E3A;border:none;border-radius:10px;padding:11px 26px;font-size:14px;font-weight:700;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;box-shadow:0 4px 14px rgba(0,0,0,0.22);">Leer más →</button>
         </div>`;
       }
 
@@ -2196,7 +2209,7 @@
   /* ── Carrusel de servicios: avanza solo cada 4.5s, se pausa con el cursor
         encima y continúa al quitarlo. Los puntos permiten saltar a una posición. ── */
   let svcCarIdx = 0, svcCarTimer = null;
-  function svcPerView() { return window.innerWidth <= 640 ? 1 : 2; }
+  function svcPerView() { return 1; } // cada servicio ocupa todo el ancho
   function svcCarPositions() {
     const track = document.getElementById('services-grid');
     return Math.max(1, track.children.length - svcPerView() + 1);
@@ -2270,6 +2283,33 @@
       const about = document.getElementById('about-section');
       if (about) about.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
+    const cta = document.getElementById('hero-cta');
+    if (cta) cta.addEventListener('click', () => {
+      const t = document.getElementById('home-cat-grid');
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  })();
+
+  /* ── Productos reales de la tienda flotando en la portada ── */
+  (async () => {
+    const wrap = document.getElementById('hero-particles');
+    if (!wrap) return;
+    try {
+      const { data } = await sb.from('products').select('images').limit(60);
+      const imgs = (data || []).map(p => (p.images || [])[0]).filter(Boolean);
+      for (let i = imgs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [imgs[i], imgs[j]] = [imgs[j], imgs[i]];
+      }
+      imgs.slice(0, 9).forEach(src => {
+        const img = document.createElement('img');
+        img.src = src; img.alt = ''; img.className = 'hero-particle'; img.loading = 'lazy';
+        img.style.left = (3 + Math.random() * 90).toFixed(1) + '%';
+        img.style.animationDuration = (11 + Math.random() * 6).toFixed(1) + 's';
+        img.style.animationDelay = (Math.random() * 11).toFixed(1) + 's';
+        wrap.appendChild(img);
+      });
+    } catch (e) { /* sin partículas si falla la carga */ }
   })();
 
   async function addNewService() {
