@@ -31,24 +31,21 @@ function modelCodes(name) {
 
 // needed = cuantos faltan por categoria; src = de donde sacarlos; queries = busquedas.
 const CONFIG = {
-  'Almacenamiento':    { needed: 12, src: 'dd', queries: ['ssd kingston', 'ssd crucial', 'ssd adata', 'disco duro', 'ssd nvme', 'unidad estado solido'], must: /ssd|disco duro|estado s[oó]lido|nvme/i, reject: /enclosure|carcasa|gabinete|adaptador|cable|docking|lector|memoria ram|disipador/i },
-  'Audífonos':         { needed: 8,  src: 'dd', queries: ['audifonos gamer', 'diadema gamer', 'audifonos inalambricos'], must: /audifono|diadema|headset/i },
-  'Fuente de Poder':   { needed: 6,  src: 'dd', queries: ['fuente de poder', 'fuente poder corsair', 'fuente poder thermaltake', 'fuente poder cooler master', 'fuente poder evga'], must: /fuente/i, reject: /gabinete|combo|kit/i },
-  'Gabinete':          { needed: 9,  src: 'dd', queries: ['gabinete gamer', 'gabinete atx', 'gabinete mid tower'], must: /gabinete/i },
-  'Memoria RAM':       { needed: 7,  src: 'dd', queries: ['memoria ram', 'memoria ram kingston', 'memoria ram corsair', 'memoria ram adata'], must: /memoria ram/i },
-  'Mouse':             { needed: 2,  src: 'dd', queries: ['mouse gamer', 'mouse inalambrico gamer'], must: /mouse/i },
-  'Placa Madre':       { needed: 6,  src: 'dd', queries: ['tarjeta madre', 'tarjeta madre asus', 'tarjeta madre gigabyte', 'tarjeta madre msi'], must: /tarjeta madre|motherboard|placa/i },
-  'Procesador':        { needed: 2,  src: 'dd', queries: ['procesador ryzen', 'procesador intel'], must: /procesador|ryzen|core i/i },
-  'Refrigeración':     { needed: 5,  src: 'dd', queries: ['disipador', 'enfriamiento liquido', 'cooler cpu'], must: /disipador|enfriamiento|refriger|aio/i, reject: /gabinete|pasta|soporte|combo/i },
-  'Tarjeta Gráfica':   { needed: 1,  src: 'dd', queries: ['tarjeta de video', 'tarjeta de video rtx', 'tarjeta de video radeon'], must: /geforce|radeon|\brtx\b|\bgtx\b|rx\s?\d|intel arc/i, reject: /soporte|riser|cable|extensor|adaptador|base|cooler/i },
-  'Impresoras':        { needed: 17, src: 'od', render: true, queries: ['impresora', 'impresora laser', 'impresora tinta continua', 'impresora multifuncional'], must: /impresora|multifuncional/i },
-  'Tinta de impresora':{ needed: 11, src: 'od', queries: ['cartucho tinta hp', 'cartucho tinta canon', 'botella tinta epson', 'cartucho tinta brother', 'toner'], must: /tinta|cartucho|toner|tóner|botella/i },
+  // Segunda pasada 04-jul-2026: solo faltan 1 audífono, 1 gabinete y 2 ventiladores.
+  'Almacenamiento':    { needed: 0, src: 'dd', queries: ['ssd kingston', 'ssd crucial', 'ssd adata', 'disco duro', 'ssd nvme', 'unidad estado solido'], must: /ssd|disco duro|estado s[oó]lido|nvme/i, reject: /enclosure|carcasa|gabinete|adaptador|cable|docking|lector|memoria ram|disipador/i },
+  'Audífonos':         { needed: 1, src: 'dd', queries: ['diadema hyperx', 'audifonos logitech gamer', 'diadema razer', 'audifonos gamer', 'diadema gamer'], must: /audifono|diadema|headset/i },
+  'Fuente de Poder':   { needed: 0, src: 'dd', queries: ['fuente de poder', 'fuente poder corsair', 'fuente poder thermaltake', 'fuente poder cooler master', 'fuente poder evga'], must: /fuente/i, reject: /gabinete|combo|kit/i },
+  'Gabinete':          { needed: 1, src: 'dd', queries: ['gabinete lian li', 'gabinete nzxt', 'gabinete cooler master', 'gabinete gamer', 'gabinete atx'], must: /gabinete/i },
+  'Memoria RAM':       { needed: 0, src: 'dd', queries: ['memoria ram', 'memoria ram kingston', 'memoria ram corsair', 'memoria ram adata'], must: /memoria ram/i },
+  'Placa Madre':       { needed: 0, src: 'dd', queries: ['tarjeta madre', 'tarjeta madre asus', 'tarjeta madre gigabyte', 'tarjeta madre msi'], must: /tarjeta madre|motherboard|placa/i },
+  'Procesador':        { needed: 0, src: 'dd', queries: ['procesador ryzen', 'procesador intel'], must: /procesador|ryzen|core i/i },
+  'Ventiladores':      { needed: 2, src: 'dd', queries: ['ventilador corsair', 'ventilador thermaltake', 'ventilador cooler master', 'kit ventiladores argb', 'ventilador gabinete', 'ventilador gabinete argb'], must: /ventilador/i, reject: /disipador|enfriamiento liquido|aio|laptop|base|soporte|cpu/i },
   // A diferencia de las demas categorias, aqui SI queremos resultados tipo
   // "Computadora ..." (ver allowBuild abajo, que desactiva el filtro global
   // que excluye comput/pc/combo para las demas categorias).
   // Las gamer de DD Tech casi todas traen GPU dedicada y superan $15,000;
   // Abasteo tiene equipos de oficina/basicos sin GPU dedicada, mas baratos.
-  'Computadoras ya armadas': { needed: 5, src: 'ab', allowBuild: true, maxPrice: 15000, queries: ['computadora', 'computadora de escritorio', 'pc de escritorio', 'computadora oficina'], must: /computadora|\bpc\b/i, reject: /laptop|notebook|barebone|gabinete\s*$/i },
+  'Computadoras ya armadas': { needed: 0, src: 'ab', allowBuild: true, maxPrice: 15000, queries: ['computadora', 'computadora de escritorio', 'pc de escritorio', 'computadora oficina'], must: /computadora|\bpc\b/i, reject: /laptop|notebook|barebone|gabinete\s*$/i },
 };
 
 async function ddSearch(page, q) {

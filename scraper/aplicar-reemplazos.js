@@ -18,7 +18,7 @@ const PREFIX = {
   'Gabinete': 'GAB', 'Impresoras': 'IMP', 'Memoria RAM': 'RAM', 'Mouse': 'MOU',
   'Placa Madre': 'MB', 'Procesador': 'CPU', 'Refrigeración': 'ACFRE',
   'Tarjeta Gráfica': 'GPU', 'Tinta de impresora': 'TIN',
-  'Computadoras ya armadas': 'PC',
+  'Computadoras ya armadas': 'PC', 'Ventiladores': 'VEN',
 };
 
 function extFromType(ct, url) {
