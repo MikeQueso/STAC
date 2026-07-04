@@ -21,6 +21,9 @@ const BUCKET = 'productos';
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 const DRY = process.argv.includes('--dry');
 const CAT_ARG = (process.argv.find((a) => a.startsWith('--cat=')) || '').replace('--cat=', '');
+// --redo-abasteo: reprocesa TODOS los productos con página de Abasteo aunque ya
+// tengan varias imágenes (para limpiar los sellos ISO que se colaron).
+const REDO_AB = process.argv.includes('--redo-abasteo');
 const MAX_IMGS = 5;
 
 function extFromType(ct, url) {
@@ -44,7 +47,10 @@ async function abasteoGallery(page, url) {
   const out = [];
   const seen = new Set();
   for (const s of srcs) {
-    if (!/\/out\/pictures\//.test(s) || /blank\.gif|logo/i.test(s)) continue;
+    // Solo imágenes DEL PRODUCTO (/master/product/ o /generated/product/).
+    // El resto de /out/pictures/ son plantilla del sitio: sellos ISO9001,
+    // GPTW, logos de paquetería (wysiwigpro/, deliveryset/, cms/...).
+    if (!/\/out\/pictures\/(master|generated)\/product\//.test(s) || /blank\.gif|logo/i.test(s)) continue;
     const file = s.split('/').pop();
     if (seen.has(file)) continue;
     seen.add(file);
@@ -119,8 +125,9 @@ async function uploadImage(productId, n, item) {
   const targets = products.filter((p) => {
     if (CAT_ARG && p.category !== CAT_ARG) return false;
     if (!paginaDe[p.id]) return false;
-    if (p.category === 'Computadoras ya armadas') return true; // siempre: borrosas
-    return (p.images || []).length <= 1;                        // demás: solo una vista
+    if (REDO_AB) return paginaDe[p.id].proveedor === 'Abasteo';  // limpieza de sellos ISO
+    if (p.category === 'Computadoras ya armadas') return true;   // siempre: borrosas
+    return (p.images || []).length <= 1;                          // demás: solo una vista
   });
   console.log(`Productos a procesar: ${targets.length}`);
 
@@ -135,10 +142,11 @@ async function uploadImage(productId, n, item) {
         ? await abasteoGallery(page, ref.url)
         : await ddtechGallery(page, ref.url);
 
-      const esCompu = p.category === 'Computadoras ya armadas';
-      // Para no empeorar: solo reemplazar si conseguimos 2+ vistas,
-      // o 1 vista tratándose de computadoras (su imagen actual es mala).
-      if (gallery.length < 2 && !(esCompu && gallery.length >= 1)) {
+      // En modo redo o computadoras basta 1 vista (la actual es mala o trae sellos ISO);
+      // en el resto solo reemplazar si conseguimos 2+ para no empeorar.
+      const aceptaUna = p.category === 'Computadoras ya armadas' || REDO_AB;
+      const esCompu = aceptaUna;
+      if (gallery.length < 2 && !(aceptaUna && gallery.length >= 1)) {
         sinCambio++;
         console.log(`  = ${p.name.slice(0, 60)} (galería: ${gallery.length})`);
         continue;
