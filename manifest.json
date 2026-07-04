@@ -1,0 +1,15 @@
+{
+  "name": "STAC · Soporte Técnico Avanzado en Computación",
+  "short_name": "STAC",
+  "description": "Tienda de componentes de PC y servicios de soporte técnico.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#E8EDF3",
+  "theme_color": "#0C1E3A",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

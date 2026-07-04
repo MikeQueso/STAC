@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>STAC – Componentes para PC</title>
   <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0C1E3A" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -962,6 +965,10 @@
       @media (max-width:640px) { #services-grid .service-card { flex:0 0 100%; } }
       .svc-dot { width:9px; height:9px; border-radius:50%; border:none; background:#C3CFDE; cursor:pointer; padding:0; transition:background .3s, transform .3s; }
       .svc-dot.active { background:#005FFF; transform:scale(1.3); }
+      .service-card-hero { transition:transform .35s ease, box-shadow .35s ease; }
+      .service-card-hero:hover { transform:translateY(-6px); box-shadow:0 24px 52px rgba(12,30,58,0.38) !important; }
+      .service-card-hero .service-readmore { transition:transform .25s ease, box-shadow .25s ease; }
+      .service-card-hero .service-readmore:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.3) !important; }
       @media (prefers-reduced-motion: reduce) {
         #hero-logo, #hero-glow, .hero-orb { animation:none !important; }
         .reveal { opacity:1; transform:none; transition:none; }
@@ -2087,14 +2094,41 @@
     let ids = Object.keys(servicesCache).map(Number).filter(n => n > 0).sort((a, b) => a - b);
     if (!ids.length) ids = [1, 2, 3];
 
+    // Temas de banner para los servicios con contenido (estilo publicitario,
+    // colores de la marca). Los "Próximamente" conservan la tarjeta blanca simple.
+    const SVC_THEMES = [
+      { bg: 'linear-gradient(135deg,#0C1E3A 0%,#123563 55%,#005FFF 140%)', orb1: 'rgba(0,95,255,0.45)',  orb2: 'rgba(215,38,56,0.30)' },
+      { bg: 'linear-gradient(135deg,#1A0A2E 0%,#2D1B57 55%,#5B4B9E 140%)', orb1: 'rgba(120,90,255,0.42)', orb2: 'rgba(0,180,255,0.28)' },
+      { bg: 'linear-gradient(135deg,#3A0D14 0%,#7A1C2A 55%,#D72638 140%)', orb1: 'rgba(255,105,120,0.38)', orb2: 'rgba(0,95,255,0.25)' },
+    ];
+    let themeIdx = 0;
+
     grid.innerHTML = ids.map(id => {
       const s = servicesCache[id] || { id, icon: '🛠️', title: 'Próximamente', description: 'Estamos preparando la información de este servicio.' };
+      const descHtml = /<[a-z][\s\S]*>/i.test(s.description || '') ? sanitizeHtml(s.description) : escapeHtml(s.description);
+      const filled = s.title && !/pr[oó]ximamente/i.test(s.title);
+
+      if (filled) {
+        const t = SVC_THEMES[themeIdx++ % SVC_THEMES.length];
+        return `
+        <div class="service-card service-card-hero" data-service="${id}" style="position:relative;overflow:hidden;background:${t.bg};border:none;border-radius:18px;padding:32px 28px;text-align:left;display:flex;flex-direction:column;box-shadow:0 14px 34px rgba(12,30,58,0.28);color:#fff;">
+          <div style="position:absolute;right:-50px;top:-50px;width:230px;height:230px;border-radius:50%;background:${t.orb1};filter:blur(52px);pointer-events:none;"></div>
+          <div style="position:absolute;left:-60px;bottom:-70px;width:210px;height:210px;border-radius:50%;background:${t.orb2};filter:blur(56px);pointer-events:none;"></div>
+          <div style="position:absolute;right:6px;bottom:-18px;font-size:130px;line-height:1;opacity:0.14;transform:rotate(-12deg);pointer-events:none;">${escapeHtml(s.icon || '🛠️')}</div>
+          ${isAdmin ? `<button class="svc-edit-btn" data-id="${id}" title="Editar servicio" style="position:absolute;top:12px;right:12px;z-index:2;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 9px;font-size:11.5px;cursor:pointer;color:#fff;font-family:'IBM Plex Sans',sans-serif;">✏️ Editar</button>` : ''}
+          <div style="position:relative;display:inline-flex;width:62px;height:62px;align-items:center;justify-content:center;border-radius:16px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.22);font-size:31px;margin-bottom:16px;">${escapeHtml(s.icon || '🛠️')}</div>
+          <h3 style="position:relative;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:0.3px;">${escapeHtml(s.title)}</h3>
+          <p style="position:relative;font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.65;flex:1;">${descHtml}</p>
+          <button type="button" class="service-readmore" data-service="${id}" style="position:relative;margin-top:18px;align-self:flex-start;background:#fff;color:#0C1E3A;border:none;border-radius:9px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;box-shadow:0 4px 14px rgba(0,0,0,0.22);">Leer más →</button>
+        </div>`;
+      }
+
       return `
         <div class="service-card" data-service="${id}" style="background:#fff;border:1px solid rgba(0,95,255,0.14);border-radius:14px;padding:28px 24px;text-align:left;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(12,30,58,0.06);position:relative;">
           ${isAdmin ? `<button class="svc-edit-btn" data-id="${id}" title="Editar servicio" style="position:absolute;top:10px;right:10px;background:rgba(0,95,255,0.08);border:1px solid rgba(0,95,255,0.2);border-radius:6px;padding:3px 9px;font-size:11.5px;cursor:pointer;color:#005FFF;font-family:'IBM Plex Sans',sans-serif;">✏️ Editar</button>` : ''}
           <div style="font-size:30px;margin-bottom:14px;">${escapeHtml(s.icon || '🛠️')}</div>
           <h3 style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#0C1E3A;margin-bottom:10px;">${escapeHtml(s.title)}</h3>
-          <p style="font-size:13.5px;color:#5A7090;line-height:1.6;flex:1;">${/<[a-z][\s\S]*>/i.test(s.description || '') ? sanitizeHtml(s.description) : escapeHtml(s.description)}</p>
+          <p style="font-size:13.5px;color:#5A7090;line-height:1.6;flex:1;">${descHtml}</p>
           <button type="button" class="service-readmore" data-service="${id}" style="margin-top:16px;background:none;border:none;color:#005FFF;font-size:13px;font-weight:600;cursor:pointer;text-align:left;padding:0;font-family:'IBM Plex Sans',sans-serif;">Presiona para leer más al respecto →</button>
         </div>`;
     }).join('');
@@ -4443,6 +4477,13 @@
         window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.5)' : 'none';
     });
   })();
+
+  /* ── PWA: permite instalar el sitio como app en celular y escritorio ── */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
 </script>
 </body>
 </html>
