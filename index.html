@@ -934,6 +934,22 @@
 <!-- ── PRODUCTOS DESTACADOS ───────────────────────────────────── -->
 <!-- ── INICIO: HERO + CATEGORÍAS ───────────────────────────────── -->
 <section id="home-section" style="padding-top:128px; min-height:calc(100vh - 128px); background:#E8EDF3;">
+  <div id="ticker-bar">
+    <div class="ticker-track">
+      <div class="ticker-group">
+        <span class="ticker-item" data-goto="servicios">🛠️ ¡Dale un vistazo a nuestros servicios!</span><span class="ticker-sep">◆</span>
+        <span class="ticker-item" data-goto="tienda">🛒 ¡Visita nuestra tienda online!</span><span class="ticker-sep">◆</span>
+        <span class="ticker-item" data-goto="servicios">🛠️ ¡Dale un vistazo a nuestros servicios!</span><span class="ticker-sep">◆</span>
+        <span class="ticker-item" data-goto="tienda">🛒 ¡Visita nuestra tienda online!</span><span class="ticker-sep">◆</span>
+      </div>
+      <div class="ticker-group" aria-hidden="true">
+        <span class="ticker-item" data-goto="servicios">🛠️ ¡Dale un vistazo a nuestros servicios!</span><span class="ticker-sep">◆</span>
+        <span class="ticker-item" data-goto="tienda">🛒 ¡Visita nuestra tienda online!</span><span class="ticker-sep">◆</span>
+        <span class="ticker-item" data-goto="servicios">🛠️ ¡Dale un vistazo a nuestros servicios!</span><span class="ticker-sep">◆</span>
+        <span class="ticker-item" data-goto="tienda">🛒 ¡Visita nuestra tienda online!</span><span class="ticker-sep">◆</span>
+      </div>
+    </div>
+  </div>
   <div class="inner">
     <style>
       /* ── Portada animada ── */
@@ -969,8 +985,30 @@
       .service-card-hero:hover { transform:translateY(-6px); box-shadow:0 24px 52px rgba(12,30,58,0.38) !important; }
       .service-card-hero .service-readmore { transition:transform .25s ease, box-shadow .25s ease; }
       .service-card-hero .service-readmore:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.3) !important; }
+      /* ── Barra de anuncios en movimiento ── */
+      #ticker-bar { overflow:hidden; background:linear-gradient(90deg,#0C1E3A 0%,#14345E 50%,#0C1E3A 100%); padding:11px 0; box-shadow:0 4px 18px rgba(12,30,58,0.22); }
+      .ticker-track { display:inline-flex; white-space:nowrap; animation:tickerMove 24s linear infinite; will-change:transform; }
+      #ticker-bar:hover .ticker-track { animation-play-state:paused; }
+      .ticker-group { display:inline-flex; }
+      .ticker-item { display:inline-flex; align-items:center; gap:9px; padding:0 30px; color:#fff; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:1.2px; cursor:pointer; transition:color .25s; }
+      .ticker-item:hover { color:#4D9FFF; }
+      .ticker-sep { color:#D72638; font-size:13px; align-self:center; }
+      @keyframes tickerMove { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+      /* ── Partículas tecnológicas flotando en la portada ── */
+      .hero-particle { position:absolute; bottom:-30px; opacity:0; pointer-events:none; z-index:0; animation:particleRise linear infinite; }
+      @keyframes particleRise {
+        0%   { transform:translateY(0) rotate(0deg); opacity:0; }
+        12%  { opacity:.30; }
+        85%  { opacity:.22; }
+        100% { transform:translateY(-580px) rotate(35deg); opacity:0; }
+      }
+      /* ── Invitación a descubrir ── */
+      #hero-scroll-hint { display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:6px; color:#5A7090; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:14px; letter-spacing:1.5px; cursor:pointer; user-select:none; position:relative; z-index:1; transition:color .25s; }
+      #hero-scroll-hint:hover { color:#005FFF; }
+      #hero-scroll-hint .chev { font-size:22px; line-height:1; animation:chevBounce 1.6s ease-in-out infinite; }
+      @keyframes chevBounce { 0%,100% { transform:translateY(0); opacity:.55; } 50% { transform:translateY(7px); opacity:1; } }
       @media (prefers-reduced-motion: reduce) {
-        #hero-logo, #hero-glow, .hero-orb { animation:none !important; }
+        #hero-logo, #hero-glow, .hero-orb, .ticker-track, .hero-particle, #hero-scroll-hint .chev { animation:none !important; }
         .reveal { opacity:1; transform:none; transition:none; }
       }
     </style>
@@ -978,7 +1016,15 @@
       <div class="hero-orb hero-orb-red"></div>
       <div class="hero-orb hero-orb-blue"></div>
       <div id="hero-glow"></div>
+      <span class="hero-particle" style="left:6%;  font-size:20px; animation-duration:11s; animation-delay:0s;">⚙️</span>
+      <span class="hero-particle" style="left:16%; font-size:15px; animation-duration:14s; animation-delay:3s;">💾</span>
+      <span class="hero-particle" style="left:26%; font-size:18px; animation-duration:12s; animation-delay:6s;">🖥️</span>
+      <span class="hero-particle" style="left:72%; font-size:16px; animation-duration:13s; animation-delay:1.5s;">🔧</span>
+      <span class="hero-particle" style="left:82%; font-size:20px; animation-duration:15s; animation-delay:5s;">🖱️</span>
+      <span class="hero-particle" style="left:90%; font-size:15px; animation-duration:11.5s; animation-delay:8s;">⌨️</span>
+      <span class="hero-particle" style="left:48%; font-size:14px; animation-duration:16s; animation-delay:9s;">💻</span>
       <img id="hero-logo" src="stac-logo.png" alt="STAC" style="height:440px; max-width:90%; display:block; margin:0 auto;" />
+      <div id="hero-scroll-hint">DESLIZA PARA DESCUBRIR<span class="chev">⌄</span></div>
     </div>
 
     <!-- ── ACERCA DE NOSOTROS + SERVICIOS ───────────────────────── -->
@@ -2209,6 +2255,21 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
     els.forEach(e => io.observe(e));
+  })();
+
+  /* ── Barra de anuncios e invitación: llevan a su sección al hacer clic ── */
+  (() => {
+    document.querySelectorAll('.ticker-item').forEach(t => t.addEventListener('click', () => {
+      const target = t.dataset.goto === 'tienda'
+        ? document.getElementById('home-cat-grid')
+        : document.getElementById('services-carousel');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }));
+    const hint = document.getElementById('hero-scroll-hint');
+    if (hint) hint.addEventListener('click', () => {
+      const about = document.getElementById('about-section');
+      if (about) about.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   })();
 
   async function addNewService() {
