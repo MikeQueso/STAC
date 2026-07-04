@@ -24,6 +24,8 @@ const CAT_ARG = (process.argv.find((a) => a.startsWith('--cat=')) || '').replace
 // --redo-abasteo: reprocesa TODOS los productos con página de Abasteo aunque ya
 // tengan varias imágenes (para limpiar los sellos ISO que se colaron).
 const REDO_AB = process.argv.includes('--redo-abasteo');
+// --solo="regex": limita a productos cuyo nombre coincida (reintentos puntuales).
+const SOLO = (process.argv.find((a) => a.startsWith('--solo=')) || '').replace('--solo=', '');
 const MAX_IMGS = 5;
 
 function extFromType(ct, url) {
@@ -43,7 +45,8 @@ function extFromType(ct, url) {
 // paquetería) ni .cpx-product-image__img (son productos RELACIONADOS).
 async function abasteoGallery(page, url) {
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  await page.waitForTimeout(1200);
+  await page.waitForSelector('.c-pdp-left__main-picture', { timeout: 9000 }).catch(() => {});
+  await page.waitForTimeout(1000);
   const data = await page.evaluate(() => ({
     main: document.querySelector('.c-pdp-left__main-picture')?.src || '',
     thumbs: [...document.querySelectorAll('.cpx-square-img__img')].map((i) => i.src).filter(Boolean),
@@ -131,6 +134,7 @@ async function uploadImage(productId, n, item) {
 
   const targets = products.filter((p) => {
     if (CAT_ARG && p.category !== CAT_ARG) return false;
+    if (SOLO && !new RegExp(SOLO, 'i').test(p.name)) return false;
     if (!paginaDe[p.id]) return false;
     if (REDO_AB) return paginaDe[p.id].proveedor === 'Abasteo';  // limpieza de sellos ISO
     if (p.category === 'Computadoras ya armadas') return true;   // siempre: borrosas
