@@ -880,7 +880,8 @@
       #about-section { padding-left: 8px; padding-right: 8px; }
       #services-grid { padding-left: 8px; padding-right: 8px; }
       .service-card { padding: 20px 16px !important; }
-      #service-detail-inner { padding: 24px 18px !important; }
+      #service-detail-head, #contact-modal .modal-pop > div:first-child { padding: 24px 18px 20px !important; }
+      #service-detail-content, #contact-modal-body { padding: 20px 18px 24px !important; }
       #whatsapp-bubble { max-width: 170px !important; font-size: 12px !important; }
       .header-inner { gap: 8px; padding: 0 12px; }
       .header-inner > .logo img { height: 40px !important; }
@@ -919,7 +920,7 @@
         <a href="#productos">Productos ▾</a>
         <div class="nav-dropdown-menu" id="nav-categories-menu"></div>
       </div>
-      <a href="#">Contacto</a>
+      <a href="#" id="nav-contact-btn">Contacto</a>
     </nav>
     <div class="header-actions">
       <button id="cart-open-btn" title="Carrito" style="position:relative;background:var(--blue-core);border:none;border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,box-shadow .2s;" onmouseover="this.style.background='var(--blue-bright)';this.style.boxShadow='0 0 18px rgba(0,95,255,0.45)'" onmouseout="this.style.background='var(--blue-core)';this.style.boxShadow='none'">
@@ -1025,9 +1026,36 @@
       #hero-scroll-hint:hover { color:#005FFF; }
       #hero-scroll-hint .chev { font-size:22px; line-height:1; animation:chevBounce 1.6s ease-in-out infinite; }
       @keyframes chevBounce { 0%,100% { transform:translateY(0); opacity:.55; } 50% { transform:translateY(7px); opacity:1; } }
+      /* ── Modales con entrada animada ── */
+      @keyframes modalPop { from { opacity:0; transform:translateY(28px) scale(.965); } to { opacity:1; transform:none; } }
+      .modal-pop { animation: modalPop .45s cubic-bezier(.2,.7,.25,1) both; }
+      #service-detail-body > * { animation: modalPop .55s cubic-bezier(.2,.7,.25,1) both; }
+      #service-detail-body > *:nth-child(1) { animation-delay:.06s; }
+      #service-detail-body > *:nth-child(2) { animation-delay:.14s; }
+      #service-detail-body > *:nth-child(3) { animation-delay:.22s; }
+      #service-detail-body > *:nth-child(4) { animation-delay:.30s; }
+      #service-detail-body > *:nth-child(5) { animation-delay:.38s; }
+      #service-detail-body > *:nth-child(n+6) { animation-delay:.46s; }
+      #service-detail-close:hover, #contact-modal-close:hover { transform:rotate(90deg); background:rgba(255,255,255,0.25) !important; }
+      /* Listas con palomita en el detalle de servicio */
+      .sd-list { list-style:none !important; padding-left:2px !important; }
+      .sd-list li { padding-left:28px; position:relative; margin-bottom:8px !important; }
+      .sd-list li::before { content:'✓'; position:absolute; left:0; top:0; color:#005FFF; font-weight:700; background:rgba(0,95,255,0.1); border-radius:6px; width:19px; height:19px; display:flex; align-items:center; justify-content:center; font-size:12px; }
+      .sd-list-num { counter-reset:sdnum; list-style:none !important; padding-left:2px !important; }
+      .sd-list-num li { counter-increment:sdnum; padding-left:34px; position:relative; margin-bottom:10px !important; }
+      .sd-list-num li::before { content:counter(sdnum); position:absolute; left:0; top:0; background:linear-gradient(135deg,#005FFF,#0C7CFF); color:#fff; border-radius:8px; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700; font-family:'Rajdhani',sans-serif; }
+      /* Tarjeta de contacto profesional */
+      .contact-card { display:flex; gap:16px; align-items:center; background:#F4F7FB; border:1px solid rgba(0,95,255,0.14); border-radius:14px; padding:16px 18px; margin-bottom:12px; transition:transform .25s ease, box-shadow .25s ease; }
+      .contact-card:hover { transform:translateY(-3px); box-shadow:0 12px 28px rgba(12,30,58,0.12); }
+      .contact-chip { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:8px; font-size:12.5px; font-weight:600; text-decoration:none; font-family:'IBM Plex Sans',sans-serif; transition:transform .2s ease; }
+      .contact-chip:hover { transform:translateY(-2px); }
+      /* Títulos de sección con acento */
+      .sec-title { position:relative; padding-bottom:14px !important; }
+      .sec-title::after { content:''; position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:74px; height:4px; border-radius:4px; background:linear-gradient(90deg,#D72638,#005FFF); }
       @media (prefers-reduced-motion: reduce) {
         #hero-logo, #hero-glow, .hero-orb, .ticker-track, .hero-particle, #hero-scroll-hint .chev, #hero-cta { animation:none !important; }
         .reveal { opacity:1; transform:none; transition:none; }
+        .modal-pop, #service-detail-body > * { animation:none !important; }
       }
     </style>
     <div id="hero-wrap">
@@ -1042,7 +1070,7 @@
 
     <!-- ── ACERCA DE NOSOTROS + SERVICIOS ───────────────────────── -->
     <div id="about-section" class="reveal" style="max-width:760px; margin:0 auto 64px; text-align:center;">
-      <h2 style="font-family:'Rajdhani',sans-serif; font-size:clamp(28px,3.5vw,42px); font-weight:700; color:#0C1E3A; margin-bottom:18px;">¿Quiénes somos?</h2>
+      <h2 class="sec-title" style="font-family:'Rajdhani',sans-serif; font-size:clamp(28px,3.5vw,42px); font-weight:700; color:#0C1E3A; margin-bottom:18px;">¿Quiénes somos?</h2>
       <p id="about-text" style="font-size:15.5px; color:#324A66; line-height:1.75;">
         STAC es una empresa especializada en tecnología que combina <strong style="color:#0C1E3A;">servicios profesionales de soporte técnico</strong> con una <strong style="color:#0C1E3A;">tienda en línea de componentes y accesorios de PC</strong>. Acompañamos a nuestros clientes en todo el ciclo de vida de su equipo: desde el ensamblado e instalación, hasta el mantenimiento, la actualización y la compra de las piezas que necesitan, siempre con asesoría experta y garantía de calidad.
       </p>
@@ -1093,7 +1121,7 @@
       </div>
     </div>
 
-    <h2 class="reveal" style="text-align:center; font-family:'Rajdhani',sans-serif; font-size:clamp(26px,4vw,42px); font-weight:800; color:#0C1E3A; margin:0 0 32px; letter-spacing:0.5px;">Nuestros servicios</h2>
+    <h2 class="reveal sec-title" style="text-align:center; font-family:'Rajdhani',sans-serif; font-size:clamp(26px,4vw,42px); font-weight:800; color:#0C1E3A; margin:0 0 32px; letter-spacing:0.5px;">Nuestros servicios</h2>
     <div id="services-carousel" class="reveal" style="position:relative; max-width:980px; margin:0 auto; overflow:hidden;">
       <div id="services-grid" style="display:flex; gap:20px; transition:transform .65s cubic-bezier(.45,0,.25,1); will-change:transform;"></div>
     </div>
@@ -1104,13 +1132,49 @@
       </button>
     </div>
 
-    <div id="service-detail" style="position:fixed;inset:0;z-index:3000;background:rgba(12,30,58,0.55);display:none;align-items:flex-start;justify-content:center;padding:40px 16px 60px;box-sizing:border-box;">
-      <div id="service-detail-inner" style="background:#fff;border-radius:18px;max-width:760px;width:100%;max-height:calc(100vh - 100px);overflow-y:auto;padding:36px 32px;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,0.3);position:relative;box-sizing:border-box;flex-shrink:0;">
-        <button type="button" id="service-detail-close" style="position:absolute;top:18px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:#7A8FA8;line-height:1;">✕</button>
-        <div id="service-detail-icon" style="font-size:38px; margin-bottom:16px;"></div>
-        <h3 id="service-detail-title" style="font-family:'Rajdhani',sans-serif; font-size:24px; font-weight:700; color:#0C1E3A; margin-bottom:14px;"></h3>
-        <div id="service-detail-body" style="font-size:14.5px; color:#324A66; line-height:1.8;"></div>
-        <button type="button" id="service-detail-close-bottom" style="margin-top:28px; background:#0C1E3A; color:#fff; border:none; padding:10px 22px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Cerrar</button>
+    <div id="service-detail" style="position:fixed;inset:0;z-index:3000;background:rgba(12,30,58,0.6);display:none;align-items:flex-start;justify-content:center;padding:40px 16px 60px;box-sizing:border-box;backdrop-filter:blur(3px);">
+      <div id="service-detail-inner" class="modal-pop" style="background:#fff;border-radius:20px;max-width:760px;width:100%;max-height:calc(100vh - 100px);overflow-y:auto;overflow-x:hidden;padding:0;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,0.35);position:relative;box-sizing:border-box;flex-shrink:0;">
+        <div id="service-detail-head" style="background:linear-gradient(135deg,#0C1E3A 0%,#123563 60%,#005FFF 160%);padding:30px 32px 24px;position:relative;overflow:hidden;">
+          <div style="position:absolute;right:-50px;top:-60px;width:230px;height:230px;border-radius:50%;background:rgba(0,95,255,0.45);filter:blur(52px);pointer-events:none;"></div>
+          <div style="position:absolute;left:-60px;bottom:-80px;width:190px;height:190px;border-radius:50%;background:rgba(215,38,56,0.28);filter:blur(50px);pointer-events:none;"></div>
+          <button type="button" id="service-detail-close" style="position:absolute;top:16px;right:18px;z-index:2;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:9px;width:36px;height:36px;font-size:15px;cursor:pointer;color:#fff;line-height:1;transition:transform .3s ease, background .3s ease;">✕</button>
+          <div id="service-detail-icon" style="position:relative;display:inline-flex;width:64px;height:64px;align-items:center;justify-content:center;border-radius:16px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.22);font-size:32px;margin-bottom:12px;"></div>
+          <h3 id="service-detail-title" style="position:relative;font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:#fff;margin:0;letter-spacing:0.3px;"></h3>
+        </div>
+        <div id="service-detail-content" style="padding:28px 32px 30px;">
+          <div id="service-detail-body" style="font-size:14.5px; color:#324A66; line-height:1.8;"></div>
+          <button type="button" id="service-detail-close-bottom" style="margin-top:26px; background:#0C1E3A; color:#fff; border:none; padding:11px 26px; border-radius:9px; font-size:13px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif; transition:background .25s;" onmouseover="this.style.background='#005FFF'" onmouseout="this.style.background='#0C1E3A'">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Modal Contacto ── -->
+    <div id="contact-modal" style="position:fixed;inset:0;z-index:3200;background:rgba(12,30,58,0.6);display:none;align-items:flex-start;justify-content:center;padding:40px 16px 60px;box-sizing:border-box;backdrop-filter:blur(3px);">
+      <div class="modal-pop" style="background:#fff;border-radius:20px;max-width:680px;width:100%;max-height:calc(100vh - 100px);overflow-y:auto;overflow-x:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.35);box-sizing:border-box;flex-shrink:0;text-align:left;">
+        <div style="background:linear-gradient(135deg,#0C1E3A 0%,#123563 60%,#005FFF 160%);padding:30px 32px 24px;position:relative;overflow:hidden;">
+          <div style="position:absolute;right:-50px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(0,95,255,0.45);filter:blur(52px);pointer-events:none;"></div>
+          <button type="button" id="contact-modal-close" style="position:absolute;top:16px;right:18px;z-index:2;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:9px;width:36px;height:36px;font-size:15px;cursor:pointer;color:#fff;line-height:1;transition:transform .3s ease, background .3s ease;">✕</button>
+          <div style="position:relative;display:inline-flex;width:64px;height:64px;align-items:center;justify-content:center;border-radius:16px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.22);font-size:30px;margin-bottom:12px;">📞</div>
+          <h3 style="position:relative;font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:#fff;margin:0;">Contáctanos</h3>
+          <p style="position:relative;font-size:13.5px;color:rgba(255,255,255,0.78);margin:6px 0 0;">Estamos para ayudarte — llámanos o escríbenos.</p>
+        </div>
+        <div id="contact-modal-body" style="padding:26px 32px 30px;"></div>
+      </div>
+    </div>
+
+    <!-- ── Modal editar contactos (admin) ── -->
+    <div id="contact-edit-modal" style="position:fixed;inset:0;z-index:3300;background:rgba(0,0,0,0.55);display:none;align-items:flex-start;justify-content:center;padding:40px 16px 60px;box-sizing:border-box;">
+      <div class="modal-pop" style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:640px;width:100%;max-height:calc(100vh - 100px);overflow-y:auto;padding:26px 26px 22px;box-sizing:border-box;flex-shrink:0;text-align:left;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <h3 style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--text-primary);margin:0;">Editar contactos</h3>
+          <button type="button" id="contact-edit-close" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--text-dim);line-height:1;">✕</button>
+        </div>
+        <div id="contact-edit-list"></div>
+        <button type="button" id="contact-add-btn" style="margin-top:4px;background:none;border:1px dashed var(--border);border-radius:8px;padding:8px 16px;cursor:pointer;color:var(--text-dim);font-size:13px;font-family:'IBM Plex Sans',sans-serif;width:100%;">＋ Agregar contacto</button>
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px;">
+          <button type="button" id="contact-edit-cancel" style="background:none;border:1px solid var(--border);border-radius:8px;padding:9px 20px;cursor:pointer;color:var(--text-dim);font-size:13px;font-family:'IBM Plex Sans',sans-serif;">Cancelar</button>
+          <button type="button" id="contact-edit-save" class="auth-submit" style="margin:0;padding:9px 24px;min-width:110px;">Guardar</button>
+        </div>
       </div>
     </div>
 
@@ -1153,6 +1217,7 @@
           <button type="button" class="svc-add-btn" data-type="text" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Párrafo</button>
           <button type="button" class="svc-add-btn" data-type="list" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Lista</button>
           <button type="button" class="svc-add-btn" data-type="image" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Imagen</button>
+          <button type="button" class="svc-add-btn" data-type="contact" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Contacto</button>
         </div>
 
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:16px;border-top:1px solid var(--border);">
@@ -1165,7 +1230,7 @@
       </div>
     </div>
 
-    <h2 class="reveal" style="text-align:center; font-family:'Rajdhani',sans-serif; font-size:clamp(26px,4vw,42px); font-weight:800; color:#1a6eff; margin:0 0 32px; letter-spacing:0.5px; text-shadow: 0 2px 12px rgba(26,110,255,0.25);">
+    <h2 class="reveal sec-title" style="text-align:center; font-family:'Rajdhani',sans-serif; font-size:clamp(26px,4vw,42px); font-weight:800; color:#1a6eff; margin:0 0 32px; letter-spacing:0.5px; text-shadow: 0 2px 12px rgba(26,110,255,0.25);">
       ¡Echa un vistazo a nuestra tienda online!
     </h2>
     <div id="home-cat-grid" class="home-cat-grid reveal"></div>
@@ -1218,7 +1283,7 @@
         <li><a href="#">Distribuidores</a></li>
         <li><a href="#">Blog de hardware</a></li>
         <li><a href="#">Trabaja con nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
+        <li><a href="#" class="open-contact-link">Contacto</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -2348,6 +2413,11 @@
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
+    // reiniciar la animación de entrada en cada apertura
+    const inner = document.getElementById('service-detail-inner');
+    inner.style.animation = 'none';
+    void inner.offsetWidth;
+    inner.style.animation = '';
   }
 
   function renderDetailSections(sections) {
@@ -2363,15 +2433,38 @@
         return `<div style="margin-bottom:16px;line-height:1.8;color:#324A66;">${html}</div>`;
       }
       if (sec.type === 'list') {
-        const tag = sec.style === 'number' ? 'ol' : 'ul';
-        const items = (sec.items || []).map(i => `<li style="margin-bottom:5px;">${escapeHtml(i)}</li>`).join('');
-        return `<${tag} style="margin-bottom:16px;padding-left:22px;line-height:1.8;color:#324A66;">${items}</${tag}>`;
+        const esNum = sec.style === 'number';
+        const items = (sec.items || []).map(i => `<li>${escapeHtml(String(i).replace(/^[-–•\s]+/, ''))}</li>`).join('');
+        return `<${esNum ? 'ol' : 'ul'} class="${esNum ? 'sd-list-num' : 'sd-list'}" style="margin-bottom:18px;line-height:1.75;color:#324A66;">${items}</${esNum ? 'ol' : 'ul'}>`;
       }
       if (sec.type === 'image') {
         return `<div style="margin-bottom:16px;"><img src="${escapeHtml(sec.url||'')}" alt="${escapeHtml(sec.caption||'')}" style="max-width:100%;border-radius:10px;display:block;">${sec.caption ? `<p style="font-size:12px;color:#7A8FA8;margin-top:6px;">${escapeHtml(sec.caption)}</p>` : ''}</div>`;
       }
+      if (sec.type === 'contact') return contactCardHtml(sec);
       return '';
     }).join('');
+  }
+
+  /* ── Tarjeta de contacto profesional (detalle de servicio y modal Contacto) ── */
+  function contactCardHtml(c) {
+    const iniciales = (c.nombre || '?').trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+    const foto = c.foto
+      ? `<img src="${escapeHtml(c.foto)}" alt="${escapeHtml(c.nombre || '')}" style="width:76px;height:76px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid rgba(0,95,255,0.25);">`
+      : `<div style="width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#0C1E3A,#005FFF);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:26px;flex-shrink:0;">${escapeHtml(iniciales)}</div>`;
+    const tel10 = (c.telefono || '').replace(/\D/g, '').slice(-10);
+    return `
+    <div class="contact-card">
+      ${foto}
+      <div style="min-width:0;flex:1;">
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#0C1E3A;">${escapeHtml(c.nombre || '')}</div>
+        ${c.puesto ? `<div style="font-size:12.5px;color:#5A7090;">${escapeHtml(c.puesto)}</div>` : ''}
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:9px;">
+          ${c.telefono ? `<a class="contact-chip" href="tel:${escapeHtml(c.telefono)}" style="background:rgba(0,95,255,0.09);color:#005FFF;border:1px solid rgba(0,95,255,0.22);">📞 ${escapeHtml(c.telefono)}</a>` : ''}
+          ${tel10.length === 10 ? `<a class="contact-chip" href="https://wa.me/52${tel10}" target="_blank" rel="noopener" style="background:rgba(37,211,102,0.1);color:#128C4B;border:1px solid rgba(37,211,102,0.35);">💬 WhatsApp</a>` : ''}
+          ${c.correo ? `<a class="contact-chip" href="mailto:${escapeHtml(c.correo)}" style="background:rgba(12,30,58,0.06);color:#0C1E3A;border:1px solid rgba(12,30,58,0.15);">✉️ ${escapeHtml(c.correo)}</a>` : ''}
+        </div>
+      </div>
+    </div>`;
   }
 
   function closeServiceDetail() {
@@ -2384,6 +2477,111 @@
   document.getElementById('service-detail-close-bottom').addEventListener('click', closeServiceDetail);
   document.getElementById('service-detail').addEventListener('click', (e) => {
     if (e.target === e.currentTarget) closeServiceDetail();
+  });
+
+  /* ── Contacto global (botón del header y footer) ──
+     Los contactos se guardan en services id=0 (la fila "meta" que también
+     guarda el texto de ¿Quiénes somos?) dentro del campo sections. */
+  let contactosCache = [];
+  async function loadContactos() {
+    const { data } = await sb.from('services').select('sections').eq('id', 0).maybeSingle();
+    contactosCache = Array.isArray(data && data.sections)
+      ? data.sections.filter(s => s && s.type === 'contact')
+      : [];
+  }
+  function renderContactModal() {
+    const body = document.getElementById('contact-modal-body');
+    const cards = contactosCache.map(contactCardHtml).join('');
+    body.innerHTML = `
+      ${cards || '<p style="color:#5A7090;font-size:14px;text-align:center;padding:14px 0;">Muy pronto publicaremos los datos de contacto.<br>Mientras tanto, escríbenos por WhatsApp con el botón verde.</p>'}
+      ${isAdminView() ? `<div style="text-align:center;margin-top:14px;"><button type="button" id="contact-open-editor" style="background:rgba(0,95,255,0.08);color:#005FFF;border:1px solid rgba(0,95,255,0.25);border-radius:8px;padding:8px 18px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">✏️ Editar contactos</button></div>` : ''}`;
+    const editBtn = document.getElementById('contact-open-editor');
+    if (editBtn) editBtn.addEventListener('click', openContactEditor);
+  }
+  function openContactModal(e) {
+    if (e) e.preventDefault();
+    renderContactModal();
+    const m = document.getElementById('contact-modal');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function closeContactModal() {
+    document.getElementById('contact-modal').style.display = 'none';
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }
+  document.getElementById('nav-contact-btn').addEventListener('click', openContactModal);
+  document.querySelectorAll('.open-contact-link').forEach(a => a.addEventListener('click', openContactModal));
+  document.getElementById('contact-modal-close').addEventListener('click', closeContactModal);
+  document.getElementById('contact-modal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeContactModal(); });
+
+  /* ── Editor de contactos (admin) ── */
+  let contactosEdit = [];
+  function renderContactEditList() {
+    const wrap = document.getElementById('contact-edit-list');
+    wrap.innerHTML = contactosEdit.map((c, i) => `
+      <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-size:11.5px;font-weight:600;color:var(--text-dim);">👤 CONTACTO ${i + 1}</span>
+          <button type="button" class="ct-ed-del" data-i="${i}" style="background:none;border:1px solid rgba(255,80,80,0.4);border-radius:5px;padding:2px 8px;cursor:pointer;color:#ff6b6b;font-size:12px;">🗑</button>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;">
+          <div style="text-align:center;">
+            ${c.foto
+              ? `<img src="${escapeHtml(c.foto)}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 6px;border:2px solid var(--border);">`
+              : `<div style="width:70px;height:70px;border-radius:50%;background:var(--bg-card);border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 6px;">👤</div>`}
+            <label style="display:inline-block;padding:4px 10px;background:rgba(0,95,255,0.1);border:1px solid rgba(0,95,255,0.25);border-radius:6px;cursor:pointer;font-size:11px;color:#4D9FFF;font-family:'IBM Plex Sans',sans-serif;font-weight:600;">
+              📁 Foto
+              <input type="file" accept="image/*" class="ct-ed-foto" data-i="${i}" style="display:none;">
+            </label>
+          </div>
+          <div style="flex:1;min-width:190px;display:grid;gap:8px;">
+            <input type="text" class="ct-ed-inp" data-i="${i}" data-campo="nombre" value="${escapeHtml(c.nombre||'')}" placeholder="Nombre completo" style="padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+            <input type="text" class="ct-ed-inp" data-i="${i}" data-campo="puesto" value="${escapeHtml(c.puesto||'')}" placeholder="Puesto" style="padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+            <input type="tel" class="ct-ed-inp" data-i="${i}" data-campo="telefono" value="${escapeHtml(c.telefono||'')}" placeholder="Teléfono (10 dígitos)" style="padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+            <input type="email" class="ct-ed-inp" data-i="${i}" data-campo="correo" value="${escapeHtml(c.correo||'')}" placeholder="Correo electrónico" style="padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+          </div>
+        </div>
+      </div>`).join('') || '<p style="color:var(--text-dim);font-size:13px;text-align:center;">Sin contactos — agrega el primero.</p>';
+
+    wrap.querySelectorAll('.ct-ed-inp').forEach(inp => inp.addEventListener('input', () => { contactosEdit[+inp.dataset.i][inp.dataset.campo] = inp.value; }));
+    wrap.querySelectorAll('.ct-ed-del').forEach(b => b.addEventListener('click', () => { contactosEdit.splice(+b.dataset.i, 1); renderContactEditList(); }));
+    wrap.querySelectorAll('.ct-ed-foto').forEach(inp => inp.addEventListener('change', async () => {
+      const file = inp.files[0]; if (!file) return;
+      const i = +inp.dataset.i;
+      const ext = file.name.split('.').pop().toLowerCase();
+      const path = `contactos/${Date.now()}.${ext}`;
+      const { error } = await sb.storage.from('product-images').upload(path, file, { contentType: file.type, upsert: true });
+      if (error) { alert('Error al subir foto: ' + error.message); return; }
+      contactosEdit[i].foto = sb.storage.from('product-images').getPublicUrl(path).data.publicUrl;
+      renderContactEditList();
+    }));
+  }
+  function openContactEditor() {
+    contactosEdit = contactosCache.map(c => ({ ...c }));
+    renderContactEditList();
+    document.getElementById('contact-edit-modal').style.display = 'flex';
+  }
+  function closeContactEditor() { document.getElementById('contact-edit-modal').style.display = 'none'; }
+  document.getElementById('contact-edit-close').addEventListener('click', closeContactEditor);
+  document.getElementById('contact-edit-cancel').addEventListener('click', closeContactEditor);
+  document.getElementById('contact-add-btn').addEventListener('click', () => {
+    contactosEdit.push({ type: 'contact', nombre: '', puesto: '', telefono: '', correo: '', foto: '' });
+    renderContactEditList();
+  });
+  document.getElementById('contact-edit-save').addEventListener('click', async () => {
+    const btn = document.getElementById('contact-edit-save');
+    btn.disabled = true; btn.textContent = 'Guardando…';
+    const limpios = contactosEdit
+      .map(c => ({ ...c, type: 'contact' }))
+      .filter(c => (c.nombre || '').trim());
+    const { error } = await sb.from('services').upsert({ id: 0, sections: limpios }, { onConflict: 'id' });
+    btn.disabled = false; btn.textContent = 'Guardar';
+    if (error) { alert('Error al guardar: ' + error.message); return; }
+    contactosCache = limpios;
+    closeContactEditor();
+    renderContactModal();
   });
 
   /* ── Editor de servicios (admin) ── */
@@ -2536,6 +2734,30 @@
             <input type="text" class="svc-img-caption" data-i="${i}" value="${escapeHtml(sec.caption||'')}" placeholder="Pie de foto (opcional)" style="flex:1;min-width:140px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;">
           </div>
         </div>`;
+
+      if (sec.type === 'contact') return `
+        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <span style="font-size:11.5px;font-weight:600;color:var(--text-dim);">👤 CONTACTO</span>${navBtns}
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;">
+            <div style="text-align:center;">
+              ${sec.foto
+                ? `<img src="${escapeHtml(sec.foto)}" style="width:74px;height:74px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 6px;border:2px solid var(--border);">`
+                : `<div style="width:74px;height:74px;border-radius:50%;background:var(--bg-card);border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 6px;">👤</div>`}
+              <label style="display:inline-block;padding:4px 10px;background:rgba(0,95,255,0.1);border:1px solid rgba(0,95,255,0.25);border-radius:6px;cursor:pointer;font-size:11px;color:#4D9FFF;font-family:'IBM Plex Sans',sans-serif;font-weight:600;">
+                📁 Foto
+                <input type="file" accept="image/*" class="svc-ct-foto" data-i="${i}" style="display:none;">
+              </label>
+            </div>
+            <div style="flex:1;min-width:200px;display:grid;gap:8px;">
+              <input type="text" class="svc-ct-inp" data-i="${i}" data-campo="nombre" value="${escapeHtml(sec.nombre||'')}" placeholder="Nombre completo" style="padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+              <input type="text" class="svc-ct-inp" data-i="${i}" data-campo="puesto" value="${escapeHtml(sec.puesto||'')}" placeholder="Puesto (ej. Desarrollador web)" style="padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+              <input type="tel" class="svc-ct-inp" data-i="${i}" data-campo="telefono" value="${escapeHtml(sec.telefono||'')}" placeholder="Teléfono (10 dígitos)" style="padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+              <input type="email" class="svc-ct-inp" data-i="${i}" data-campo="correo" value="${escapeHtml(sec.correo||'')}" placeholder="Correo electrónico" style="padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">
+            </div>
+          </div>
+        </div>`;
       return '';
     }).join('');
 
@@ -2590,6 +2812,17 @@
     container.querySelectorAll('.svc-list-item-del').forEach(b => b.addEventListener('click', () => { svcSections[+b.dataset.i].items.splice(+b.dataset.j,1); renderSvcSectionsList(); }));
     container.querySelectorAll('.svc-list-add').forEach(b => b.addEventListener('click', () => { svcSections[+b.dataset.i].items.push(''); renderSvcSectionsList(); }));
     container.querySelectorAll('.svc-img-caption').forEach(inp => inp.addEventListener('input', () => { svcSections[+inp.dataset.i].caption = inp.value; }));
+    container.querySelectorAll('.svc-ct-inp').forEach(inp => inp.addEventListener('input', () => { svcSections[+inp.dataset.i][inp.dataset.campo] = inp.value; }));
+    container.querySelectorAll('.svc-ct-foto').forEach(inp => inp.addEventListener('change', async () => {
+      const file = inp.files[0]; if (!file) return;
+      const i = +inp.dataset.i;
+      const ext = file.name.split('.').pop().toLowerCase();
+      const path = `services/${svcEditingId}/contacto-${Date.now()}.${ext}`;
+      const { error } = await sb.storage.from('product-images').upload(path, file, { contentType: file.type, upsert: true });
+      if (error) { alert('Error al subir foto: ' + error.message); return; }
+      svcSections[i].foto = sb.storage.from('product-images').getPublicUrl(path).data.publicUrl;
+      renderSvcSectionsList();
+    }));
     container.querySelectorAll('.svc-img-input').forEach(inp => inp.addEventListener('change', async () => {
       const file = inp.files[0]; if (!file) return;
       const i = +inp.dataset.i;
@@ -2637,6 +2870,7 @@
       if (type === 'text')  svcSections.push({ type: 'text', content: '' });
       if (type === 'list')  svcSections.push({ type: 'list', style: 'bullet', items: [''] });
       if (type === 'image') svcSections.push({ type: 'image', url: '', caption: '' });
+      if (type === 'contact') svcSections.push({ type: 'contact', nombre: '', puesto: '', telefono: '', correo: '', foto: '' });
       renderSvcSectionsList();
     });
   });
@@ -4530,12 +4764,15 @@
 
   /* ───────── INIT ───────── */
   (async function init() {
-    // Cargar texto "¿Quiénes somos?" desde Supabase si existe
-    sb.from('services').select('description').eq('id', 0).maybeSingle().then(({ data }) => {
+    // Cargar texto "¿Quiénes somos?" y contactos desde Supabase si existen
+    sb.from('services').select('description, sections').eq('id', 0).maybeSingle().then(({ data }) => {
       if (data && data.description) {
         const el = document.getElementById('about-text');
         if (el) el.innerHTML = sanitizeHtml(data.description);
       }
+      contactosCache = Array.isArray(data && data.sections)
+        ? data.sections.filter(s => s && s.type === 'contact')
+        : [];
     });
 
     // Categorías, sesión y servicios en paralelo

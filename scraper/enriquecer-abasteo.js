@@ -21,10 +21,9 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
   console.error('Faltan SUPABASE_URL / SUPABASE_SERVICE_KEY');
   process.exit(1);
 }
-if (!process.env.ABASTEO_USER || !process.env.ABASTEO_PASS) {
-  console.error('Faltan ABASTEO_USER / ABASTEO_PASS');
-  process.exit(1);
-}
+// Login opcional: la descripción y especificaciones son públicas; la cuenta
+// de distribuidor solo cambia los precios mostrados.
+const HAY_LOGIN = !!(process.env.ABASTEO_USER && process.env.ABASTEO_PASS);
 
 const sb = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36';
@@ -115,50 +114,27 @@ async function scrapeProductPage(page, url) {
   return await page.evaluate(() => {
     const result = {};
 
-    // ── Imagen principal ──
-    const mainImg = document.querySelector(
-      '.c-product-detail__gallery img, .product-gallery img, [class*="gallery"] img, .c-product-images img'
-    );
-    if (mainImg) {
-      result.imageUrl = mainImg.src || mainImg.getAttribute('data-src') || mainImg.getAttribute('data-zoom-image') || null;
-      // Preferir imagen grande (zoom/original)
-      const zoomSrc = mainImg.getAttribute('data-zoom-image') || mainImg.getAttribute('data-large');
-      if (zoomSrc) result.imageUrl = zoomSrc;
-    }
-
-    // ── Descripción ──
+    // ── Descripción larga (selector vigente jul-2026: .c-details__long-description) ──
     const descEl = document.querySelector(
-      '.c-product-detail__description, .product-description, [class*="description"] p, .c-product-detail__info p'
+      '.c-details__long-description, .c-product-detail__description, .product-description'
     );
-    if (descEl) result.description = descEl.textContent.trim();
-
-    // ── Descripción HTML enriquecida: secciones con título ──
-    const descContainer = document.querySelector(
-      '.c-product-detail__description, .product-description, [class*="description"]'
-    );
-    if (descContainer) {
-      let html = '';
-      const titles = descContainer.querySelectorAll('h2, h3, h4, strong');
-      if (titles.length) {
-        const paragraphs = descContainer.querySelectorAll('p');
-        paragraphs.forEach(p => {
-          const pHtml = p.innerHTML.trim();
-          if (pHtml) {
-            const isTitle = p.querySelector('strong, b') && p.textContent.trim().length < 80;
-            if (isTitle) html += `<p class="pd-section-title">${p.textContent.trim()}</p>`;
-            else html += `<p>${p.textContent.trim()}</p>`;
-          }
-        });
-        if (!html) html = `<p>${descContainer.textContent.trim()}</p>`;
-      } else {
-        html = `<p>${descContainer.textContent.trim()}</p>`;
+    if (descEl) {
+      const lines = descEl.innerText.split('\n').map(l => l.trim().replace(/\s+/g, ' ')).filter(l => l.length > 2);
+      if (lines[0] && /detalles del producto/i.test(lines[0])) lines.shift();
+      if (lines.length) {
+        result.description = lines.join(' ').slice(0, 400);
+        // Líneas cortas EN MAYÚSCULAS son títulos de sección del fabricante
+        result.descriptionHtml = lines.map(l =>
+          (l.length < 80 && l === l.toUpperCase() && /[A-ZÁÉÍÓÚÑ]/.test(l))
+            ? `<p class="pd-section-title">${l}</p>`
+            : `<p>${l}</p>`
+        ).join('');
       }
-      if (html && html !== '<p></p>') result.descriptionHtml = html;
     }
 
-    // ── Especificaciones técnicas ──
+    // ── Especificaciones técnicas (selector vigente: [class*=attribute] table) ──
     const specsTable = document.querySelector(
-      '.c-product-detail__specs table, .product-specs table, [class*="specs"] table, table.table'
+      '[class*="attribute"] table, .c-product-detail__specs table, .product-specs table, [class*="specs"] table, table.table'
     );
     const specsGroups = [];
 
@@ -233,19 +209,24 @@ async function run() {
   const urlByProduct = {};
   (precios || []).forEach(r => { if (r.url) urlByProduct[r.product_id] = r.url; });
 
-  // Solo enriquecer productos que faltan datos
+  // Ficha "pobre": sin descripción, descripción corta o con menos de 4 specs.
+  const featuresCount = (specsJson) => {
+    try { return JSON.parse(specsJson || '[]').reduce((s, g) => s + ((g.features || []).length), 0); }
+    catch { return 0; }
+  };
   const toEnrich = products.filter(p =>
-    !p.description_html || !p.specs_json
+    !p.description_html || p.description_html.length < 250 || featuresCount(p.specs_json) < 4
   );
 
-  console.log(`\nProductos a enriquecer: ${toEnrich.length} de ${products.length}`);
+  console.log(`\nProductos a enriquecer (ficha pobre): ${toEnrich.length} de ${products.length}`);
   if (!toEnrich.length) { console.log('Todos los productos ya tienen ficha completa.'); return; }
 
   const browser = await chromium.launch();
   const context = await browser.newContext({ userAgent: UA });
   const page = await context.newPage();
 
-  await loginAbasteo(page);
+  if (HAY_LOGIN) await loginAbasteo(page);
+  else console.log('Sin credenciales de Abasteo — usando páginas públicas (la ficha es la misma).');
 
   let enriched = 0, skipped = 0, failed = 0;
   const failedList = [];
@@ -285,13 +266,19 @@ async function run() {
 
     const update = {};
 
-    // Solo actualizar si el producto aún no tiene el dato
-    if (!product.description_html && data.descriptionHtml && data.descriptionHtml.length > 20) {
+    // Sobrescribir SOLO si lo nuevo es claramente mejor que lo guardado
+    const oldDescLen = (product.description_html || '').length;
+    if (data.descriptionHtml && data.descriptionHtml.length > Math.max(250, oldDescLen)) {
       update.description_html = data.descriptionHtml;
-      if (!product.description && data.description) update.description = data.description;
+      if (data.description) update.description = data.description;
     }
 
-    if (!product.specs_json && data.specsGroups && data.specsGroups.length) {
+    const featuresCount = (specsJson) => {
+      try { return JSON.parse(specsJson || '[]').reduce((s, g) => s + ((g.features || []).length), 0); }
+      catch { return 0; }
+    };
+    const nuevasFeatures = (data.specsGroups || []).reduce((s, g) => s + ((g.features || []).length), 0);
+    if (nuevasFeatures > Math.max(3, featuresCount(product.specs_json))) {
       update.specs_json = JSON.stringify(data.specsGroups);
       // También construir specs texto plano para retrocompatibilidad
       const specLines = data.specsGroups.flatMap(g =>
