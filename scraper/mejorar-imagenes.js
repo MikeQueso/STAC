@@ -24,6 +24,9 @@ const CAT_ARG = (process.argv.find((a) => a.startsWith('--cat=')) || '').replace
 // --redo-abasteo: reprocesa TODOS los productos con página de Abasteo aunque ya
 // tengan varias imágenes (para limpiar los sellos ISO que se colaron).
 const REDO_AB = process.argv.includes('--redo-abasteo');
+// --redo-ddtech: ídem para productos cuya página preferida es DD Tech (para
+// limpiar los banners del sidebar que se colaron como "vistas").
+const REDO_DD = process.argv.includes('--redo-ddtech');
 // --solo="regex": limita a productos cuyo nombre coincida (reintentos puntuales).
 const SOLO = (process.argv.find((a) => a.startsWith('--solo=')) || '').replace('--solo=', '');
 const MAX_IMGS = 5;
@@ -52,10 +55,22 @@ async function abasteoGallery(page, url) {
     thumbs: [...document.querySelectorAll('.cpx-square-img__img')].map((i) => i.src).filter(Boolean),
   })).catch(() => ({ main: '', thumbs: [] }));
 
+  // Código de producto del nombre de archivo (CP-MARCA-MODELO-hash.jpg →
+  // CP-MARCA-MODELO). Las vistas del MISMO producto comparten código; las
+  // imágenes promocionales del carrusel traen códigos distintos.
+  const codeOf = (src) => {
+    const f = (src.split('/').pop() || '').replace(/\.[a-z0-9]+$/i, '');
+    const parts = f.split('-');
+    if (parts.length > 1) parts.pop();
+    return parts.join('-');
+  };
+  const mainCode = data.main ? codeOf(data.main) : '';
+
   const out = [];
   const seen = new Set();
-  const push = (src) => {
+  const push = (src, esPrincipal) => {
     if (!src || !/\/img\/product\//.test(src)) return;
+    if (!esPrincipal && mainCode && codeOf(src) !== mainCode) return; // otra cosa, no este producto
     const file = src.split('/').pop();
     if (seen.has(file)) return;
     seen.add(file);
@@ -63,24 +78,26 @@ async function abasteoGallery(page, url) {
     const sizes = ['XL', 'L', 'M'].map((sz) => src.replace(/\/img\/product\/[A-Z]+\//, `/img/product/${sz}/`));
     out.push({ urls: [...new Set([...sizes, src])] });
   };
-  push(data.main);
-  for (const t of data.thumbs) push(t);
+  push(data.main, true);
+  for (const t of data.thumbs) push(t, false);
   return out.slice(0, MAX_IMGS);
 }
 
-// Galería de una página de producto de DD Tech (imágenes en assets/uploads).
+// Galería de una página de producto de DD Tech: SOLO el carrusel del producto
+// (.single-product-gallery-item). El resto de assets/uploads en la página son
+// banners promocionales del sitio (sidebar-widget) y productos relacionados.
 async function ddtechGallery(page, url) {
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForSelector('.single-product-gallery-item img', { timeout: 9000 }).catch(() => {});
   await page.waitForTimeout(800);
-  const srcs = await page.$$eval('img', (imgs) =>
-    imgs.map((i) => i.src || i.getAttribute('data-src') || '').filter(Boolean)
-  ).catch(() => []);
-  const og = await page.evaluate(() =>
-    document.querySelector('meta[property="og:image"]')?.content || ''
-  ).catch(() => '');
+  const data = await page.evaluate(() => ({
+    og: document.querySelector('meta[property="og:image"]')?.content || '',
+    gallery: [...document.querySelectorAll('.single-product-gallery-item img')]
+      .map((i) => i.src || i.getAttribute('data-src') || '').filter(Boolean),
+  })).catch(() => ({ og: '', gallery: [] }));
   const out = [];
   const seen = new Set();
-  for (const s of [og, ...srcs]) {
+  for (const s of [...data.gallery, data.og]) {
     if (!/assets\/uploads/.test(s) || /blank\.gif/.test(s)) continue;
     const file = s.split('/').pop();
     if (seen.has(file)) continue;
@@ -137,6 +154,7 @@ async function uploadImage(productId, n, item) {
     if (SOLO && !new RegExp(SOLO, 'i').test(p.name)) return false;
     if (!paginaDe[p.id]) return false;
     if (REDO_AB) return paginaDe[p.id].proveedor === 'Abasteo';  // limpieza de sellos ISO
+    if (REDO_DD) return paginaDe[p.id].proveedor === 'DD Tech';  // limpieza de banners
     if (p.category === 'Computadoras ya armadas') return true;   // siempre: borrosas
     return (p.images || []).length <= 1;                          // demás: solo una vista
   });
@@ -155,7 +173,7 @@ async function uploadImage(productId, n, item) {
 
       // En modo redo o computadoras basta 1 vista (la actual es mala o trae sellos ISO);
       // en el resto solo reemplazar si conseguimos 2+ para no empeorar.
-      const aceptaUna = p.category === 'Computadoras ya armadas' || REDO_AB;
+      const aceptaUna = p.category === 'Computadoras ya armadas' || REDO_AB || REDO_DD;
       const esCompu = aceptaUna;
       if (gallery.length < 2 && !(aceptaUna && gallery.length >= 1)) {
         sinCambio++;
