@@ -477,6 +477,10 @@ async function run() {
     const conPrecio = rowsProv.filter(r => r.precio !== null && Number(r.precio) > 0).length;
     console.log(`  ${prov}: ${conPrecio}/${rowsProv.length} con precio`);
 
+    // ¿Cuántos precios hay guardados de la corrida anterior?
+    const { count: viejosConPrecio } = await sb.from('precios_abasto')
+      .select('*', { count: 'exact', head: true }).eq('proveedor', prov).gt('precio', 0);
+
     if (conPrecio === 0) {
       // Sin precios: proteger datos anteriores si ya existen; si la tabla está vacía
       // para este proveedor, guardar igual (links de búsqueda son útiles).
@@ -487,6 +491,11 @@ async function run() {
         continue;
       }
       console.log(`  ↳ ${prov}: sin precios pero tabla vacía — guardando links de búsqueda.`);
+    } else if (viejosConPrecio > 0 && conPrecio < viejosConPrecio * 0.6) {
+      // Esta corrida encontró MUCHO menos que la anterior (p.ej. la IP del
+      // servidor fue bloqueada a media corrida): no degradar los datos buenos.
+      console.log(`  ↳ ${prov}: solo ${conPrecio} vs ${viejosConPrecio} guardados — conservando datos anteriores.`);
+      continue;
     }
 
     const { error: delErr } = await sb.from('precios_abasto').delete().eq('proveedor', prov);
