@@ -164,11 +164,37 @@ async function searchWithFallback(searchFn, productName, variants) {
   return null;
 }
 
+// Tipos de producto mutuamente excluyentes: si el producto es de un tipo y el
+// candidato menciona OTRO (sin mencionar el del producto), es otro artículo de
+// la misma marca (p.ej. "Diadema ASUS ROG Delta II" vs "Mouse ASUS ROG Harpe").
+// Esto es crítico cuando el modelo no tiene dígitos y keyModel queda null.
+const TYPE_GROUPS = [
+  /audifono|aud[ií]fono|diadema|headset|auricular/i,
+  /\bmouse\b|rat[oó]n\b/i,
+  /teclado|keyboard/i,
+  /monitor\b|pantalla/i,
+  /silla\b/i,
+  /tapete|mousepad|mouse pad/i,
+  /gabinete\b/i,
+  /fuente de poder|\bpsu\b/i,
+  /tarjeta madre|placa madre|motherboard/i,
+  /impresora|multifuncional/i,
+  /enfriamiento l[ií]quido|disipador|watercooling/i,
+  /webcam|c[aá]mara web/i,
+  /micr[oó]fono\b/i,
+];
+function typeSetOf(s) {
+  const out = [];
+  TYPE_GROUPS.forEach((re, i) => { if (re.test(s)) out.push(i); });
+  return out;
+}
+
 // Elige el resultado que mejor coincide con el nombre del producto.
 function pickBestMatch(productName, items) {
   if (!items || !items.length) return null;
   const { wantedSig, wantedSet, keyModel, brand, caps, productIsBuild, prodHasBadKind } = extractSignature(productName);
   const VARIANT_QUALIFIERS = ['ti', 'super', 'pro'];
+  const prodTypes = typeSetOf(productName);
 
   let best = null;
   let bestScore = 1;
@@ -182,6 +208,9 @@ function pickBestMatch(productName, items) {
 
     if (!productIsBuild && /comput|laptop|combo|bundle/i.test(title)) continue;
     if (!prodHasBadKind && /mantenim|so-?dimm/i.test(title)) continue;
+    // Tipo de producto: si el candidato es de OTRO tipo (mouse vs diadema…), fuera.
+    const candTypes = typeSetOf(title);
+    if (prodTypes.length && candTypes.length && !prodTypes.some((t) => candTypes.includes(t))) continue;
     if (brand && !titleNorm.includes(brand)) continue;       // misma marca
     // Capacidad: comparar contra el título normalizado para aceptar "1 TB" = "1tb".
     if (caps.some((c) => !titleNorm.includes(c))) continue;   // misma capacidad

@@ -29,6 +29,8 @@ const REDO_AB = process.argv.includes('--redo-abasteo');
 const REDO_DD = process.argv.includes('--redo-ddtech');
 // --solo="regex": limita a productos cuyo nombre coincida (reintentos puntuales).
 const SOLO = (process.argv.find((a) => a.startsWith('--solo=')) || '').replace('--solo=', '');
+// --force: reconstruye aunque el producto ya tenga varias imágenes (acepta 1 vista).
+const FORCE = process.argv.includes('--force');
 const MAX_IMGS = 5;
 
 function extFromType(ct, url) {
@@ -153,6 +155,7 @@ async function uploadImage(productId, n, item) {
     if (CAT_ARG && p.category !== CAT_ARG) return false;
     if (SOLO && !new RegExp(SOLO, 'i').test(p.name)) return false;
     if (!paginaDe[p.id]) return false;
+    if (FORCE) return true;                                       // reconstrucción forzada
     if (REDO_AB) return paginaDe[p.id].proveedor === 'Abasteo';  // limpieza de sellos ISO
     if (REDO_DD) return paginaDe[p.id].proveedor === 'DD Tech';  // limpieza de banners
     if (p.category === 'Computadoras ya armadas') return true;   // siempre: borrosas
@@ -173,7 +176,7 @@ async function uploadImage(productId, n, item) {
 
       // En modo redo o computadoras basta 1 vista (la actual es mala o trae sellos ISO);
       // en el resto solo reemplazar si conseguimos 2+ para no empeorar.
-      const aceptaUna = p.category === 'Computadoras ya armadas' || REDO_AB || REDO_DD;
+      const aceptaUna = p.category === 'Computadoras ya armadas' || REDO_AB || REDO_DD || FORCE;
       const esCompu = aceptaUna;
       if (gallery.length < 2 && !(aceptaUna && gallery.length >= 1)) {
         sinCambio++;
