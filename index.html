@@ -2327,6 +2327,9 @@
     if (state && state.view === 'category') renderCategoryUI(state.category);
     else renderHomeUI();
   });
+  // Guardar el hash con el que llegó el visitante ANTES de pisarlo (links
+  // compartidos #p-<id> y categorías #cat-<nombre> dependen de esto).
+  const HASH_INICIAL = location.hash || '';
   history.replaceState({ view: 'home' }, '', '#');
 
   document.getElementById('back-to-home-btn').addEventListener('click', showHome);
@@ -2835,10 +2838,15 @@
     document.getElementById('recent-section').style.display = '';
   }
 
-  /* ── Link directo a un producto: #p-<id> (lo genera el botón compartir) ── */
+  /* ── Link directo: #p-<id> abre el producto compartido y #cat-<nombre>
+        abre la categoría (usa HASH_INICIAL porque el hash se pisa al cargar) ── */
   function checkProductDeepLink() {
-    const m = location.hash.match(/^#p-([0-9a-f-]{36})/i);
-    if (m) openProductById(m[1]);
+    const mp = HASH_INICIAL.match(/^#p-([0-9a-f-]{36})/i);
+    if (mp) { openProductById(mp[1]); return; }
+    const mc = HASH_INICIAL.match(/^#cat-(.+)$/);
+    if (mc) {
+      try { showCategoryProducts(decodeURIComponent(mc[1])); } catch (e) {}
+    }
   }
 
   /* ── Editor de servicios (admin) ── */
@@ -4044,8 +4052,10 @@
     const pdfBtn = document.getElementById('detail-pdf-btn');
     if (pdfBtn) pdfBtn.addEventListener('click', () => generateSpecSheetPDF(currentDetailProduct));
 
-    // Compartir: link directo al producto (#p-<id>)
-    const shareUrl = location.origin + location.pathname + '#p-' + p.id;
+    // Compartir: página estática /p/<id>.html — trae la IMAGEN y el precio del
+    // producto en la vista previa de WhatsApp y redirige al producto al abrirla.
+    const base = location.origin + location.pathname.replace(/index\.html$/, '');
+    const shareUrl = base + 'p/' + p.id + '.html';
     const waBtn = document.getElementById('detail-share-wa');
     if (waBtn) waBtn.addEventListener('click', () => {
       const texto = `Mira este producto en STAC: ${p.name} — $${Number(p.price).toLocaleString('es-MX')} MXN\n${shareUrl}`;
