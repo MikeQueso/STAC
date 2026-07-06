@@ -2241,6 +2241,7 @@
     activeCategoryFilter = null;
     productsCache = [];
     currentView = 'home';
+    renderRecent(); // refrescar "vistos recientemente" al volver a la portada
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -2249,14 +2250,26 @@
     history.back();
   }
 
-  // Chips de marca de la categoría activa (máx. 8, ordenadas por cantidad)
+  // Chips de marca de la categoría activa (máx. 8, ordenadas por cantidad).
+  // Se agrupan sin distinguir mayúsculas y se descartan palabras de categoría
+  // que quedaron guardadas como "marca" en productos viejos.
+  const CHIP_NO_MARCA = new Set(['unidad','disco','ssd','hdd','memoria','ram','tarjeta','gabinete','fuente','diadema','mouse','teclado','ventilador','cartucho','tinta','botella','toner','impresora','computadora','kit','procesador','disipador']);
   async function loadBrandChips(category) {
     const wrap = document.getElementById('brand-chips');
     wrap.innerHTML = '';
     const { data } = await sb.from('products').select('brand').eq('category', category).limit(1000);
-    const conteo = {};
-    (data || []).forEach(r => { if (r.brand) conteo[r.brand] = (conteo[r.brand] || 0) + 1; });
-    const marcas = Object.entries(conteo).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([m]) => m);
+    const grupos = {}; // clave en minúsculas -> { nombre más frecuente, conteo }
+    (data || []).forEach(r => {
+      const b = (r.brand || '').trim();
+      if (!b || CHIP_NO_MARCA.has(b.toLowerCase())) return;
+      const k = b.toLowerCase();
+      if (!grupos[k]) grupos[k] = { variantes: {}, total: 0 };
+      grupos[k].variantes[b] = (grupos[k].variantes[b] || 0) + 1;
+      grupos[k].total++;
+    });
+    const marcas = Object.values(grupos)
+      .map(g => ({ nombre: Object.entries(g.variantes).sort((a, b) => b[1] - a[1])[0][0], total: g.total }))
+      .sort((a, b) => b.total - a.total).slice(0, 8).map(g => g.nombre);
     if (marcas.length < 2) return; // sin variedad no hay nada que filtrar
     wrap.innerHTML = marcas.map(m =>
       `<button type="button" class="brand-chip" data-brand="${escapeHtml(m)}">${escapeHtml(m)}</button>`).join('');
@@ -3212,7 +3225,7 @@
     query = query.range(from, to);
 
     if (activeCategoryFilter) query = query.eq('category', activeCategoryFilter);
-    if (brandFilter) query = query.eq('brand', brandFilter);
+    if (brandFilter) query = query.ilike('brand', brandFilter); // sin % = exacto ignorando mayúsculas
 
     const { data, error, count } = await query;
 
@@ -3252,7 +3265,7 @@
       const off = Math.round((1 - Number(p.price) / Number(p.old_price)) * 100);
       if (off >= 5) return `-${off}%`;
     }
-    if (p.created_at && (Date.now() - new Date(p.created_at).getTime()) < 14 * 864e5) return 'NUEVO';
+    if (p.created_at && (Date.now() - new Date(p.created_at).getTime()) < 7 * 864e5) return 'NUEVO';
     return null;
   }
 
