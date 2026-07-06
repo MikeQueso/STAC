@@ -4472,6 +4472,29 @@
       const ultimaActualizacion = (precios || []).reduce((max, p) =>
         !max || new Date(p.actualizado_at) > new Date(max) ? p.actualizado_at : max, null);
 
+      // Frescura por proveedor: última vez que ENCONTRÓ un precio (no solo links)
+      const frescura = {};
+      (precios || []).forEach(p => {
+        if (!(Number(p.precio) > 0)) return;
+        if (!frescura[p.proveedor] || new Date(p.actualizado_at) > new Date(frescura[p.proveedor])) {
+          frescura[p.proveedor] = p.actualizado_at;
+        }
+      });
+      const haceCuanto = (iso) => {
+        const h = (Date.now() - new Date(iso).getTime()) / 36e5;
+        if (h < 1.5) return 'hace 1 h';
+        if (h < 24) return `hace ${Math.round(h)} h`;
+        const d = Math.round(h / 24);
+        return `hace ${d} día${d === 1 ? '' : 's'}`;
+      };
+      const frescuraHtml = ['Abasteo', 'DD Tech', 'Office Depot', 'Cyberpuerta']
+        .filter(pr => frescura[pr])
+        .map(pr => {
+          const horas = (Date.now() - new Date(frescura[pr]).getTime()) / 36e5;
+          const color = horas < 30 ? 'var(--accent-green)' : horas < 72 ? '#FFB020' : '#FF7070';
+          return `<span style="white-space:nowrap;"><span style="color:${color};">●</span> ${escapeHtml(pr)} ${haceCuanto(frescura[pr])}</span>`;
+        }).join(' &nbsp; ');
+
       // Categorías únicas para los filtros
       const categoriasUnicas = ['Todos', ...Array.from(new Set((allProducts || []).map(p => p.category).filter(Boolean))).sort()];
 
@@ -4527,6 +4550,7 @@
           <p style="font-size:12.5px; color:var(--text-dim); margin:0; flex:1; min-width:220px;">
             Precio más bajo encontrado en cada proveedor (no se actualiza solo tu precio de venta).
             ${ultimaActualizacion ? `Última revisión: ${new Date(ultimaActualizacion).toLocaleString('es-MX')}.` : 'Todavía no hay datos — el robot corre una vez al día.'}
+            ${frescuraHtml ? `<br><span style="font-size:11.5px;">${frescuraHtml}</span>` : ''}
           </p>
           <button type="button" id="precios-run-btn" class="btn-admin-panel" style="white-space:nowrap;">🤖 Actualizar precios ahora</button>
           <button type="button" id="precios-csv-btn" class="btn-admin-panel" style="white-space:nowrap;">⬇️ Descargar CSV</button>

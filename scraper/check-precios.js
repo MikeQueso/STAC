@@ -512,13 +512,11 @@ async function run() {
     const conPrecio = rowsProv.filter(r => r.precio !== null && Number(r.precio) > 0).length;
     console.log(`  ${prov}: ${conPrecio}/${rowsProv.length} con precio`);
 
-    // ¿Cuántos precios hay guardados de la corrida anterior?
-    const { count: viejosConPrecio } = await sb.from('precios_abasto')
-      .select('*', { count: 'exact', head: true }).eq('proveedor', prov).gt('precio', 0);
-
     if (conPrecio === 0) {
       // Sin precios: proteger datos anteriores si ya existen; si la tabla está vacía
       // para este proveedor, guardar igual (links de búsqueda son útiles).
+      // (Con la fusión de abajo esto es solo una optimización: evita reescribir
+      // la tabla con lo mismo cuando el sitio bloqueó la corrida completa.)
       const { count } = await sb.from('precios_abasto')
         .select('*', { count: 'exact', head: true }).eq('proveedor', prov);
       if (count > 0) {
@@ -526,21 +524,36 @@ async function run() {
         continue;
       }
       console.log(`  ↳ ${prov}: sin precios pero tabla vacía — guardando links de búsqueda.`);
-    } else if (viejosConPrecio > 0 && conPrecio < viejosConPrecio * 0.6) {
-      // Esta corrida encontró MUCHO menos que la anterior (p.ej. la IP del
-      // servidor fue bloqueada a media corrida): no degradar los datos buenos.
-      console.log(`  ↳ ${prov}: solo ${conPrecio} vs ${viejosConPrecio} guardados — conservando datos anteriores.`);
-      continue;
     }
+
+    // FUSIÓN POR PRODUCTO: si esta corrida no encontró precio para un producto
+    // pero la corrida anterior sí, conservar la fila anterior (con su fecha).
+    // Así ningún producto pierde su precio por un bloqueo temporal del sitio.
+    const { data: viejasConPrecio } = await sb.from('precios_abasto')
+      .select('product_id, precio, url, encontrado_como, actualizado_at')
+      .eq('proveedor', prov).gt('precio', 0);
+    const viejaDe = new Map((viejasConPrecio || []).map(r => [r.product_id, r]));
+    let rescatados = 0;
+    const finales = rowsProv.map(r => {
+      if ((!r.precio || Number(r.precio) <= 0) && viejaDe.has(r.product_id)) {
+        const v = viejaDe.get(r.product_id);
+        rescatados++;
+        return {
+          product_id: r.product_id, proveedor: prov, precio: v.precio,
+          url: v.url, encontrado_como: v.encontrado_como, actualizado_at: v.actualizado_at,
+        };
+      }
+      return r;
+    });
 
     const { error: delErr } = await sb.from('precios_abasto').delete().eq('proveedor', prov);
     if (delErr) { console.error(`Error borrando ${prov}:`, delErr.message); continue; }
 
-    const { error: insErr } = await sb.from('precios_abasto').insert(rowsProv);
+    const { error: insErr } = await sb.from('precios_abasto').insert(finales);
     if (insErr) { console.error(`Error guardando ${prov}:`, insErr.message); continue; }
 
-    totalGuardados += rowsProv.length;
-    console.log(`  ↳ ${prov}: ${rowsProv.length} filas guardadas (${conPrecio} con precio).`);
+    totalGuardados += finales.length;
+    console.log(`  ↳ ${prov}: ${finales.length} filas guardadas (${conPrecio} nuevas con precio, ${rescatados} conservadas de corridas anteriores).`);
   }
 
   console.log(`\nTotal guardado: ${totalGuardados} filas.`);
