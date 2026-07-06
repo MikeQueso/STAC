@@ -155,10 +155,12 @@ function buildQueryVariants(productName) {
 
 // Prueba cada variante de búsqueda con `searchFn` hasta encontrar un
 // candidato que pase pickBestMatch, o se agoten las variantes.
-async function searchWithFallback(searchFn, productName, variants) {
+// `category` refuerza la guardia de tipo cuando el nombre no lo trae
+// (ej. "Logitech G Pro X Superlight" no dice "mouse", su categoría sí).
+async function searchWithFallback(searchFn, productName, variants, category) {
   for (const query of variants) {
     const items = await searchFn(query);
-    const match = pickBestMatch(productName, items);
+    const match = pickBestMatch(productName, items, category);
     if (match) return match;
   }
   return null;
@@ -182,6 +184,10 @@ const TYPE_GROUPS = [
   /enfriamiento l[ií]quido|disipador|watercooling/i,
   /webcam|c[aá]mara web/i,
   /micr[oó]fono\b/i,
+  /memoria ram/i,
+  /\bssd\b|estado s[oó]lido|nvme|disco duro/i,
+  /tarjeta de video|tarjeta gr[aá]fica|geforce|radeon/i,
+  /procesador|ryzen \d|core i\d|core ultra/i,
 ];
 function typeSetOf(s) {
   const out = [];
@@ -190,11 +196,11 @@ function typeSetOf(s) {
 }
 
 // Elige el resultado que mejor coincide con el nombre del producto.
-function pickBestMatch(productName, items) {
+function pickBestMatch(productName, items, category) {
   if (!items || !items.length) return null;
   const { wantedSig, wantedSet, keyModel, brand, caps, productIsBuild, prodHasBadKind } = extractSignature(productName);
   const VARIANT_QUALIFIERS = ['ti', 'super', 'pro'];
-  const prodTypes = typeSetOf(productName);
+  const prodTypes = typeSetOf(productName + ' ' + (category || ''));
 
   let best = null;
   let bestScore = 1;
@@ -333,7 +339,7 @@ async function searchOfficeDepot(query) {
 }
 
 async function run() {
-  const { data: products, error } = await sb.from('products').select('id, name');
+  const { data: products, error } = await sb.from('products').select('id, name, category');
   if (error) {
     console.error('No se pudo leer products:', error.message);
     process.exit(1);
@@ -392,7 +398,7 @@ async function run() {
     await mapPool(products, 4, async (product) => {
       try {
         const variants = buildQueryVariants(product.name);
-        const match = await searchWithFallback((q) => searchCyberpuerta(q), product.name, variants);
+        const match = await searchWithFallback((q) => searchCyberpuerta(q), product.name, variants, product.category);
         if (match) {
           conCyber++;
           rows.push({ product_id: product.id, proveedor: 'Cyberpuerta', precio: match.price, url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString() });
@@ -411,7 +417,7 @@ async function run() {
   await mapPool(products, 4, async (product) => {
     try {
       const variants = buildQueryVariants(product.name);
-      const match = await searchWithFallback((q) => searchOfficeDepot(q), product.name, variants);
+      const match = await searchWithFallback((q) => searchOfficeDepot(q), product.name, variants, product.category);
       if (match) {
         conOD++;
         rows.push({ product_id: product.id, proveedor: 'Office Depot', precio: match.price, url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString() });
@@ -438,7 +444,7 @@ async function run() {
         const product = products[i++];
         try {
           const variants = buildQueryVariants(product.name);
-          const match = await searchWithFallback((q) => searchDDTech(page, q), product.name, variants);
+          const match = await searchWithFallback((q) => searchDDTech(page, q), product.name, variants, product.category);
           if (match) {
             conDD++;
             rows.push({ product_id: product.id, proveedor: 'DD Tech', precio: match.price, url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString() });
@@ -469,7 +475,7 @@ async function run() {
         const product = products[i++];
         try {
           const variants = buildQueryVariants(product.name);
-          const match = await searchWithFallback((q) => searchAbasteo(page, q), product.name, variants);
+          const match = await searchWithFallback((q) => searchAbasteo(page, q), product.name, variants, product.category);
           if (match) {
             conAbasteo++;
             rows.push({ product_id: product.id, proveedor: 'Abasteo', precio: match.price, url: match.url, encontrado_como: match.title, actualizado_at: new Date().toISOString() });
