@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>STAC – Componentes para PC</title>
+  <title>STAC – Componentes para PC y Soporte Técnico</title>
+  <meta name="description" content="STAC: tienda en línea de componentes y accesorios de PC (SSD, RAM, tarjetas gráficas, gabinetes y más) y servicios profesionales de soporte técnico en computación." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="STAC – Componentes para PC y Soporte Técnico" />
+  <meta property="og:description" content="Tienda de componentes de PC con asesoría experta: almacenamiento, memoria RAM, tarjetas gráficas, gabinetes, impresoras y servicios de soporte técnico." />
+  <meta property="og:image" content="https://mikequeso.github.io/STAC/icon-512.png" />
+  <meta property="og:url" content="https://mikequeso.github.io/STAC/" />
+  <meta name="twitter:card" content="summary" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0C1E3A" />
@@ -864,6 +871,10 @@
     @media (max-width: 900px) {
       .footer-grid { grid-template-columns: 1fr 1fr; }
       nav { display: none; }
+      /* En móvil el menú se oculta: mostrar acceso directo a Contacto */
+      #header-contact-btn { display: flex !important; }
+      /* Partículas más discretas en pantallas chicas */
+      .hero-particle { width: 44px !important; height: 44px !important; }
     }
     @media (max-width: 760px) {
       .detail-grid { grid-template-columns: 1fr; }
@@ -923,6 +934,7 @@
       <a href="#" id="nav-contact-btn">Contacto</a>
     </nav>
     <div class="header-actions">
+      <button id="header-contact-btn" title="Contacto" style="display:none;background:#fff;border:1.5px solid rgba(0,95,255,0.3);border-radius:10px;width:48px;height:48px;align-items:center;justify-content:center;cursor:pointer;font-size:20px;">📞</button>
       <button id="cart-open-btn" title="Carrito" style="position:relative;background:var(--blue-core);border:none;border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,box-shadow .2s;" onmouseover="this.style.background='var(--blue-bright)';this.style.boxShadow='0 0 18px rgba(0,95,255,0.45)'" onmouseout="this.style.background='var(--blue-core)';this.style.boxShadow='none'">
         <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         <span class="cart-badge">0</span>
@@ -1052,6 +1064,17 @@
       /* Títulos de sección con acento */
       .sec-title { position:relative; padding-bottom:14px !important; }
       .sec-title::after { content:''; position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:74px; height:4px; border-radius:4px; background:linear-gradient(90deg,#D72638,#005FFF); }
+      /* ── Botón volver arriba ── */
+      #back-to-top {
+        position:fixed; left:18px; bottom:18px; z-index:2500;
+        width:46px; height:46px; border-radius:12px; border:none; cursor:pointer;
+        background:linear-gradient(135deg,#0C1E3A,#123563); color:#fff; font-size:19px;
+        box-shadow:0 8px 24px rgba(12,30,58,0.35);
+        opacity:0; visibility:hidden; transform:translateY(12px);
+        transition:opacity .35s ease, transform .35s ease, visibility .35s;
+      }
+      #back-to-top.show { opacity:1; visibility:visible; transform:translateY(0); }
+      #back-to-top:hover { background:linear-gradient(135deg,#005FFF,#0C7CFF); }
       @media (prefers-reduced-motion: reduce) {
         #hero-logo, #hero-glow, .hero-orb, .ticker-track, .hero-particle, #hero-scroll-hint .chev, #hero-cta { animation:none !important; }
         .reveal { opacity:1; transform:none; transition:none; }
@@ -1298,7 +1321,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2024 STAC Componentes de PC · Todos los derechos reservados</span>
+    <span class="footer-copy">© <span id="footer-year">2026</span> STAC Componentes de PC · Todos los derechos reservados</span>
     <div class="footer-links">
       <a href="#">Privacidad</a>
       <a href="#">Términos de uso</a>
@@ -2512,6 +2535,7 @@
     document.documentElement.style.overflow = '';
   }
   document.getElementById('nav-contact-btn').addEventListener('click', openContactModal);
+  document.getElementById('header-contact-btn').addEventListener('click', openContactModal);
   document.querySelectorAll('.open-contact-link').forEach(a => a.addEventListener('click', openContactModal));
   document.getElementById('contact-modal-close').addEventListener('click', closeContactModal);
   document.getElementById('contact-modal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeContactModal(); });
@@ -4822,6 +4846,21 @@
       navigator.serviceWorker.register('sw.js').catch(() => {});
     });
   }
+
+  /* ── Año dinámico del footer y botón volver arriba ── */
+  (() => {
+    const y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+    const btt = document.createElement('button');
+    btt.id = 'back-to-top';
+    btt.title = 'Volver arriba';
+    btt.textContent = '↑';
+    document.body.appendChild(btt);
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener('scroll', () => {
+      btt.classList.toggle('show', window.scrollY > 700);
+    }, { passive: true });
+  })();
 </script>
 </body>
 </html>

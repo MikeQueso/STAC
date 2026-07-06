@@ -68,11 +68,11 @@ function buildFicha(fullName, category, price, proveedor) {
 
   const specsGroups = [{ name: 'Especificaciones', features }];
   const specsFlat = features.map((f) => `${f.name}: ${f.value}`).join('\n');
+  // OJO: nunca mencionar precios de referencia ni tiendas proveedoras en la
+  // ficha del producto (regla del negocio) — solo especificaciones.
   const description_html =
     `<p><strong>${display}</strong></p>` +
-    `<p>${category} disponible en STAC. Producto nuevo, original y sellado.</p>` +
-    `<p>Precio de referencia de mercado (${proveedor}): $${price.toLocaleString('es-MX')} MXN. ` +
-    `Consulta el precio final de venta con nosotros.</p>`;
+    `<p>${category} disponible en STAC. Producto nuevo, original y sellado.</p>`;
 
   return { display, brand, description_html, specs: specsFlat, specs_json: JSON.stringify(specsGroups), brand_info: brand };
 }

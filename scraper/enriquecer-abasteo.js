@@ -214,9 +214,14 @@ async function run() {
     try { return JSON.parse(specsJson || '[]').reduce((s, g) => s + ((g.features || []).length), 0); }
     catch { return 0; }
   };
-  const toEnrich = products.filter(p =>
-    !p.description_html || p.description_html.length < 250 || featuresCount(p.specs_json) < 4
-  );
+  // --todo: procesa TODOS los productos con página de proveedor conocida (las
+  // reglas de "solo sobrescribir si lo nuevo es mejor" siguen aplicando).
+  const TODO = process.argv.includes('--todo');
+  const toEnrich = TODO
+    ? products.filter(p => urlByProduct[p.id])
+    : products.filter(p =>
+        !p.description_html || p.description_html.length < 250 || featuresCount(p.specs_json) < 4
+      );
 
   console.log(`\nProductos a enriquecer (ficha pobre): ${toEnrich.length} de ${products.length}`);
   if (!toEnrich.length) { console.log('Todos los productos ya tienen ficha completa.'); return; }
