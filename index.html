@@ -942,6 +942,7 @@
     </nav>
     <div class="header-actions">
       <button id="header-search-btn" title="Buscar" style="display:none;background:#fff;border:1.5px solid rgba(0,95,255,0.3);border-radius:10px;width:48px;height:48px;align-items:center;justify-content:center;cursor:pointer;font-size:19px;">🔍</button>
+      <button id="header-fav-btn" title="Mis favoritos" style="position:relative;background:#fff;border:1.5px solid rgba(215,38,56,0.3);border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:19px;">❤️<span id="fav-badge" style="display:none;position:absolute;top:-6px;right:-6px;background:#D72638;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px;box-sizing:border-box;font-family:'IBM Plex Sans',sans-serif;">0</span></button>
       <button id="header-contact-btn" title="Contacto" style="display:none;background:#fff;border:1.5px solid rgba(0,95,255,0.3);border-radius:10px;width:48px;height:48px;align-items:center;justify-content:center;cursor:pointer;font-size:20px;">📞</button>
       <button id="cart-open-btn" title="Carrito" style="position:relative;background:var(--blue-core);border:none;border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,box-shadow .2s;" onmouseover="this.style.background='var(--blue-bright)';this.style.boxShadow='0 0 18px rgba(0,95,255,0.45)'" onmouseout="this.style.background='var(--blue-core)';this.style.boxShadow='none'">
         <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
@@ -1001,12 +1002,22 @@
       /* Cada servicio ocupa todo el ancho: banner completo por posición */
       #services-grid .service-card { flex:0 0 100%; box-sizing:border-box; min-width:0; }
       @media (max-width:640px) { .service-card-hero { padding:30px 22px !important; min-height:0 !important; } .service-card-hero p { max-width:100% !important; } }
-      .svc-dot { width:9px; height:9px; border-radius:50%; border:none; background:#C3CFDE; cursor:pointer; padding:0; transition:background .3s, transform .3s; }
-      .svc-dot.active { background:#005FFF; transform:scale(1.3); }
+      .svc-dot { width:9px; height:9px; border-radius:50%; border:none; background:#C3CFDE; cursor:pointer; padding:0; transition:all .35s cubic-bezier(.4,0,.2,1); }
+      .svc-dot.active { width:28px; border-radius:5px; background:linear-gradient(90deg,#D72638,#005FFF); }
       .service-card-hero { transition:transform .35s ease, box-shadow .35s ease; }
+      #services-grid.svc-dragging { transition:none !important; }
+      #services-grid.svc-dragging .service-card-hero:hover { transform:none; }
       .service-card-hero:hover { transform:translateY(-6px); box-shadow:0 24px 52px rgba(12,30,58,0.38) !important; }
       .service-card-hero .service-readmore { transition:transform .25s ease, box-shadow .25s ease; }
       .service-card-hero .service-readmore:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.3) !important; }
+      /* Flechas de navegación (glass) */
+      .svc-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:5; width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,0.35); background:rgba(12,30,58,0.35); backdrop-filter:blur(6px); color:#fff; font-size:26px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .25s, transform .25s, opacity .25s; opacity:0; padding-bottom:3px; }
+      #services-carousel:hover .svc-arrow { opacity:1; }
+      .svc-arrow:hover { background:rgba(0,95,255,0.85); transform:translateY(-50%) scale(1.1); }
+      @media (max-width:640px) { .svc-arrow { display:none; } }
+      /* Imagen de fondo del banner de servicio */
+      .service-card-hero .svc-bg { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0.30; pointer-events:none; z-index:0; }
+      .service-card-hero .svc-bg-shade { position:absolute; inset:0; background:linear-gradient(105deg, rgba(6,15,32,0.92) 0%, rgba(6,15,32,0.7) 45%, rgba(6,15,32,0.35) 100%); pointer-events:none; z-index:0; }
       /* ── Barra de anuncios en movimiento ── */
       #ticker-bar { overflow:hidden; background:linear-gradient(90deg,#0C1E3A 0%,#14345E 50%,#0C1E3A 100%); padding:11px 0; box-shadow:0 4px 18px rgba(12,30,58,0.22); }
       .ticker-track { display:inline-flex; white-space:nowrap; animation:tickerMove 24s linear infinite; will-change:transform; }
@@ -1109,6 +1120,14 @@
       .recent-card img { width:100%; height:100px; object-fit:contain; display:block; }
       .recent-card .rc-name { font-size:12px; color:#0C1E3A; font-weight:600; line-height:1.3; margin-top:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
       .recent-card .rc-price { font-family:'Rajdhani',sans-serif; font-weight:700; color:#005FFF; font-size:15.5px; margin-top:4px; }
+      /* ── Favoritos ── */
+      .fav-heart { position:absolute; top:8px; left:8px; z-index:3; width:34px; height:34px; border-radius:50%; border:none; background:rgba(255,255,255,0.92); box-shadow:0 2px 8px rgba(12,30,58,0.15); cursor:pointer; font-size:16px; line-height:1; display:flex; align-items:center; justify-content:center; transition:transform .2s, background .2s; padding:0; }
+      .fav-heart:hover { transform:scale(1.15); }
+      .fav-heart.on { background:#fff; }
+      @keyframes heartPop { 0% { transform:scale(1); } 40% { transform:scale(1.4); } 100% { transform:scale(1); } }
+      .fav-heart.just-added { animation:heartPop .4s ease; }
+      .detail-fav-btn { display:inline-flex; align-items:center; gap:7px; background:rgba(215,38,56,0.08); color:#D72638; border:1.5px solid rgba(215,38,56,0.35); border-radius:9px; padding:9px 16px; font-size:12.5px; font-weight:700; cursor:pointer; font-family:'IBM Plex Sans',sans-serif; transition:background .2s; }
+      .detail-fav-btn.on { background:#D72638; color:#fff; border-color:#D72638; }
       /* ── Botón volver arriba ── */
       #back-to-top {
         position:fixed; left:18px; bottom:18px; z-index:2500;
@@ -1190,8 +1209,10 @@
     </div>
 
     <h2 class="reveal sec-title" style="text-align:center; font-family:'Rajdhani',sans-serif; font-size:clamp(26px,4vw,42px); font-weight:800; color:#0C1E3A; margin:0 0 32px; letter-spacing:0.5px;">Nuestros servicios</h2>
-    <div id="services-carousel" class="reveal" style="position:relative; max-width:980px; margin:0 auto; overflow:hidden;">
+    <div id="services-carousel" class="reveal" style="position:relative; max-width:980px; margin:0 auto; overflow:hidden; touch-action:pan-y;">
       <div id="services-grid" style="display:flex; gap:20px; transition:transform .65s cubic-bezier(.45,0,.25,1); will-change:transform;"></div>
+      <button type="button" id="svc-arrow-prev" class="svc-arrow" aria-label="Anterior" style="left:12px;">‹</button>
+      <button type="button" id="svc-arrow-next" class="svc-arrow" aria-label="Siguiente" style="right:12px;">›</button>
     </div>
     <div id="services-dots" style="display:flex; justify-content:center; gap:8px; margin:18px auto 16px; max-width:980px;"></div>
     <div id="svc-add-wrap" style="display:none; text-align:center; margin:0 auto 64px; max-width:980px;">
@@ -1203,6 +1224,8 @@
     <div id="service-detail" style="position:fixed;inset:0;z-index:3000;background:rgba(12,30,58,0.6);display:none;align-items:flex-start;justify-content:center;padding:40px 16px 60px;box-sizing:border-box;backdrop-filter:blur(3px);">
       <div id="service-detail-inner" class="modal-pop" style="background:#fff;border-radius:20px;max-width:760px;width:100%;max-height:calc(100vh - 100px);overflow-y:auto;overflow-x:hidden;padding:0;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,0.35);position:relative;box-sizing:border-box;flex-shrink:0;">
         <div id="service-detail-head" style="background:linear-gradient(135deg,#0C1E3A 0%,#123563 60%,#005FFF 160%);padding:30px 32px 24px;position:relative;overflow:hidden;">
+          <div id="service-detail-bg" style="position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;pointer-events:none;"></div>
+          <div id="service-detail-bg-shade" style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(6,15,32,0.9),rgba(6,15,32,0.55));pointer-events:none;opacity:0;"></div>
           <div style="position:absolute;right:-50px;top:-60px;width:230px;height:230px;border-radius:50%;background:rgba(0,95,255,0.45);filter:blur(52px);pointer-events:none;"></div>
           <div style="position:absolute;left:-60px;bottom:-80px;width:190px;height:190px;border-radius:50%;background:rgba(215,38,56,0.28);filter:blur(50px);pointer-events:none;"></div>
           <button type="button" id="service-detail-close" style="position:absolute;top:16px;right:18px;z-index:2;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:9px;width:36px;height:36px;font-size:15px;cursor:pointer;color:#fff;line-height:1;transition:transform .3s ease, background .3s ease;">✕</button>
@@ -1224,6 +1247,20 @@
           <button type="button" id="search-overlay-close" style="background:none;border:1px solid #DDE3EC;border-radius:9px;width:44px;font-size:15px;cursor:pointer;color:#5A7090;">✕</button>
         </div>
         <div id="search-results-mobile" class="so-results"></div>
+      </div>
+    </div>
+
+    <!-- ── Modal Favoritos ── -->
+    <div id="fav-modal" style="position:fixed;inset:0;z-index:3200;background:rgba(12,30,58,0.6);display:none;align-items:flex-start;justify-content:center;padding:40px 16px 60px;box-sizing:border-box;backdrop-filter:blur(3px);">
+      <div class="modal-pop" style="background:#fff;border-radius:20px;max-width:720px;width:100%;max-height:calc(100vh - 100px);overflow-y:auto;overflow-x:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.35);box-sizing:border-box;flex-shrink:0;text-align:left;">
+        <div style="background:linear-gradient(135deg,#3A0D14 0%,#7A1C2A 55%,#D72638 150%);padding:30px 32px 24px;position:relative;overflow:hidden;">
+          <div style="position:absolute;right:-50px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,105,120,0.4);filter:blur(52px);pointer-events:none;"></div>
+          <button type="button" id="fav-modal-close" style="position:absolute;top:16px;right:18px;z-index:2;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.3);border-radius:9px;width:36px;height:36px;font-size:15px;cursor:pointer;color:#fff;line-height:1;">✕</button>
+          <div style="position:relative;display:inline-flex;width:64px;height:64px;align-items:center;justify-content:center;border-radius:16px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);font-size:30px;margin-bottom:12px;">❤️</div>
+          <h3 style="position:relative;font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:#fff;margin:0;">Mis favoritos</h3>
+          <p style="position:relative;font-size:13.5px;color:rgba(255,255,255,0.82);margin:6px 0 0;">Los productos que guardaste con el corazón.</p>
+        </div>
+        <div id="fav-modal-body" style="padding:24px 26px 30px;"></div>
       </div>
     </div>
 
@@ -1287,6 +1324,20 @@
         <div style="margin-bottom:22px;">
           <label style="font-size:11px;font-weight:600;color:var(--text-dim);letter-spacing:.08em;display:block;margin-bottom:6px;">DESCRIPCIÓN BREVE <span style="font-weight:400;text-transform:none;font-size:11px;">(aparece en la tarjeta)</span></label>
           <textarea id="svc-description" rows="4" placeholder="Describe el servicio brevemente… (sin límite de caracteres)" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg-surface);color:var(--text-primary);font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;resize:vertical;box-sizing:border-box;"></textarea>
+        </div>
+
+        <!-- Imagen de fondo -->
+        <div style="margin-bottom:22px;">
+          <label style="font-size:11px;font-weight:600;color:var(--text-dim);letter-spacing:.08em;display:block;margin-bottom:6px;">IMAGEN DE FONDO <span style="font-weight:400;text-transform:none;font-size:11px;">(opcional — se ve difuminada detrás del texto)</span></label>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+            <div id="svc-bg-preview" style="width:96px;height:56px;border-radius:8px;border:1px solid var(--border);background:var(--bg-surface) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--text-dim);flex-shrink:0;">🖼️</div>
+            <label style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(0,95,255,0.1);border:1px solid rgba(0,95,255,0.25);border-radius:8px;cursor:pointer;font-size:12.5px;color:#4D9FFF;font-family:'IBM Plex Sans',sans-serif;font-weight:600;">
+              📁 Elegir imagen
+              <input type="file" accept="image/*" id="svc-bg-input" style="display:none;">
+            </label>
+            <button type="button" id="svc-bg-clear" style="display:none;background:none;border:1px solid rgba(255,80,80,0.4);border-radius:8px;padding:8px 14px;cursor:pointer;color:#ff6b6b;font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;">Quitar</button>
+            <input type="hidden" id="svc-bg-image" value="">
+          </div>
         </div>
 
         <!-- Secciones -->
@@ -2374,6 +2425,7 @@
         const t = SVC_THEMES[themeIdx++ % SVC_THEMES.length];
         return `
         <div class="service-card service-card-hero" data-service="${id}" style="position:relative;overflow:hidden;background:${t.bg};border:none;border-radius:20px;padding:46px 50px;min-height:330px;text-align:left;display:flex;flex-direction:column;box-shadow:0 14px 34px rgba(12,30,58,0.28);color:#fff;">
+          ${svcBgOf(s) ? `<div class="svc-bg" style="background-image:url('${escapeHtml(svcBgOf(s))}');"></div><div class="svc-bg-shade"></div>` : ''}
           <div style="position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:${t.orb1};filter:blur(60px);pointer-events:none;"></div>
           <div style="position:absolute;left:-70px;bottom:-80px;width:260px;height:260px;border-radius:50%;background:${t.orb2};filter:blur(62px);pointer-events:none;"></div>
           <div style="position:absolute;right:30px;bottom:-30px;font-size:210px;line-height:1;opacity:0.15;transform:rotate(-10deg);pointer-events:none;">${escapeHtml(s.icon || '🛠️')}</div>
@@ -2409,23 +2461,31 @@
     initServicesCarousel();
   }
 
-  /* ── Carrusel de servicios: avanza solo cada 4.5s, se pausa con el cursor
-        encima y continúa al quitarlo. Los puntos permiten saltar a una posición. ── */
+  /* ── Carrusel de servicios: autoplay cada 5s, pausa al pasar el cursor o
+        tocar, dots-píldora, flechas y arrastre con el dedo/mouse (swipe). ── */
   let svcCarIdx = 0, svcCarTimer = null;
-  function svcPerView() { return 1; } // cada servicio ocupa todo el ancho
   function svcCarPositions() {
     const track = document.getElementById('services-grid');
-    return Math.max(1, track.children.length - svcPerView() + 1);
+    return Math.max(1, track.children.length); // cada servicio ocupa todo el ancho
+  }
+  function svcCarStep() {
+    const track = document.getElementById('services-grid');
+    return track.children.length ? track.children[0].getBoundingClientRect().width + 20 : 0;
   }
   function svcCarUpdate() {
     const track = document.getElementById('services-grid');
     if (!track.children.length) return;
     const maxIdx = svcCarPositions() - 1;
     if (svcCarIdx > maxIdx) svcCarIdx = 0;
-    const step = track.children[0].getBoundingClientRect().width + 20;
-    track.style.transform = `translateX(${-svcCarIdx * step}px)`;
+    if (svcCarIdx < 0) svcCarIdx = maxIdx;
+    track.style.transform = `translateX(${-svcCarIdx * svcCarStep()}px)`;
     document.querySelectorAll('#services-dots .svc-dot').forEach((d, i) =>
       d.classList.toggle('active', i === svcCarIdx));
+    const n = svcCarPositions();
+    ['svc-arrow-prev', 'svc-arrow-next'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = n > 1 ? 'flex' : 'none';
+    });
   }
   function svcCarBuildDots() {
     const dots = document.getElementById('services-dots');
@@ -2437,13 +2497,14 @@
       svcCarIdx = +d.dataset.idx; svcCarUpdate(); svcCarRestart();
     }));
   }
-  function svcCarNext() {
-    svcCarIdx = svcCarIdx + 1 >= svcCarPositions() ? 0 : svcCarIdx + 1;
+  function svcCarGo(dir) {
+    const n = svcCarPositions();
+    svcCarIdx = (svcCarIdx + dir + n) % n;
     svcCarUpdate();
   }
   function svcCarRestart() {
     clearInterval(svcCarTimer);
-    if (svcCarPositions() > 1) svcCarTimer = setInterval(svcCarNext, 4500);
+    if (svcCarPositions() > 1) svcCarTimer = setInterval(() => svcCarGo(1), 5000);
   }
   function initServicesCarousel() {
     svcCarIdx = 0;
@@ -2453,12 +2514,54 @@
   }
   (() => {
     const wrap = document.getElementById('services-carousel');
-    if (!wrap) return;
+    const track = document.getElementById('services-grid');
+    if (!wrap || !track) return;
+
+    document.getElementById('svc-arrow-prev').addEventListener('click', () => { svcCarGo(-1); svcCarRestart(); });
+    document.getElementById('svc-arrow-next').addEventListener('click', () => { svcCarGo(1); svcCarRestart(); });
+
     wrap.addEventListener('mouseenter', () => clearInterval(svcCarTimer));
-    wrap.addEventListener('mouseleave', svcCarRestart);
-    wrap.addEventListener('touchstart', () => clearInterval(svcCarTimer), { passive: true });
-    wrap.addEventListener('touchend', svcCarRestart);
-    window.addEventListener('resize', () => { svcCarBuildDots(); svcCarUpdate(); });
+    wrap.addEventListener('mouseleave', () => { if (!dragging) svcCarRestart(); });
+    window.addEventListener('resize', () => { svcCarUpdate(); });
+
+    // ── Arrastre con dedo (táctil) y mouse ──
+    let startX = 0, dragX = 0, dragging = false, moved = false;
+    const getX = (e) => e.touches ? e.touches[0].clientX : e.clientX;
+
+    function dragStart(e) {
+      dragging = true; moved = false;
+      startX = getX(e); dragX = 0;
+      clearInterval(svcCarTimer);
+      track.classList.add('svc-dragging');
+    }
+    function dragMove(e) {
+      if (!dragging) return;
+      dragX = getX(e) - startX;
+      if (Math.abs(dragX) > 6) moved = true;
+      // resistencia en los extremos
+      const n = svcCarPositions();
+      let d = dragX;
+      if ((svcCarIdx === 0 && d > 0) || (svcCarIdx === n - 1 && d < 0)) d *= 0.35;
+      track.style.transform = `translateX(${-svcCarIdx * svcCarStep() + d}px)`;
+    }
+    function dragEnd() {
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove('svc-dragging');
+      const umbral = svcCarStep() * 0.18;
+      if (dragX <= -umbral) svcCarGo(1);
+      else if (dragX >= umbral) svcCarGo(-1);
+      else svcCarUpdate();
+      svcCarRestart();
+    }
+    track.addEventListener('touchstart', dragStart, { passive: true });
+    track.addEventListener('touchmove', dragMove, { passive: true });
+    track.addEventListener('touchend', dragEnd);
+    track.addEventListener('mousedown', (e) => { e.preventDefault(); dragStart(e); });
+    window.addEventListener('mousemove', dragMove);
+    window.addEventListener('mouseup', dragEnd);
+    // Evitar que un arrastre dispare el clic de "Leer más"
+    track.addEventListener('click', (e) => { if (moved) { e.stopPropagation(); e.preventDefault(); } }, true);
   })();
 
   /* ── Aparición de secciones al hacer scroll ── */
@@ -2546,7 +2649,16 @@
     if (!s) return;
     document.getElementById('service-detail-icon').textContent = s.icon || '🛠️';
     document.getElementById('service-detail-title').textContent = s.title;
-    renderDetailSections(s.sections || []);
+    const bg = document.getElementById('service-detail-bg');
+    const bgShade = document.getElementById('service-detail-bg-shade');
+    const bgUrl = svcBgOf(s);
+    if (bgUrl) {
+      bg.style.backgroundImage = `url('${bgUrl}')`;
+      bg.style.opacity = '0.45'; bgShade.style.opacity = '1';
+    } else {
+      bg.style.backgroundImage = ''; bg.style.opacity = '0'; bgShade.style.opacity = '0';
+    }
+    renderDetailSections(svcContentSections(s));
     const overlay = document.getElementById('service-detail');
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -2838,6 +2950,81 @@
     document.getElementById('recent-section').style.display = '';
   }
 
+  /* ── Favoritos (localStorage) ── */
+  function getFavs() {
+    try { return JSON.parse(localStorage.getItem('stac_favs') || '[]'); } catch (e) { return []; }
+  }
+  function isFav(id) { return getFavs().includes(id); }
+  function toggleFav(id) {
+    let list = getFavs();
+    const nuevo = !list.includes(id);
+    list = nuevo ? [id, ...list] : list.filter(x => x !== id);
+    localStorage.setItem('stac_favs', JSON.stringify(list.slice(0, 100)));
+    updateFavBadge();
+    return nuevo;
+  }
+  function updateFavBadge() {
+    const n = getFavs().length;
+    const badge = document.getElementById('fav-badge');
+    if (badge) { badge.textContent = n; badge.style.display = n ? 'flex' : 'none'; }
+  }
+  function favHeartHtml(id) {
+    const on = isFav(id);
+    return `<button type="button" class="fav-heart ${on ? 'on' : ''}" data-fav="${id}" title="${on ? 'Quitar de favoritos' : 'Agregar a favoritos'}">${on ? '❤️' : '🤍'}</button>`;
+  }
+  function bindFavHearts(root) {
+    (root || document).querySelectorAll('[data-fav]').forEach(btn => {
+      if (btn._favBound) return; btn._favBound = true;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); e.preventDefault();
+        const id = btn.dataset.fav;
+        const added = toggleFav(id);
+        btn.classList.toggle('on', added);
+        btn.textContent = added ? '❤️' : '🤍';
+        if (added) { btn.classList.add('just-added'); setTimeout(() => btn.classList.remove('just-added'), 400); }
+      });
+    });
+  }
+  async function openFavModal() {
+    const body = document.getElementById('fav-modal-body');
+    const ids = getFavs();
+    if (!ids.length) {
+      body.innerHTML = '<p style="text-align:center;color:#5A7090;font-size:14px;padding:20px 0;">Aún no tienes favoritos.<br>Toca el corazón 🤍 en cualquier producto para guardarlo aquí.</p>';
+    } else {
+      body.innerHTML = '<p style="text-align:center;color:#7A8FA8;font-size:13px;">Cargando…</p>';
+      const { data } = await sb.from('products').select('id,name,price,images,category').in('id', ids);
+      const porId = Object.fromEntries((data || []).map(p => [p.id, p]));
+      const orden = ids.map(i => porId[i]).filter(Boolean);
+      body.innerHTML = orden.length ? `<div class="related-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));">
+        ${orden.map(p => `
+          <div class="related-card" data-fav-open="${p.id}" style="background:#F4F7FB;border-color:rgba(0,95,255,0.12);position:relative;">
+            <button type="button" class="fav-heart on" data-fav="${p.id}" style="top:6px;left:6px;">❤️</button>
+            ${p.images && p.images[0] ? `<img src="${escapeHtml(p.images[0])}" alt="" loading="lazy">` : '<div style="height:90px;display:flex;align-items:center;justify-content:center;font-size:30px;">📦</div>'}
+            <div class="rc-name" style="color:#0C1E3A;">${escapeHtml(p.name)}</div>
+            <div class="rc-price" style="color:#005FFF;">$${Number(p.price).toLocaleString('es-MX')}</div>
+          </div>`).join('')}</div>`
+        : '<p style="text-align:center;color:#5A7090;font-size:14px;padding:20px 0;">Tus favoritos ya no están disponibles.</p>';
+      body.querySelectorAll('[data-fav-open]').forEach(el => el.addEventListener('click', (e) => {
+        if (e.target.closest('[data-fav]')) return;
+        closeFavModal(); openProductById(el.dataset.favOpen);
+      }));
+      bindFavHearts(body);
+      // al quitar un favorito desde el modal, re-render
+      body.querySelectorAll('[data-fav]').forEach(btn => btn.addEventListener('click', () => setTimeout(openFavModal, 50)));
+    }
+    document.getElementById('fav-modal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function closeFavModal() {
+    document.getElementById('fav-modal').style.display = 'none';
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }
+  document.getElementById('header-fav-btn').addEventListener('click', openFavModal);
+  document.getElementById('fav-modal-close').addEventListener('click', closeFavModal);
+  document.getElementById('fav-modal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeFavModal(); });
+
   /* ── Link directo: #p-<id> abre el producto compartido y #cat-<nombre>
         abre la categoría (usa HASH_INICIAL porque el hash se pisa al cargar) ── */
   function checkProductDeepLink() {
@@ -2897,21 +3084,63 @@
   }
   initSvcEmojiPicker();
 
+  // La imagen de fondo vive como un elemento {type:'bgimage', url} dentro del
+  // JSONB sections. Estos helpers la extraen / reconstruyen sin columna nueva.
+  function svcBgOf(s) {
+    return (s && Array.isArray(s.sections) ? s.sections.find(x => x && x.type === 'bgimage') : null)?.url || '';
+  }
+  function svcContentSections(s) {
+    return (s && Array.isArray(s.sections) ? s.sections.filter(x => x && x.type !== 'bgimage') : []);
+  }
+  function svcBuildSections() {
+    const bg = document.getElementById('svc-bg-image').value.trim();
+    const content = svcSections.map(s => s.type === 'text' ? { ...s, content: sanitizeHtml(s.content || '') } : s);
+    return bg ? [{ type: 'bgimage', url: bg }, ...content] : content;
+  }
+
   function openServiceEditor(id) {
     svcEditingId = id;
     const s = servicesCache[id] || { icon: '🛠️', title: '', description: '', sections: [] };
-    svcSections = JSON.parse(JSON.stringify(s.sections || []));
+    svcSections = JSON.parse(JSON.stringify(svcContentSections(s)));
     const icon = s.icon || '🛠️';
     document.getElementById('svc-icon').value        = icon;
     document.getElementById('svc-icon-btn').textContent = icon;
     document.getElementById('svc-title').value       = s.title || '';
     document.getElementById('svc-description').value = s.description || '';
+    setSvcBgPreview(svcBgOf(s));
     document.getElementById('svc-emoji-picker').style.display = 'none';
     renderSvcSectionsList();
     const svcOverlay = document.getElementById('svc-editor-overlay');
     svcOverlay.classList.remove('hidden');
     svcOverlay.style.display = 'flex';
   }
+
+  // Imagen de fondo del servicio (editor)
+  function setSvcBgPreview(url) {
+    const hidden = document.getElementById('svc-bg-image');
+    const prev = document.getElementById('svc-bg-preview');
+    const clearBtn = document.getElementById('svc-bg-clear');
+    hidden.value = url || '';
+    if (url) {
+      prev.style.backgroundImage = `url('${url}')`; prev.textContent = '';
+      clearBtn.style.display = '';
+    } else {
+      prev.style.backgroundImage = ''; prev.textContent = '🖼️';
+      clearBtn.style.display = 'none';
+    }
+  }
+  document.getElementById('svc-bg-input').addEventListener('change', async (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    const prev = document.getElementById('svc-bg-preview');
+    prev.textContent = '⏳'; prev.style.backgroundImage = '';
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+    const path = `services/${svcEditingId || 'nuevo'}/fondo-${Date.now()}.${ext}`;
+    const { error } = await sb.storage.from('product-images').upload(path, file, { contentType: file.type, upsert: true });
+    if (error) { alert('Error al subir imagen: ' + error.message); prev.textContent = '🖼️'; return; }
+    setSvcBgPreview(sb.storage.from('product-images').getPublicUrl(path).data.publicUrl);
+    e.target.value = '';
+  });
+  document.getElementById('svc-bg-clear').addEventListener('click', () => setSvcBgPreview(''));
 
   function renderSvcSectionsList() {
     const container = document.getElementById('svc-sections-list');
@@ -3200,7 +3429,9 @@
       icon:        document.getElementById('svc-icon').value.trim() || '🛠️',
       title:       document.getElementById('svc-title').value.trim(),
       description: document.getElementById('svc-description').value.trim(),
-      sections:    svcSections.map(s => s.type === 'text' ? { ...s, content: sanitizeHtml(s.content || '') } : s),
+      // La imagen de fondo se guarda como un elemento especial al inicio del
+      // JSONB sections (así no requiere una columna nueva en la tabla).
+      sections:    svcBuildSections(),
       updated_at:  new Date().toISOString(),
     };
     const { error } = await sb.from('services').upsert(payload, { onConflict: 'id' });
@@ -3306,6 +3537,7 @@
         <div class="prod-select-box" data-select="${p.id}">${selectedIds.has(p.id) ? '✓' : ''}</div>
         <div class="prod-img">
           ${productImageHtml(p)}
+          ${favHeartHtml(p.id)}
           ${autoBadge(p) ? `<span class="prod-tag ${badgeClass(autoBadge(p))}">${escapeHtml(autoBadge(p))}</span>` : ''}
           ${isAdmin ? `<button class="edit-btn" data-edit="${p.id}">✏️ Editar</button>` : ''}
         </div>
@@ -3372,6 +3604,7 @@
       });
     });
 
+    bindFavHearts(grid);
     applySelectionMode();
   }
 
@@ -4014,6 +4247,7 @@
       </div>
       <button type="button" class="detail-pdf-btn" id="detail-pdf-btn">📄 PDF con especificaciones completas</button>
       <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+        <button type="button" id="detail-fav-btn" class="detail-fav-btn ${isFav(p.id) ? 'on' : ''}" style="flex:1; min-width:130px; justify-content:center;">${isFav(p.id) ? '❤️ En favoritos' : '🤍 Agregar a favoritos'}</button>
         <button type="button" id="detail-share-wa" style="flex:1; min-width:150px; background:rgba(37,211,102,0.12); color:#1DA851; border:1.5px solid rgba(37,211,102,0.4); border-radius:9px; padding:9px 14px; font-size:12.5px; font-weight:700; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">💬 Compartir por WhatsApp</button>
         <button type="button" id="detail-share-copy" style="flex:1; min-width:120px; background:rgba(0,95,255,0.1); color:var(--blue-glow); border:1.5px solid rgba(0,95,255,0.35); border-radius:9px; padding:9px 14px; font-size:12.5px; font-weight:700; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">🔗 Copiar link</button>
       </div>
@@ -4051,6 +4285,14 @@
 
     const pdfBtn = document.getElementById('detail-pdf-btn');
     if (pdfBtn) pdfBtn.addEventListener('click', () => generateSpecSheetPDF(currentDetailProduct));
+
+    // Favorito desde el detalle
+    const favBtn = document.getElementById('detail-fav-btn');
+    if (favBtn) favBtn.addEventListener('click', () => {
+      const added = toggleFav(p.id);
+      favBtn.classList.toggle('on', added);
+      favBtn.textContent = added ? '❤️ En favoritos' : '🤍 Agregar a favoritos';
+    });
 
     // Compartir: página estática /p/<id>.html — trae la IMAGEN y el precio del
     // producto en la vista previa de WhatsApp y redirige al producto al abrirla.
@@ -5146,6 +5388,7 @@
     });
 
     renderRecent();          // franja "vistos recientemente" en la portada
+    updateFavBadge();        // contador del corazón en el header
     checkProductDeepLink();  // abrir producto si llegaron con un link compartido
 
     // Categorías, sesión y servicios en paralelo
