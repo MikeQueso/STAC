@@ -1,0 +1,1550 @@
+[
+  {
+    "id": "75360216-eed7-45c2-b0c0-4f726d734915",
+    "name": "ASUS ROG Gladius III",
+    "price": 1450,
+    "old_price": null
+  },
+  {
+    "id": "62633d02-918e-4920-be45-ac80c88ae4dd",
+    "name": "Corsair Katar Pro",
+    "price": 500,
+    "old_price": null
+  },
+  {
+    "id": "dde4709c-6b0b-4aaf-a2cf-893b11ae2789",
+    "name": "Corsair Vengeance RGB Pro 16GB (2x8) DDR4 3600MHz",
+    "price": 1400,
+    "old_price": null
+  },
+  {
+    "id": "a6900481-4a43-4d53-8d51-1e09a1ccc828",
+    "name": "Fuente de Poder MSI MPG Ai1300TS PCIE5 1300W",
+    "price": 6399,
+    "old_price": null
+  },
+  {
+    "id": "006aaa84-f480-4462-b4fb-0ad738b5097a",
+    "name": "Canon 067 Toner Negro",
+    "price": 1300,
+    "old_price": null
+  },
+  {
+    "id": "c4fc9f55-9355-4adf-80b9-10885d67682d",
+    "name": "Logitech G203",
+    "price": 450,
+    "old_price": null
+  },
+  {
+    "id": "e53ace1e-1bf5-4847-ba63-95c383986d12",
+    "name": "Impresora Multifuncional Láser Monocromática Brother DCP-L2540DW Blanco y Negro Wi-Fi",
+    "price": 4149,
+    "old_price": null
+  },
+  {
+    "id": "d4f5555c-c0a3-4994-aa21-165203122f17",
+    "name": "XPG Cybercore 850W 80+ Platinum Modular",
+    "price": 3600,
+    "old_price": null
+  },
+  {
+    "id": "615b5ebf-8931-47c1-a045-a585b4d2be72",
+    "name": "Epson 664 Negro",
+    "price": 250,
+    "old_price": null
+  },
+  {
+    "id": "6f366713-4616-4f95-a7e9-2f489b2ff07d",
+    "name": "Computadora Qian QPI-M21N10A-24M, Intel N100, 8GB, 240GB SSD, Wi-Fi, Windows 11 Prueba",
+    "price": 4409,
+    "old_price": null
+  },
+  {
+    "id": "1ce8237f-aeb4-4426-92e9-cda2382eb385",
+    "name": "Deepcool AK400",
+    "price": 850,
+    "old_price": null
+  },
+  {
+    "id": "77c1ebec-155a-4f67-84a3-bd23859c25c2",
+    "name": "NVIDIA GeForce RTX 4060",
+    "price": 6500,
+    "old_price": null
+  },
+  {
+    "id": "c56705a7-3ebf-4a73-b247-47962e32291c",
+    "name": "Unidad de Estado Sólido SSD ADATA MARS 980 STORM",
+    "price": 4999,
+    "old_price": null
+  },
+  {
+    "id": "c0774d26-d32d-40fd-915c-c2243dd2c6eb",
+    "name": "Sony WH-1000XM4",
+    "price": 7500,
+    "old_price": null
+  },
+  {
+    "id": "dcc94994-8db1-47fe-b300-c1de89db4567",
+    "name": "Tarjeta de Video Gigabyte NVIDIA GeForce RTX 5060 EAGLE MAX OC 8GB",
+    "price": 7599,
+    "old_price": null
+  },
+  {
+    "id": "cab3a66f-955c-4f0b-a5af-f6538d2ae654",
+    "name": "Kingston Fury Beast 16GB (2x8) DDR4 3200MHz",
+    "price": 1100,
+    "old_price": null
+  },
+  {
+    "id": "6532d024-9213-43fd-bd6b-cb54f9230292",
+    "name": "Disco Duro Externo Adata HD710",
+    "price": 1799,
+    "old_price": null
+  },
+  {
+    "id": "84aff099-3157-4076-aa4b-698c6d06e6d8",
+    "name": "Impresora Multifuncional Tinta Continua Canon Pixma G4110 Color Wi-Fi",
+    "price": 4299,
+    "old_price": null
+  },
+  {
+    "id": "61e5de07-84c1-47ed-b00a-70c161fb5d7d",
+    "name": "AMD Radeon RX 7800 XT",
+    "price": 11500,
+    "old_price": null
+  },
+  {
+    "id": "0b3af491-6134-4660-93f4-eea9287dd118",
+    "name": "Kingston Fury Renegade 32GB (2x16) DDR5 6000MHz",
+    "price": 4500,
+    "old_price": null
+  },
+  {
+    "id": "6bd2c9e3-5cb9-40db-88e4-2002fab4aa5c",
+    "name": "Razer Viper Mini",
+    "price": 650,
+    "old_price": null
+  },
+  {
+    "id": "2526b864-3d3b-489a-b3fd-9eb669044893",
+    "name": "Cartucho de Tinta HP 938 Magenta 800 páginas",
+    "price": 589,
+    "old_price": null
+  },
+  {
+    "id": "1680f72b-8f2e-45e6-a2e1-5bf44307e9c4",
+    "name": "Fuente de Poder MSI MAG A1200PLS PCIE5 1200W",
+    "price": 2999,
+    "old_price": null
+  },
+  {
+    "id": "9072020d-27d2-4bac-b7db-e9bd66f5d0c6",
+    "name": "Corsair Dominator Platinum 32GB (2x16) DDR5 6000MHz",
+    "price": 4200,
+    "old_price": null
+  },
+  {
+    "id": "4c6361a1-72c3-4eae-bc32-8d9cbae6c73c",
+    "name": "HyperX Pulsefire Core",
+    "price": 480,
+    "old_price": null
+  },
+  {
+    "id": "e2803470-ca17-4825-8f23-a457675af3e7",
+    "name": "Fuente de Poder MSI PRO A1000PL PCIE5 1000W",
+    "price": 2199,
+    "old_price": null
+  },
+  {
+    "id": "637d37f4-bd2d-4c5b-8cb5-6309fb976c30",
+    "name": "Deepcool AK620",
+    "price": 1200,
+    "old_price": null
+  },
+  {
+    "id": "1e51c64c-94c7-4bcb-a2bf-1677752ac209",
+    "name": "Tarjeta Madre ASRock H610M-HDV",
+    "price": 1199,
+    "old_price": null
+  },
+  {
+    "id": "59c2acf4-e77b-457b-b9b8-b42d2f194d55",
+    "name": "Cartucho de Tinta Canon CL-146 XL Color 300 páginas",
+    "price": 849,
+    "old_price": null
+  },
+  {
+    "id": "31d95e51-f87d-4849-aeaa-271f2313ed9a",
+    "name": "Computadora HP ProDesk 2 SFF G1i, Intel Core i3-14100, 8GB, 512GB SSD, Wi-Fi, Windows 11 Pro",
+    "price": 13399,
+    "old_price": null
+  },
+  {
+    "id": "1bb40bfd-12cc-4232-bea1-7a113342abc1",
+    "name": "AMD Ryzen 9 7900X",
+    "price": 8900,
+    "old_price": null
+  },
+  {
+    "id": "9162cb88-2d3e-4d96-babb-a338a8033350",
+    "name": "Disipador para CPU BALAM RUSH Heliux Pro HEX50",
+    "price": 449,
+    "old_price": null
+  },
+  {
+    "id": "dcce9c4c-36ab-4616-9bca-8a77ab3c8ec2",
+    "name": "Disipador para CPU BALAM RUSH Heliux Pro HEX70",
+    "price": 869,
+    "old_price": null
+  },
+  {
+    "id": "a5a4c48c-fed7-401b-b405-d7364eb15143",
+    "name": "HP 664 Tricolor",
+    "price": 300,
+    "old_price": null
+  },
+  {
+    "id": "177dabcc-99f2-42f7-97a3-5008271ac5c9",
+    "name": "Gabinete Gamer Xzeal XZEAL YRDEN XZ-140",
+    "price": 1199,
+    "old_price": null
+  },
+  {
+    "id": "b03d367c-4384-44b3-ae0f-164991a0dcbe",
+    "name": "Impresora Multifuncional Inyección de Tinta Epson EcoTank Fotográfica L8160 Color Wi-Fi",
+    "price": 15199,
+    "old_price": null
+  },
+  {
+    "id": "43c4efe4-7871-468d-b79a-8ae1caa4e49a",
+    "name": "HyperX Cloud Stinger 2",
+    "price": 950,
+    "old_price": null
+  },
+  {
+    "id": "284948ef-1d52-4169-bfce-28c8043ad787",
+    "name": "Unidad de Estado Sólido SSD ADATA MARS 980 PRO NVMe",
+    "price": 6899,
+    "old_price": null
+  },
+  {
+    "id": "29a2fc2a-46ab-442e-bee4-5721eee864c3",
+    "name": "AMD Radeon RX 7700 XT",
+    "price": 9800,
+    "old_price": null
+  },
+  {
+    "id": "11b2ecab-c2c5-4bc4-939c-f898d6ac4555",
+    "name": "Gabinete Gamer Antec CX600M Trio ARGB",
+    "price": 1599,
+    "old_price": null
+  },
+  {
+    "id": "2c0a2f1b-e7ab-41c7-9f2a-fed064bdf420",
+    "name": "Razer Kraken Kitty V2",
+    "price": 1800,
+    "old_price": null
+  },
+  {
+    "id": "d03e20cc-d685-4197-804d-a76dea2ca519",
+    "name": "HyperX Pulsefire Haste",
+    "price": 750,
+    "old_price": null
+  },
+  {
+    "id": "31a3e60c-5e69-4e95-924e-6a24c57a4ec7",
+    "name": "Fuente de Poder MSI MAG A1000PLS PCIE5 1000W",
+    "price": 2499,
+    "old_price": null
+  },
+  {
+    "id": "9191d428-072e-4c00-8d00-f68465b71aba",
+    "name": "Logitech G502 X",
+    "price": 1100,
+    "old_price": null
+  },
+  {
+    "id": "d63ddfa9-488a-419b-864e-edf2b64ad993",
+    "name": "Intel Core i5-13400F",
+    "price": 3400,
+    "old_price": null
+  },
+  {
+    "id": "d2aee38a-62aa-4aed-8b61-6b8e78937201",
+    "name": "AMD Ryzen 5 5500",
+    "price": 1800,
+    "old_price": null
+  },
+  {
+    "id": "f2a90e5a-08d8-421e-af7d-4c1827ea207f",
+    "name": "Memoria RAM Kingston FURY Renegade DDR5 48GB",
+    "price": 12799,
+    "old_price": null
+  },
+  {
+    "id": "26d83d5f-b0c7-46f2-a19e-3d0c97c5257b",
+    "name": "Impresora Multifuncional HP Smart Tank 720 Tinta Continua a Color Wi-Fi Dúplex",
+    "price": 5099,
+    "old_price": null
+  },
+  {
+    "id": "179bc1c9-9ae7-4ede-96c2-3e6908abd771",
+    "name": "Ventilador para Gabinete XPG Hurricane 120mm / ARGB Led de Doble Anillo / HURRICANE120ARGBPWM-BKCWW",
+    "price": 199,
+    "old_price": null
+  },
+  {
+    "id": "ee33adad-7d98-4dca-b668-3dc9064ed5e1",
+    "name": "MSI PRO B760M-A",
+    "price": 2450,
+    "old_price": null
+  },
+  {
+    "id": "335f01c4-ecb6-4e94-982e-a23e10cb7c57",
+    "name": "Computadora PC Gamer PC-0116-D, AMD Ryzen 5 5600GT, 32GB, 1TB SSD, Wi-Fi, Windows 10 Home",
+    "price": 13789,
+    "old_price": null
+  },
+  {
+    "id": "e1b51725-cb5f-40d7-898b-66780a8e7693",
+    "name": "ASRock B450M Pro4",
+    "price": 1500,
+    "old_price": null
+  },
+  {
+    "id": "ee16a9ae-4a6b-4751-bc43-8c0681649bf9",
+    "name": "Fuente de Poder ASUS ROG Thor 1000W Platinum III",
+    "price": 8999,
+    "old_price": null
+  },
+  {
+    "id": "c53992f0-6184-4e2b-85b9-bd8e2ff4cfa0",
+    "name": "Unidad de Estado Sólido SSD Kingston SNV3S NVMe",
+    "price": 6599,
+    "old_price": null
+  },
+  {
+    "id": "a5c7ec4a-4f5b-444e-b8ec-602c64f82fa6",
+    "name": "Corsair Vengeance 32GB (2x16) DDR5 5600MHz",
+    "price": 2800,
+    "old_price": null
+  },
+  {
+    "id": "9f9161c6-a0b5-4071-b0ac-6e6b5d34c9c2",
+    "name": "Diadema Gamer ASUS ROG Kithara",
+    "price": 5999,
+    "old_price": null
+  },
+  {
+    "id": "e7109e07-2d13-4fac-bbd7-ae7229fbb023",
+    "name": "NZXT Kraken 240",
+    "price": 2400,
+    "old_price": null
+  },
+  {
+    "id": "1dd9ef9d-4427-43e2-b326-864104fbf97e",
+    "name": "Botella de Tinta Epson T574 Magenta Claro 7200 páginas",
+    "price": 329,
+    "old_price": null
+  },
+  {
+    "id": "1ad151fd-4e8b-4408-98cd-38fc5e6179c6",
+    "name": "Impresora Multifuncional HP Smart Tank 750 Tinta Continua a Color Wi-Fi Dúplex con Alimentador Automático",
+    "price": 5999,
+    "old_price": null
+  },
+  {
+    "id": "9ca4ded1-c88b-4596-ac26-8da34902e0fb",
+    "name": "Cartucho de Tinta Brother LC505C Cyan 1300 páginas",
+    "price": 199,
+    "old_price": null
+  },
+  {
+    "id": "5ab179f4-c35c-4986-80da-8b4fc614e628",
+    "name": "ASUS TUF Gaming B550-PLUS",
+    "price": 2600,
+    "old_price": null
+  },
+  {
+    "id": "9dc248ca-3fb5-4145-9db9-e17facc88c44",
+    "name": "Kit 3 Ventiladores Lian Li UNI FAN SL V2 RGB",
+    "price": 1899,
+    "old_price": null
+  },
+  {
+    "id": "2d388a2a-85b3-4725-928c-4c7be3f95777",
+    "name": "Corsair CV550 550W 80+ Bronze",
+    "price": 1000,
+    "old_price": null
+  },
+  {
+    "id": "6218fb97-37c8-4676-9c7c-cd4865f2027d",
+    "name": "Deepcool CC560",
+    "price": 1450,
+    "old_price": null
+  },
+  {
+    "id": "b1e1a66e-5d71-45f2-8611-1887c0b49e84",
+    "name": "ASUS TUF Gaming B650-PLUS",
+    "price": 3950,
+    "old_price": null
+  },
+  {
+    "id": "d8285740-1b70-48ca-9613-d84385b6ef06",
+    "name": "Corsair Ironclaw RGB",
+    "price": 950,
+    "old_price": null
+  },
+  {
+    "id": "3f30e877-0aaf-4f1e-aa56-2e8dad000bd2",
+    "name": "ASUS TUF GAMING Z790-PLUS",
+    "price": 5400,
+    "old_price": null
+  },
+  {
+    "id": "5e65c9b6-1b2f-47af-8e79-5c3aa9bba402",
+    "name": "ADATA XPG Gammix D10 16GB (2x8) DDR4 3200MHz",
+    "price": 1000,
+    "old_price": null
+  },
+  {
+    "id": "f97242cd-2197-4b46-97dd-edb92d4ea8e5",
+    "name": "Tarjeta de Video Radeon RX 6650 XT 8GB GDDR6 Sapphire Nitro+",
+    "price": 8599,
+    "old_price": null
+  },
+  {
+    "id": "80664e65-4e5c-4c6e-9087-66107a682d14",
+    "name": "Diadema Gamer Logitech PRO X 2",
+    "price": 4899,
+    "old_price": null
+  },
+  {
+    "id": "85eadc38-2969-43ed-8d88-8a97c1fd9e7b",
+    "name": "Corsair Harpoon RGB",
+    "price": 550,
+    "old_price": null
+  },
+  {
+    "id": "4e321636-00d2-4cc4-876c-9f24e970c92e",
+    "name": "NZXT H510 Flow",
+    "price": 1800,
+    "old_price": null
+  },
+  {
+    "id": "3277e593-9c95-4e7f-8625-0bd356c0f38a",
+    "name": "Ventilador para Gabinete Cooler Master MF120 PRISMATIC",
+    "price": 349,
+    "old_price": null
+  },
+  {
+    "id": "89952b15-f7a6-432c-8d30-85215a58f65a",
+    "name": "ADATA XPG Gammix S70 1TB NVMe M.2",
+    "price": 2100,
+    "old_price": null
+  },
+  {
+    "id": "cc48c725-6c65-42c1-8784-5baf656e2a63",
+    "name": "Diadema Gamer Logitech G Pro X",
+    "price": 3599,
+    "old_price": null
+  },
+  {
+    "id": "6eabd28e-9f26-4995-9654-2fbd50c77e41",
+    "name": "Kingston A400 480GB SSD SATA",
+    "price": 650,
+    "old_price": null
+  },
+  {
+    "id": "890747ce-8abe-49a5-a705-4c6ed1f7c6fa",
+    "name": "Fuente de Poder XZEAL XZ1000M 1000W",
+    "price": 1699,
+    "old_price": null
+  },
+  {
+    "id": "0f835bc7-1e75-4c10-8d72-ffdc91d766ff",
+    "name": "Cooler Master MasterBox Q300L",
+    "price": 1100,
+    "old_price": null
+  },
+  {
+    "id": "6f0af238-fece-4269-8cfa-d1f1e3bb6753",
+    "name": "Epson EcoTank L3250",
+    "price": 3600,
+    "old_price": null
+  },
+  {
+    "id": "c5e6671e-2ebb-4bbf-9e95-81ec0388abc0",
+    "name": "Diadema Hyperx Cloud Core",
+    "price": 1499,
+    "old_price": null
+  },
+  {
+    "id": "52d429f4-525d-4860-9eeb-3fe215b728c2",
+    "name": "Cooler Master Hyper 212 EVO V2",
+    "price": 700,
+    "old_price": null
+  },
+  {
+    "id": "5e894118-0f2f-4c5c-862f-746624355a4c",
+    "name": "Cooler Master MasterBox TD500 Mesh",
+    "price": 2200,
+    "old_price": null
+  },
+  {
+    "id": "1c5f6249-28a2-47aa-b183-5ff82fe26fcd",
+    "name": "Computadora Gamer Powerbit PWBR75700G-3050-16, AMD Ryzen 7 5700G, NVIDIA GeForce RTX 3050, 16GB, 512GB SSD, Windows 11 Prueba",
+    "price": 14569,
+    "old_price": null
+  },
+  {
+    "id": "7f9d4671-4d9a-46a1-899d-e7f7e6cd93a1",
+    "name": "Intel Core i3-10105F",
+    "price": 1500,
+    "old_price": null
+  },
+  {
+    "id": "7bef61dd-641e-464a-ad82-4795e52c16ff",
+    "name": "Diadema Gamer Redragon Pelops H818",
+    "price": 1199,
+    "old_price": null
+  },
+  {
+    "id": "75259f65-b989-46c0-b94f-34fce8de9a0e",
+    "name": "Impresora Multifuncional Canon Pixma G3110 Wi-Fi Tinta Continua",
+    "price": 3399,
+    "old_price": null
+  },
+  {
+    "id": "d0adf430-f2d2-4a4c-953f-733754589d33",
+    "name": "Tarjeta Madre MSI H510M PLUS II",
+    "price": 1069,
+    "old_price": null
+  },
+  {
+    "id": "20324355-5515-4df7-8ea1-275b02f05337",
+    "name": "Tarjeta Madre ASUS TUF GAMING B550-PLUS WIFI II",
+    "price": 3099,
+    "old_price": null
+  },
+  {
+    "id": "534a5ede-fec3-40f6-aa96-8295d0bee639",
+    "name": "Procesador Intel Core Ultra 5 250KF Plus",
+    "price": 4199,
+    "old_price": null
+  },
+  {
+    "id": "ab8b96f1-255f-4fbd-ac0f-b66ff3005468",
+    "name": "Diadema Gamer Redragon Hylas RGB",
+    "price": 369,
+    "old_price": null
+  },
+  {
+    "id": "68b46e7c-d1d1-472f-ae6b-f53f67a879f2",
+    "name": "SSD Kingston FURY Renegade NVMe",
+    "price": 3699,
+    "old_price": null
+  },
+  {
+    "id": "99ed6d61-e9f1-4e2f-b8e7-6be1f259330a",
+    "name": "Impresora Multifuncional Canon Pixma G3170 Tinta Continua Wi-Fi",
+    "price": 3249,
+    "old_price": null
+  },
+  {
+    "id": "3fc9ea64-9153-4329-824f-d05212f0ae5e",
+    "name": "Deepcool LS520",
+    "price": 1800,
+    "old_price": null
+  },
+  {
+    "id": "5a31d3fa-e1f7-485e-b582-83a1feffc494",
+    "name": "Antec AX20",
+    "price": 1000,
+    "old_price": null
+  },
+  {
+    "id": "666cc89a-9cbf-460c-8880-41068aa40218",
+    "name": "Memoria RAM Kingston KF432C16RB12",
+    "price": 2599,
+    "old_price": null
+  },
+  {
+    "id": "9a9b3ac5-8d57-4f2d-8d45-390e1a778806",
+    "name": "Epson EcoTank L4260",
+    "price": 4800,
+    "old_price": null
+  },
+  {
+    "id": "37e3bcf8-2f8a-4f5d-80ba-e650137be493",
+    "name": "Razer DeathAdder Essential",
+    "price": 450,
+    "old_price": null
+  },
+  {
+    "id": "ed45522d-859b-4541-bb32-a0475b0eca7a",
+    "name": "Disipador para CPU BALAM RUSH Heliux Pro HEX55",
+    "price": 599,
+    "old_price": null
+  },
+  {
+    "id": "88c30a78-f9bf-47c2-b270-7b453fb0033f",
+    "name": "Corsair 4000D Airflow",
+    "price": 2400,
+    "old_price": null
+  },
+  {
+    "id": "021192a2-964d-4881-a49f-0dcd2adbf117",
+    "name": "Tarjeta Madre ASUS TUF Gaming X870-PRO WIFI7 NEO",
+    "price": 6799,
+    "old_price": null
+  },
+  {
+    "id": "245523ed-ba0f-4101-9aeb-0dc0f71c1b67",
+    "name": "ASUS PRIME B760M-A",
+    "price": 2600,
+    "old_price": null
+  },
+  {
+    "id": "cd652617-51d1-4129-8891-4a785dbf6af3",
+    "name": "Logitech G502 Hero",
+    "price": 950,
+    "old_price": null
+  },
+  {
+    "id": "05d38c38-4644-42be-bc24-6e4332c92786",
+    "name": "Cooler Master MasterLiquid 360 Atmos",
+    "price": 3500,
+    "old_price": null
+  },
+  {
+    "id": "16985e03-ec0b-4b65-8f39-93d73c027ae5",
+    "name": "Gabinete Gamer BALAM RUSH CARBONO POLAR TWIN MATE 9900",
+    "price": 1969,
+    "old_price": null
+  },
+  {
+    "id": "afc0227a-dea9-4122-a9f7-c903cff6bd18",
+    "name": "Botella de Tinta Epson T574 Cian 7300 páginas",
+    "price": 329,
+    "old_price": null
+  },
+  {
+    "id": "9bc93590-c08a-4cef-bac2-aad176281ec9",
+    "name": "JBL Tune 510BT",
+    "price": 800,
+    "old_price": null
+  },
+  {
+    "id": "f5265386-b5df-44e3-9fc3-5a521606e0e9",
+    "name": "Epson L3210",
+    "price": 2800,
+    "old_price": null
+  },
+  {
+    "id": "1a588a9b-95aa-43fb-a8ae-f1736559fe78",
+    "name": "Botella de Tinta Epson T574 Negro 3600 páginas",
+    "price": 329,
+    "old_price": null
+  },
+  {
+    "id": "c6dd8ee2-abd4-4ee5-bcba-4b93b770c5d1",
+    "name": "Memoria RAM Corsair VENGEANCE RGB DDR5 32GB (2×16GB)",
+    "price": 8999,
+    "old_price": null
+  },
+  {
+    "id": "2909a5ee-2014-4dda-bc79-e2447077e9df",
+    "name": "Thermaltake Smart 500W 80+ White",
+    "price": 850,
+    "old_price": null
+  },
+  {
+    "id": "91b83b88-6805-4b3c-9ea5-c75efa0f913f",
+    "name": "Fuente de Poder Gigabyte UD750GM PG5 V2 ICE",
+    "price": 1399,
+    "old_price": null
+  },
+  {
+    "id": "5c1e305e-27c1-473c-897d-73667f19a476",
+    "name": "HP 667 Negro",
+    "price": 280,
+    "old_price": null
+  },
+  {
+    "id": "e36fe50a-2db9-4dbf-87be-5df2e987e839",
+    "name": "Impresora Multifuncional HP 137FNW Láser Blanco y Negro Wi-Fi",
+    "price": 4299,
+    "old_price": null
+  },
+  {
+    "id": "392ab5fd-ee83-42c0-aa10-12c52a91603b",
+    "name": "Mouse Gamer AULA Wind F816",
+    "price": 169,
+    "old_price": null
+  },
+  {
+    "id": "a039851d-1d0d-440a-9fe5-1871baba74b3",
+    "name": "Computadora Dell Pro Slim Essential QVS1260, Intel Core i5-14400, 8GB, 512GB SSD, Wi-Fi, Windows 11 Home + Teclado",
+    "price": 14299,
+    "old_price": null
+  },
+  {
+    "id": "e6c05b25-90c3-478e-badc-20a4442d6ccb",
+    "name": "MSI MAG A650BN 80+ Bronze",
+    "price": 1200,
+    "old_price": null
+  },
+  {
+    "id": "ca5b7066-1ced-405e-89c5-eb064f5f594f",
+    "name": "Diadema Gamer ASUS ROG Delta II Wireless",
+    "price": 4379,
+    "old_price": null
+  },
+  {
+    "id": "97d1fc94-6eea-418e-a49f-4a26c4a90f1f",
+    "name": "NZXT H5 Flow",
+    "price": 2050,
+    "old_price": null
+  },
+  {
+    "id": "74a26f4c-7c76-4463-8192-add52430a1fb",
+    "name": "Corsair Vengeance LPX 16GB (2x8) DDR4 3200MHz",
+    "price": 1150,
+    "old_price": null
+  },
+  {
+    "id": "15bb80f9-df3c-464b-90e4-bcea12ec7ae8",
+    "name": "Impresora Multifuncional Inyección de Tinta Epson EcoTank L5590 Color Wi-Fi",
+    "price": 6499,
+    "old_price": null
+  },
+  {
+    "id": "fb0b0910-e6ba-419c-bcd9-7b1f29b6f221",
+    "name": "Corsair CX650 650W 80+ Bronze",
+    "price": 1400,
+    "old_price": null
+  },
+  {
+    "id": "f1538bc3-5763-4a9d-8599-60855d96c9b7",
+    "name": "Gabinete Gamer Balam Rush Dragonfly Hex GM560",
+    "price": 929,
+    "old_price": null
+  },
+  {
+    "id": "337f7f1b-2a07-4ff1-a119-dc4599cbc4ec",
+    "name": "SSD Kingston KC3000 NVMe",
+    "price": 5899,
+    "old_price": null
+  },
+  {
+    "id": "b0c65886-31e6-4ef1-bd55-98fa6255e4bd",
+    "name": "Corsair iCUE H150i Elite",
+    "price": 2900,
+    "old_price": null
+  },
+  {
+    "id": "bb5697b5-102e-4c56-ae55-b84a645fcfd4",
+    "name": "Razer BlackShark V2",
+    "price": 2200,
+    "old_price": null
+  },
+  {
+    "id": "d905ba73-18b3-41ab-9a25-619ddb371231",
+    "name": "Intel Core i5-14600K",
+    "price": 5600,
+    "old_price": null
+  },
+  {
+    "id": "6c6afc6f-2661-4b6f-8251-262217721462",
+    "name": "Patriot Viper Steel 16GB (2x8) DDR4 3200MHz",
+    "price": 1100,
+    "old_price": null
+  },
+  {
+    "id": "12da80b5-f0b3-4825-a4d0-39207c75b461",
+    "name": "Impresora Multifuncional Brother 3 en 1 DCP-T530DW Inyección de Tinta Color Wi-Fi",
+    "price": 4399,
+    "old_price": null
+  },
+  {
+    "id": "8d7c84fc-3235-4ba7-9c25-3d47252951b7",
+    "name": "Logitech G305 Lightspeed",
+    "price": 700,
+    "old_price": null
+  },
+  {
+    "id": "1ea24553-74a7-433c-b6a2-bb68dee55c8d",
+    "name": "Mouse Gamer AULA Mountain S12 Pro",
+    "price": 229,
+    "old_price": null
+  },
+  {
+    "id": "ac2a71ee-26d3-4ab6-8502-c10f335cb296",
+    "name": "Diadema Gamer Redragon H312 CYBILL",
+    "price": 1099,
+    "old_price": null
+  },
+  {
+    "id": "0a609229-6819-4a20-b50e-b143321293eb",
+    "name": "Seasonic Focus GX-750 80+ Gold Modular",
+    "price": 2600,
+    "old_price": null
+  },
+  {
+    "id": "e382a413-9665-4771-85ea-960a7e82149a",
+    "name": "Unidad de Estado Sólido SSD Kingston NV3S NVMe",
+    "price": 8699,
+    "old_price": null
+  },
+  {
+    "id": "2ea92a01-0130-4d37-a8b9-5e6312d367a5",
+    "name": "Gigabyte B550 AORUS ELITE",
+    "price": 2800,
+    "old_price": null
+  },
+  {
+    "id": "21ad3d67-f63e-485c-92bf-aeacb9f770b6",
+    "name": "Mouse Gamer Redragon K1NG ULTRA M999",
+    "price": 699,
+    "old_price": null
+  },
+  {
+    "id": "506c671d-535f-44d8-99ed-b965fa25c801",
+    "name": "Logitech MX Master 3S",
+    "price": 2200,
+    "old_price": null
+  },
+  {
+    "id": "51797b84-991c-4115-bc22-e03d19313151",
+    "name": "Unidad de Estado Sólido SSD Adata Legend 900 Pro NVMe",
+    "price": 3899,
+    "old_price": null
+  },
+  {
+    "id": "17da04aa-f430-46d6-a120-7da6a562f5ea",
+    "name": "AMD Radeon RX 6700 XT",
+    "price": 7500,
+    "old_price": null
+  },
+  {
+    "id": "4149b08b-fd83-4d34-bd9c-ac777ab309b5",
+    "name": "Procesador Intel Core Ultra 7 270K Plus",
+    "price": 6599,
+    "old_price": null
+  },
+  {
+    "id": "f5cf7cd8-e918-443f-a4c8-b4f8ab6f0e67",
+    "name": "Logitech G733 Lightspeed",
+    "price": 2800,
+    "old_price": null
+  },
+  {
+    "id": "bb378879-4875-4a38-b515-f4f47df4f674",
+    "name": "Gabinete LIAN LI LANCOOL 207 DIGITAL",
+    "price": 2399,
+    "old_price": null
+  },
+  {
+    "id": "3bd7f625-b5bc-4084-8d9a-bac02828eb12",
+    "name": "MSI MAG A850GL 80+ Gold Modular",
+    "price": 2600,
+    "old_price": null
+  },
+  {
+    "id": "6a2a8d8a-c5dd-436b-8af3-afe179b37ae1",
+    "name": "AMD Ryzen 5 5600",
+    "price": 2200,
+    "old_price": null
+  },
+  {
+    "id": "7af9706a-59b4-4982-a266-8aadd8f81a87",
+    "name": "Intel Core i5-13600K",
+    "price": 6200,
+    "old_price": null
+  },
+  {
+    "id": "f57a6507-4134-4eaf-bce1-4c11b4fbfc10",
+    "name": "Ventilador para Gabinete - Lian Li Unifan Black / 120mm / SL120-1B",
+    "price": 669,
+    "old_price": null
+  },
+  {
+    "id": "05f78bb5-a0d3-4e2e-b1da-466c0af1d64e",
+    "name": "Intel Core i5-12400F",
+    "price": 2650,
+    "old_price": null
+  },
+  {
+    "id": "ba65c59b-b52d-4b52-9359-a9a39aa4b5c1",
+    "name": "Unidad de Estado Sólido SSD Adata Legend 710 NVMe",
+    "price": 1069,
+    "old_price": null
+  },
+  {
+    "id": "e6b0cbfc-41e7-41a1-9488-028f622e8968",
+    "name": "MSI PRO B650M-A",
+    "price": 2800,
+    "old_price": null
+  },
+  {
+    "id": "63312e18-4d44-46c1-a575-ec715516c8d6",
+    "name": "AMD Ryzen 7 5800X3D",
+    "price": 5500,
+    "old_price": null
+  },
+  {
+    "id": "6352b2f9-97ac-4263-9344-52c481a4516e",
+    "name": "Corsair iCUE 4000X RGB",
+    "price": 2400,
+    "old_price": null
+  },
+  {
+    "id": "f59c50af-4f42-49f5-a015-57ad938b20c8",
+    "name": "XPG Core Reactor 650W 80+ Gold Modular",
+    "price": 2000,
+    "old_price": null
+  },
+  {
+    "id": "6048c5c9-68d7-4c66-a9c3-1fea5b5d0795",
+    "name": "Gabinete Gamer Antec C5 ARGB",
+    "price": 2269,
+    "old_price": null
+  },
+  {
+    "id": "0338ba0a-2be0-4e28-a71c-1c00e59d522f",
+    "name": "Seagate Barracuda 1TB HDD 7200RPM",
+    "price": 850,
+    "old_price": null
+  },
+  {
+    "id": "107bc41e-4530-4fe9-a4ca-7074e3f8bcbc",
+    "name": "Disipador para CPU Cooler Master Hyper 212 3DHP Black ARGB",
+    "price": 429,
+    "old_price": null
+  },
+  {
+    "id": "a15b6101-5168-4119-9e1d-5dd25fd8b400",
+    "name": "Impresora Multifuncional HP Smart Tank 790 Tinta Continua a Color Wi-Fi Dúplex con Alimentador Automático",
+    "price": 6899,
+    "old_price": null
+  },
+  {
+    "id": "2cfa51dd-294a-4451-9d06-bcfb5fe8a5bc",
+    "name": "Impresora Multifuncional Inyección de Tinta Epson EcoTank L3251 Color Wi-Fi",
+    "price": 4199,
+    "old_price": null
+  },
+  {
+    "id": "aa01e029-a08e-45c7-9efe-b5441b21492f",
+    "name": "Ventilador Corsair iCUE LINK RX120 RGB",
+    "price": 1399,
+    "old_price": null
+  },
+  {
+    "id": "97db221e-8d8c-489d-a8b0-8acb49900061",
+    "name": "Gabinete Gamer Asus ROG STRIX HELIOS II GX601S HATSUNE MIKU EDITION",
+    "price": 7999,
+    "old_price": null
+  },
+  {
+    "id": "aa625147-422f-411b-b14a-ce0df9c10269",
+    "name": "Cartucho de Tinta Canon 211",
+    "price": 789,
+    "old_price": null
+  },
+  {
+    "id": "72ee451d-bb89-427c-82b1-21b103e1d81e",
+    "name": "Sony WH-CH520",
+    "price": 1100,
+    "old_price": null
+  },
+  {
+    "id": "704b7ef5-0d63-4b73-9caf-f16c616edb5e",
+    "name": "ASUS PRIME B550M-A",
+    "price": 2200,
+    "old_price": null
+  },
+  {
+    "id": "48d1de47-7834-437a-959a-c0399ab8d791",
+    "name": "Memoria RAM Kingston FURY Renegade RGB DDR5",
+    "price": 10999,
+    "old_price": null
+  },
+  {
+    "id": "c07b07d3-fee8-4b58-8e83-59da17e695b5",
+    "name": "Tarjeta Madre MSI MPG B850I EDGE TI WIFI",
+    "price": 4199,
+    "old_price": null
+  },
+  {
+    "id": "832ae92b-6009-4d93-9fa4-851d9e8d29e0",
+    "name": "Corsair Virtuoso RGB Wireless",
+    "price": 3800,
+    "old_price": null
+  },
+  {
+    "id": "f0c97046-2568-411d-bfa3-47bf297060ff",
+    "name": "Procesador Intel Core i5-14400",
+    "price": 3999,
+    "old_price": null
+  },
+  {
+    "id": "be7c1223-4d8f-4075-9548-20938dc24edd",
+    "name": "G.Skill Trident Z RGB 16GB (2x8) DDR4 3600MHz",
+    "price": 1500,
+    "old_price": null
+  },
+  {
+    "id": "ad553ab3-718d-429f-a803-d68d75b2a385",
+    "name": "Unidad de Estado Sólido SSD Kingston FURY Renegade G5 NVMe",
+    "price": 9999,
+    "old_price": null
+  },
+  {
+    "id": "fed3a02d-c484-4bf2-9819-58b242d4839c",
+    "name": "Fuente de Poder Cooler Master MWE Gold 750 V3",
+    "price": 1349,
+    "old_price": null
+  },
+  {
+    "id": "b54ad02d-1a7a-4396-bab0-edf110ba8c6d",
+    "name": "Ventilador Corsair iCUE LINK RX140 RGB",
+    "price": 1199,
+    "old_price": null
+  },
+  {
+    "id": "447614aa-1b87-4531-ba02-0d753d917a81",
+    "name": "Gigabyte Z790 AORUS ELITE",
+    "price": 5800,
+    "old_price": null
+  },
+  {
+    "id": "8a7e04d0-1650-40b9-b2cc-586c64b4b18a",
+    "name": "Intel Core i3-12100F",
+    "price": 2000,
+    "old_price": null
+  },
+  {
+    "id": "4f4351ed-5b70-4411-b964-ab58df22dae1",
+    "name": "Gabinete Gamer XPG INVADER X Mini",
+    "price": 899,
+    "old_price": null
+  },
+  {
+    "id": "32659d19-7c0f-452c-9f90-2ebfcd50ac46",
+    "name": "ASUS TUF Gaming GT301",
+    "price": 2600,
+    "old_price": null
+  },
+  {
+    "id": "6f49f352-eb76-4136-87c3-26e64276ee29",
+    "name": "Gigabyte B650 AORUS ELITE AX",
+    "price": 4600,
+    "old_price": null
+  },
+  {
+    "id": "fd162f95-74f8-4d30-a73a-d7ec725438e4",
+    "name": "Fuente de Poder ASUS ROG Thor 1200W Platinum III",
+    "price": 9499,
+    "old_price": null
+  },
+  {
+    "id": "e970d5ad-bffc-42b9-b08d-33f7c6ae77aa",
+    "name": "NVIDIA GeForce RTX 3060 Ti",
+    "price": 7200,
+    "old_price": null
+  },
+  {
+    "id": "c4d1fed7-078b-44ec-b42b-37b117c0a799",
+    "name": "Cartucho de Tinta Hp 954XL",
+    "price": 1689,
+    "old_price": null
+  },
+  {
+    "id": "9bf7ad57-4a4e-4b01-af59-d422dbaa9096",
+    "name": "Unidad de Estado Sólido SSD Adata Ultimate SU650 3D TLC",
+    "price": 1499,
+    "old_price": null
+  },
+  {
+    "id": "a19ac00a-7f2e-40cd-8995-39bf2de86fa9",
+    "name": "Diadema Gamer AULA Mountain S608",
+    "price": 199,
+    "old_price": null
+  },
+  {
+    "id": "7234917a-ab6c-425a-96d2-bdf7cd685a42",
+    "name": "AMD Ryzen 5 5600X",
+    "price": 2800,
+    "old_price": null
+  },
+  {
+    "id": "e5bc2779-6879-4c8f-9b8e-1c17573481a8",
+    "name": "Intel Core i7-12700K",
+    "price": 7500,
+    "old_price": null
+  },
+  {
+    "id": "20a54bb2-82b6-47c9-b5d2-16d9b8e97491",
+    "name": "Intel Core i7-13700K",
+    "price": 8200,
+    "old_price": null
+  },
+  {
+    "id": "9e564138-5249-41c0-be7a-4789f038179a",
+    "name": "Tarjeta Madre ASUS TUF Gaming A520M-PLUS WIFI",
+    "price": 1599,
+    "old_price": null
+  },
+  {
+    "id": "8146ecdd-7686-42c0-a0f7-ec1cd4ba943b",
+    "name": "Botella de Tinta Epson T534 Negro 6000 páginas",
+    "price": 439,
+    "old_price": null
+  },
+  {
+    "id": "ac130366-d8e7-46e6-bb34-4fc204e43d86",
+    "name": "Unidad de Estado Sólido SSD ADATA SC740",
+    "price": 2499,
+    "old_price": null
+  },
+  {
+    "id": "7091bf32-9894-4e1c-a144-19598dfc4391",
+    "name": "Gabinete Gamer Aerocool HS 420",
+    "price": 2999,
+    "old_price": null
+  },
+  {
+    "id": "3fb3b4f6-92ce-4c73-bb18-d0c8b3ad7f05",
+    "name": "Memoria RAM TEAMGROUP T-Force Vulcan DDR5",
+    "price": 3599,
+    "old_price": null
+  },
+  {
+    "id": "ececf78e-74a1-4f7e-b6f9-d0b7508596f1",
+    "name": "SteelSeries Rival 3",
+    "price": 600,
+    "old_price": null
+  },
+  {
+    "id": "445a9e8c-eca5-4367-886d-424905fcc667",
+    "name": "HyperX Cloud Alpha",
+    "price": 1900,
+    "old_price": null
+  },
+  {
+    "id": "547aa601-89f4-453c-bef1-70e0e34d828a",
+    "name": "Corsair RM750x 750W 80+ Gold Modular",
+    "price": 2800,
+    "old_price": null
+  },
+  {
+    "id": "00c5bcb8-3f04-435c-b104-f65264b81963",
+    "name": "Diadema Gamer Redragon ZEUS PRO H510",
+    "price": 1249,
+    "old_price": null
+  },
+  {
+    "id": "e6ae4ad3-4b95-4c38-aca9-7360ab4a2603",
+    "name": "Gabinete Gamer Aerocool P500C",
+    "price": 1199,
+    "old_price": null
+  },
+  {
+    "id": "deda828c-c5ed-4129-a825-7a7c17c27a0b",
+    "name": "Memoria RAM Acer UD200",
+    "price": 3499,
+    "old_price": null
+  },
+  {
+    "id": "a5fd8766-98c6-42a2-9e28-9021ce39d0c2",
+    "name": "Impresora Multifuncional HP Smart Tank 530 Tinta Continua Color Wi-Fi con Alimentador Automático",
+    "price": 4599,
+    "old_price": null
+  },
+  {
+    "id": "f219503a-6ad7-4543-9d46-529925b59835",
+    "name": "NVIDIA GeForce RTX 3060",
+    "price": 6200,
+    "old_price": null
+  },
+  {
+    "id": "6f4ca257-9502-4011-976c-c02818668fc4",
+    "name": "Logitech G Pro X Superlight",
+    "price": 2400,
+    "old_price": null
+  },
+  {
+    "id": "def3834e-fd9e-4920-af75-00ad578fba35",
+    "name": "Gigabyte B760 GAMING X",
+    "price": 3200,
+    "old_price": null
+  },
+  {
+    "id": "a14b2051-2d7f-42b2-8129-28ffabf4ed53",
+    "name": "Memoria RAM ADATA XPG GAMMIX D10 DDR4 32GB (2x16GB) 3000MHz CL16 Negra",
+    "price": 3899,
+    "old_price": null
+  },
+  {
+    "id": "8916ac50-9d5c-4d90-a467-81743ffe4a47",
+    "name": "Procesador Intel Core Ultra 5 250K Plus",
+    "price": 4499,
+    "old_price": null
+  },
+  {
+    "id": "da4ced74-dac9-46bf-a2a9-bc73208da76b",
+    "name": "Impresora Multifuncional HP LaserJet Tank MFP 2602SDW Láser Blanco y Negro Wi-Fi con Alimentador Automático",
+    "price": 8299,
+    "old_price": null
+  },
+  {
+    "id": "6099248b-39e3-4bdb-847f-20268878377f",
+    "name": "AMD Radeon RX 7600",
+    "price": 6200,
+    "old_price": null
+  },
+  {
+    "id": "a64bcb4a-6fd2-4951-ae76-79c5fa65068f",
+    "name": "SteelSeries Aerox 3",
+    "price": 800,
+    "old_price": null
+  },
+  {
+    "id": "6354c584-cb57-4ae6-94f3-ee1bd5a4a537",
+    "name": "Disipador para CPU BALAM RUSH Heliux Pro HEX60",
+    "price": 549,
+    "old_price": null
+  },
+  {
+    "id": "f5f26eab-47a0-4505-8133-1d7266136650",
+    "name": "Impresora Multifuncional HP Smart Tank 580 Tinta Continua a Color Wi-Fi",
+    "price": 3699,
+    "old_price": null
+  },
+  {
+    "id": "d0700fdb-4443-4ba1-b242-bdf9fde441bd",
+    "name": "Impresora Multifuncional de Inyección de Tinta Brother MFC-J6940DW Impresión A3 Doble Carta con Wi-Fi",
+    "price": 8119,
+    "old_price": null
+  },
+  {
+    "id": "507d6059-1c6c-43e2-87f6-c69cb048d1a8",
+    "name": "Cartucho de Tinta HP 938 Cyan 800 páginas",
+    "price": 589,
+    "old_price": null
+  },
+  {
+    "id": "57553399-5704-4043-9aa6-52c8ac39c5ee",
+    "name": "Astro A10 Gen 2",
+    "price": 1300,
+    "old_price": null
+  },
+  {
+    "id": "ce94595b-241f-4c39-abf0-7f9b79f38b95",
+    "name": "Cartucho de Tinta Canon CL 141",
+    "price": 999,
+    "old_price": null
+  },
+  {
+    "id": "493f4710-5f2e-4073-95ca-5be5f19fdb74",
+    "name": "AMD Radeon RX 7900 GRE",
+    "price": 12900,
+    "old_price": null
+  },
+  {
+    "id": "db5c24a3-2fae-44c6-a8b7-d45f4be5af02",
+    "name": "Seagate IronWolf 4TB HDD NAS",
+    "price": 2900,
+    "old_price": null
+  },
+  {
+    "id": "6d89c51c-503f-4273-8d7b-98a0cd69925d",
+    "name": "Cartucho de Tinta HP 938 Amarillo 800 páginas",
+    "price": 589,
+    "old_price": null
+  },
+  {
+    "id": "38d9f011-2679-4737-9488-6db0f9a823b7",
+    "name": "Corsair iCUE H100i Elite",
+    "price": 2200,
+    "old_price": null
+  },
+  {
+    "id": "5e7eb124-cc52-45f6-94be-4ec3a47ee951",
+    "name": "Cooler Master Hyper 212 Black Edition",
+    "price": 650,
+    "old_price": null
+  },
+  {
+    "id": "0abce1b9-20e7-4e61-995b-a7317b83eb6e",
+    "name": "Deepcool Matrexx 55",
+    "price": 1200,
+    "old_price": null
+  },
+  {
+    "id": "38bf944a-cc06-4b00-bb40-58793d9a838d",
+    "name": "Kingston Fury Beast 16GB (2x8) DDR5 5200MHz",
+    "price": 1600,
+    "old_price": null
+  },
+  {
+    "id": "584ff8c9-f86a-447c-9df8-f7e0e22053e3",
+    "name": "WD Green 480GB SSD SATA",
+    "price": 700,
+    "old_price": null
+  },
+  {
+    "id": "705945cd-558a-4546-88f5-c3d1d8c5b456",
+    "name": "Impresora Multifuncional HP Smart Tank 523 Inyección Térmica a Color USB",
+    "price": 2899,
+    "old_price": null
+  },
+  {
+    "id": "a291fe0b-b57a-4b9e-bf13-e38da504aa40",
+    "name": "Cartucho de Tinta Canon 210",
+    "price": 619,
+    "old_price": null
+  },
+  {
+    "id": "1d1c6a77-84ef-44bf-947b-3cccbfc92e5e",
+    "name": "AMD Radeon RX 6600",
+    "price": 4900,
+    "old_price": null
+  },
+  {
+    "id": "3975d036-f420-463e-b277-1cf7680d42da",
+    "name": "Tarjeta Madre Gigabyte X870E AORUS MASTER X3D ICE",
+    "price": 10899,
+    "old_price": null
+  },
+  {
+    "id": "f12d1db5-fac1-4264-8263-5800894a84f9",
+    "name": "Memoria RAM Kingston FURY Beast DDR5",
+    "price": 4299,
+    "old_price": null
+  },
+  {
+    "id": "f8c27f82-c1b3-456c-858c-232f29c30a28",
+    "name": "NVIDIA GeForce RTX 4070",
+    "price": 11800,
+    "old_price": null
+  },
+  {
+    "id": "e845453b-bbf4-4189-ac05-b7d4638ceb45",
+    "name": "Computadora Gamer Xtreme PC Gaming CM-05435, AMD Ryzen 5 5500, NVIDIA GeForce RTX 3050, 16GB, 1TB SSD, Wi-Fi, Windows 10 Prueba",
+    "price": 14069,
+    "old_price": null
+  },
+  {
+    "id": "7d1a7c4d-7a8d-4d35-be6e-387514695bf3",
+    "name": "MSI PRO Z790-A",
+    "price": 5200,
+    "old_price": null
+  },
+  {
+    "id": "5d6fdf3a-d00b-4865-9ec0-6631a8de013a",
+    "name": "PNY XLR8 16GB (2x8) DDR4 3200MHz",
+    "price": 1000,
+    "old_price": null
+  },
+  {
+    "id": "1389b027-b5e3-4013-a6ae-a5c3242b5dff",
+    "name": "ARCTIC Liquid Freezer II 240",
+    "price": 1650,
+    "old_price": null
+  },
+  {
+    "id": "eeef9543-3cbf-4847-be0c-d140bdd897f0",
+    "name": "HP 667 Tricolor",
+    "price": 320,
+    "old_price": null
+  },
+  {
+    "id": "6f068ce0-2b67-4688-8107-ce339dfd433e",
+    "name": "Memoria RAM ADATA XPG Lancer Blade RGB DDR5 16GB",
+    "price": 3899,
+    "old_price": null
+  },
+  {
+    "id": "8c966045-98db-4192-b77d-88ef798eba97",
+    "name": "NZXT Kraken X63",
+    "price": 3000,
+    "old_price": null
+  },
+  {
+    "id": "e4afad24-5925-46a1-b60c-63e27b414f80",
+    "name": "Computadora Xtreme PC Gaming CM-05058, AMD Ryzen 5 5600G, 16GB, 500GB SSD, Wi-Fi, Windows 11 Prueba",
+    "price": 8839,
+    "old_price": null
+  },
+  {
+    "id": "48fa5726-405b-44cb-b141-aaa8ce34dc03",
+    "name": "Deepcool LT720",
+    "price": 2600,
+    "old_price": null
+  },
+  {
+    "id": "56cc2d06-2cd9-409a-810d-ed0a1fa2be64",
+    "name": "Noctua NH-U12S",
+    "price": 1450,
+    "old_price": null
+  },
+  {
+    "id": "88c5247a-869d-44b3-8cab-b1e6fbd89620",
+    "name": "Razer Basilisk V3",
+    "price": 1350,
+    "old_price": null
+  },
+  {
+    "id": "73a71005-b1c8-4359-8fdf-e22b526fc986",
+    "name": "ASUS ROG Strix 750W 80+ Gold Modular",
+    "price": 3200,
+    "old_price": null
+  },
+  {
+    "id": "23f201c9-2007-461d-8854-c158899e17e0",
+    "name": "AMD Ryzen 5 7600",
+    "price": 3800,
+    "old_price": null
+  },
+  {
+    "id": "1ac37e2e-3b28-4578-998a-7cb8c084e1f3",
+    "name": "Tarjeta de Video PowerColor Radeon RX 9070 XT REAPER 16GB GDDR6",
+    "price": 11699,
+    "old_price": null
+  },
+  {
+    "id": "db171d19-de24-4161-80f9-3e99aeb7cd9a",
+    "name": "Tarjeta de Video MSI NVIDIA GeForce RTX 5070 INSPIRE 3X OC 12GB GDDR7",
+    "price": 13999,
+    "old_price": null
+  },
+  {
+    "id": "7c59ed5a-ab59-4b4c-b1d1-4c231e224ae5",
+    "name": "Computadora Xtreme PC Gaming CM-05139, AMD Ryzen 5 3400G, 16GB, 500GB SSD, Wi-Fi, Windows 10 Prueba",
+    "price": 7239,
+    "old_price": null
+  },
+  {
+    "id": "419d6dfe-43fc-4ca6-bff9-a539803f8381",
+    "name": "Noctua NH-D15",
+    "price": 2300,
+    "old_price": null
+  },
+  {
+    "id": "bab92e2a-e448-4b1a-9665-b6f2d5d793c0",
+    "name": "Computadora Gamer XPG ScoutPlus RTX 3050, AMD Ryzen 5 5500, NVIDIA GeForce RTX 3050, 16GB, 480GB SSD, Wi-Fi, Windows 11 Prueba",
+    "price": 14759,
+    "old_price": null
+  },
+  {
+    "id": "c530b96a-4f38-4ddd-acd1-36ac87771303",
+    "name": "Intel Core i9-14900K",
+    "price": 11450,
+    "old_price": null
+  },
+  {
+    "id": "681a23ea-3a96-40a0-ada0-763d7e19446e",
+    "name": "AMD Ryzen 7 7700X",
+    "price": 6200,
+    "old_price": null
+  },
+  {
+    "id": "1968170b-0417-4323-9549-c0540eb580f0",
+    "name": "Computadora Gamer Yeyian Vault 5500B, AMD Ryzen 5 5500, NVIDIA GeForce RTX 3050, 16GB, 1TB SSD, Windows 11 Prueba",
+    "price": 14789,
+    "old_price": null
+  },
+  {
+    "id": "8b0bbb8f-d11c-44dd-ac20-f986382e45c5",
+    "name": "Ventilador para Gabinete 140mm con Luz Led RGB Corsair QL140 White - CO-9050105-WW",
+    "price": 579,
+    "old_price": null
+  },
+  {
+    "id": "3316bdb4-0c21-428c-8eb2-bd95d75c6f4d",
+    "name": "Cooler Master MasterLiquid ML240L V2",
+    "price": 1500,
+    "old_price": null
+  },
+  {
+    "id": "095e9502-3e12-4b5b-9007-884cfe40db27",
+    "name": "Ventilador para Gabinete Cooler Master SICKLEFLOW 120 ARGB WHITE / MFX-B2DW-18NPA",
+    "price": 269,
+    "old_price": null
+  },
+  {
+    "id": "3433c7c1-d1c4-45a9-9685-8d0096535a8a",
+    "name": "Ventilador para Gabinete 120mm con Luz Led RGB Corsair SP120 PRO - CO-9050093-WW",
+    "price": 399,
+    "old_price": null
+  },
+  {
+    "id": "15018ef0-8b6c-4436-a339-c6e750a0be23",
+    "name": "NVIDIA GeForce RTX 3050",
+    "price": 4800,
+    "old_price": null
+  },
+  {
+    "id": "3803a067-954e-4b2f-9afe-c6f6d877b317",
+    "name": "AMD Radeon RX 6750 XT",
+    "price": 8200,
+    "old_price": null
+  },
+  {
+    "id": "246c9189-a5ba-4958-ab0b-dcda4b20e66e",
+    "name": "Canon GI-190 Negro",
+    "price": 260,
+    "old_price": null
+  },
+  {
+    "id": "2c3fd3de-f335-46d9-a290-e0e3da30a681",
+    "name": "HP 664 Negro",
+    "price": 260,
+    "old_price": null
+  },
+  {
+    "id": "d6618a67-775a-4840-9835-0e9cc1f38e9d",
+    "name": "Epson T504 Negro",
+    "price": 280,
+    "old_price": null
+  },
+  {
+    "id": "d968a622-cf1e-4d86-b917-1bbfbcd655df",
+    "name": "Ventilador para Gabinete NZXT F120Q / Blanco / 120mm /  EN-NZX-065  / RF-Q12SF-W1",
+    "price": 249,
+    "old_price": null
+  },
+  {
+    "id": "80ed934c-a6b6-4c45-9403-189f27436ec6",
+    "name": "NVIDIA GeForce RTX 4060 Ti",
+    "price": 8900,
+    "old_price": null
+  },
+  {
+    "id": "3a4372b5-2ef5-40c1-b283-bf14fffb511f",
+    "name": "NVIDIA GeForce RTX 4070 Super",
+    "price": 13200,
+    "old_price": null
+  },
+  {
+    "id": "3ae41407-3c39-4200-a79a-557f63bfbf93",
+    "name": "Ventilador para Gabinete XPG Hurricane 140mm / ARGB Led de Doble Anillo / HURRICANE140ARGBPWM-BKCWW",
+    "price": 249,
+    "old_price": null
+  },
+  {
+    "id": "37db3921-1659-4074-8a83-cbf69e5458c5",
+    "name": "Corsair RM850x 850W 80+ Gold Modular",
+    "price": 3400,
+    "old_price": null
+  },
+  {
+    "id": "126c58ea-4324-409c-849e-2840854e7610",
+    "name": "Computadora Xtreme PC Gaming CM-05914, Intel Core i5-10400T, 16GB, 500GB SSD, Wi-Fi, Windows 11 Prueba",
+    "price": 7249,
+    "old_price": null
+  }
+]
