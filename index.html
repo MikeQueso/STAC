@@ -877,6 +877,22 @@
       #search-wrap { display: none; }
       /* Partículas más discretas en pantallas chicas */
       .hero-particle { width: 44px !important; height: 44px !important; }
+      /* Header compacto: aplica desde que aparecen los botones extra (≤900px),
+         para que TODO quepa incluso con la vista de admin */
+      .header-inner { gap: 8px; padding: 0 12px; }
+      .header-inner > .logo img { height: 46px !important; }
+      .header-inner > .logo { padding-left: 4px; }
+      .header-actions { gap: 6px; margin-left: auto; }
+      #header-search-btn, #header-contact-btn, #header-fav-btn, #cart-open-btn {
+        width: 38px !important; height: 38px !important; font-size: 15px !important; border-radius: 9px !important;
+      }
+      #cart-open-btn svg { width: 18px; height: 18px; }
+      #header-actions-dynamic > div { gap: 6px !important; }
+      .ptb-label { display: none; } /* "Cliente"/"Admin": solo el icono */
+      #preview-toggle-btn { padding: 8px 9px !important; font-size: 14px !important; }
+      .user-chip { padding: 3px; gap: 0; }
+      .user-chip span { display: none; } /* solo el avatar */
+      .btn-primary { padding: 9px 12px; font-size: 12px; }
     }
     @media (max-width: 760px) {
       .detail-grid { grid-template-columns: 1fr; }
