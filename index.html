@@ -1202,14 +1202,14 @@
     </div>
 
     <!-- Modal editar ¿Quiénes somos? -->
-    <div id="about-edit-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:4000; align-items:center; justify-content:center;">
-      <div style="background:#fff; border-radius:14px; width:100%; max-width:600px; margin:20px; padding:28px 28px 24px; box-shadow:0 20px 60px rgba(0,0,0,0.25);">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+    <div id="about-edit-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:4000; align-items:flex-start; justify-content:center; overflow-y:auto; padding:16px; box-sizing:border-box;">
+      <div style="background:#fff; border-radius:14px; width:100%; max-width:600px; margin:auto; padding:24px 24px 20px; box-shadow:0 20px 60px rgba(0,0,0,0.25); max-height:calc(100dvh - 32px); display:flex; flex-direction:column; box-sizing:border-box;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-shrink:0;">
           <h3 style="font-family:'Rajdhani',sans-serif; font-size:20px; font-weight:700; color:#0C1E3A; margin:0;">Editar ¿Quiénes somos?</h3>
           <button id="about-modal-close" style="background:none; border:none; font-size:22px; cursor:pointer; color:#7A8FA8; line-height:1;">✕</button>
         </div>
-        <div style="border:1px solid #dde3ec; border-radius:8px; overflow:hidden; margin-bottom:18px;">
-          <div style="display:flex; align-items:center; gap:4px; padding:6px 8px; background:#f4f6fa; border-bottom:1px solid #dde3ec; flex-wrap:wrap;">
+        <div style="border:1px solid #dde3ec; border-radius:8px; overflow:hidden; margin-bottom:18px; flex:1; min-height:0; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; gap:4px; padding:6px 8px; background:#f4f6fa; border-bottom:1px solid #dde3ec; flex-wrap:wrap; flex-shrink:0;">
             <button class="about-fmt-btn" data-cmd="bold" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;font-weight:700;color:#0C1E3A;">B</button>
             <button class="about-fmt-btn" data-cmd="italic" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;font-style:italic;color:#0C1E3A;">I</button>
             <input type="color" id="about-color-inp" title="Color de texto" onmousedown="event.preventDefault()" style="width:28px;height:28px;padding:1px;border:1px solid #c8d0dc;border-radius:5px;cursor:pointer;background:none;">
@@ -1234,9 +1234,9 @@
             <button class="about-fmt-btn" data-cmd="justifyCenter" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;color:#0C1E3A;">☰</button>
             <button class="about-fmt-btn" data-cmd="justifyRight" onmousedown="event.preventDefault()" style="background:none;border:1px solid #c8d0dc;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:13px;color:#0C1E3A;">➡</button>
           </div>
-          <div id="about-edit-content" contenteditable="true" style="min-height:140px; padding:12px 14px; outline:none; background:#fff; color:#324A66; font-family:'IBM Plex Sans',sans-serif; font-size:15.5px; line-height:1.75;"></div>
+          <div id="about-edit-content" contenteditable="true" style="min-height:140px; flex:1; overflow-y:auto; padding:12px 14px; outline:none; background:#fff; color:#324A66; font-family:'IBM Plex Sans',sans-serif; font-size:15.5px; line-height:1.75;"></div>
         </div>
-        <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <div style="display:flex; justify-content:flex-end; gap:10px; flex-shrink:0;">
           <button id="about-modal-cancel" style="background:none; border:1px solid #dde3ec; border-radius:8px; padding:9px 20px; font-size:13px; font-weight:600; cursor:pointer; color:#324A66; font-family:'IBM Plex Sans',sans-serif;">Cancelar</button>
           <button id="about-modal-save" style="background:#005FFF; color:#fff; border:none; border-radius:8px; padding:9px 20px; font-size:13px; font-weight:600; cursor:pointer; font-family:'IBM Plex Sans',sans-serif;">Guardar</button>
         </div>
@@ -1330,12 +1330,13 @@
     </div>
 
     <!-- ── Editor de servicios (solo admin) ── -->
-    <div id="svc-editor-overlay" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:3100;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;">
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:660px;padding:28px 28px 24px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+    <div id="svc-editor-overlay" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:3100;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;box-sizing:border-box;">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:660px;margin:auto;padding:24px 24px 0;max-height:calc(100dvh - 32px);display:flex;flex-direction:column;box-sizing:border-box;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-shrink:0;">
           <h3 style="font-family:'Rajdhani',sans-serif;font-size:21px;font-weight:700;color:var(--text-primary);margin:0;">Editar servicio</h3>
           <button id="svc-editor-close" style="background:none;border:none;color:var(--text-dim);font-size:22px;cursor:pointer;line-height:1;">✕</button>
         </div>
+        <div style="flex:1;min-height:0;overflow-y:auto;margin:0 -24px;padding:0 24px;">
 
         <!-- Ícono + Título -->
         <div style="display:flex;gap:12px;margin-bottom:16px;">
@@ -1384,10 +1385,11 @@
           <button type="button" class="svc-add-btn" data-type="image" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Imagen</button>
           <button type="button" class="svc-add-btn" data-type="contact" style="padding:6px 14px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-dim);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">+ Contacto</button>
         </div>
+        </div>
 
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:16px;border-top:1px solid var(--border);">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0 20px;border-top:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;background:var(--bg-card);">
           <button id="svc-delete-btn" style="padding:10px 18px;border:1px solid #e53e3e;border-radius:8px;background:none;color:#e53e3e;font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">🗑 Eliminar servicio</button>
-          <div style="display:flex;gap:10px;">
+          <div style="display:flex;gap:10px;margin-left:auto;">
             <button id="svc-cancel-btn" style="padding:10px 20px;border:1px solid var(--border);border-radius:8px;background:none;color:var(--text-body);font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;">Cancelar</button>
             <button id="svc-save-btn" class="auth-submit" style="margin:0;padding:10px 28px;min-width:120px;">Guardar</button>
           </div>
